@@ -1,0 +1,13 @@
+@import 'css/settings';
+
+.c-catalogue-filter {
+  
+  .country-container {
+    display: flex;
+    flex-direction: column;
+
+    select {
+      max-width: 300px;
+    }
+  }
+}
