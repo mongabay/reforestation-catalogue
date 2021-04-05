@@ -1,0 +1,20 @@
+@import 'css/settings';
+
+.p-home {
+  width: 100vw;
+  height: 100vh;
+  padding: map-get($spacers, 5);
+
+  .l-static-page {
+    height: 100%;
+
+    .navigation-bar {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin-left: 20px;
+      }
+    }
+  }
+}
