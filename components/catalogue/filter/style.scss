@@ -2,10 +2,12 @@
 
 .c-catalogue-filter {
   
-  .country-container {
+  .filter-container {
     display: flex;
     flex-direction: column;
+  }
 
+  .-country {
     select {
       max-width: 300px;
     }

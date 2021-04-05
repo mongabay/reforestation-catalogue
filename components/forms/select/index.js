@@ -22,8 +22,6 @@ const Select = ({
     [options, onChange]
   );
 
-  console.log('options', options);
-
   return (
     <select
       id={id}
