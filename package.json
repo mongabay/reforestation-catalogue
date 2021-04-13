@@ -1,9 +1,9 @@
 {
-  "name": "satellite-stamp",
+  "name": "reforestation-catalogue",
   "version": "1.0.0",
-  "description": "Tool to generate map images for Mongabay.",
+  "description": "Reforestation Catalogue.",
   "main": "index.js",
-  "repository": "git@github.com:mongabay/satellite-stamp.git",
+  "repository": "git@github.com:mongabay/reforestation-catalogue.git",
   "author": "Vizzuality <hello@vizzuality.com>",
   "license": "MIT",
   "engines": {

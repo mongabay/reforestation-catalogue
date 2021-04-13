@@ -7,10 +7,10 @@ import Radio from 'components/forms/radio';
 
 // utils
 import {
-  UNIQUE_COUNTRIES,
   getOrganizationTypesFiltered,
   getObjectivesFiltered,
   getApproachesFiltered,
+  getCountriesFiltered,
 } from 'services/catalogue';
 
 // styles
@@ -23,6 +23,7 @@ function CatalogueFilter({
   approach,
   genderCommunityInvolvement,
   onChange,
+  sequential,
 }) {
   const [filters, setFilters] = useState({
     country,
@@ -38,16 +39,24 @@ function CatalogueFilter({
         <label htmlFor="country-select">Where?</label>
         <Select
           id="country-select"
-          options={UNIQUE_COUNTRIES.map(e => ({ value: e, label: e }))}
+          options={getCountriesFiltered(filters).map(e => ({ value: e, label: e }))}
           defaultValue={filters.country}
           onChange={({ value }) => {
-            const filtersUpdated = { ...filters, country: value };
+            const filtersUpdated = sequential
+              ? {
+                  country: value,
+                  organizationType: null,
+                  objective: null,
+                  approach: null,
+                  genderCommunityInvolvement: null,
+                }
+              : { ...filters, country: value };
             setFilters(filtersUpdated);
             onChange(filtersUpdated);
           }}
         />
       </div>
-      {filters.country && (
+      {(filters.country || !sequential) && (
         <div className="-organization-type filter-container">
           <label htmlFor="organization-type-select">Organization Type?</label>
           <Select
@@ -55,14 +64,22 @@ function CatalogueFilter({
             options={getOrganizationTypesFiltered(filters).map(e => ({ value: e, label: e }))}
             defaultValue={filters.organizationType}
             onChange={({ value }) => {
-              const filtersUpdated = { ...filters, organizationType: value };
+              const filtersUpdated = sequential
+                ? {
+                    ...filters,
+                    organizationType: value,
+                    objective: null,
+                    approach: null,
+                    genderCommunityInvolvement: null,
+                  }
+                : { ...filters, organizationType: value };
               setFilters(filtersUpdated);
               onChange(filtersUpdated);
             }}
           />
         </div>
       )}
-      {filters.organizationType && (
+      {(filters.organizationType || !sequential) && (
         <div className="-objective filter-container">
           <label htmlFor="objective-select">Objective?</label>
           <Select
@@ -70,14 +87,21 @@ function CatalogueFilter({
             options={getObjectivesFiltered(filters).map(e => ({ value: e, label: e }))}
             defaultValue={filters.objective}
             onChange={({ value }) => {
-              const filtersUpdated = { ...filters, objective: value };
+              const filtersUpdated = sequential
+                ? {
+                    ...filters,
+                    objective: value,
+                    approach: null,
+                    genderCommunityInvolvement: null,
+                  }
+                : { ...filters, objective: value };
               setFilters(filtersUpdated);
               onChange(filtersUpdated);
             }}
           />
         </div>
       )}
-      {filters.objective && (
+      {(filters.objective || !sequential) && (
         <div className="-approach filter-container">
           <label htmlFor="approach-select">Approach?</label>
           <Select
@@ -85,20 +109,26 @@ function CatalogueFilter({
             options={getApproachesFiltered(filters).map(e => ({ value: e, label: e }))}
             defaultValue={filters.approach}
             onChange={({ value }) => {
-              const filtersUpdated = { ...filters, approach: value };
+              const filtersUpdated = sequential
+                ? {
+                    ...filters,
+                    approach: value,
+                    genderCommunityInvolvement: null,
+                  }
+                : { ...filters, approach: value };
               setFilters(filtersUpdated);
               onChange(filtersUpdated);
             }}
           />
         </div>
       )}
-      {filters.approach && (
+      {(filters.approach || !sequential) && (
         <div className="-gender-community-involvement filter-container">
           <label htmlFor="gender-community-involvement-radio">
             Gender or Community Involvement?
           </label>
-          <Radio 
-            id="yes-radio" 
+          <Radio
+            id="yes-radio"
             name="gender-community-involvement-radio"
             checked={filters.genderCommunityInvolvement === 'YES'}
             onChange={() => {
@@ -134,6 +164,11 @@ CatalogueFilter.propTypes = {
   approach: PropTypes.string,
   genderCommunityInvolvement: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  sequential: PropTypes.bool,
+};
+
+CatalogueFilter.defaultProps = {
+  sequential: true,
 };
 
 export default CatalogueFilter;

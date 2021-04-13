@@ -33,6 +33,7 @@ const Select = ({
       onChange={onChangeSelect}
       required={required}
     >
+      <option disabled selected>{'-- select an option --'}</option>
       {options.map(option => (
         <option key={option.value} value={option.value} disabled={option.disabled}>
           {option.label}

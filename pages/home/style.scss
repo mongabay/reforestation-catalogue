@@ -26,6 +26,14 @@
         text-align: center;
         margin-top: 100px;
       }
+
+      .data-container {
+        display: flex;
+
+        .projects-list {
+          padding: 20px;
+        }
+      }
     }
   }
 }

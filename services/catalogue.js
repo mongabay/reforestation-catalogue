@@ -4,12 +4,16 @@ export const UNIQUE_COUNTRIES = [...new Set(CATALOGUE_DATA.map(e => e.Country))]
   .filter(e => !!e)
   .sort();
 export const UNIQUE_ORGANIZATION_TYPES = [
-  ...new Set(CATALOGUE_DATA.map(e => e['Organization Type']))
+  ...new Set(CATALOGUE_DATA.map(e => e['Organization Type'])),
 ]
   .filter(e => !!e)
   .sort();
 export const UNIQUE_OBJECTIVES = [
-  ...new Set(CATALOGUE_DATA.map(e => e['Primary objective/purpose']))
+  ...new Set(
+    [].concat(
+      ...CATALOGUE_DATA.map(e => e['Primary objective/purpose'].split(',').map(e2 => e2.trim()))
+    )
+  ),
 ]
   .filter(e => !!e)
   .sort();
@@ -18,6 +22,37 @@ export const UNIQUE_APPROACHES = [
 ]
   .filter(e => !!e)
   .sort();
+
+export const getProjectByNumber = number =>
+  CATALOGUE_DATA.find(e => e['Project Number'] === number);
+
+export const getCountriesFiltered = ({
+  organizationType,
+  objective,
+  approach,
+  genderCommunityInvolvement,
+}) => {
+  let filteredResults = CATALOGUE_DATA;
+  if (organizationType) {
+    filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
+  }
+  if (objective) {
+    filteredResults = filteredResults.filter(e =>
+      e['Primary objective/purpose'].includes(objective)
+    );
+  }
+  if (approach) {
+    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
+  }
+  if (genderCommunityInvolvement) {
+    filteredResults = filteredResults.filter(
+      e =>
+        e['Has gender component'] === genderCommunityInvolvement ||
+        e['Has community involvement'] === genderCommunityInvolvement
+    );
+  }
+  return [...new Set(filteredResults.map(e => e.Country))].filter(e => !!e).sort();
+};
 
 export const getOrganizationTypesFiltered = ({
   country,
@@ -30,12 +65,12 @@ export const getOrganizationTypesFiltered = ({
     filteredResults = filteredResults.filter(e => e.Country === country);
   }
   if (objective) {
-    filteredResults = filteredResults.filter(e => e['Primary objective/purpose'] === objective);
+    filteredResults = filteredResults.filter(e =>
+      e['Primary objective/purpose'].includes(objective)
+    );
   }
   if (approach) {
-    filteredResults = filteredResults.filter(e =>
-      e['Primary objective/purpose'].includes(approach)
-    );
+    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
   }
   if (genderCommunityInvolvement) {
     filteredResults = filteredResults.filter(
@@ -44,11 +79,7 @@ export const getOrganizationTypesFiltered = ({
         e['Has community involvement'] === genderCommunityInvolvement
     );
   }
-  return [
-    ...new Set(filteredResults.map(e => e['Organization Type']))
-  ]
-    .filter(e => !!e)
-    .sort();
+  return [...new Set(filteredResults.map(e => e['Organization Type']))].filter(e => !!e).sort();
 };
 
 export const getObjectivesFiltered = ({
@@ -65,9 +96,7 @@ export const getObjectivesFiltered = ({
     filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
   }
   if (approach) {
-    filteredResults = filteredResults.filter(e =>
-      e['Primary objective/purpose'].includes(approach)
-    );
+    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
   }
   if (genderCommunityInvolvement) {
     filteredResults = filteredResults.filter(
@@ -76,8 +105,12 @@ export const getObjectivesFiltered = ({
         e['Has community involvement'] === genderCommunityInvolvement
     );
   }
-  return  [
-    ...new Set(filteredResults.map(e => e['Primary objective/purpose']))
+  return [
+    ...new Set(
+      [].concat(
+        ...filteredResults.map(e => e['Primary objective/purpose'].split(',').map(e2 => e2.trim()))
+      )
+    ),
   ]
     .filter(e => !!e)
     .sort();
@@ -97,7 +130,9 @@ export const getApproachesFiltered = ({
     filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
   }
   if (objective) {
-    filteredResults = filteredResults.filter(e => e['Primary objective/purpose'] === objective);
+    filteredResults = filteredResults.filter(e =>
+      e['Primary objective/purpose'].includes(objective)
+    );
   }
   if (genderCommunityInvolvement) {
     filteredResults = filteredResults.filter(
@@ -110,7 +145,7 @@ export const getApproachesFiltered = ({
     ...new Set([].concat(...filteredResults.map(e => e.Approach.split(',').map(e2 => e2.trim())))),
   ]
     .filter(e => !!e)
-    .sort();;
+    .sort();
 };
 
 export const getCatalogueFiltered = ({
@@ -128,12 +163,12 @@ export const getCatalogueFiltered = ({
     filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
   }
   if (objective) {
-    filteredResults = filteredResults.filter(e => e['Primary objective/purpose'] === objective);
+    filteredResults = filteredResults.filter(e =>
+      e['Primary objective/purpose'].includes(objective)
+    );
   }
   if (approach) {
-    filteredResults = filteredResults.filter(e =>
-      e['Primary objective/purpose'].includes(approach)
-    );
+    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
   }
   if (genderCommunityInvolvement) {
     filteredResults = filteredResults.filter(
@@ -142,5 +177,5 @@ export const getCatalogueFiltered = ({
         e['Has community involvement'] === genderCommunityInvolvement
     );
   }
-  return filteredResults;
+  return filteredResults.filter(e => !!e);
 };
