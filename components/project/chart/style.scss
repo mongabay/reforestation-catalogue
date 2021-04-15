@@ -1,0 +1,18 @@
+@import 'css/settings';
+
+.c-project-chart {
+  display: flex;
+  flex-direction: column;
+  max-width: 160px;
+
+  .title {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  circle { 
+    fill: none; 
+    stroke: $text-color-1; 
+    stroke-width: 3px; 
+  }
+}

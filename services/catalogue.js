@@ -1,181 +1,124 @@
 import { CATALOGUE_DATA } from 'utils/catalogue-data';
 
-export const UNIQUE_COUNTRIES = [...new Set(CATALOGUE_DATA.map(e => e.Country))]
-  .filter(e => !!e)
-  .sort();
-export const UNIQUE_ORGANIZATION_TYPES = [
-  ...new Set(CATALOGUE_DATA.map(e => e['Organization Type'])),
-]
-  .filter(e => !!e)
-  .sort();
-export const UNIQUE_OBJECTIVES = [
-  ...new Set(
-    [].concat(
-      ...CATALOGUE_DATA.map(e => e['Primary objective/purpose'].split(',').map(e2 => e2.trim()))
-    )
-  ),
-]
-  .filter(e => !!e)
-  .sort();
-export const UNIQUE_APPROACHES = [
-  ...new Set([].concat(...CATALOGUE_DATA.map(e => e.Approach.split(',').map(e2 => e2.trim())))),
-]
-  .filter(e => !!e)
-  .sort();
+export const CATEGORIES = [
+  {
+    id: 'Context',
+    fields: [
+      {
+        id: 'Start Year',
+        type: 'string',
+      },
+      {
+        id: 'End Year',
+        type: 'string',
+      },
+      {
+        id: 'Has explicit location',
+        type: 'boolean',
+      },
+      {
+        id: 'Country',
+        type: 'string',
+      },
+      {
+        id: 'Size of project',
+        type: 'number',
+      },
+    ],
+  },
+  {
+    id: 'Ecological',
+    fields: [
+      {
+        id: 'Forest Type',
+        type: 'string',
+      },
+      {
+        id: 'Fire prevention',
+        type: 'boolean',
+      },
+      {
+        id: 'Addresses known threats',
+        type: 'boolean',
+      },
+      {
+        id: 'Discloses species used',
+        type: 'boolean',
+      },
+    ],
+  },
+  {
+    id: 'Economic',
+    fields: [
+      {
+        id: 'Identify deforestation driver',
+        type: 'boolean',
+      },
+      {
+        id: 'Local seedling nurseries',
+        type: 'boolean',
+      },
+      {
+        id: 'Financial model',
+        type: 'string',
+      },
+      {
+        id: 'Follow up disclosed',
+        type: 'boolean',
+      },
+    ],
+  },
+  {
+    id: 'Social',
+    fields: [
+      {
+        id: 'Has community involvement',
+        type: 'boolean',
+      },
+      {
+        id: 'Has gender component',
+        type: 'boolean',
+      },
+    ],
+  },
+  {
+    id: 'Institutional',
+    fields: [
+      {
+        id: 'Organization Type',
+        type: 'string',
+      },
+      {
+        id: 'Partner Name',
+        type: 'not-empty',
+      },
+      {
+        id: 'Scientific research associated with project',
+        type: 'boolean',
+      },
+    ],
+  },
+];
+
+const filterByField = (data, fieldName, value, commaSeparated = false) =>
+  data.filter(e => (commaSeparated ? e[fieldName].includes(value) : e[fieldName] === value));
+
+const getUniqueValues = (data, fieldName, commaSeparated = false) => {
+  let result;
+  if (commaSeparated) {
+    result = [
+      ...new Set([].concat(...data.map(e => e[fieldName].split(',').map(e2 => e2.trim()))))
+    ];
+  } else {
+    result = [...new Set(data.map(e => e[fieldName]))];
+  }
+  return result.filter(e => !!e).sort();
+};
+
+export const UNIQUE_COUNTRIES = getUniqueValues(CATALOGUE_DATA, 'Country');
+export const UNIQUE_ORGANIZATION_TYPES = getUniqueValues(CATALOGUE_DATA, 'Organization Type');
+export const UNIQUE_OBJECTIVES = getUniqueValues(CATALOGUE_DATA, 'Primary objective/purpose', true);
+export const UNIQUE_APPROACHES = getUniqueValues(CATALOGUE_DATA, 'Approach', true);
 
 export const getProjectByNumber = number =>
   CATALOGUE_DATA.find(e => e['Project Number'] === number);
-
-export const getCountriesFiltered = ({
-  organizationType,
-  objective,
-  approach,
-  genderCommunityInvolvement,
-}) => {
-  let filteredResults = CATALOGUE_DATA;
-  if (organizationType) {
-    filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
-  }
-  if (objective) {
-    filteredResults = filteredResults.filter(e =>
-      e['Primary objective/purpose'].includes(objective)
-    );
-  }
-  if (approach) {
-    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
-  }
-  if (genderCommunityInvolvement) {
-    filteredResults = filteredResults.filter(
-      e =>
-        e['Has gender component'] === genderCommunityInvolvement ||
-        e['Has community involvement'] === genderCommunityInvolvement
-    );
-  }
-  return [...new Set(filteredResults.map(e => e.Country))].filter(e => !!e).sort();
-};
-
-export const getOrganizationTypesFiltered = ({
-  country,
-  objective,
-  approach,
-  genderCommunityInvolvement,
-}) => {
-  let filteredResults = CATALOGUE_DATA;
-  if (country) {
-    filteredResults = filteredResults.filter(e => e.Country === country);
-  }
-  if (objective) {
-    filteredResults = filteredResults.filter(e =>
-      e['Primary objective/purpose'].includes(objective)
-    );
-  }
-  if (approach) {
-    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
-  }
-  if (genderCommunityInvolvement) {
-    filteredResults = filteredResults.filter(
-      e =>
-        e['Has gender component'] === genderCommunityInvolvement ||
-        e['Has community involvement'] === genderCommunityInvolvement
-    );
-  }
-  return [...new Set(filteredResults.map(e => e['Organization Type']))].filter(e => !!e).sort();
-};
-
-export const getObjectivesFiltered = ({
-  country,
-  organizationType,
-  approach,
-  genderCommunityInvolvement,
-}) => {
-  let filteredResults = CATALOGUE_DATA;
-  if (country) {
-    filteredResults = filteredResults.filter(e => e.Country === country);
-  }
-  if (organizationType) {
-    filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
-  }
-  if (approach) {
-    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
-  }
-  if (genderCommunityInvolvement) {
-    filteredResults = filteredResults.filter(
-      e =>
-        e['Has gender component'] === genderCommunityInvolvement ||
-        e['Has community involvement'] === genderCommunityInvolvement
-    );
-  }
-  return [
-    ...new Set(
-      [].concat(
-        ...filteredResults.map(e => e['Primary objective/purpose'].split(',').map(e2 => e2.trim()))
-      )
-    ),
-  ]
-    .filter(e => !!e)
-    .sort();
-};
-
-export const getApproachesFiltered = ({
-  country,
-  organizationType,
-  objective,
-  genderCommunityInvolvement,
-}) => {
-  let filteredResults = CATALOGUE_DATA;
-  if (country) {
-    filteredResults = filteredResults.filter(e => e.Country === country);
-  }
-  if (organizationType) {
-    filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
-  }
-  if (objective) {
-    filteredResults = filteredResults.filter(e =>
-      e['Primary objective/purpose'].includes(objective)
-    );
-  }
-  if (genderCommunityInvolvement) {
-    filteredResults = filteredResults.filter(
-      e =>
-        e['Has gender component'] === genderCommunityInvolvement ||
-        e['Has community involvement'] === genderCommunityInvolvement
-    );
-  }
-  return [
-    ...new Set([].concat(...filteredResults.map(e => e.Approach.split(',').map(e2 => e2.trim())))),
-  ]
-    .filter(e => !!e)
-    .sort();
-};
-
-export const getCatalogueFiltered = ({
-  country,
-  organizationType,
-  objective,
-  approach,
-  genderCommunityInvolvement,
-}) => {
-  let filteredResults = CATALOGUE_DATA;
-  if (country) {
-    filteredResults = filteredResults.filter(e => e.Country === country);
-  }
-  if (organizationType) {
-    filteredResults = filteredResults.filter(e => e['Organization Type'] === organizationType);
-  }
-  if (objective) {
-    filteredResults = filteredResults.filter(e =>
-      e['Primary objective/purpose'].includes(objective)
-    );
-  }
-  if (approach) {
-    filteredResults = filteredResults.filter(e => e.Approach.includes(approach));
-  }
-  if (genderCommunityInvolvement) {
-    filteredResults = filteredResults.filter(
-      e =>
-        e['Has gender component'] === genderCommunityInvolvement ||
-        e['Has community involvement'] === genderCommunityInvolvement
-    );
-  }
-  return filteredResults.filter(e => !!e);
-};

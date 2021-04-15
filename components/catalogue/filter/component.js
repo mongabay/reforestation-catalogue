@@ -7,10 +7,6 @@ import Radio from 'components/forms/radio';
 
 // utils
 import {
-  getOrganizationTypesFiltered,
-  getObjectivesFiltered,
-  getApproachesFiltered,
-  getCountriesFiltered,
 } from 'services/catalogue';
 
 // styles
@@ -23,7 +19,6 @@ function CatalogueFilter({
   approach,
   genderCommunityInvolvement,
   onChange,
-  sequential,
 }) {
   const [filters, setFilters] = useState({
     country,
