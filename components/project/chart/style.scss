@@ -14,5 +14,9 @@
     fill: none; 
     stroke: $text-color-1; 
     stroke-width: 3px; 
+
+    &.-highlighted {
+      stroke: $orange;
+    }
   }
 }

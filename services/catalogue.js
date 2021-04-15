@@ -1,8 +1,13 @@
 import { CATALOGUE_DATA } from 'utils/catalogue-data';
 
+export const CONTEXT_CATEGORY = 'Context';
+export const ECOLOGICAL_CATEGORY = 'Ecological';
+export const ECONOMIC_CATEGORY = 'Economic';
+export const SOCIAL_CATEGORY = 'Social';
+export const INSTITUTIONAL_CATEGORY = 'Institutional';
 export const CATEGORIES = [
   {
-    id: 'Context',
+    id: CONTEXT_CATEGORY,
     fields: [
       {
         id: 'Start Year',
@@ -27,7 +32,7 @@ export const CATEGORIES = [
     ],
   },
   {
-    id: 'Ecological',
+    id: ECOLOGICAL_CATEGORY,
     fields: [
       {
         id: 'Forest Type',
@@ -48,7 +53,7 @@ export const CATEGORIES = [
     ],
   },
   {
-    id: 'Economic',
+    id: ECONOMIC_CATEGORY,
     fields: [
       {
         id: 'Identify deforestation driver',
@@ -69,7 +74,7 @@ export const CATEGORIES = [
     ],
   },
   {
-    id: 'Social',
+    id: SOCIAL_CATEGORY,
     fields: [
       {
         id: 'Has community involvement',
@@ -82,7 +87,7 @@ export const CATEGORIES = [
     ],
   },
   {
-    id: 'Institutional',
+    id: INSTITUTIONAL_CATEGORY,
     fields: [
       {
         id: 'Organization Type',
@@ -122,3 +127,11 @@ export const UNIQUE_APPROACHES = getUniqueValues(CATALOGUE_DATA, 'Approach', tru
 
 export const getProjectByNumber = number =>
   CATALOGUE_DATA.find(e => e['Project Number'] === number);
+
+export const getCatalogueFiltered = filters => {
+  let data = CATALOGUE_DATA;
+  // filters.forEach(filter => {
+  //   data = filterByField(data, filter.id, filter.value, filter.commaSeparated);
+  // });
+  return data;
+};

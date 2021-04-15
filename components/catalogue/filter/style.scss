@@ -12,5 +12,12 @@
     select {
       max-width: 300px;
     }
+
+    &.-priority {
+      select {
+        background-color: $orange;
+        font-weight: 700;
+      }
+    }
   }
 }
