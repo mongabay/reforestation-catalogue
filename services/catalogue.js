@@ -105,6 +105,8 @@ export const CATEGORIES = [
   },
 ];
 
+export const getCategoryByID = id => CATEGORIES.find(c => c.id === id);
+
 const filterByField = (data, fieldName, value, commaSeparated = false) =>
   data.filter(e => (commaSeparated ? e[fieldName].includes(value) : e[fieldName] === value));
 
