@@ -38,8 +38,6 @@ function ProjectChart({ project, highlightedCategory }) {
     return `${fullValue} ${emptyValue}`;
   };
 
-  console.log('Object.keys(categoryPercentages)', Object.keys(categoryPercentages));
-
   return (
     <div className="c-project-chart">
       <Tooltip
@@ -76,7 +74,6 @@ function ProjectChart({ project, highlightedCategory }) {
             cy="80"
             r="77"
             strokeDasharray={getStrokeDashArray(77, CONTEXT_CATEGORY)}
-            onMouseOver={evt => console.log('hey!', evt)}
           />
 
           <circle

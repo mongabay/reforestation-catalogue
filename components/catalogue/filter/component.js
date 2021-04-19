@@ -29,7 +29,6 @@ function CatalogueFilter({
           options={CATEGORIES.map(c => ({ label: c.id, value: c.id }))}
           defaultValue={priority}
           onChange={({ value }) => {
-            console.log('value', value);
             setPriority(value);
             onCategoryChange(value);
             onChange([]);

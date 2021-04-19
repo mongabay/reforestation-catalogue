@@ -9,7 +9,6 @@ function ProjectViewer({ id }) {
   const [project, setProject] = useState(null);
 
   useEffect(() => {
-    console.log('id', id);
     if (id) {
       setProject(getProjectByNumber(id));
     }

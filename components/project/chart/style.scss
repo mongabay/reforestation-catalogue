@@ -18,10 +18,16 @@
       fill: none; 
       stroke: $text-color-1; 
       stroke-width: 3px; 
+      animation: fill-circles 2s forwards;
   
       &.-highlighted {
         stroke: $orange;
       }
     }
   }
+}
+
+@keyframes fill-circles {
+  0% { stroke-dashoffset: -100; }
+  100% { stroke-dashoffset: 0; }
 }
