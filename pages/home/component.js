@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import StaticPage from 'layout/static-page';
 import CatalogueFilter from 'components/catalogue/filter/component';
 
-import { getCatalogueFiltered } from 'services/catalogue';
+import { getCatalogueFiltered, ECOLOGICAL_CATEGORY } from 'services/catalogue';
 
 // components
 import Select from 'components/forms/select';
@@ -11,31 +11,49 @@ import ProjectCard from 'components/project/card/component';
 
 // utils
 import { CATALOGUE_DATA } from 'utils/catalogue-data';
+import { getProjectCategoriesPercentage } from 'utils/project';
 
 // constants
-import { SORT_OPTIONS, ALPHABETICAL_OPTION } from './constants';
+import {
+  SORT_OPTIONS,
+  ALPHABETICAL_OPTION,
+  START_DATE_OPTION,
+  END_DATE_OPTION,
+  ECOLOGICAL_OPTION,
+} from './constants';
 
 // styles
 import './style.scss';
 
-const HomePage = () => {
+function HomePage() {
+  const [projects, setProjects] = useState(CATALOGUE_DATA);
   const [category, setCategorySelected] = useState(null);
   const [sortSelected, setSortSelected] = useState(ALPHABETICAL_OPTION);
-  const [projects, setProjects] = useState();
+
+  const sortProjects = () =>
+    setProjects([
+      ...projects.sort((a, b) => {
+        if (sortSelected === ALPHABETICAL_OPTION) {
+          return a['Project Name'] > b['Project Name'] ? 1 : -1; // eslint-disable-line
+        } else if (sortSelected === START_DATE_OPTION) {
+          return a['Start Date'] > b['Start Date'] ? 1 : -1; // eslint-disable-line
+        } else if (sortSelected === END_DATE_OPTION) {
+          return a['End Date'] > b['End Date'] ? 1 : -1; // eslint-disable-line
+        } else if (sortSelected === ECOLOGICAL_OPTION) {
+          const aEcoValue = getProjectCategoriesPercentage(a)[ECOLOGICAL_CATEGORY];
+          const bEcoValue = getProjectCategoriesPercentage(b)[ECOLOGICAL_CATEGORY];
+          return bEcoValue - aEcoValue;
+        }
+      }),
+    ]);
 
   useEffect(() => {
-    setProjects(sortProjects(CATALOGUE_DATA));
-  }, []); // eslint-disable-line
+    sortProjects();
+  }, []);
 
-  const sortProjects = projectsArray => {
-    return projectsArray.sort((a, b) => {
-      if (sortSelected === ALPHABETICAL_OPTION) {
-        const aTitle = a['Project Name'];
-        const bTitle = b['Project Name'];
-        return aTitle > bTitle ? 1 : -1; // eslint-disable-line
-      }
-    });
-  };
+  useEffect(() => {
+    sortProjects();
+  }, [sortSelected]);
 
   return (
     <StaticPage className="p-home">
@@ -56,7 +74,10 @@ const HomePage = () => {
         <div className="data-container">
           <CatalogueFilter
             onCategoryChange={value => setCategorySelected(value)}
-            onChange={filters => setProjects(sortProjects(getCatalogueFiltered(filters)))}
+            onChange={filters => {
+              setProjects(getCatalogueFiltered(filters));
+              sortProjects();
+            }}
           />
           <div className="projects-list">
             <div className="list-header">
@@ -66,11 +87,14 @@ const HomePage = () => {
                   id="sort-select"
                   options={SORT_OPTIONS}
                   defaultValue={sortSelected}
-                  onChange={({ value }) => setSortSelected(value)}
+                  onChange={({ value }) => {
+                    console.log('sort selected value', value);
+                    setSortSelected(value);
+                  }}
                 />
               </div>
               <div className="country-container">
-              <label htmlFor="country-select">Country: </label>
+                <label htmlFor="country-select">Country: </label>
                 <Select
                   id="country-select"
                   options={[]}
