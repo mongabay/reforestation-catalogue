@@ -4,11 +4,11 @@ import Head from 'next/head';
 
 const HeadComponent = ({ title, description }) => (
   <Head>
-    <title key="title">{title ? `${title} | Satellite stamp` : 'Satellite stamp'}</title>
+    <title key="title">{title ? `${title} | Reforestation Catalogue` : 'Reforestation Catalogue'}</title>
     <meta
       key="description"
       name="description"
-      content={description ? description : 'Tool to generate map images for Mongabay.'}
+      content={description ? description : 'Reforestation Catalogue.'}
     />
   </Head>
 );

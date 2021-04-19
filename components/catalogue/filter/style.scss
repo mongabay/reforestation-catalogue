@@ -1,0 +1,23 @@
+@import 'css/settings';
+
+.c-catalogue-filter {
+  display: flex;
+  flex-direction: column;
+  
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    select {
+      max-width: 300px;
+    }
+
+    &.-priority {
+      select {
+        background-color: $orange;
+        font-weight: 700;
+      }
+    }
+  }
+}

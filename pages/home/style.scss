@@ -16,5 +16,28 @@
         margin-left: 20px;
       }
     }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h1 {
+        text-align: center;
+        margin-top: 100px;
+      }
+
+      .data-container {
+        display: flex;
+
+        .projects-list {
+          padding: 20px;
+
+          .c-project-card {
+            margin: 0px 0px 40px 45px;
+          }
+        }
+      }
+    }
   }
 }
