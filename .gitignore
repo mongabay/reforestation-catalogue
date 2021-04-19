@@ -26,3 +26,7 @@ yarn-error.log*
 
 # data ingestion
 /data/input
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+/data/__pycache__
+/data/lib/__pycache__
