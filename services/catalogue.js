@@ -132,8 +132,8 @@ export const getProjectByNumber = number =>
 
 export const getCatalogueFiltered = filters => {
   let data = CATALOGUE_DATA;
-  // filters.forEach(filter => {
-  //   data = filterByField(data, filter.id, filter.value, filter.commaSeparated);
-  // });
+  filters.forEach(filter => {
+    data = filterByField(data, filter.id, filter.value, filter.commaSeparated);
+  });
   return data;
 };

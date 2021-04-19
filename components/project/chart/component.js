@@ -53,9 +53,9 @@ function ProjectChart({ project, highlightedCategory }) {
                 className="percentage-value"
                 style={{
                   display: 'flex',
-                  'justify-content': 'space-between',
-                  'align-items': 'center',
-                  'min-width': '100%',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  minWidth: '100%',
                 }}
               >
                 <label>{cKey}:</label>

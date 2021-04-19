@@ -36,7 +36,7 @@ function CatalogueFilter({
         />
       </div>
       {CATEGORIES.find(c => c.id === priority).fields.map(field => (
-        <div className="filter-container">
+        <div className="filter-container" key={`field-filter-${field.id}`}>
           <label htmlFor={`${field.id}-select`}>{field.id}</label>
           <Select
             id={`${field.id}-select`}
