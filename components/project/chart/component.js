@@ -5,6 +5,8 @@ import classnames from 'classnames';
 
 import Tooltip from 'components/tooltip';
 
+import { Project } from 'types';
+
 import {
   SOCIAL_CATEGORY,
   ECONOMIC_CATEGORY,

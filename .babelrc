@@ -27,7 +27,10 @@
         "alias": {
           "components": "./components",
           "css": "./css",
-          "layout": "./layout"
+          "layout": "./layout",
+          "types": "./types",
+          "services": "./services",
+          "utils": "./utils"
         }
       }
     ],
