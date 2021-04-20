@@ -1,4 +1,9 @@
+import axios from 'axios';
+
 import { CATALOGUE_DATA } from 'utils/catalogue-data';
+import { Project } from 'types';
+
+export const getCatalogueData = () => axios.get('/data/mongabay-data.json');
 
 export const CONTEXT_CATEGORY = 'Context';
 export const ECOLOGICAL_CATEGORY = 'Ecological';
@@ -114,7 +119,7 @@ const getUniqueValues = (data, fieldName, commaSeparated = false) => {
   let result;
   if (commaSeparated) {
     result = [
-      ...new Set([].concat(...data.map(e => e[fieldName].split(',').map(e2 => e2.trim()))))
+      ...new Set([].concat(...data.map(e => e[fieldName].split(',').map(e2 => e2.trim())))),
     ];
   } else {
     result = [...new Set(data.map(e => e[fieldName]))];

@@ -203,7 +203,7 @@
         "country": "Brazil",
         "countryCode": "BR",
         "sizeOfProjectHa": 87.0,
-        "treesPlantedNumber": "",
+        "treesPlantedNumber": null,
         "hasExplicitLocation": "YES",
         "forestType": "Tropical rainforest",
         "primaryObjectivePurpose": "biodiversity conservation, livelihood development, youth capacity building",

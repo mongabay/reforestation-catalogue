@@ -111,8 +111,8 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
           />
         </svg>
       </Tooltip>
-      <Link href={`/project/${project['Project Number']}`}>
-        <a className="title">{project['Project Name']}</a>
+      <Link href={`/project/${project.projectNumber}`}>
+        <a className="title">{project.projectName}</a>
       </Link>
     </div>
   );

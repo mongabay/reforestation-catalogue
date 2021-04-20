@@ -10,7 +10,7 @@ import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card/component';
 
 // utils
-import { CATALOGUE_DATA } from 'utils/catalogue-data';
+import { getCatalogueData } from 'services/catalogue';
 import { getProjectCategoriesPercentage } from 'utils/project';
 
 // constants
@@ -26,13 +26,13 @@ import {
 import './style.scss';
 
 function HomePage() {
-  const [projects, setProjects] = useState(CATALOGUE_DATA);
+  const [projects, setProjects] = useState([]);
   const [category, setCategorySelected] = useState(null);
   const [sortSelected, setSortSelected] = useState(ALPHABETICAL_OPTION);
 
-  const sortProjects = () =>
+  const sortProjects = projectsArray =>
     setProjects([
-      ...projects.sort((a, b) => {
+      ...projectsArray.sort((a, b) => {
         if (sortSelected === ALPHABETICAL_OPTION) {
           return a['Project Name'] > b['Project Name'] ? 1 : -1; // eslint-disable-line
         } else if (sortSelected === START_DATE_OPTION) {
@@ -48,11 +48,15 @@ function HomePage() {
     ]);
 
   useEffect(() => {
-    sortProjects();
+    getCatalogueData()
+      .then(response => {
+        sortProjects(response.data);
+      })
+      .catch(error => console.error(error));
   }, []);
 
   useEffect(() => {
-    sortProjects();
+    sortProjects(projects);
   }, [sortSelected]);
 
   return (
@@ -69,14 +73,22 @@ function HomePage() {
         <h1>A Tree Planting Project Directory</h1>
         <hr />
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat, ligula et dignissim aliquet, mauris nisl tincidunt velit, sit amet posuere dolor odio quis diam. Phasellus leo magna, facilisis eget eleifend vitae, aliquam non massa. Mauris quis vestibulum erat. Integer pellentesque elit id neque ornare accumsan. Maecenas a consectetur ligula. Etiam rhoncus lacinia urna eu bibendum. Aliquam scelerisque ut tellus vel vulputate. Vivamus arcu risus, maximus eu tellus et, pretium blandit quam. Fusce in egestas odio. In rhoncus aliquet ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque facilisis sed neque sed ultrices. Cras at vestibulum diam. Donec et lacus et orci dignissim dapibus ut in odio. Etiam laoreet sapien in varius dapibus. Aliquam erat volutpat.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat, ligula et dignissim
+          aliquet, mauris nisl tincidunt velit, sit amet posuere dolor odio quis diam. Phasellus leo
+          magna, facilisis eget eleifend vitae, aliquam non massa. Mauris quis vestibulum erat.
+          Integer pellentesque elit id neque ornare accumsan. Maecenas a consectetur ligula. Etiam
+          rhoncus lacinia urna eu bibendum. Aliquam scelerisque ut tellus vel vulputate. Vivamus
+          arcu risus, maximus eu tellus et, pretium blandit quam. Fusce in egestas odio. In rhoncus
+          aliquet ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+          cubilia curae; Pellentesque facilisis sed neque sed ultrices. Cras at vestibulum diam.
+          Donec et lacus et orci dignissim dapibus ut in odio. Etiam laoreet sapien in varius
+          dapibus. Aliquam erat volutpat.
         </p>
         <div className="data-container">
           <CatalogueFilter
             onCategoryChange={value => setCategorySelected(value)}
             onChange={filters => {
-              setProjects(getCatalogueFiltered(filters));
-              sortProjects();
+              sortProjects(getCatalogueFiltered(filters));
             }}
           />
           <div className="projects-list">
@@ -88,23 +100,19 @@ function HomePage() {
                   options={SORT_OPTIONS}
                   defaultValue={sortSelected}
                   onChange={({ value }) => {
-                    console.log('sort selected value', value);
                     setSortSelected(value);
                   }}
                 />
               </div>
               <div className="country-container">
                 <label htmlFor="country-select">Country: </label>
-                <Select
-                  id="country-select"
-                  options={[]}
-                />
+                <Select id="country-select" options={[]} />
               </div>
             </div>
             <div className="row">
               {projects &&
                 projects.map(p => (
-                  <div key={p['Project Number']} className="column">
+                  <div key={p.projectNumber} className="column">
                     <ProjectCard project={p} highlightedCategory={category} />
                   </div>
                 ))}
@@ -114,6 +122,6 @@ function HomePage() {
       </div>
     </StaticPage>
   );
-};
+}
 
 export default HomePage;
