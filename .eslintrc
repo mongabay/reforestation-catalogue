@@ -8,9 +8,17 @@
     "eslint:recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint"
   ],
-  "plugins": ["babel", "jest", "react", "react-hooks", "@typescript-eslint"],
+  "plugins": [
+    "babel",
+    "jest",
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
