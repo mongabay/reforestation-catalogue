@@ -7,10 +7,11 @@
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:import/typescript"
   ],
-  "plugins": ["babel", "jest", "react", "react-hooks"],
-  "parser": "babel-eslint",
+  "plugins": ["babel", "jest", "react", "react-hooks", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
