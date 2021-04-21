@@ -1,3 +1,4 @@
+import math
 from slugify import slugify
 import os
 import pandas as pd
@@ -27,18 +28,19 @@ def importCsv(in_path=IN_PATH):
     # Ignore top level header (type) and first level header (data type)
     df = pd.read_csv(in_path + in_file,
                      header=[2])
+    df_no_nans = df.where(pd.notnull(df), None)
 
-    if not validateCols(df):
+    if not validateCols(df_no_nans):
         return None
 
-    is_valid, parsed_df = validateValues(df)
+    is_valid, parsed_df = castValues(df_no_nans)
     if not is_valid:
         return None
 
     converted_df = convertColumns(parsed_df)
-    df_no_nans = converted_df.where(pd.notnull(converted_df), None)
 
-    data_json = df_no_nans.to_dict(orient='records')
+    data_json = converted_df.to_dict(orient='records')
+    detectDupeNames(data_json)
     is_saved = saveData(data_json)
 
     print(f"Data ingstion {'successful' if is_saved else 'failed'}.")
@@ -69,7 +71,7 @@ def validateCols(df):
     return True
 
 
-def validateValues(df):
+def castValues(df):
     with open('./lib/consts/validation_consts.json') as f:
         VALIDATION_CONSTS = json.load(f)
 
@@ -89,13 +91,58 @@ def validateValues(df):
                    for k, v in VALIDATION_CONSTS.items() if v['type'] == 'number'}
 
     for k, whitelist in number_keys.items():
-        try:
-            df[k] = df[k].apply(lambda x: int(
-                x) if x not in whitelist else x)
-        except:
-            print(k, whitelist)
 
-    return is_valid, df
+        # TODO: fix nan
+        def castFunc(x):
+            if x is None:
+                return np.nan
+            elif x in whitelist:
+                return x
+            else:
+                return int(x)
+
+        df[k] = df[k].apply(
+            lambda x: castFunc(x))
+
+    # remove nans introduced by apply
+    df = df.fillna(np.nan).replace([np.nan], [None])
+
+    # clean Project names
+    parsed_df = cleanNames(df)
+    return is_valid, parsed_df
+
+
+def detectDupeNames(data):
+    names = list([d['projectName'] for d in data])
+    dupe_names = list(set([name for name in names if len(
+        [_name for _name in names if _name == name]) > 1]))
+    dupe_ids = [{
+        'id': d['projectNumber'],
+        'name': d['projectName']
+    } for d in data if d['projectName'] in dupe_names]
+
+    if len(dupe_ids):
+        print(f"WARNING! Duplicated names found:")
+        for d in dupe_ids:
+            print(f"\tName: {d['name']}\n\tid: {d['id']}")
+            print()
+
+
+def cleanNames(df):
+    for i in range(0, len(df)):
+        row = df.iloc[i]
+        name = row['Project Name']
+        country = row['Country']
+
+        try:
+            if country and country not in name:
+                clean_name = name + f", {country.title()}"
+                df.at[i, 'Project Name'] = clean_name
+
+        except:
+            print([name, country, i])
+
+    return df
 
 
 def toCamel(s):
