@@ -134,13 +134,9 @@ def cleanNames(df):
         name = row['Project Name']
         country = row['Country']
 
-        try:
-            if country and country not in name:
-                clean_name = name + f", {country.title()}"
-                df.at[i, 'Project Name'] = clean_name
-
-        except:
-            print([name, country, i])
+        if country and country not in name:
+            clean_name = name + f", {country.title()}"
+            df.at[i, 'Project Name'] = clean_name
 
     return df
 
