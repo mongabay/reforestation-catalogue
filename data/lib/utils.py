@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 import json
+import warnings
 
 IN_PATH = './input/'
 
@@ -23,11 +24,12 @@ def importCsv(in_path=IN_PATH):
         if conf and (0 < int(conf) <= i+1):
             in_file = files[int(conf)-1]
         else:
-            print(f'Requires valid input between 1 and {i+1}')
+            raise ValueError(f'Requires valid input between 1 and {i+1}')
 
     # Ignore top level header (type) and first level header (data type)
     df = pd.read_csv(in_path + in_file,
                      header=[2])
+
     df_no_nans = df.where(pd.notnull(df), None)
 
     if not validateCols(df_no_nans):
@@ -58,14 +60,13 @@ def validateCols(df):
     if not all(validated_cols.values()):
         missing_keys = ', '.join(
             [f'"{key}"' for key, found in validated_cols.items() if not found])
-        print(f'ERROR! Data fields not found: {missing_keys}.')
-        return False
+        raise ValueError(f'ERROR! Data fields not found: {missing_keys}.')
 
     new_cols = {c: c in validation_keys for c in data_cols}
     if not all(validated_cols.values()):
         new_keys = ', '.join(
             [f'"{key}"' for key, expected in new_cols.items() if not expected])
-        print(
+        warnings.warn(
             f'WARNING! Unexpected data fields found (these will not be imported): {new_keys}.')
 
     return True
@@ -122,10 +123,11 @@ def detectDupeNames(data):
     } for d in data if d['projectName'] in dupe_names]
 
     if len(dupe_ids):
-        print(f"WARNING! Duplicated names found:")
+        warn_str = "\n\nWARNING! Duplicated names found:\n\n"
         for d in dupe_ids:
-            print(f"\tName: {d['name']}\n\tid: {d['id']}")
-            print()
+            warn_str += f"\tname: '{d['name']}'\n\tid: {d['id']}\n"
+
+        warnings.warn(warn_str)
 
 
 def cleanNames(df):
