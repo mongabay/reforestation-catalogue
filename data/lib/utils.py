@@ -25,25 +25,32 @@ def importCsv(in_path=IN_PATH):
             print(f'Requires valid input between 1 and {i+1}')
 
     # Ignore top level header (type) and first level header (data type)
-    df_nans = pd.read_csv(in_path + in_file,
-                          header=[2])
-    df = df_nans.where(pd.notnull(df_nans), None)
+    df = pd.read_csv(in_path + in_file,
+                     header=[2])
+
     if not validateCols(df):
         return None
 
-    parsed_df = convertColumns(df)
-    data_json = parsed_df.to_dict(orient='records')
+    is_valid, parsed_df = validateValues(df)
+    if not is_valid:
+        return None
+
+    converted_df = convertColumns(parsed_df)
+    df_no_nans = converted_df.where(pd.notnull(converted_df), None)
+
+    data_json = df_no_nans.to_dict(orient='records')
     is_saved = saveData(data_json)
 
     print(f"Data ingstion {'successful' if is_saved else 'failed'}.")
     return data_json
 
 
-EXPECTED_KEYS = ['Project Number', 'Project Name', 'Lead organization', 'Organization Type', "Who's involved", 'Project/Org. URL', 'Has project partners', 'Partner Name', 'Start Year', 'End Year', 'Country', 'Country Code',
-                 'Size of project (ha)', 'Trees planted (number)', 'Has explicit location', 'Forest Type', 'Primary objective/purpose', 'Approach', 'Identify deforestation driver', 'Fire prevention', 'Has justification for approach', 'Addresses known threats', 'Discloses species used', 'Use native species', 'Use exotic species', 'Local seedling nurseries', 'Financial model', 'Name Org/Donor', 'Has public reports', 'Follow up disclosed', 'Type of follow up', 'Has community involvement', 'Has gender component', 'Scientific research associated with project', 'News articles associated with project', 'comment']
+def validateCols(df):
+    with open('./lib/consts/validation_consts.json') as f:
+        VALIDATION_CONSTS = json.load(f)
 
+    validation_keys = list(VALIDATION_CONSTS.keys())
 
-def validateCols(df, validation_keys=EXPECTED_KEYS):
     data_cols = list(df.columns)
     validated_cols = {k: k in data_cols for k in validation_keys}
     if not all(validated_cols.values()):
@@ -60,6 +67,35 @@ def validateCols(df, validation_keys=EXPECTED_KEYS):
             f'WARNING! Unexpected data fields found (these will not be imported): {new_keys}.')
 
     return True
+
+
+def validateValues(df):
+    with open('./lib/consts/validation_consts.json') as f:
+        VALIDATION_CONSTS = json.load(f)
+
+    is_valid = True
+
+    # booleans
+    bool_keys = [k for k, v in VALIDATION_CONSTS.items() if v['type']
+                 == 'boolean']
+    for k in bool_keys:
+        df[k] = df[k].replace({
+            'YES': True,
+            'NO': False
+        })
+
+    # numbers
+    number_keys = {k: v.get('whitelist', [])
+                   for k, v in VALIDATION_CONSTS.items() if v['type'] == 'number'}
+
+    for k, whitelist in number_keys.items():
+        try:
+            df[k] = df[k].apply(lambda x: int(
+                x) if x not in whitelist else x)
+        except:
+            print(k, whitelist)
+
+    return is_valid, df
 
 
 def toCamel(s):
