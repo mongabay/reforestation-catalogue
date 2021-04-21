@@ -43,3 +43,22 @@ export enum Category {
   Social = 'Social',
   Institutional = 'Institutional',
 }
+
+export enum FilterModes {
+  Exact = 'exact',
+  Includes = 'includes',
+  GreaterOrEqualThan = 'greater-or-equal-than',
+}
+
+export enum FilterTypes {
+  Number = 'number',
+  String = 'string',
+  Boolean = 'boolean',
+}
+
+export interface Filter {
+  type: FilterTypes;
+  value: number | string | boolean;
+  propertyName: string;
+  mode: FilterModes;
+}

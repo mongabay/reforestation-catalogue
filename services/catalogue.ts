@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { CATALOGUE_DATA } from 'utils/catalogue-data';
 import { Project } from 'types';
 
 export const getCatalogueData = () => axios.get('/data/mongabay-data.json');
@@ -127,18 +126,18 @@ const getUniqueValues = (data, fieldName, commaSeparated = false) => {
   return result.filter(e => !!e).sort();
 };
 
-export const UNIQUE_COUNTRIES = getUniqueValues(CATALOGUE_DATA, 'Country');
-export const UNIQUE_ORGANIZATION_TYPES = getUniqueValues(CATALOGUE_DATA, 'Organization Type');
-export const UNIQUE_OBJECTIVES = getUniqueValues(CATALOGUE_DATA, 'Primary objective/purpose', true);
-export const UNIQUE_APPROACHES = getUniqueValues(CATALOGUE_DATA, 'Approach', true);
+// export const UNIQUE_COUNTRIES = getUniqueValues(CATALOGUE_DATA, 'Country');
+// export const UNIQUE_ORGANIZATION_TYPES = getUniqueValues(CATALOGUE_DATA, 'Organization Type');
+// export const UNIQUE_OBJECTIVES = getUniqueValues(CATALOGUE_DATA, 'Primary objective/purpose', true);
+// export const UNIQUE_APPROACHES = getUniqueValues(CATALOGUE_DATA, 'Approach', true);
 
-export const getProjectByNumber = number =>
-  CATALOGUE_DATA.find(e => e['Project Number'] === number);
+// export const getProjectByNumber = number =>
+//   CATALOGUE_DATA.find(e => e['Project Number'] === number);
 
-export const getCatalogueFiltered = filters => {
-  let data = CATALOGUE_DATA;
-  filters.forEach(filter => {
-    data = filterByField(data, filter.id, filter.value, filter.commaSeparated);
-  });
-  return data;
-};
+// export const getCatalogueFiltered = filters => {
+//   let data = CATALOGUE_DATA;
+//   filters.forEach(filter => {
+//     data = filterByField(data, filter.id, filter.value, filter.commaSeparated);
+//   });
+//   return data;
+// };

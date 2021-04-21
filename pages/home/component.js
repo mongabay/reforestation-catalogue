@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import StaticPage from 'layout/static-page';
 import CatalogueFilter from 'components/catalogue/filter/component';
 
-import { getCatalogueFiltered, ECOLOGICAL_CATEGORY } from 'services/catalogue';
+import { ECOLOGICAL_CATEGORY } from 'services/catalogue';
 
 // components
 import Select from 'components/forms/select';
@@ -88,7 +88,7 @@ function HomePage() {
           <CatalogueFilter
             onCategoryChange={value => setCategorySelected(value)}
             onChange={filters => {
-              sortProjects(getCatalogueFiltered(filters));
+              // sortProjects(getCatalogueFiltered(filters));
             }}
           />
           <div className="projects-list">

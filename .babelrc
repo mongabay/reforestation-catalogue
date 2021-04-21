@@ -36,7 +36,8 @@
           "layout": "./layout",
           "types": "./types",
           "services": "./services",
-          "utils": "./utils"
+          "utils": "./utils",
+          "modules": "./modules"
         }
       }
     ],
