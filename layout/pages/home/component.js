@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import StaticPage from 'layout/static-page';
 import CatalogueFilter from 'components/catalogue/filter/component';
 
 import { ECOLOGICAL_CATEGORY } from 'services/catalogue';
@@ -25,7 +24,7 @@ import {
 // styles
 import './style.scss';
 
-function HomePage() {
+function HomePageLayout() {
   const [projects, setProjects] = useState([]);
   const [category, setCategorySelected] = useState(null);
   const [sortSelected, setSortSelected] = useState(ALPHABETICAL_OPTION);
@@ -60,7 +59,7 @@ function HomePage() {
   }, [sortSelected]);
 
   return (
-    <StaticPage className="p-home">
+    <div className="home-layout">
       <div className="navigation-bar">
         <button type="button" className="btn btn-outline-secondary">
           Methodology
@@ -120,8 +119,8 @@ function HomePage() {
           </div>
         </div>
       </div>
-    </StaticPage>
+    </div>
   );
 }
 
-export default HomePage;
+export default HomePageLayout;

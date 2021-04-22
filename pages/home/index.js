@@ -1,16 +1,15 @@
-import { connect } from 'react-redux';
+import React from 'react';
 
-import projectsActions, { selectFilteredProjects } from 'modules/projects';
-import Component from './component';
+// layout
+import StaticPage from 'layout/static-page';
+import HomeLayout from 'layout/pages/home';
 
-export default connect(
-  state => ({
-    projects: selectFilteredProjects(state),
-  }),
-  {
-    addFilter: projectsActions.addFilter,
-    removeFilter: projectsActions.removeFilter,
-    updateData: projectsActions.updateData,
-    updateCountry: projectsActions.updateCountry,
-  }
-)(Component);
+function HomePage() {
+  return (
+    <StaticPage className="p-home">
+      <HomeLayout />
+    </StaticPage>
+  );
+}
+
+export default HomePage;
