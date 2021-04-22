@@ -6,10 +6,16 @@ import Component from './component';
 const projectsActions = projectsSlice().actions;
 
 export default connect(
-  state => ({
-    projects: selectFilteredProjects(state),
-    countries: selectCountries(state),
-  }),
+  state => {
+    console.log('state', state.country);
+    return {
+      projects: selectFilteredProjects(state),
+      countries: selectCountries(state),
+      sort: state.projects.sort,
+      country: state.projects.country,
+      filters: state.projects.filters,
+    };
+  },
   {
     addFilter: projectsActions.addFilter,
     removeFilter: projectsActions.removeFilter,

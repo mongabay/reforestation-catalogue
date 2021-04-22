@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
 import { COUNTRIES_SPECIAL_VALUES } from 'types';
 
@@ -20,7 +21,18 @@ import { SORT_OPTIONS_ARRAY } from './constants';
 import './style.scss';
 
 function HomePageLayout(props) {
-  const { projects, sort, updateData, countries, updateCountry, updateSort } = props;
+  const {
+    projects,
+    sort,
+    country,
+    filters,
+    updateData,
+    countries,
+    updateCountry,
+    updateSort,
+  } = props;
+
+  const router = useRouter();
 
   useEffect(() => {
     getCatalogueData()
@@ -30,6 +42,14 @@ function HomePageLayout(props) {
       .catch(error => console.error(error));
     updateCountry();
   }, []);
+
+  useEffect(() => {
+    console.log('hey!', country);
+    const newRoute = `/?sort=${encodeURIComponent(sort)}&country=${encodeURIComponent(
+      country
+    )}&filters=${encodeURIComponent(filters)}`;
+    router.push(newRoute, undefined, { shallow: true });
+  }, [sort, country, filters]);
 
   return (
     <div className="home-layout">
@@ -104,6 +124,8 @@ HomePageLayout.propTypes = {
   projects: PropTypes.array.isRequired,
   countries: PropTypes.array.isRequired,
   sort: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  filters: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   updateCountry: PropTypes.func.isRequired,
   updateSort: PropTypes.func.isRequired,
