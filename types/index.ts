@@ -1,3 +1,7 @@
+export enum END_YEAR_SPECIAL_VALUES {
+  ONGOING = 'ongoing',
+}
+
 export interface Project {
   projectNumber: number;
   projectName: string;
@@ -8,10 +12,11 @@ export interface Project {
   hasProjectPartners: string;
   partnerName: string;
   startYear: number;
-  endYear: number;
+  endYear: number | END_YEAR_SPECIAL_VALUES;
   country: string;
   countryCode: string;
   sizeOfProjectHa: number;
+  treesPlantedNumber: number;
   hasExplicitLocation: boolean;
   forestType: string;
   primaryObjectivePurpose: string;

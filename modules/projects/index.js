@@ -3,7 +3,10 @@ import { FilterModes, FilterTypes } from 'types';
 
 export const SLICE_NAME = 'projects';
 
-export const selectData = state => state[SLICE_NAME].data;
+export const selectData = state => {
+  console.log('state', state);
+  return state[SLICE_NAME].data;
+};
 export const selectFilters = state => state[SLICE_NAME].filters;
 export const selectCountry = state => state[SLICE_NAME].country;
 
