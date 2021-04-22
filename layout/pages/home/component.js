@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import CatalogueFilter from 'components/catalogue/filter/component';
+import { COUNTRIES_SPECIAL_VALUES } from 'types';
 
 import { ECOLOGICAL_CATEGORY } from 'services/catalogue';
 
 // components
+import CatalogueFilter from 'components/catalogue/filter/component';
 import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card/component';
 
@@ -24,39 +26,37 @@ import {
 // styles
 import './style.scss';
 
-function HomePageLayout() {
-  const [projects, setProjects] = useState([]);
-  const [category, setCategorySelected] = useState(null);
-  const [sortSelected, setSortSelected] = useState(ALPHABETICAL_OPTION);
-
-  const sortProjects = projectsArray =>
-    setProjects([
-      ...projectsArray.sort((a, b) => {
-        if (sortSelected === ALPHABETICAL_OPTION) {
-          return a['Project Name'] > b['Project Name'] ? 1 : -1; // eslint-disable-line
-        } else if (sortSelected === START_DATE_OPTION) {
-          return a['Start Date'] > b['Start Date'] ? 1 : -1; // eslint-disable-line
-        } else if (sortSelected === END_DATE_OPTION) {
-          return a['End Date'] > b['End Date'] ? 1 : -1; // eslint-disable-line
-        } else if (sortSelected === ECOLOGICAL_OPTION) {
-          const aEcoValue = getProjectCategoriesPercentage(a)[ECOLOGICAL_CATEGORY];
-          const bEcoValue = getProjectCategoriesPercentage(b)[ECOLOGICAL_CATEGORY];
-          return bEcoValue - aEcoValue;
-        }
-      }),
-    ]);
+function HomePageLayout(props) {
+  const { projects, sort, updateData, countries, updateCountry } = props;
+  // const sortProjects = projectsArray =>
+  //   setProjects([
+  //     ...projectsArray.sort((a, b) => {
+  //       if (sortSelected === ALPHABETICAL_OPTION) {
+  //         return a.projectName > b.projectName ? 1 : -1; // eslint-disable-line
+  //       } else if (sortSelected === START_DATE_OPTION) {
+  //         return a.startYear > b.startYear ? 1 : -1; // eslint-disable-line
+  //       } else if (sortSelected === END_DATE_OPTION) {
+  //         return a.endYear > b.endYear ? 1 : -1; // eslint-disable-line
+  //       } else if (sortSelected === ECOLOGICAL_OPTION) {
+  //         const aEcoValue = getProjectCategoriesPercentage(a)[ECOLOGICAL_CATEGORY];
+  //         const bEcoValue = getProjectCategoriesPercentage(b)[ECOLOGICAL_CATEGORY];
+  //         return bEcoValue - aEcoValue;
+  //       }
+  //     }),
+  //   ]);
 
   useEffect(() => {
     getCatalogueData()
       .then(response => {
-        sortProjects(response.data);
+        updateData(response.data);
       })
       .catch(error => console.error(error));
+    updateCountry();
   }, []);
 
-  useEffect(() => {
-    sortProjects(projects);
-  }, [sortSelected]);
+  // useEffect(() => {
+  //   sortProjects(projects);
+  // }, [sortSelected]);
 
   return (
     <div className="home-layout">
@@ -97,7 +97,7 @@ function HomePageLayout() {
                 <Select
                   id="sort-select"
                   options={SORT_OPTIONS}
-                  defaultValue={sortSelected}
+                  defaultValue={sort}
                   onChange={({ value }) => {
                     setSortSelected(value);
                   }}
@@ -105,14 +105,18 @@ function HomePageLayout() {
               </div>
               <div className="country-container">
                 <label htmlFor="country-select">Country: </label>
-                <Select id="country-select" options={[]} />
+                <Select
+                  id="country-select"
+                  options={countries.map(c => ({ value: c, label: c }))}
+                  onChange={({ value }) => updateCountry(value)}
+                />
               </div>
             </div>
             <div className="row">
               {projects &&
                 projects.map(p => (
                   <div key={p.projectNumber} className="column">
-                    <ProjectCard project={p} highlightedCategory={category} />
+                    <ProjectCard project={p} highlightedCategory={null} />
                   </div>
                 ))}
             </div>
@@ -122,5 +126,13 @@ function HomePageLayout() {
     </div>
   );
 }
+
+HomePageLayout.propTypes = {
+  projects: PropTypes.array.isRequired,
+  countries: PropTypes.array.isRequired,
+  sort: PropTypes.string.isRequired,
+  updateData: PropTypes.func.isRequired,
+  updateCountry: PropTypes.func.isRequired,
+};
 
 export default HomePageLayout;

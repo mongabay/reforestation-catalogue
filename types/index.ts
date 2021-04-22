@@ -2,6 +2,10 @@ export enum END_YEAR_SPECIAL_VALUES {
   ONGOING = 'ongoing',
 }
 
+export enum COUNTRIES_SPECIAL_VALUES {
+  ALL = 'All',
+}
+
 export interface Project {
   projectNumber: number;
   projectName: string;

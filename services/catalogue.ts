@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { Project } from 'types';
 
-export const getCatalogueData = () => axios.get('/data/mongabay-data.json');
+export const getCatalogueData = () => axios.get('/data/mongabay-data.json').then(resp => resp);
 
 export const CONTEXT_CATEGORY = 'Context';
 export const ECOLOGICAL_CATEGORY = 'Ecological';
@@ -14,23 +14,23 @@ export const CATEGORIES = [
     id: CONTEXT_CATEGORY,
     fields: [
       {
-        id: 'Start Year',
+        id: 'startYear',
         type: 'string',
       },
       {
-        id: 'End Year',
+        id: 'endYear',
         type: 'string',
       },
       {
-        id: 'Has explicit location',
+        id: 'hasExplicitLocation',
         type: 'boolean',
       },
       {
-        id: 'Country',
+        id: 'country',
         type: 'string',
       },
       {
-        id: 'Size of project',
+        id: 'sizeOfProjectHa',
         type: 'number',
       },
     ],
@@ -39,19 +39,19 @@ export const CATEGORIES = [
     id: ECOLOGICAL_CATEGORY,
     fields: [
       {
-        id: 'Forest Type',
+        id: 'forestType',
         type: 'string',
       },
       {
-        id: 'Fire prevention',
+        id: 'firePrevention',
         type: 'boolean',
       },
       {
-        id: 'Addresses known threats',
+        id: 'addressesKnownThreats',
         type: 'boolean',
       },
       {
-        id: 'Discloses species used',
+        id: 'disclosesSpeciesUsed',
         type: 'boolean',
       },
     ],
@@ -60,19 +60,19 @@ export const CATEGORIES = [
     id: ECONOMIC_CATEGORY,
     fields: [
       {
-        id: 'Identify deforestation driver',
+        id: 'identifyDeforestationDriver',
         type: 'boolean',
       },
       {
-        id: 'Local seedling nurseries',
+        id: 'localSeedlingNurseries',
         type: 'boolean',
       },
       {
-        id: 'Financial model',
+        id: 'financialModel',
         type: 'string',
       },
       {
-        id: 'Follow up disclosed',
+        id: 'followUpDisclosed',
         type: 'boolean',
       },
     ],
@@ -81,11 +81,11 @@ export const CATEGORIES = [
     id: SOCIAL_CATEGORY,
     fields: [
       {
-        id: 'Has community involvement',
+        id: 'hasCommunityInvolvement',
         type: 'boolean',
       },
       {
-        id: 'Has gender component',
+        id: 'hasGenderComponent',
         type: 'boolean',
       },
     ],
@@ -94,15 +94,15 @@ export const CATEGORIES = [
     id: INSTITUTIONAL_CATEGORY,
     fields: [
       {
-        id: 'Organization Type',
+        id: 'organizationType',
         type: 'string',
       },
       {
-        id: 'Partner Name',
+        id: 'partnerName',
         type: 'not-empty',
       },
       {
-        id: 'Scientific research associated with project',
+        id: 'scientificResearchAssociatedWithProject',
         type: 'boolean',
       },
     ],

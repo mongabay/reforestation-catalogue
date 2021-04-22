@@ -1,14 +1,15 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { FilterModes, FilterTypes } from 'types';
+import { FilterModes, FilterTypes, COUNTRIES_SPECIAL_VALUES } from 'types';
 
 export const SLICE_NAME = 'projects';
 
-export const selectData = state => {
-  console.log('state', state);
-  return state[SLICE_NAME].data;
-};
 export const selectFilters = state => state[SLICE_NAME].filters;
 export const selectCountry = state => state[SLICE_NAME].country;
+export const selectData = state => state[SLICE_NAME].data;
+
+export const selectCountries = createSelector([selectData], projects =>
+  [COUNTRIES_SPECIAL_VALUES.ALL, ...new Set(projects.map(e => e.country))].sort()
+);
 
 export const selectFilteredProjects = createSelector(
   [selectData, selectFilters, selectCountry],
