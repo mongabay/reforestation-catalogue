@@ -12,38 +12,15 @@ import ProjectCard from 'components/project/card/component';
 
 // utils
 import { getCatalogueData } from 'services/catalogue';
-import { getProjectCategoriesPercentage } from 'utils/project';
 
 // constants
-import {
-  SORT_OPTIONS,
-  ALPHABETICAL_OPTION,
-  START_DATE_OPTION,
-  END_DATE_OPTION,
-  ECOLOGICAL_OPTION,
-} from './constants';
+import { SORT_OPTIONS_ARRAY } from './constants';
 
 // styles
 import './style.scss';
 
 function HomePageLayout(props) {
-  const { projects, sort, updateData, countries, updateCountry } = props;
-  // const sortProjects = projectsArray =>
-  //   setProjects([
-  //     ...projectsArray.sort((a, b) => {
-  //       if (sortSelected === ALPHABETICAL_OPTION) {
-  //         return a.projectName > b.projectName ? 1 : -1; // eslint-disable-line
-  //       } else if (sortSelected === START_DATE_OPTION) {
-  //         return a.startYear > b.startYear ? 1 : -1; // eslint-disable-line
-  //       } else if (sortSelected === END_DATE_OPTION) {
-  //         return a.endYear > b.endYear ? 1 : -1; // eslint-disable-line
-  //       } else if (sortSelected === ECOLOGICAL_OPTION) {
-  //         const aEcoValue = getProjectCategoriesPercentage(a)[ECOLOGICAL_CATEGORY];
-  //         const bEcoValue = getProjectCategoriesPercentage(b)[ECOLOGICAL_CATEGORY];
-  //         return bEcoValue - aEcoValue;
-  //       }
-  //     }),
-  //   ]);
+  const { projects, sort, updateData, countries, updateCountry, updateSort } = props;
 
   useEffect(() => {
     getCatalogueData()
@@ -53,10 +30,6 @@ function HomePageLayout(props) {
       .catch(error => console.error(error));
     updateCountry();
   }, []);
-
-  // useEffect(() => {
-  //   sortProjects(projects);
-  // }, [sortSelected]);
 
   return (
     <div className="home-layout">
@@ -96,10 +69,10 @@ function HomePageLayout(props) {
                 <label htmlFor="sort-select">Sort by</label>
                 <Select
                   id="sort-select"
-                  options={SORT_OPTIONS}
+                  options={SORT_OPTIONS_ARRAY}
                   defaultValue={sort}
                   onChange={({ value }) => {
-                    setSortSelected(value);
+                    updateSort(value);
                   }}
                 />
               </div>
@@ -133,6 +106,7 @@ HomePageLayout.propTypes = {
   sort: PropTypes.string.isRequired,
   updateData: PropTypes.func.isRequired,
   updateCountry: PropTypes.func.isRequired,
+  updateSort: PropTypes.func.isRequired,
 };
 
 export default HomePageLayout;

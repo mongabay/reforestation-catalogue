@@ -1,23 +1,20 @@
-export const ALPHABETICAL_OPTION = 'alphabetical';
-export const ECOLOGICAL_OPTION = 'ecological';
-export const START_DATE_OPTION = 'start-date';
-export const END_DATE_OPTION = 'end-date';
+import { SORT_OPTIONS } from 'types';
 
-export const SORT_OPTIONS = [
+export const SORT_OPTIONS_ARRAY = [
   {
-    value: ALPHABETICAL_OPTION,
+    value: SORT_OPTIONS.ALPHABETICAL_OPTION,
     label: 'alphabetical',
   },
   {
-    value: ECOLOGICAL_OPTION,
+    value: SORT_OPTIONS.ECOLOGICAL_OPTION,
     label: 'ecological',
   },
   {
-    value: START_DATE_OPTION,
+    value: SORT_OPTIONS.START_DATE_OPTION,
     label: 'start date',
   },
   {
-    value: END_DATE_OPTION,
+    value: SORT_OPTIONS.END_DATE_OPTION,
     label: 'end date',
   },
 ];
