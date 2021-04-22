@@ -11,6 +11,9 @@ import { getProjectCategoriesPercentage } from 'utils/project';
 
 import { ProjectChartProps } from './types';
 
+// constants
+import { TITLE_MAX_LENGTH } from './constants';
+
 import './style.scss';
 
 export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartProps) => {
@@ -112,7 +115,11 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
         </svg>
       </Tooltip>
       <Link href={`/project/${project.projectNumber}`}>
-        <a className="title">{project.projectName}</a>
+        <a className="title">
+          {project.projectName.length < TITLE_MAX_LENGTH
+            ? project.projectName
+            : `${project.projectName.substr(0, TITLE_MAX_LENGTH)}...`}
+        </a>
       </Link>
     </div>
   );
