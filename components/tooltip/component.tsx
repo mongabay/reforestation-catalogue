@@ -14,7 +14,7 @@ const Tooltip: React.FC<TooltipProps> = (props: TooltipProps) => {
     theme: 'light',
     ...props,
   };
-  const { children } = mergeProps;
+  const { children } = props;
 
   return <ReactTippy {...mergeProps}>{children}</ReactTippy>;
 };
