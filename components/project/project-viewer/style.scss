@@ -2,4 +2,39 @@
 
 .c-project-viewer {
 
+  h1 {
+    max-width: 322px;
+    font-weight: 400;
+    margin-bottom: 85px;
+  }
+
+  .main-container {
+    display: flex;
+
+    .left-container {
+      width: 260px;
+
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 85px;
+      }
+      .buttons {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .right-container {
+      margin-left: 120px;
+
+      .category-section {
+        margin-bottom: 45px;
+      }
+    }
+  }
 }

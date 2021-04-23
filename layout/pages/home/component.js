@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import { COUNTRIES_SPECIAL_VALUES, SORT_OPTIONS } from 'types';
 
@@ -67,8 +68,6 @@ function HomePageLayout(props) {
     router.push(newRoute, undefined, { shallow: true });
   }, [sort, country, filters]);
 
-  console.log('country', country);
-
   return (
     <div className="home-layout">
       <div className="navigation-bar">
@@ -76,7 +75,7 @@ function HomePageLayout(props) {
           Methodology
         </button>
         <button type="button" className="btn btn-primary">
-          Submit Project Info
+          Submit Project Information
         </button>
       </div>
       <div className="main-container">
@@ -129,9 +128,15 @@ function HomePageLayout(props) {
             <div className="row">
               {projects &&
                 projects.map(p => (
-                  <div key={p.projectNumber} className="column">
+                  <motion.div
+                    key={p.projectNumber}
+                    className="column"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <ProjectCard project={p} highlightedCategory={null} />
-                  </div>
+                  </motion.div>
                 ))}
             </div>
           </div>
