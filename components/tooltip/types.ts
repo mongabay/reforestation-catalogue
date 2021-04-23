@@ -1,4 +1,4 @@
-import { JSXElementConstructor, ReactElement } from 'react';
+import { JSXElementConstructor, ReactChild, ReactElement } from 'react';
 
 export interface TooltipProps {
   interactive: boolean;
@@ -8,6 +8,6 @@ export interface TooltipProps {
   arrow?: boolean;
   theme?: string;
   appendTo: () => unknown;
-  content: unknown;
+  content: ReactChild | ReactChild[];
   children: ReactElement<any, string | JSXElementConstructor<any>>;
 }
