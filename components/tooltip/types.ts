@@ -1,10 +1,10 @@
 export interface TooltipProps {
   interactive: boolean;
   placement: string;
-  popperOptions: Record<string, unknown>;
+  popperOptions?: Record<string, unknown>;
   trigger: string;
-  arrow: boolean;
-  theme: string;
+  arrow?: boolean;
+  theme?: string;
   appendTo: () => unknown;
   content: unknown;
 }
