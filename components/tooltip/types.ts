@@ -7,4 +7,5 @@ export interface TooltipProps {
   theme?: string;
   appendTo: () => unknown;
   content: unknown;
+  children: unknown;
 }
