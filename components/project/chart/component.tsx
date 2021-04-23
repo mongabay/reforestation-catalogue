@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import classnames from 'classnames';
 
@@ -123,11 +122,6 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
       </Link>
     </div>
   );
-};
-
-ProjectChart.propTypes = {
-  project: PropTypes.object.isRequired,
-  highlightedCategory: PropTypes.string,
 };
 
 export default ProjectChart;
