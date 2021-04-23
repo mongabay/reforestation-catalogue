@@ -4,12 +4,16 @@ import React from 'react';
 import StaticPage from 'layout/static-page';
 import HomeLayout from 'layout/pages/home';
 
-function HomePage() {
+function HomePage(props) {
   return (
     <StaticPage className="p-home">
-      <HomeLayout />
+      <HomeLayout {...props} />
     </StaticPage>
   );
 }
+
+HomePage.getInitialProps = async props => {
+  return { initialQuery: props.query };
+};
 
 export default HomePage;

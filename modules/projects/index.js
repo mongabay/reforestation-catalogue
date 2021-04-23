@@ -80,5 +80,14 @@ export default projectsActions =>
       updateSort(state, action) {
         state.sort = action.payload;
       },
+      updateFilters(state, action) {
+        state.filters = action.payload;
+      },
+      loadInitialState(state, action) {
+        const newState = action.payload;
+        state.country = newState.country;
+        state.sort = newState.sort || SORT_OPTIONS.ALPHABETICAL_OPTION;
+        state.filters = newState.filters || [];
+      },
     },
   });

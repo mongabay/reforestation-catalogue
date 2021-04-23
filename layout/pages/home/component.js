@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { COUNTRIES_SPECIAL_VALUES } from 'types';
+import { COUNTRIES_SPECIAL_VALUES, SORT_OPTIONS } from 'types';
 
 import { ECOLOGICAL_CATEGORY } from 'services/catalogue';
 
@@ -26,30 +26,48 @@ function HomePageLayout(props) {
     sort,
     country,
     filters,
+    initialQuery,
     updateData,
     countries,
     updateCountry,
     updateSort,
+    loadInitialState,
   } = props;
 
+  const {
+    country: countryInitialQuery,
+    sort: sortInitialQuery,
+    filters: filtersInitialQuery,
+  } = initialQuery;
   const router = useRouter();
 
   useEffect(() => {
+    // Load params into Redux if they're present in the URL when loading
+    if (countryInitialQuery || sortInitialQuery || filtersInitialQuery) {
+      loadInitialState({
+        country: countryInitialQuery,
+        sort: sortInitialQuery,
+        filters: filtersInitialQuery,
+      });
+    } else {
+      updateCountry(COUNTRIES_SPECIAL_VALUES.ALL);
+      updateSort(SORT_OPTIONS.ALPHABETICAL_OPTION);
+    }
     getCatalogueData()
       .then(response => {
         updateData(response.data);
       })
       .catch(error => console.error(error));
-    updateCountry();
   }, []);
 
   useEffect(() => {
-    console.log('hey!', country);
     const newRoute = `/?sort=${encodeURIComponent(sort)}&country=${encodeURIComponent(
       country
     )}&filters=${encodeURIComponent(filters)}`;
     router.push(newRoute, undefined, { shallow: true });
   }, [sort, country, filters]);
+
+  console.log('country', country);
 
   return (
     <div className="home-layout">
@@ -91,6 +109,7 @@ function HomePageLayout(props) {
                   id="sort-select"
                   options={SORT_OPTIONS_ARRAY}
                   defaultValue={sort}
+                  value={sort}
                   onChange={({ value }) => {
                     updateSort(value);
                   }}
@@ -102,6 +121,8 @@ function HomePageLayout(props) {
                   id="country-select"
                   options={countries.map(c => ({ value: c, label: c }))}
                   onChange={({ value }) => updateCountry(value)}
+                  defaultValue={country}
+                  value={country}
                 />
               </div>
             </div>
@@ -126,9 +147,12 @@ HomePageLayout.propTypes = {
   sort: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
   filters: PropTypes.array.isRequired,
+  initialQuery: PropTypes.object.isRequired,
   updateData: PropTypes.func.isRequired,
   updateCountry: PropTypes.func.isRequired,
   updateSort: PropTypes.func.isRequired,
+  updateFilters: PropTypes.func.isRequired,
+  loadInitialState: PropTypes.func.isRequired,
 };
 
 export default HomePageLayout;

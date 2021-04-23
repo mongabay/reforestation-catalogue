@@ -7,7 +7,6 @@ const projectsActions = projectsSlice().actions;
 
 export default connect(
   state => {
-    console.log('state', state.country);
     return {
       projects: selectFilteredProjects(state),
       countries: selectCountries(state),
@@ -22,5 +21,7 @@ export default connect(
     updateData: projectsActions.updateData,
     updateCountry: projectsActions.updateCountry,
     updateSort: projectsActions.updateSort,
+    updateFilters: projectsActions.updateFilters,
+    loadInitialState: projectsActions.loadInitialState,
   }
 )(Component);

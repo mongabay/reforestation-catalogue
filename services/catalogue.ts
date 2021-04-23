@@ -114,17 +114,17 @@ export const getCategoryByID = id => CATEGORIES.find(c => c.id === id);
 const filterByField = (data, fieldName, value, commaSeparated = false) =>
   data.filter(e => (commaSeparated ? e[fieldName].includes(value) : e[fieldName] === value));
 
-const getUniqueValues = (data, fieldName, commaSeparated = false) => {
-  let result;
-  if (commaSeparated) {
-    result = [
-      ...new Set([].concat(...data.map(e => e[fieldName].split(',').map(e2 => e2.trim())))),
-    ];
-  } else {
-    result = [...new Set(data.map(e => e[fieldName]))];
-  }
-  return result.filter(e => !!e).sort();
-};
+// const getUniqueValues = (data, fieldName, commaSeparated = false) => {
+//   let result;
+//   if (commaSeparated) {
+//     result = [
+//       ...new Set([].concat(...data.map(e => e[fieldName].split(',').map(e2 => e2.trim())))),
+//     ];
+//   } else {
+//     result = [...new Set(data.map(e => e[fieldName]))];
+//   }
+//   return result.filter(e => !!e).sort();
+// };
 
 // export const UNIQUE_COUNTRIES = getUniqueValues(CATALOGUE_DATA, 'Country');
 // export const UNIQUE_ORGANIZATION_TYPES = getUniqueValues(CATALOGUE_DATA, 'Organization Type');
