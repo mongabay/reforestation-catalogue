@@ -7,7 +7,7 @@ export interface TooltipProps {
   trigger: string;
   arrow?: boolean;
   theme?: string;
-  appendTo: () => unknown;
+  appendTo: Element | 'parent' | ((ref: Element) => Element);
   content: ReactChild | ReactChild[];
   children: ReactElement<any, string | JSXElementConstructor<any>>;
 }
