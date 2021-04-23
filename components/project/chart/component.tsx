@@ -5,25 +5,25 @@ import classnames from 'classnames';
 
 import Tooltip from 'components/tooltip';
 
-import {
-  SOCIAL_CATEGORY,
-  ECONOMIC_CATEGORY,
-  CONTEXT_CATEGORY,
-  ECOLOGICAL_CATEGORY,
-  INSTITUTIONAL_CATEGORY,
-} from 'services/catalogue';
+import { Category } from 'types';
 
 import { getProjectCategoriesPercentage } from 'utils/project';
 
+import { ProjectChartProps } from './types';
+
+// constants
+import { TITLE_MAX_LENGTH } from './constants';
+
 import './style.scss';
 
-function ProjectChart({ project, highlightedCategory }) {
+export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartProps) => {
+  const { project, highlightedCategory } = props;
   const [categoryPercentages, setCategoryPercentages] = useState({
-    [CONTEXT_CATEGORY]: 0,
-    [SOCIAL_CATEGORY]: 0,
-    [ECONOMIC_CATEGORY]: 0,
-    [ECOLOGICAL_CATEGORY]: 0,
-    [INSTITUTIONAL_CATEGORY]: 0,
+    [Category.Context]: 0,
+    [Category.Social]: 0,
+    [Category.Economic]: 0,
+    [Category.Ecological]: 0,
+    [Category.Institutional]: 0,
   });
 
   useEffect(() => {
@@ -68,58 +68,62 @@ function ProjectChart({ project, highlightedCategory }) {
         <svg height="160" width="160">
           <circle
             className={classnames({
-              '-highlighted': highlightedCategory === CONTEXT_CATEGORY,
+              '-highlighted': highlightedCategory === Category.Context,
             })}
             cx="80"
             cy="80"
             r="77"
-            strokeDasharray={getStrokeDashArray(77, CONTEXT_CATEGORY)}
+            strokeDasharray={getStrokeDashArray(77, Category.Context)}
           />
 
           <circle
             className={classnames({
-              '-highlighted': highlightedCategory === ECOLOGICAL_CATEGORY,
+              '-highlighted': highlightedCategory === Category.Ecological,
             })}
             cx="80"
             cy="80"
             r="65"
-            strokeDasharray={getStrokeDashArray(65, ECOLOGICAL_CATEGORY)}
+            strokeDasharray={getStrokeDashArray(65, Category.Ecological)}
           />
           <circle
             className={classnames({
-              '-highlighted': highlightedCategory === ECONOMIC_CATEGORY,
+              '-highlighted': highlightedCategory === Category.Economic,
             })}
             cx="80"
             cy="80"
             r="52"
-            strokeDasharray={getStrokeDashArray(52, ECONOMIC_CATEGORY)}
+            strokeDasharray={getStrokeDashArray(52, Category.Economic)}
           />
           <circle
             className={classnames({
-              '-highlighted': highlightedCategory === SOCIAL_CATEGORY,
+              '-highlighted': highlightedCategory === Category.Social,
             })}
             cx="80"
             cy="80"
             r="40"
-            strokeDasharray={getStrokeDashArray(40, SOCIAL_CATEGORY)}
+            strokeDasharray={getStrokeDashArray(40, Category.Social)}
           />
           <circle
             className={classnames({
-              '-highlighted': highlightedCategory === INSTITUTIONAL_CATEGORY,
+              '-highlighted': highlightedCategory === Category.Institutional,
             })}
             cx="80"
             cy="80"
             r="27"
-            strokeDasharray={getStrokeDashArray(27, INSTITUTIONAL_CATEGORY)}
+            strokeDasharray={getStrokeDashArray(27, Category.Institutional)}
           />
         </svg>
       </Tooltip>
-      <Link href={`/project/${project['Project Number']}`}>
-        <a className="title">{project['Project Name']}</a>
+      <Link href={`/project/${project.projectNumber}`}>
+        <a className="title">
+          {project.projectName.length < TITLE_MAX_LENGTH
+            ? project.projectName
+            : `${project.projectName.substr(0, TITLE_MAX_LENGTH)}...`}
+        </a>
       </Link>
     </div>
   );
-}
+};
 
 ProjectChart.propTypes = {
   project: PropTypes.object.isRequired,

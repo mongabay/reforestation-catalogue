@@ -13,6 +13,7 @@ const Select = ({
   'aria-label': ariaLabel,
   className,
   required,
+  showSelectAnOption,
 }) => {
   const onChangeSelect = useCallback(
     e => {
@@ -33,7 +34,11 @@ const Select = ({
       onChange={onChangeSelect}
       required={required}
     >
-      <option disabled selected>{'-- select an option --'}</option>
+      {showSelectAnOption && (
+        <option disabled selected>
+          {'-- select an option --'}
+        </option>
+      )}
       {options.map(option => (
         <option key={option.value} value={option.value} disabled={option.disabled}>
           {option.label}
@@ -59,6 +64,7 @@ Select.propTypes = {
   'aria-label': PropTypes.string,
   className: PropTypes.string,
   required: PropTypes.bool,
+  showSelectAnOption: PropTypes.bool,
 };
 
 Select.defaultProps = {
@@ -69,6 +75,7 @@ Select.defaultProps = {
   'aria-label': null,
   className: undefined,
   required: false,
+  showSelectAnOption: false,
 };
 
 export default Select;

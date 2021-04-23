@@ -1,0 +1,149 @@
+{
+    "Project Number": {
+        "type": "number",
+        "slug": "projectNumber"
+    },
+    "Project Name": {
+        "type": "string",
+        "slug": "projectName"
+    },
+    "Lead organization": {
+        "type": "string",
+        "slug": "leadOrganization"
+    },
+    "Organization Type": {
+        "type": "string",
+        "slug": "organizationType"
+    },
+    "Who's involved": {
+        "type": "string",
+        "slug": "whoIsInvolved"
+    },
+    "Project/Org. URL": {
+        "type": "string",
+        "slug": "projectOrgUrl"
+    },
+    "Has project partners": {
+        "type": "boolean",
+        "slug": "hasProjectPartners"
+    },
+    "Partner Name": {
+        "type": "string",
+        "slug": "partnerName"
+    },
+    "Start Year": {
+        "type": "number",
+        "slug": "startYear"
+    },
+    "End Year": {
+        "type": "number",
+        "slug": "endYear",
+        "whitelist": [
+            "ongoing"
+        ]
+    },
+    "Country": {
+        "type": "string",
+        "slug": "country"
+    },
+    "Country Code": {
+        "type": "string",
+        "slug": "countryCode"
+    },
+    "Size of project (ha)": {
+        "type": "number",
+        "slug": "sizeOfProjectHa"
+    },
+    "Trees planted (number)": {
+        "type": "number",
+        "slug": "treesPlantedNumber"
+    },
+    "Has explicit location": {
+        "type": "boolean",
+        "slug": "hasExplicitLocation"
+    },
+    "Forest Type": {
+        "type": "string",
+        "slug": "forestType"
+    },
+    "Primary objective/purpose": {
+        "type": "string",
+        "slug": "primaryObjectivePurpose"
+    },
+    "Approach": {
+        "type": "string",
+        "slug": "approach"
+    },
+    "Identify deforestation driver": {
+        "type": "boolean",
+        "slug": "identifyDeforestationDriver"
+    },
+    "Fire prevention": {
+        "type": "boolean",
+        "slug": "firePrevention"
+    },
+    "Has justification for approach": {
+        "type": "boolean",
+        "slug": "hasJustificationForApproach"
+    },
+    "Addresses known threats": {
+        "type": "boolean",
+        "slug": "addressesKnownThreats"
+    },
+    "Discloses species used": {
+        "type": "boolean",
+        "slug": "disclosesSpeciesUsed"
+    },
+    "Use native species": {
+        "type": "boolean",
+        "slug": "useNativeSpecies"
+    },
+    "Use exotic species": {
+        "type": "boolean",
+        "slug": "useExoticSpecies"
+    },
+    "Local seedling nurseries": {
+        "type": "boolean",
+        "slug": "localSeedlingNurseries"
+    },
+    "Financial model": {
+        "type": "string",
+        "slug": "financialModel"
+    },
+    "Name Org/Donor": {
+        "type": "string",
+        "slug": "nameOrgDonor"
+    },
+    "Has public reports": {
+        "type": "boolean",
+        "slug": "hasPublicReports"
+    },
+    "Follow up disclosed": {
+        "type": "boolean",
+        "slug": "followUpDisclosed"
+    },
+    "Type of follow up": {
+        "type": "string",
+        "slug": "typeOfFollowUp"
+    },
+    "Has community involvement": {
+        "type": "boolean",
+        "slug": "hasCommunityInvolvement"
+    },
+    "Has gender component": {
+        "type": "boolean",
+        "slug": "hasGenderComponent"
+    },
+    "Scientific research associated with project": {
+        "type": "boolean",
+        "slug": "scientificResearchAssociatedWithProject"
+    },
+    "News articles associated with project": {
+        "type": "boolean",
+        "slug": "newsArticlesAssociatedWithProject"
+    },
+    "comment": {
+        "type": "string",
+        "slug": "comment"
+    }
+}
