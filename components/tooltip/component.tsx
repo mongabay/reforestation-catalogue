@@ -7,7 +7,6 @@ import { TooltipProps } from './types';
 const Tooltip: React.FC<TooltipProps> = (props: TooltipProps) => {
   const mergeProps = {
     interactive: true,
-    placement: 'top',
     popperOptions: { modifiers: { flip: { enabled: false } } },
     trigger: 'click',
     arrow: true,
