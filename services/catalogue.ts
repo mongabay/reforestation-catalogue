@@ -113,31 +113,3 @@ export const getCategoryByID = id => CATEGORIES.find(c => c.id === id);
 
 const filterByField = (data, fieldName, value, commaSeparated = false) =>
   data.filter(e => (commaSeparated ? e[fieldName].includes(value) : e[fieldName] === value));
-
-// const getUniqueValues = (data, fieldName, commaSeparated = false) => {
-//   let result;
-//   if (commaSeparated) {
-//     result = [
-//       ...new Set([].concat(...data.map(e => e[fieldName].split(',').map(e2 => e2.trim())))),
-//     ];
-//   } else {
-//     result = [...new Set(data.map(e => e[fieldName]))];
-//   }
-//   return result.filter(e => !!e).sort();
-// };
-
-// export const UNIQUE_COUNTRIES = getUniqueValues(CATALOGUE_DATA, 'Country');
-// export const UNIQUE_ORGANIZATION_TYPES = getUniqueValues(CATALOGUE_DATA, 'Organization Type');
-// export const UNIQUE_OBJECTIVES = getUniqueValues(CATALOGUE_DATA, 'Primary objective/purpose', true);
-// export const UNIQUE_APPROACHES = getUniqueValues(CATALOGUE_DATA, 'Approach', true);
-
-// export const getProjectByNumber = number =>
-//   CATALOGUE_DATA.find(e => e['Project Number'] === number);
-
-// export const getCatalogueFiltered = filters => {
-//   let data = CATALOGUE_DATA;
-//   filters.forEach(filter => {
-//     data = filterByField(data, filter.id, filter.value, filter.commaSeparated);
-//   });
-//   return data;
-// };

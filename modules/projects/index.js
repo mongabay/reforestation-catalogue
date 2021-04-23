@@ -8,7 +8,6 @@ export const SLICE_NAME = 'projects';
 export const selectFilters = state => state[SLICE_NAME].filters;
 export const selectCountry = state => state[SLICE_NAME].country;
 export const selectData = state => state[SLICE_NAME].data;
-export const selectProjectById = (state, id) => selectData(state).find(p => p.projectNumber === id);
 export const selectSort = state => state[SLICE_NAME].sort;
 
 export const selectCountries = createSelector([selectData], projects =>
