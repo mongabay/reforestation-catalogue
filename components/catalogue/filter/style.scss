@@ -25,6 +25,10 @@
       .filter-selector {
         width: 100%;
       }
+      .filters-applied {
+        display: flex;
+        flex-wrap: wrap;
+      }
     }
   }
 }

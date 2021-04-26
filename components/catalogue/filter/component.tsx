@@ -6,12 +6,15 @@ import { CatelogueFilterProps } from './types';
 import './style.scss';
 import { FilterTypes } from 'types';
 import { Radio, Select } from 'components/forms';
+import Pill from 'components/pill/component';
 
 const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
   filters,
   addFilter,
 }: CatelogueFilterProps) => {
   const [filterSelected, setFilterSelected] = useState(null);
+
+  console.log('filterSelected', filterSelected);
 
   return (
     <div className="c-catalogue-filter">
@@ -27,11 +30,18 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
             <Select
               className="filter-selector"
               defaultValue={null}
-              onChange={({ value }) => setFilterSelected(value)}
+              onChange={({ value }) => setFilterSelected({ category: c.id, value })}
               options={c.fields.map(f => ({ label: f.label, value: f.id }))}
               showSelectAnOption={true}
               selectAnOptionText="Add filter"
             />
+            <div className="filters-applied">
+              {filters
+                .filter(f => c.fields.map(cf => cf.id).includes(f.propertyName))
+                .map(f => (
+                  <Pill key={`pill-${f.propertyName}`} filter={f} />
+                ))}
+            </div>
           </div>
         </div>
       ))}
