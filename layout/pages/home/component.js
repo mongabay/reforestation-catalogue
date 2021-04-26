@@ -79,8 +79,8 @@ function HomePageLayout(props) {
         </button>
       </div>
       <div className="main-container">
-        <div className="top-container row">
-          <div className="column col-sm-10 col-md-8 col-xl-6">
+        <div className="top-container">
+          <div className="column col-sm-10 col-md-8 col-xl-6 col-offset-1">
             <div className="title">
               <h2>{`MONGABAY'S`}</h2>
               <h1>REFORESTATION DIRECTORY</h1>
@@ -101,50 +101,54 @@ function HomePageLayout(props) {
           </div>
         </div>
         <div className="data-container">
-          <CatalogueFilter
-            onCategoryChange={value => setCategorySelected(value)}
-            onChange={filters => {
-              // sortProjects(getCatalogueFiltered(filters));
-            }}
-          />
-          <div className="projects-list">
-            <div className="list-header">
-              <div className="sort-container">
-                <label htmlFor="sort-select">Sort by</label>
-                <Select
-                  id="sort-select"
-                  options={SORT_OPTIONS_ARRAY}
-                  defaultValue={sort}
-                  value={sort}
-                  onChange={({ value }) => {
-                    updateSort(value);
-                  }}
-                />
+          <div className="left-container">
+            <CatalogueFilter
+              onCategoryChange={value => setCategorySelected(value)}
+              onChange={filters => {
+                // sortProjects(getCatalogueFiltered(filters));
+              }}
+            />
+          </div>
+          <div className="right-container">
+            <div className="projects-list">
+              <div className="list-header">
+                <div className="sort-container">
+                  <label htmlFor="sort-select">Sort by</label>
+                  <Select
+                    id="sort-select"
+                    options={SORT_OPTIONS_ARRAY}
+                    defaultValue={sort}
+                    value={sort}
+                    onChange={({ value }) => {
+                      updateSort(value);
+                    }}
+                  />
+                </div>
+                <div className="country-container">
+                  <label htmlFor="country-select">Country: </label>
+                  <Select
+                    id="country-select"
+                    options={countries.map(c => ({ value: c, label: c }))}
+                    onChange={({ value }) => updateCountry(value)}
+                    defaultValue={country}
+                    value={country}
+                  />
+                </div>
               </div>
-              <div className="country-container">
-                <label htmlFor="country-select">Country: </label>
-                <Select
-                  id="country-select"
-                  options={countries.map(c => ({ value: c, label: c }))}
-                  onChange={({ value }) => updateCountry(value)}
-                  defaultValue={country}
-                  value={country}
-                />
+              <div className="row justify-content-center">
+                {projects &&
+                  projects.map(p => (
+                    <motion.div
+                      key={p.projectNumber}
+                      className="column"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <ProjectCard project={p} highlightedCategory={null} />
+                    </motion.div>
+                  ))}
               </div>
-            </div>
-            <div className="row">
-              {projects &&
-                projects.map(p => (
-                  <motion.div
-                    key={p.projectNumber}
-                    className="column"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <ProjectCard project={p} highlightedCategory={null} />
-                  </motion.div>
-                ))}
             </div>
           </div>
         </div>

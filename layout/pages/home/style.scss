@@ -33,31 +33,44 @@
 
       .data-container {
         display: flex;
+        margin: 30px;
 
-        .projects-list {
-          width: 100%;
-          padding: 20px;
+        .left-container {
+          width: 33%;
+          border-top: solid 3px $text-color-1;
+          margin-right: 30px;
+        }
 
-          .list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .right-container {
+          width: 67%;
+          border-top: solid 3px $text-color-1;
+          margin-left: 30px;
+
+          .projects-list {
             width: 100%;
-            margin-bottom: 50px;
-
-            .country-container, .sort-container {
-              label {
-                font-style: italic;
-              }
-              select {
-                background-color: $light-grey;
-                margin-left: 5px;
+            padding: 20px;
+  
+            .list-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              width: 100%;
+              margin-bottom: 50px;
+  
+              .country-container, .sort-container {
+                label {
+                  font-style: italic;
+                }
+                select {
+                  background-color: $light-grey;
+                  margin-left: 5px;
+                }
               }
             }
-          }
-
-          .c-project-card {
-            margin: 0px 0px 40px 45px;
+  
+            .c-project-card {
+              margin: 0px 20px 40px 0px;
+            }
           }
         }
       }
