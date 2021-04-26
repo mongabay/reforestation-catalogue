@@ -4,6 +4,18 @@ body {
   font-display: swap;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  font-weight: $font-weight-default;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
 label:not(.custom-control-label) {
   margin-bottom: map-get($spacers, 1);
   @include font-size($font-size-s);
