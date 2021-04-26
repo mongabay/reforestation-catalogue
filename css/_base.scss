@@ -21,6 +21,13 @@ h3 {
   font-weight: 700;
 }
 
+.-bold {
+  font-weight: 700;
+}
+.-italic {
+  font-style: italic;
+}
+
 label:not(.custom-control-label) {
   margin-bottom: map-get($spacers, 1);
   @include font-size($font-size-s);

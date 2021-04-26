@@ -5,10 +5,8 @@ import { motion } from 'framer-motion';
 
 import { COUNTRIES_SPECIAL_VALUES, SORT_OPTIONS } from 'types';
 
-import { ECOLOGICAL_CATEGORY } from 'services/catalogue';
-
 // components
-import CatalogueFilter from 'components/catalogue/filter/component';
+import CatalogueFilter from 'components/catalogue/filter';
 import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card/component';
 
@@ -124,12 +122,7 @@ function HomePageLayout(props) {
                 paragraph the user learns about priorities and filters. In this paragraph the user
                 learns about priorities and filters. In this paragraph the user learns.
               </p>
-              <CatalogueFilter
-                onCategoryChange={value => setCategorySelected(value)}
-                onChange={filters => {
-                  // sortProjects(getCatalogueFiltered(filters));
-                }}
-              />
+              <CatalogueFilter />
             </div>
           </div>
           <div className="right-container">
