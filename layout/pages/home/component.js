@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { COUNTRIES_SPECIAL_VALUES, SORT_OPTIONS } from 'types';
 
 // components
-import CatalogueFilter from 'components/catalogue/filter/component';
+import CatalogueFilter from 'components/catalogue/filter';
 import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card/component';
 

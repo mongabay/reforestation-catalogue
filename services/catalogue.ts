@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-import { Project } from 'types';
-
 export const getCatalogueData = () => axios.get('/data/mongabay-data.json').then(resp => resp);
 
 export const CONTEXT_CATEGORY = 'Context';
@@ -33,6 +31,7 @@ export const CATEGORIES = [
         id: 'country',
         label: 'Country',
         type: 'string',
+        hidden: true,
       },
       {
         id: 'sizeOfProjectHa',
@@ -49,6 +48,7 @@ export const CATEGORIES = [
         id: 'forestType',
         label: 'Forest type',
         type: 'string',
+        commaSeparated: true,
       },
       {
         id: 'firePrevention',

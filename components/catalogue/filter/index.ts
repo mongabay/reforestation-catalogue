@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import projectsSlice, { selectFilters } from 'modules/projects';
+import projectsSlice, { selectFilteredProjects, selectFilters } from 'modules/projects';
 
 import Component from './component';
 
@@ -9,6 +9,7 @@ export default connect(
   state => {
     return {
       filters: selectFilters(state),
+      projects: selectFilteredProjects(state),
     };
   },
   {

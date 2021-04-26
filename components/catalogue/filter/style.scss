@@ -22,6 +22,14 @@
     }
 
     .filters-section {
+      
+      .select-filter {
+        margin-top: 10px;
+
+        select {
+          width: 100%;
+        }
+      }
       .filter-selector {
         width: 100%;
       }
