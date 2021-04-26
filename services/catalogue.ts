@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { FilterModes } from 'types';
 
 export const getCatalogueData = () => axios.get('/data/mongabay-data.json').then(resp => resp);
 
@@ -85,6 +86,7 @@ export const CATEGORIES = [
         id: 'financialModel',
         label: 'Financial model',
         type: 'string',
+        commaSeparated: true,
       },
       {
         id: 'followUpDisclosed',
@@ -117,6 +119,8 @@ export const CATEGORIES = [
         id: 'organizationType',
         label: 'Organization type',
         type: 'string',
+        commaSeparated: true,
+        mode: FilterModes.Includes,
       },
       {
         id: 'partnerName',

@@ -39,11 +39,13 @@ export const getUniqueValuesForField = (projects, propertyName, commaSeparated) 
   if (commaSeparated) {
     tempSet = new Set(
       [].concat(
-        ...projects.map(e => (e[propertyName] ? e[propertyName].trim().split(',') : null)).sort()
+        ...projects
+          .map(e => (e[propertyName] ? e[propertyName].split(',').map(e => e.trim()) : null))
+          .sort()
       )
     );
   } else {
-    tempSet = new Set(projects.map(e => e[propertyName]).sort());
+    tempSet = new Set(projects.map(e => (e[propertyName] ? e[propertyName].trim() : null)).sort());
   }
   return [...tempSet];
 };

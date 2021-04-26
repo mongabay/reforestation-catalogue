@@ -30,6 +30,7 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
             showSelectAnOption={true}
             selectAnOptionText="Select a value"
             onChange={({ value }) => {
+              addFilter({ ...filter, propertyName: filter.value, value });
               console.log('chante!', value);
             }}
           />
@@ -56,23 +57,21 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
                 className="filter-selector"
                 defaultValue={null}
                 onChange={({ value }) => {
-                  const { type, commaSeparated } = CATEGORIES.find(
-                    elem => elem.id === c.id
-                  ).fields.find(f => f.id === value);
+                  const filterValue = CATEGORIES.find(elem => elem.id === c.id).fields.find(
+                    f => f.id === value
+                  );
                   setFilterSelected({
+                    ...filterValue,
                     category: c.id,
                     value,
-                    type,
-                    commaSeparated: commaSeparated,
                   });
                 }}
                 options={c.fields
                   .filter(f => !f.hidden)
                   .map(f => ({
+                    ...f,
                     label: f.label,
                     value: f.id,
-                    type: f.type,
-                    commaSeparated: f.commaSeparated,
                   }))}
                 showSelectAnOption={true}
                 selectAnOptionText="Add filter"
