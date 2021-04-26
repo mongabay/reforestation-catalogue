@@ -158,7 +158,7 @@ function HomePageLayout(props) {
                   />
                 </div>
               </div>
-              <div className="row justify-content-center">
+              <div className="row justify-content-between">
                 {projects &&
                   projects.map(p => (
                     <motion.div
