@@ -102,18 +102,41 @@ function HomePageLayout(props) {
         </div>
         <div className="data-container">
           <div className="left-container">
-            <CatalogueFilter
-              onCategoryChange={value => setCategorySelected(value)}
-              onChange={filters => {
-                // sortProjects(getCatalogueFiltered(filters));
-              }}
-            />
+            <div className="intro-container -border-top">
+              <h3>A Transparency Index.</h3>
+              <div className="legend-text">
+                <p>
+                  The fingerprint of each project results from five lines representing the
+                  proportion of reported indicators within five categories:{' '}
+                  <span className="-bold">context</span>, <span className="-bold">ecological</span>,{' '}
+                  <span className="-bold">economic</span>, <span className="-bold">social</span>,
+                  and
+                  <span className="-bold">institutional</span>.
+                </p>
+                <p className="-italic">Finalized projects represented in gray.</p>
+              </div>
+            </div>
+            <div className="intro-filters-container -border-top">
+              <h3>Find projects of Interest.</h3>
+              <p>
+                Find Projects of Interest. In this paragraph the user learns about priorities and
+                filters. In this paragraph the user learns about priorities and filters. In this
+                paragraph the user learns about priorities and filters. In this paragraph the user
+                learns about priorities and filters. In this paragraph the user learns.
+              </p>
+              <CatalogueFilter
+                onCategoryChange={value => setCategorySelected(value)}
+                onChange={filters => {
+                  // sortProjects(getCatalogueFiltered(filters));
+                }}
+              />
+            </div>
           </div>
           <div className="right-container">
             <div className="projects-list">
               <div className="list-header">
                 <div className="sort-container">
-                  <label htmlFor="sort-select">Sort by</label>
+                  <label htmlFor="sort-select">Sort by category</label>
                   <Select
                     id="sort-select"
                     options={SORT_OPTIONS_ARRAY}
