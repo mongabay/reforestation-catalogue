@@ -30,7 +30,12 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
             showSelectAnOption={true}
             selectAnOptionText="Select a value"
             onChange={({ value }) => {
-              addFilter({ ...filter, propertyName: filter.value, value });
+              addFilter({
+                mode: filter.mode,
+                type: filter.type,
+                propertyName: filter.value,
+                value,
+              });
               console.log('chante!', value);
             }}
           />
