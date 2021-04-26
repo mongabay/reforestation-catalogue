@@ -14,6 +14,7 @@ const Select = ({
   className,
   required,
   showSelectAnOption,
+  selectAnOptionText,
 }) => {
   const onChangeSelect = useCallback(
     e => {
@@ -36,7 +37,7 @@ const Select = ({
     >
       {showSelectAnOption && (
         <option disabled selected>
-          {'-- select an option --'}
+          {selectAnOptionText}
         </option>
       )}
       {options.map(option => (
@@ -65,6 +66,7 @@ Select.propTypes = {
   className: PropTypes.string,
   required: PropTypes.bool,
   showSelectAnOption: PropTypes.bool,
+  selectAnOptionText: PropTypes.string,
 };
 
 Select.defaultProps = {
@@ -76,6 +78,7 @@ Select.defaultProps = {
   className: undefined,
   required: false,
   showSelectAnOption: false,
+  selectAnOptionText: '-- select an option --',
 };
 
 export default Select;
