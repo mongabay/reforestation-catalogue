@@ -14,7 +14,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div
       className="c-project-card"
-      onClick={() => Router.push(`/project/${project.projectNumber}`)}
+      onClick={() => Router.push(`/project?id=${project.projectNumber}`)}
     >
       <ProjectChart project={project} highlightedCategory={highlightedCategory} cardMode={true} />
     </div>
