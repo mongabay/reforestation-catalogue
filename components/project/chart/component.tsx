@@ -124,7 +124,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
           >
             {getSVG()}
           </Tooltip>
-          <Link href={`/project/${project.projectNumber}`}>
+          <Link href={`/project?id=${project.projectNumber}`}>
             <a className="title">
               {project.projectName.length < TITLE_MAX_LENGTH
                 ? project.projectName
