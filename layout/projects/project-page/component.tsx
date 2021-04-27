@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import StaticPage from 'layout/static-page';
 
-import ProjectViewer from 'components/project/project-viewer/component';
+import ProjectViewer from 'components/project/project-viewer';
 
 import { ProjectPageLayoutProps } from './types';
 
@@ -17,7 +17,7 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
 }: ProjectPageLayoutProps) => {
   useEffect(() => {
     if (!projects || projects.length === 0) {
-      getCatalogueData().then(resp => updateData(resp.data));
+      getCatalogueData().then(resp => updateData(resp.data).catch(err => console.error(err)));
     }
   }, []);
 

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import './style.scss';
 import { ProjectViewerProps } from './types';
-import ProjectChart from '../chart/component';
+import ProjectChart from '../chart';
 import { UNREPORTED_TEXT } from './constants';
 import {
   CATEGORIES,

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Router from 'next/router';
 
-import ProjectChart from '../chart/component';
+import ProjectChart from '../chart';
 
 import './style.scss';
 import { ProjectCardProps } from './types';
