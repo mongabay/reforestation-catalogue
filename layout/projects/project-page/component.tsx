@@ -17,7 +17,9 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
 }: ProjectPageLayoutProps) => {
   useEffect(() => {
     if (!projects || projects.length === 0) {
-      getCatalogueData().then(resp => updateData(resp.data).catch(err => console.error(err)));
+      getCatalogueData()
+        .then(resp => updateData(resp.data))
+        .catch(err => console.error(err));
     }
   }, []);
 
