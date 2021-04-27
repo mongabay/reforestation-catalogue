@@ -131,6 +131,10 @@ select.c-select {
   font-weight: 400;
   margin-bottom: 85px; }
 
+.c-project-viewer h5 {
+  font-size: 24px;
+  font-weight: 700; }
+
 .c-project-viewer .main-container {
   display: flex; }
   .c-project-viewer .main-container .left-container {
@@ -148,6 +152,8 @@ select.c-select {
     margin-left: 120px; }
     .c-project-viewer .main-container .right-container .category-section {
       margin-bottom: 45px; }
+      .c-project-viewer .main-container .right-container .category-section .property-label {
+        margin-right: 10px; }
 
 .tippy-popper {
   max-width: none !important;
