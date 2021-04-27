@@ -8,11 +8,38 @@
     display: block;
     height: 1.25rem; }
 
-select.c-select {
-  width: auto;
-  vertical-align: baseline;
-  -moz-appearance: none;
-  -webkit-appearance: none; }
+.c-catalogue-filter {
+  display: flex;
+  flex-direction: column; }
+  .c-catalogue-filter .category-container {
+    margin-bottom: 10px; }
+    .c-catalogue-filter .category-container .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; }
+      .c-catalogue-filter .category-container .title .info-button {
+        margin-right: 5px;
+        cursor: pointer; }
+      .c-catalogue-filter .category-container .title .category-label {
+        font-size: 16px; }
+    .c-catalogue-filter .category-container .filters-section .select-filter {
+      margin-top: 10px; }
+      .c-catalogue-filter .category-container .filters-section .select-filter select {
+        width: 100%; }
+    .c-catalogue-filter .category-container .filters-section .radio-filter {
+      display: flex;
+      align-items: center;
+      margin-top: 10px; }
+      .c-catalogue-filter .category-container .filters-section .radio-filter .c-radio {
+        margin: 0px 15px 0px 0px; }
+    .c-catalogue-filter .category-container .filters-section .filter-selector {
+      width: 100%; }
+    .c-catalogue-filter .category-container .filters-section .filters-applied {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px; }
+      .c-catalogue-filter .category-container .filters-section .filters-applied .c-pill {
+        margin-bottom: 5px; }
 
 .c-radio .custom-control-input:checked:not(:disabled):active ~ .custom-control-label:before {
   background-color: transparent; }
@@ -33,18 +60,71 @@ select.c-select {
 .c-radio + .c-radio {
   margin-top: 1rem; }
 
-.c-catalogue-filter {
-  display: flex;
-  flex-direction: column; }
-  .c-catalogue-filter .filter-container {
+.c-checkbox .custom-control-input:checked:not(:disabled):active ~ .custom-control-label:before {
+  background-color: transparent; }
+
+.c-checkbox .custom-control-input:checked ~ .custom-control-label {
+  color: #03755e;
+  font-weight: 500; }
+  .c-checkbox .custom-control-input:checked ~ .custom-control-label:before {
+    border-width: 2px; }
+  .c-checkbox .custom-control-input:checked ~ .custom-control-label:after {
+    top: 0.375rem;
+    left: -1.5rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 0.125rem;
+    background-color: #03755e; }
+
+.c-checkbox + .c-checkbox {
+  margin-top: 1rem; }
+
+select.c-select {
+  width: auto;
+  vertical-align: baseline;
+  -moz-appearance: none;
+  -webkit-appearance: none; }
+
+.c-range {
+  width: 100%;
+  padding: 0 0.5rem; }
+  .c-range input {
+    display: block; }
+  .c-range .marks {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 10px; }
-    .c-catalogue-filter .filter-container select {
-      max-width: 300px; }
-    .c-catalogue-filter .filter-container.-priority select {
-      background-color: #FF6C2F;
-      font-weight: 700; }
+    justify-content: space-between;
+    margin-top: 0.25rem;
+    font-size: 0.75rem; }
+    .c-range .marks span {
+      position: relative;
+      display: block;
+      width: 1rem;
+      height: 1.375rem; }
+      .c-range .marks span:before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0.125rem;
+        height: 0.4375rem;
+        background-color: rgba(34, 34, 34, 0.3);
+        content: ''; }
+      .c-range .marks span:after {
+        position: absolute;
+        top: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        content: attr(data-label); }
+
+.c-pill {
+  display: flex;
+  align-items: center;
+  padding: 5px 18px;
+  background-color: #DEDEDE;
+  border-radius: 50px; }
+  .c-pill button {
+    border: none;
+    background-color: unset; }
 
 .c-project-viewer h1 {
   max-width: 322px;
@@ -196,10 +276,6 @@ select.c-select {
             padding: 30px 0px 15px 0px; }
           .p-home .l-static-page .main-container .data-container .left-container p {
             font-size: 16px; }
-          .p-home .l-static-page .main-container .data-container .left-container .-bold {
-            font-weight: 700; }
-          .p-home .l-static-page .main-container .data-container .left-container .-italic {
-            font-style: italic; }
           .p-home .l-static-page .main-container .data-container .left-container .legend-text {
             margin-top: 45px; }
           .p-home .l-static-page .main-container .data-container .left-container .intro-filters-container h3 {

@@ -8746,6 +8746,12 @@ h3 {
   font-size: 24px;
   font-weight: 700; }
 
+.-bold {
+  font-weight: 700; }
+
+.-italic {
+  font-style: italic; }
+
 label:not(.custom-control-label) {
   margin-bottom: 0.25rem;
   font-size: 0.8125rem;
