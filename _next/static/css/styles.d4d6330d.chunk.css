@@ -116,16 +116,6 @@ select.c-select {
         transform: translateX(-50%);
         content: attr(data-label); }
 
-.c-pill {
-  display: flex;
-  align-items: center;
-  padding: 5px 18px;
-  background-color: #DEDEDE;
-  border-radius: 50px; }
-  .c-pill button {
-    border: none;
-    background-color: unset; }
-
 .c-project-viewer h1 {
   max-width: 322px;
   font-weight: 400;
@@ -154,6 +144,11 @@ select.c-select {
       margin-bottom: 45px; }
       .c-project-viewer .main-container .right-container .category-section .property-label {
         margin-right: 10px; }
+      .c-project-viewer .main-container .right-container .category-section .pills-container {
+        display: flex;
+        flex-wrap: wrap; }
+        .c-project-viewer .main-container .right-container .category-section .pills-container .c-pill {
+          margin: 5px 5px 5px 0px; }
 
 .tippy-popper {
   max-width: none !important;
@@ -196,6 +191,18 @@ select.c-select {
         content: ''; }
     .tippy-popper div.tippy-tooltip.light-theme .tippy-content {
       padding: 0; }
+
+.c-pill {
+  display: flex;
+  align-items: center;
+  padding: 5px 18px;
+  background-color: #DEDEDE;
+  border-radius: 50px; }
+  .c-pill button {
+    border: none;
+    background-color: unset; }
+  .c-pill a {
+    text-decoration: unset; }
 
 .c-project-chart {
   display: flex;
