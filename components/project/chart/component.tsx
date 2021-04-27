@@ -116,7 +116,9 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
                     }}
                   >
                     <label>{cKey}:</label>
-                    <span style={{ margin: '0 0 0.25rem 1rem' }}>{categoryPercentages[cKey]}</span>
+                    <span style={{ margin: '0 0 0.25rem 1rem' }}>
+                      {Math.round(categoryPercentages[cKey])}
+                    </span>
                   </div>
                 ))}
               </div>

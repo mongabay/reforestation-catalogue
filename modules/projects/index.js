@@ -22,7 +22,6 @@ export const selectFilteredProjects = createSelector(
       result = result.filter(p => p.country === country);
     }
     filters.forEach(filter => {
-      console.log('in! filter', filter);
       if (filter.mode === FilterModes.Exact) {
         result = result.filter(p => p[filter.propertyName] === filter.value);
       } else if (filter.mode === FilterModes.Includes) {

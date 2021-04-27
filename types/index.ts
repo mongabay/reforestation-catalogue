@@ -70,6 +70,7 @@ export enum FilterTypes {
   Number = 'number',
   String = 'string',
   Boolean = 'boolean',
+  NotEmpty = 'not-empty',
 }
 
 export interface Filter {

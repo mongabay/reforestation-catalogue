@@ -6,8 +6,6 @@ import { PillProps } from './types';
 import './style.scss';
 
 const Pill: React.FC<PillProps> = ({ filter, removeFilter }: PillProps) => {
-  console.log('filter pill', filter);
-
   return (
     <motion.div className="c-pill" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className="text">{`${filter.label}: ${filter.value}`}</div>

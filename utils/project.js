@@ -35,7 +35,6 @@ const getPercentageForCategory = (project, category) => {
 
 export const getUniqueValuesForField = (projects, propertyName, commaSeparated) => {
   let tempSet;
-  console.log('propertyName', propertyName, 'comma', commaSeparated);
   if (commaSeparated) {
     tempSet = new Set(
       []
