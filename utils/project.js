@@ -38,14 +38,22 @@ export const getUniqueValuesForField = (projects, propertyName, commaSeparated) 
   console.log('propertyName', propertyName, 'comma', commaSeparated);
   if (commaSeparated) {
     tempSet = new Set(
-      [].concat(
-        ...projects
-          .map(e => (e[propertyName] ? e[propertyName].split(',').map(e => e.trim()) : null))
-          .sort()
-      )
+      []
+        .concat(
+          ...projects.map(e =>
+            e[propertyName] ? e[propertyName].split(',').map(e => e.trim()) : null
+          )
+        )
+        .filter(e => !!e)
+        .sort()
     );
   } else {
-    tempSet = new Set(projects.map(e => (e[propertyName] ? e[propertyName].trim() : null)).sort());
+    tempSet = new Set(
+      projects
+        .map(e => (e[propertyName] ? e[propertyName].trim() : null))
+        .filter(e => !!e)
+        .sort()
+    );
   }
   return [...tempSet];
 };

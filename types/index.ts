@@ -77,4 +77,5 @@ export interface Filter {
   value: number | string | boolean;
   propertyName: string;
   mode: FilterModes;
+  label?: string;
 }
