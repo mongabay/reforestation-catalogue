@@ -4,7 +4,7 @@ import { CATEGORIES } from 'services/catalogue';
 import { CatelogueFilterProps } from './types';
 
 import './style.scss';
-import { Filter, FilterTypes } from 'types';
+import { FilterTypes } from 'types';
 import { Radio, Select } from 'components/forms';
 import Pill from 'components/pill';
 import { getUniqueValuesForField } from 'utils/project';
@@ -47,7 +47,9 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
         <div className="radio-filter">
           <Radio
             id="yes-radio"
+            className="yes-radio"
             name="yes-no-radio"
+            disabled={false}
             checked={false}
             onChange={() => {
               setFilterSelected(null);
@@ -64,8 +66,10 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
           </Radio>
           <Radio
             id="no-radio"
+            className="no-radio"
             name="yes-no-radio"
             checked={false}
+            disabled={false}
             onChange={() => {
               setFilterSelected(null);
               addFilter({
