@@ -6,7 +6,7 @@ import { CatelogueFilterProps } from './types';
 import './style.scss';
 import { Filter, FilterTypes } from 'types';
 import { Radio, Select } from 'components/forms';
-import Pill from 'components/pill/component';
+import Pill from 'components/pill';
 import { getUniqueValuesForField } from 'utils/project';
 
 const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
@@ -34,11 +34,51 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
                 mode: filter.mode,
                 type: filter.type,
                 propertyName: filter.value,
+                label: filter.label,
                 value,
               });
-              console.log('chante!', value);
+              setFilterSelected(null);
             }}
           />
+        </div>
+      );
+    } else if (filter.type === FilterTypes.Boolean) {
+      return (
+        <div className="radio-filter">
+          <Radio
+            id="yes-radio"
+            name="yes-no-radio"
+            checked={false}
+            onChange={() => {
+              setFilterSelected(null);
+              addFilter({
+                mode: filter.mode,
+                type: filter.type,
+                propertyName: filter.value,
+                label: filter.label,
+                value: true,
+              });
+            }}
+          >
+            YES
+          </Radio>
+          <Radio
+            id="no-radio"
+            name="yes-no-radio"
+            checked={false}
+            onChange={() => {
+              setFilterSelected(null);
+              addFilter({
+                mode: filter.mode,
+                type: filter.type,
+                propertyName: filter.value,
+                label: filter.label,
+                value: false,
+              });
+            }}
+          >
+            NO
+          </Radio>
         </div>
       );
     }

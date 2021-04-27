@@ -1,15 +1,20 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 import { PillProps } from './types';
 
 import './style.scss';
 
 const Pill: React.FC<PillProps> = ({ filter, removeFilter }: PillProps) => {
+  console.log('filter pill', filter);
+
   return (
-    <div className="c-pill">
-      <div className="text">{`${filter.propertyName}: ${filter.value}`}</div>
-      <button onClick={() => removeFilter(filter)}>x</button>
-    </div>
+    <motion.div className="c-pill" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <div className="text">{`${filter.label}: ${filter.value}`}</div>
+      <button onClick={() => removeFilter(filter)}>
+        <img src="/icons/cross.svg" />
+      </button>
+    </motion.div>
   );
 };
 

@@ -46,7 +46,7 @@ function HomePageLayout(props) {
       loadInitialState({
         country: countryInitialQuery,
         sort: sortInitialQuery,
-        filters: filtersInitialQuery,
+        filters: JSON.parse(filtersInitialQuery),
       });
     } else {
       updateCountry(COUNTRIES_SPECIAL_VALUES.ALL);
@@ -62,7 +62,7 @@ function HomePageLayout(props) {
   useEffect(() => {
     const newRoute = `/?sort=${encodeURIComponent(sort)}&country=${encodeURIComponent(
       country
-    )}&filters=${encodeURIComponent(filters)}`;
+    )}&filters=${encodeURIComponent(JSON.stringify(filters))}`;
     router.push(newRoute, undefined, { shallow: true });
   }, [sort, country, filters]);
 
