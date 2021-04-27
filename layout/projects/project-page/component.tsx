@@ -19,7 +19,7 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
     if (!projects || projects.length === 0) {
       getCatalogueData().then(resp => updateData(resp.data));
     }
-  });
+  }, []);
 
   const project = projects?.find(p => `${p.projectNumber}` === id);
 
