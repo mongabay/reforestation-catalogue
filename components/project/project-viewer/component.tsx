@@ -4,8 +4,30 @@ import { motion } from 'framer-motion';
 import './style.scss';
 import { ProjectViewerProps } from './types';
 import ProjectChart from '../chart/component';
+import { UNREPORTED_TEXT } from './constants';
+import {
+  CATEGORIES,
+  CONTEXT_CATEGORY,
+  ECOLOGICAL_CATEGORY,
+  ECONOMIC_CATEGORY,
+  INSTITUTIONAL_CATEGORY,
+  SOCIAL_CATEGORY,
+} from 'services/catalogue';
+import { FilterTypes } from 'types';
 
 const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerProps) => {
+  console.log('project', project);
+
+  const getReportedFieldsForCategory = (category, reported) => {
+    return CATEGORIES.find(c => c.id === category)
+      .fields.filter(
+        field =>
+          field.type === FilterTypes.Boolean && (reported ? project[field.id] : !project[field.id])
+      )
+      .map(f => f.label)
+      .join(', ');
+  };
+
   return (
     <div className="c-project-viewer">
       <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -32,65 +54,115 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
             </motion.div>
           </div>
           <div className="right-container">
+            {/* ----------------------CONTEXT --------------------- */}
             <div className="context category-section">
               <h5>Context</h5>
-              <p>
-                Context Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit,
-              </p>
+              <div className="field">
+                <span className="-bold property-label">Size of project (ha):</span>
+                {project.sizeOfProjectHa ? project.sizeOfProjectHa : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">Trees planted (number):</span>
+                {project.treesPlantedNumber ? project.treesPlantedNumber : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">Primary objective/purpose:</span>
+                {project.primaryObjectivePurpose
+                  ? project.primaryObjectivePurpose
+                  : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">Approach:</span>
+                {project.approach ? project.approach : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">Type of follow up:</span>
+                {project.typeOfFollowUp ? project.typeOfFollowUp : UNREPORTED_TEXT}
+              </div>
+              <div className="reported-info">
+                <span className="-bold property-label">Reported information:</span>
+                {getReportedFieldsForCategory(CONTEXT_CATEGORY, true)}
+              </div>
+              <div className="non-reported-info">
+                <span className="-bold property-label">Non-reported information:</span>
+                {getReportedFieldsForCategory(CONTEXT_CATEGORY, false)}
+              </div>
             </div>
+            {/* ----------------------ECOLOGICAL --------------------- */}
             <div className="ecological category-section">
               <h5>Ecological</h5>
-              <p>
-                Context Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit,
-              </p>
+              <div className="field">
+                <span className="-bold property-label">Forest type:</span>
+                {project.forestType ? project.forestType : UNREPORTED_TEXT}
+              </div>
+              <div className="reported-info">
+                <span className="-bold property-label">Reported information:</span>
+                {getReportedFieldsForCategory(ECOLOGICAL_CATEGORY, true)}
+              </div>
+              <div className="non-reported-info">
+                <span className="-bold property-label">Non-reported information:</span>
+                {getReportedFieldsForCategory(ECOLOGICAL_CATEGORY, false)}
+              </div>
             </div>
+            {/* ----------------------ECONOMIC --------------------- */}
             <div className="economic category-section">
               <h5>Economic</h5>
-              <p>
-                Context Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit,
-              </p>
+              <div className="field">
+                <span className="-bold property-label">Name Org/Donor:</span>
+                {project.nameOrgDonor ? project.nameOrgDonor : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">Financial model:</span>
+                {project.financialModel ? project.financialModel : UNREPORTED_TEXT}
+              </div>
+              <div className="reported-info">
+                <span className="-bold property-label">Reported information:</span>
+                {getReportedFieldsForCategory(ECONOMIC_CATEGORY, true)}
+              </div>
+              <div className="non-reported-info">
+                <span className="-bold property-label">Non-reported information:</span>
+                {getReportedFieldsForCategory(ECONOMIC_CATEGORY, false)}
+              </div>
             </div>
+            {/* ----------------------SOCIAL --------------------- */}
             <div className="social category-section">
               <h5>Social</h5>
-              <p>
-                Context Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit,
-              </p>
+              <div className="reported-info">
+                <span className="-bold property-label">Reported information:</span>
+                {getReportedFieldsForCategory(SOCIAL_CATEGORY, true)}
+              </div>
+              <div className="non-reported-info">
+                <span className="-bold property-label">Non-reported information:</span>
+                {getReportedFieldsForCategory(SOCIAL_CATEGORY, false)}
+              </div>
             </div>
+            {/* ----------------------INSTITUTIONAL --------------------- */}
             <div className="institutional category-section">
               <h5>Institutional</h5>
-              <p>
-                Context Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit,
-              </p>
+              <div className="field">
+                <span className="-bold property-label">Lead organization:</span>
+                {project.leadOrganization ? project.leadOrganization : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">Organization type:</span>
+                {project.organizationType ? project.organizationType : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">{`Who's involved:`}</span>
+                {project.whoIsInvolved ? project.whoIsInvolved : UNREPORTED_TEXT}
+              </div>
+              <div className="field">
+                <span className="-bold property-label">Partner name:</span>
+                {project.partnerName ? project.partnerName : UNREPORTED_TEXT}
+              </div>
+              <div className="reported-info">
+                <span className="-bold property-label">Reported information:</span>
+                {getReportedFieldsForCategory(INSTITUTIONAL_CATEGORY, true)}
+              </div>
+              <div className="non-reported-info">
+                <span className="-bold property-label">Non-reported information:</span>
+                {getReportedFieldsForCategory(INSTITUTIONAL_CATEGORY, false)}
+              </div>
             </div>
           </div>
         </div>
