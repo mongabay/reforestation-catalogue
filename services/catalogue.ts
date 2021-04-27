@@ -206,6 +206,12 @@ export const CATEGORIES = [
 ];
 
 export const getCategoryByID = id => CATEGORIES.find(c => c.id === id);
-
-const filterByField = (data, fieldName, value, commaSeparated = false) =>
-  data.filter(e => (commaSeparated ? e[fieldName].includes(value) : e[fieldName] === value));
+export const getFieldByID = id => {
+  for (let i = 0; i < CATEGORIES.length; i++) {
+    const found = CATEGORIES[i].fields.find(f => f.id === id);
+    if (found) {
+      return found;
+    }
+  }
+  return null;
+};
