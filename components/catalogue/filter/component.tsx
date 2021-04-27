@@ -103,6 +103,7 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
             </div>
             <div className="filters-section">
               <Select
+                id={`select-filter-${c.id}`}
                 className="filter-selector"
                 defaultValue={null}
                 onChange={({ value }) => {
@@ -132,7 +133,7 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
                 {filters &&
                   filters
                     .filter(f => categoryFieldIDs.includes(f.propertyName))
-                    .map(f => <Pill key={`pill-${f.propertyName}`} filter={f} />)}
+                    .map(f => <Pill key={`pill-${f.propertyName}`} filter={f} linkMode={false} />)}
               </div>
             </div>
           </div>

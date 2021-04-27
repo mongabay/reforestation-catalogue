@@ -14,18 +14,29 @@ import {
   SOCIAL_CATEGORY,
 } from 'services/catalogue';
 import { FilterTypes } from 'types';
+import Pill from 'components/pill/component';
 
 const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerProps) => {
   console.log('project', project);
 
   const getReportedFieldsForCategory = (category, reported) => {
-    return CATEGORIES.find(c => c.id === category)
-      .fields.filter(
-        field =>
-          field.type === FilterTypes.Boolean && (reported ? project[field.id] : !project[field.id])
-      )
-      .map(f => f.label)
-      .join(', ');
+    return (
+      <div className="pills-container">
+        {CATEGORIES.find(c => c.id === category)
+          .fields.filter(
+            field =>
+              field.type === FilterTypes.Boolean &&
+              (reported ? project[field.id] : !project[field.id])
+          )
+          .map(f => (
+            <Pill
+              key={`pill-${f.id}`}
+              filter={{ ...f, propertyName: f.id, value: reported }}
+              linkMode={true}
+            />
+          ))}
+      </div>
+    );
   };
 
   return (

@@ -43,6 +43,15 @@
         .property-label {
           margin-right: 10px;
         }
+
+        .pills-container {
+          display: flex;
+          flex-wrap: wrap;
+
+          .c-pill {
+            margin: 5px 5px 5px 0px;
+          }
+        }
       }
     }
   }
