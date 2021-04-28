@@ -8,7 +8,9 @@ import Link from 'next/link';
 
 const Header: React.FC<HeaderProps> = () => (
   <motion.div className="c-header" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-    <img src="/images/logo-gecko.png" alt="Mongabay" className="logo" />
+    <a href="https://www.mongabay.com/" target="_blank" rel="noreferrer">
+      <img src="/images/logo-gecko.png" alt="Mongabay" className="logo" />
+    </a>
     <div className="buttons">
       <Link href="about">
         <a className="-secondary">About</a>
