@@ -1,12 +1,5 @@
 .l-static-page {
   position: relative; }
-  .l-static-page > .logo {
-    position: absolute;
-    right: 0;
-    top: -0.875rem;
-    transform: translateY(-100%);
-    display: block;
-    height: 1.25rem; }
 
 .c-catalogue-filter {
   display: flex;
@@ -116,17 +109,25 @@ select.c-select {
         transform: translateX(-50%);
         content: attr(data-label); }
 
-.c-project-viewer h1 {
-  max-width: 322px;
-  font-weight: 400;
-  margin-bottom: 85px; }
+.c-project-viewer .title-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 0px;
+  margin-bottom: 65px;
+  background-color: #03755e;
+  color: #fff; }
+  .c-project-viewer .title-banner h1 {
+    max-width: 50%;
+    text-align: center; }
 
 .c-project-viewer h5 {
   font-size: 24px;
   font-weight: 700; }
 
 .c-project-viewer .main-container {
-  display: flex; }
+  display: flex;
+  padding: 0px 10%; }
   .c-project-viewer .main-container .left-container {
     width: 260px; }
     .c-project-viewer .main-container .left-container .text-container {
@@ -136,12 +137,14 @@ select.c-select {
     .c-project-viewer .main-container .left-container .buttons {
       display: flex;
       flex-direction: column; }
-      .c-project-viewer .main-container .left-container .buttons button {
+      .c-project-viewer .main-container .left-container .buttons a {
         margin-top: 20px; }
   .c-project-viewer .main-container .right-container {
     margin-left: 120px; }
     .c-project-viewer .main-container .right-container .category-section {
       margin-bottom: 45px; }
+      .c-project-viewer .main-container .right-container .category-section .dynamic-text {
+        margin-bottom: 10px; }
       .c-project-viewer .main-container .right-container .category-section .property-label {
         margin-right: 10px; }
       .c-project-viewer .main-container .right-container .category-section .pills-container {
@@ -163,7 +166,7 @@ select.c-select {
     border-radius: 0.625rem;
     background-color: #fff;
     border: 0.0625rem solid rgba(34, 34, 34, 0.3);
-    box-shadow: 0.0625rem 0.0625rem 0.625rem 0 rgba(0, 0, 0, 0.1); }
+    box-shadow: 0.0625rem 0.0625rem 0.625rem 0 rgba(34, 34, 34, 0.1); }
     .tippy-popper div.tippy-tooltip.light-theme[data-placement^='top'] > .tippy-arrow {
       border-top-color: #fff; }
       .tippy-popper div.tippy-tooltip.light-theme[data-placement^='top'] > .tippy-arrow:after {
@@ -255,72 +258,85 @@ select.c-select {
     transform: scale(1.1); } }
 
 
-.p-home {
+.home-layout {
   height: 100vh;
-  width: 100%;
-  padding: 3rem; }
-  .p-home .l-static-page {
-    height: 100%; }
-    .p-home .l-static-page .navigation-bar {
-      display: flex;
-      justify-content: flex-end; }
-      .p-home .l-static-page .navigation-bar button {
-        margin-left: 20px; }
-    .p-home .l-static-page .main-container {
+  width: 100%; }
+  .home-layout .c-header {
+    padding: 0px 10%; }
+  .home-layout .main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .home-layout .main-container .top-container {
       display: flex;
       flex-direction: column;
-      justify-content: center; }
-      .p-home .l-static-page .main-container .top-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin-top: 100px;
-        text-align: center; }
-      .p-home .l-static-page .main-container .data-container {
-        display: flex;
-        margin: 30px; }
-        .p-home .l-static-page .main-container .data-container .left-container {
-          width: 33%;
-          max-width: 322px;
-          margin-right: 30px; }
-          .p-home .l-static-page .main-container .data-container .left-container .-border-top {
-            border-top: solid 3px #222222;
-            padding: 30px 0px 15px 0px; }
-          .p-home .l-static-page .main-container .data-container .left-container p {
-            font-size: 16px; }
-          .p-home .l-static-page .main-container .data-container .left-container .legend-text {
-            margin-top: 45px; }
-          .p-home .l-static-page .main-container .data-container .left-container .intro-filters-container h3 {
-            margin-bottom: 20px; }
-        .p-home .l-static-page .main-container .data-container .right-container {
-          width: 67%;
-          border-top: solid 3px #222222;
-          padding: 30px 0px;
-          margin-left: 30px; }
-          .p-home .l-static-page .main-container .data-container .right-container .projects-list {
-            width: 100%; }
-            .p-home .l-static-page .main-container .data-container .right-container .projects-list .list-header {
-              display: flex;
-              align-items: center;
-              width: 100%;
-              margin-bottom: 50px; }
-              .p-home .l-static-page .main-container .data-container .right-container .projects-list .list-header .country-container {
-                margin-left: 36px; }
-              .p-home .l-static-page .main-container .data-container .right-container .projects-list .list-header .country-container label, .p-home .l-static-page .main-container .data-container .right-container .projects-list .list-header .sort-container label {
-                font-size: 18px;
-                font-weight: 700; }
-              .p-home .l-static-page .main-container .data-container .right-container .projects-list .list-header .country-container select, .p-home .l-static-page .main-container .data-container .right-container .projects-list .list-header .sort-container select {
-                margin-left: 8px;
-                font-size: 16px;
-                font-weight: 700; }
-            .p-home .l-static-page .main-container .data-container .right-container .projects-list .c-project-card {
-              margin: 0px 10px 40px 10px; }
+      align-items: center;
+      width: 100%;
+      background-color: #03755e;
+      color: #fff;
+      padding: 100px 0px;
+      text-align: center; }
+    .home-layout .main-container .data-container {
+      display: flex;
+      margin: 30px 10%; }
+      .home-layout .main-container .data-container .left-container {
+        width: 33%;
+        max-width: 322px;
+        margin-right: 30px; }
+        .home-layout .main-container .data-container .left-container p {
+          font-size: 16px; }
+        .home-layout .main-container .data-container .left-container .legend-text {
+          margin-top: 45px; }
+        .home-layout .main-container .data-container .left-container .intro-filters-container h3 {
+          margin-bottom: 20px; }
+      .home-layout .main-container .data-container .right-container {
+        width: 67%;
+        margin-left: 30px; }
+        .home-layout .main-container .data-container .right-container .projects-list {
+          width: 100%; }
+          .home-layout .main-container .data-container .right-container .projects-list .list-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 50px; }
+            .home-layout .main-container .data-container .right-container .projects-list .list-header .country-container {
+              margin-left: 36px; }
+            .home-layout .main-container .data-container .right-container .projects-list .list-header .country-container label, .home-layout .main-container .data-container .right-container .projects-list .list-header .sort-container label {
+              font-size: 18px;
+              font-weight: 700; }
+            .home-layout .main-container .data-container .right-container .projects-list .list-header .country-container select, .home-layout .main-container .data-container .right-container .projects-list .list-header .sort-container select {
+              margin-left: 8px;
+              font-size: 16px;
+              font-weight: 700; }
+          .home-layout .main-container .data-container .right-container .projects-list .c-project-card {
+            margin: 0px 10px 40px 10px; }
 
 .p-project {
   width: 100%;
-  height: 100vh;
-  padding: 3rem; }
-  .p-project .l-static-page {
-    height: 100%; }
+  height: 100vh; }
+  .p-project .c-header, .p-project .navigation-bar {
+    padding: 0px 10%; }
+  .p-project .navigation-bar {
+    margin-bottom: 16px; }
+    .p-project .navigation-bar a {
+      text-decoration: none; }
+      .p-project .navigation-bar a .back-container {
+        display: flex;
+        align-items: center;
+        font-size: 18px; }
+        .p-project .navigation-bar a .back-container .back-text {
+          margin-left: 5px;
+          color: #222222; }
+
+.c-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 26px 0px; }
+  .c-header .buttons {
+    display: flex; }
+    .c-header .buttons a {
+      width: 260px; }
+      .c-header .buttons a:last-child {
+        margin-left: 25px; }
 
