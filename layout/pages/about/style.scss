@@ -1,8 +1,16 @@
+@import 'css/settings';
+
 .p-about {
   padding: 0px 10%;
 
   .title {
     margin: 150px 0px 120px 0px;
     text-align: center;
+  }
+
+  .left-container {
+    .radial-chart {
+      background-color: $light-green;
+    }
   }
 }
