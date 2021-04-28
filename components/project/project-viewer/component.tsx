@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import * as d3 from 'd3';
 
 import './style.scss';
 import { ProjectViewerProps } from './types';
@@ -41,9 +42,9 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
 
   return (
     <div className="c-project-viewer">
-      <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        {project?.projectName}
-      </motion.h1>
+      <motion.div className="title-banner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <h1>{project?.projectName}</h1>
+      </motion.div>
       {project && (
         <div className="main-container">
           <div className="left-container">
@@ -60,22 +61,57 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
               <div className="country">{project?.country}</div>
             </motion.div>
             <motion.div className="buttons">
-              <button className="btn btn-secondary">Project Website</button>
-              <button className="btn btn-primary">Suggest Page Edits</button>
+              <a
+                className="-secondary"
+                href={project?.projectOrgUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Project Website
+              </a>
+              <a className="-primary" href="">
+                Suggest Page Edits
+              </a>
             </motion.div>
           </div>
           <div className="right-container">
             {/* ----------------------CONTEXT --------------------- */}
             <div className="context category-section">
               <h5>Context</h5>
-              <div className="field">
+              <div className="dynamic-text">
+                {!project.sizeOfProjectHa && (
+                  <span>The size of the project has not been reported. </span>
+                )}
+                {project.sizeOfProjectHa && (
+                  <>
+                    <span>
+                      This project has a size of{' '}
+                      <span className="-bold">
+                        {d3.format('.2s')(project.sizeOfProjectHa)} ha.{' '}
+                      </span>
+                    </span>
+                  </>
+                )}
+                {!project.treesPlantedNumber && (
+                  <span>. The number of trees planted has not been reported. </span>
+                )}
+                {project.treesPlantedNumber && (
+                  <span>
+                    <span className="-bold">
+                      {d3.format('.2s')(project.treesPlantedNumber)} trees
+                    </span>
+                    {' have been planted as part of this project. '}
+                  </span>
+                )}
+              </div>
+              {/* <div className="field">
                 <span className="-bold property-label">Size of project (ha):</span>
                 {project.sizeOfProjectHa ? project.sizeOfProjectHa : UNREPORTED_TEXT}
               </div>
               <div className="field">
                 <span className="-bold property-label">Trees planted (number):</span>
                 {project.treesPlantedNumber ? project.treesPlantedNumber : UNREPORTED_TEXT}
-              </div>
+              </div> */}
               <div className="field">
                 <span className="-bold property-label">Primary objective/purpose:</span>
                 {project.primaryObjectivePurpose

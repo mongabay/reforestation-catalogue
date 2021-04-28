@@ -9,6 +9,7 @@ import { ProjectPageLayoutProps } from './types';
 
 import './style.scss';
 import { getCatalogueData } from 'services/catalogue';
+import Header from 'layout/header/component';
 
 const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
   id,
@@ -27,9 +28,15 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
 
   return (
     <StaticPage className="p-project">
+      <Header />
       <div className="navigation-bar">
         <Link href="/">
-          <a>Back</a>
+          <a>
+            <div className="back-container">
+              <img src="/icons/back.svg" />
+              <span className="back-text">Back to all projects</span>
+            </div>
+          </a>
         </Link>
       </div>
       <ProjectViewer project={project} />

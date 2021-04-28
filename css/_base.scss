@@ -28,6 +28,34 @@ h3 {
   font-style: italic;
 }
 
+
+// button links
+
+.-primary, .-secondary {
+  box-sizing: border-box;
+  border-radius: 100px;
+  transition: all .2s ease-in-out;
+  padding: 5px;
+  text-align: center;
+
+  &:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+
+    &.-primary {
+      color: white;
+    }
+  }
+}
+.-primary {
+  background-color: $primary;
+  color: white;
+}
+.-secondary {
+  border: 1px solid $black;
+  color: $black
+}
+
 label:not(.custom-control-label) {
   margin-bottom: map-get($spacers, 1);
   @include font-size($font-size-s);
