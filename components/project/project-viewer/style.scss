@@ -2,10 +2,19 @@
 
 .c-project-viewer {
 
-  h1 {
-    max-width: 322px;
-    font-weight: 400;
-    margin-bottom: 85px;
+  .title-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 0px;
+    margin-bottom: 65px;
+    background-color: $primary;
+    color: $white;
+    
+    h1 {
+      max-width: 50%;
+      text-align: center;
+    }
   }
 
   h5 {
@@ -15,6 +24,7 @@
 
   .main-container {
     display: flex;
+    padding: 0px 10%;
 
     .left-container {
       width: 260px;

@@ -41,9 +41,9 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
 
   return (
     <div className="c-project-viewer">
-      <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        {project?.projectName}
-      </motion.h1>
+      <motion.div className="title-banner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <h1>{project?.projectName}</h1>
+      </motion.div>
       {project && (
         <div className="main-container">
           <div className="left-container">
