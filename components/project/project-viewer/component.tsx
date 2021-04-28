@@ -86,14 +86,12 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
                   <>
                     <span>
                       This project has a size of{' '}
-                      <span className="-bold">
-                        {d3.format('.2s')(project.sizeOfProjectHa)} ha.{' '}
-                      </span>
+                      <span className="-bold">{d3.format('.2s')(project.sizeOfProjectHa)} ha.</span>
                     </span>
                   </>
                 )}
                 {!project.treesPlantedNumber && (
-                  <span>. The number of trees planted has not been reported. </span>
+                  <span> The number of trees planted has not been reported. </span>
                 )}
                 {project.treesPlantedNumber && (
                   <span>
