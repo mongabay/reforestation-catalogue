@@ -2,7 +2,6 @@ import axios from 'axios';
 import { FilterModes, FilterTypes } from 'types';
 
 export const getCatalogueData = () => axios.get('/data/mongabay-data.json').then(resp => resp);
-
 export const CONTEXT_CATEGORY = 'Context';
 export const ECOLOGICAL_CATEGORY = 'Ecological';
 export const ECONOMIC_CATEGORY = 'Economic';
@@ -204,6 +203,8 @@ export const CATEGORIES = [
     ],
   },
 ];
+
+export const SORT_OPTIONS = CATEGORIES.map(c => ({ label: c.label, value: c.id }));
 
 export const getCategoryByID = id => CATEGORIES.find(c => c.id === id);
 export const getFieldByID = id => {

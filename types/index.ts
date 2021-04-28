@@ -1,16 +1,11 @@
+import { CATEGORIES } from 'services/catalogue';
+
 export enum END_YEAR_SPECIAL_VALUES {
   ONGOING = 'ongoing',
 }
 
 export enum COUNTRIES_SPECIAL_VALUES {
   ALL = 'All',
-}
-
-export enum SORT_OPTIONS {
-  ALPHABETICAL_OPTION = 'alphabetical',
-  ECOLOGICAL_OPTION = 'ecological',
-  START_DATE_OPTION = 'start-date',
-  END_DATE_OPTION = 'end-date',
 }
 
 export interface Project {
