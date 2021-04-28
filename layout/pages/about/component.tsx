@@ -8,7 +8,7 @@ import Header from 'layout/header';
 const AboutPage: React.FC<AboutPageLayoutProps> = () => {
   return (
     <div className="c-about-page-layout">
-      <Header />
+      <Header hideAboutButton={true} />
       <div className="title">
         <h2>{`MONGABAY'S`}</h2>
         <h1>REFORESTATION DIRECTORY</h1>
