@@ -3,9 +3,22 @@
 .p-project {
   width: 100%;
   height: 100vh;
-  padding: map-get($spacers, 5);
 
-  .l-static-page {
-    height: 100%;
+  .navigation-bar {
+
+    a {
+      text-decoration: none;
+
+      .back-container {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+
+        .back-text {
+          margin-left: 5px;
+          color: $text-color-1;
+        }
+      }
+    }
   }
 }

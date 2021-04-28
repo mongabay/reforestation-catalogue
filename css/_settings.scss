@@ -6,13 +6,16 @@
 // Colors
 
 $primary: #03755e;
+$black: #222222;
+$dark-grey: #717171;
+
 $light: $white;
 $orange: #FF6C2F;
 $light-grey: #DEDEDE;
 
-$text-color-1: #222222;
+$text-color-1: $black;
 $text-color-2: $primary;
-$text-color-3: #717171;
+$text-color-3: $dark-grey;
 
 $theme-colors: (
   'primary': $primary,

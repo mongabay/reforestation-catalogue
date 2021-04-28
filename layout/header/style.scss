@@ -1,0 +1,18 @@
+.c-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 26px 0px;
+
+  .buttons {
+    display: flex;
+
+    a {
+      width: 260px;
+
+      &:last-child {
+        margin-left: 25px;
+      }
+    }
+  }
+}
