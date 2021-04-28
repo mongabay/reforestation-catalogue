@@ -1,5 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { FilterModes, FilterTypes, COUNTRIES_SPECIAL_VALUES, SORT_OPTIONS } from 'types';
+import { SORT_OPTIONS } from 'services/catalogue';
+import { FilterModes, FilterTypes, COUNTRIES_SPECIAL_VALUES } from 'types';
 
 import { getProjectCategoriesPercentage } from 'utils/project';
 
@@ -37,18 +38,12 @@ export const selectFilteredProjects = createSelector(
     });
 
     if (sort) {
-      result = result.sort((a, b) => {
-        if (sort === SORT_OPTIONS.ALPHABETICAL_OPTION) {
-          return a.projectName > b.projectName ? 1 : -1; // eslint-disable-line
-        } else if (sort === SORT_OPTIONS.START_DATE_OPTION) {
-          return a.startYear > b.startYear ? 1 : -1; // eslint-disable-line
-        } else if (sort === SORT_OPTIONS.END_DATE_OPTION) {
-          return a.endYear > b.endYear ? 1 : -1; // eslint-disable-line
-        } else if (sort === SORT_OPTIONS.ECOLOGICAL_OPTION) {
-          const aEcoValue = getProjectCategoriesPercentage(a)[SORT_OPTIONS.ECOLOGICAL_CATEGORY];
-          const bEcoValue = getProjectCategoriesPercentage(b)[SORT_OPTIONS.ECOLOGICAL_CATEGORY];
-          return bEcoValue - aEcoValue;
-        }
+      result.sort((a, b) => {
+        const catPercA = getProjectCategoriesPercentage(a);
+        const catPercB = getProjectCategoriesPercentage(b);
+        const aValue = catPercA[sort];
+        const bValue = catPercB[sort];
+        return bValue - aValue;
       });
     }
 

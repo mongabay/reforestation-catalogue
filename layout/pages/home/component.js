@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
-import { COUNTRIES_SPECIAL_VALUES, SORT_OPTIONS } from 'types';
+import { COUNTRIES_SPECIAL_VALUES } from 'types';
 
 // components
 import CatalogueFilter from 'components/catalogue/filter';
@@ -11,10 +11,7 @@ import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card';
 
 // utils
-import { getCatalogueData } from 'services/catalogue';
-
-// constants
-import { SORT_OPTIONS_ARRAY } from './constants';
+import { getCatalogueData, SORT_OPTIONS } from 'services/catalogue';
 
 // styles
 import './style.scss';
@@ -51,7 +48,7 @@ function HomePageLayout(props) {
       });
     } else {
       updateCountry(COUNTRIES_SPECIAL_VALUES.ALL);
-      updateSort(SORT_OPTIONS.ALPHABETICAL_OPTION);
+      updateSort(SORT_OPTIONS[0].value);
     }
     getCatalogueData()
       .then(response => {
@@ -126,7 +123,7 @@ function HomePageLayout(props) {
                   <label htmlFor="sort-select">Sort by category</label>
                   <Select
                     id="sort-select"
-                    options={SORT_OPTIONS_ARRAY}
+                    options={SORT_OPTIONS}
                     defaultValue={sort}
                     value={sort}
                     onChange={({ value }) => {
@@ -155,7 +152,7 @@ function HomePageLayout(props) {
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <ProjectCard project={p} highlightedCategory={null} />
+                      <ProjectCard project={p} highlightedCategory={sort} />
                     </motion.div>
                   ))}
               </div>

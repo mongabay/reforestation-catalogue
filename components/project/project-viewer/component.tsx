@@ -18,8 +18,6 @@ import { FilterTypes } from 'types';
 import Pill from 'components/pill/component';
 
 const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerProps) => {
-  console.log('project', project);
-
   const getReportedFieldsForCategory = (category, reported) => {
     return (
       <div className="pills-container">
