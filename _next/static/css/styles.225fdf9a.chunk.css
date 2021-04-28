@@ -1,6 +1,31 @@
 .l-static-page {
   position: relative; }
 
+.c-about-page-layout {
+  padding: 0px 10% 100px 10%; }
+  .c-about-page-layout .title {
+    margin: 150px 0px 120px 0px;
+    text-align: center; }
+  .c-about-page-layout .main-container {
+    display: flex; }
+    .c-about-page-layout .main-container .left-container {
+      margin-right: 5%; }
+      .c-about-page-layout .main-container .left-container .radial-chart {
+        display: flex;
+        width: 140px;
+        height: 140px;
+        padding: 10px;
+        background-color: #669900; }
+    .c-about-page-layout .main-container .right-container {
+      margin-left: 5%; }
+      .c-about-page-layout .main-container .right-container h2 {
+        margin-top: 50px; }
+      .c-about-page-layout .main-container .right-container .logos {
+        display: flex;
+        margin-top: 40px; }
+        .c-about-page-layout .main-container .right-container .logos a:last-child {
+          margin-left: 36px; }
+
 .c-catalogue-filter {
   display: flex;
   flex-direction: column; }
