@@ -1,0 +1,44 @@
+@import 'css/settings';
+
+.c-about-page-layout {
+  padding: 0px 10% 100px 10%;
+
+  .title {
+    margin: 150px 0px 120px 0px;
+    text-align: center;
+  }
+
+  .main-container {
+    display: flex;
+
+    .left-container {
+      margin-right: 5%;
+
+      .radial-chart {
+        display: flex;
+        width: 140px;
+        height: 140px;
+        padding: 10px;
+        background-color: $light-green;
+      }
+    }
+    .right-container {
+      margin-left: 5%;
+
+      h2 {
+        margin-top: 50px;
+      }
+
+      .logos {
+        display: flex;
+        margin-top: 40px;
+
+        a {
+          &:last-child {
+            margin-left: 36px;
+          }
+        }
+      }
+    }
+  }
+}
