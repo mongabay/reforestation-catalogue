@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import * as d3 from 'd3';
 
 import './style.scss';
 import { ProjectViewerProps } from './types';
@@ -77,14 +78,40 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
             {/* ----------------------CONTEXT --------------------- */}
             <div className="context category-section">
               <h5>Context</h5>
-              <div className="field">
+              <div className="dynamic-text">
+                {!project.sizeOfProjectHa && (
+                  <span>The size of the project has not been reported. </span>
+                )}
+                {project.sizeOfProjectHa && (
+                  <>
+                    <span>
+                      This project has a size of{' '}
+                      <span className="-bold">
+                        {d3.format('.2s')(project.sizeOfProjectHa)} ha.{' '}
+                      </span>
+                    </span>
+                  </>
+                )}
+                {!project.treesPlantedNumber && (
+                  <span>. The number of trees planted has not been reported. </span>
+                )}
+                {project.treesPlantedNumber && (
+                  <span>
+                    <span className="-bold">
+                      {d3.format('.2s')(project.treesPlantedNumber)} trees
+                    </span>
+                    {' have been planted as part of this project. '}
+                  </span>
+                )}
+              </div>
+              {/* <div className="field">
                 <span className="-bold property-label">Size of project (ha):</span>
                 {project.sizeOfProjectHa ? project.sizeOfProjectHa : UNREPORTED_TEXT}
               </div>
               <div className="field">
                 <span className="-bold property-label">Trees planted (number):</span>
                 {project.treesPlantedNumber ? project.treesPlantedNumber : UNREPORTED_TEXT}
-              </div>
+              </div> */}
               <div className="field">
                 <span className="-bold property-label">Primary objective/purpose:</span>
                 {project.primaryObjectivePurpose
