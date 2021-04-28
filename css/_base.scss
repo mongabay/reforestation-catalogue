@@ -41,6 +41,10 @@ h3 {
   &:hover {
     text-decoration: none;
     transform: scale(1.05);
+
+    &.-primary {
+      color: white;
+    }
   }
 }
 .-primary {

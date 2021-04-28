@@ -60,8 +60,17 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
               <div className="country">{project?.country}</div>
             </motion.div>
             <motion.div className="buttons">
-              <button className="btn btn-secondary">Project Website</button>
-              <button className="btn btn-primary">Suggest Page Edits</button>
+              <a
+                className="-secondary"
+                href={project?.projectOrgUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Project Website
+              </a>
+              <a className="-primary" href="">
+                Suggest Page Edits
+              </a>
             </motion.div>
           </div>
           <div className="right-container">
