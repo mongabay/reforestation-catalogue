@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 import StaticPage from 'layout/static-page';
 
@@ -17,6 +18,8 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
   updateData,
 }: ProjectPageLayoutProps) => {
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     if (!projects || projects.length === 0) {
       getCatalogueData()
         .then(resp => updateData(resp.data))
@@ -32,10 +35,18 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
       <div className="navigation-bar">
         <Link href="/">
           <a>
-            <div className="back-container">
-              <img src="/icons/back.svg" />
-              <span className="back-text">Back to all projects</span>
-            </div>
+            <motion.div whileHover="hover" className="back-container">
+              <motion.img
+                variants={{
+                  hover: {
+                    translateX: '-5px',
+                    transition: { duration: 1, repeat: Infinity, ease: 'easeInOut' },
+                  },
+                }}
+                src="/icons/back.svg"
+              />
+              <motion.span className="back-text">Back to all projects</motion.span>
+            </motion.div>
           </a>
         </Link>
       </div>
