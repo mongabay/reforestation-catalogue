@@ -18,6 +18,7 @@ import { SORT_OPTIONS_ARRAY } from './constants';
 
 // styles
 import './style.scss';
+import Header from 'layout/header/component';
 
 function HomePageLayout(props) {
   const {
@@ -68,14 +69,7 @@ function HomePageLayout(props) {
 
   return (
     <div className="home-layout">
-      <div className="navigation-bar">
-        <button type="button" className="btn btn-outline-secondary">
-          Methodology
-        </button>
-        <button type="button" className="btn btn-primary">
-          Submit Project Information
-        </button>
-      </div>
+      <Header />
       <div className="main-container">
         <div className="top-container">
           <div className="column col-sm-10 col-md-8 col-xl-6 col-offset-1">
@@ -100,7 +94,7 @@ function HomePageLayout(props) {
         </div>
         <div className="data-container">
           <div className="left-container">
-            <div className="intro-container -border-top">
+            <div className="intro-container">
               <h3>A Transparency Index.</h3>
               <div className="legend-text">
                 <p>
@@ -114,7 +108,7 @@ function HomePageLayout(props) {
                 <p className="-italic">Finalized projects represented in gray.</p>
               </div>
             </div>
-            <div className="intro-filters-container -border-top">
+            <div className="intro-filters-container">
               <h3>Find projects of Interest.</h3>
               <p>
                 Find Projects of Interest. In this paragraph the user learns about priorities and
