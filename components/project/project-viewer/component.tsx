@@ -2,10 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import * as d3 from 'd3';
 
-import './style.scss';
-import { ProjectViewerProps } from './types';
-import ProjectChart from '../chart';
-import { UNREPORTED_TEXT } from './constants';
+// components
+import Pill from 'components/pill/component';
+import CategoryInfoTooltip from 'components/category/info-tooltip/component';
+import ProjectChart from 'components/project/chart';
+
+// utils
+import { getCategoryInfoModalText } from 'utils/category';
+
+// services
 import {
   CATEGORIES,
   CONTEXT_CATEGORY,
@@ -14,10 +19,21 @@ import {
   INSTITUTIONAL_CATEGORY,
   SOCIAL_CATEGORY,
 } from 'services/catalogue';
-import { FilterTypes } from 'types';
-import Pill from 'components/pill/component';
 
-const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerProps) => {
+import { ProjectViewerProps } from './types';
+
+// constants
+import { UNREPORTED_TEXT } from './constants';
+
+// styles
+import './style.scss';
+
+import { FilterTypes } from 'types';
+
+const ProjectViewer: React.FC<ProjectViewerProps> = ({
+  project,
+  categoriesConfig,
+}: ProjectViewerProps) => {
   const getReportedFieldsForCategory = (category, reported) => {
     return (
       <div className="pills-container">
@@ -75,7 +91,12 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
           <div className="right-container">
             {/* ----------------------CONTEXT --------------------- */}
             <div className="context category-section">
-              <h5>Context</h5>
+              <div className="category-title">
+                <h5 className="category-title-text">Context</h5>
+                <CategoryInfoTooltip
+                  text={getCategoryInfoModalText(CONTEXT_CATEGORY, categoriesConfig)}
+                />
+              </div>
               <div className="dynamic-text">
                 {!project.sizeOfProjectHa && (
                   <span>The size of the project has not been reported. </span>
@@ -133,7 +154,12 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
             </div>
             {/* ----------------------ECOLOGICAL --------------------- */}
             <div className="ecological category-section">
-              <h5>Ecological</h5>
+              <div className="category-title">
+                <h5 className="category-title-text">Ecological</h5>
+                <CategoryInfoTooltip
+                  text={getCategoryInfoModalText(ECOLOGICAL_CATEGORY, categoriesConfig)}
+                />
+              </div>
               <div className="field">
                 <span className="-bold property-label">Forest type:</span>
                 {project.forestType ? project.forestType : UNREPORTED_TEXT}
@@ -149,7 +175,12 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
             </div>
             {/* ----------------------ECONOMIC --------------------- */}
             <div className="economic category-section">
-              <h5>Economic</h5>
+              <div className="category-title">
+                <h5 className="category-title-text">Economic</h5>
+                <CategoryInfoTooltip
+                  text={getCategoryInfoModalText(ECONOMIC_CATEGORY, categoriesConfig)}
+                />
+              </div>
               <div className="field">
                 <span className="-bold property-label">Name Org/Donor:</span>
                 {project.nameOrgDonor ? project.nameOrgDonor : UNREPORTED_TEXT}
@@ -169,7 +200,12 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
             </div>
             {/* ----------------------SOCIAL --------------------- */}
             <div className="social category-section">
-              <h5>Social</h5>
+              <div className="category-title">
+                <h5 className="category-title-text">Social</h5>
+                <CategoryInfoTooltip
+                  text={getCategoryInfoModalText(SOCIAL_CATEGORY, categoriesConfig)}
+                />
+              </div>
               <div className="reported-info">
                 <span className="-bold property-label">Reported information:</span>
                 {getReportedFieldsForCategory(SOCIAL_CATEGORY, true)}
@@ -181,7 +217,12 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({ project }: ProjectViewerP
             </div>
             {/* ----------------------INSTITUTIONAL --------------------- */}
             <div className="institutional category-section">
-              <h5>Institutional</h5>
+              <div className="category-title">
+                <h5 className="category-title-text">Institutional</h5>
+                <CategoryInfoTooltip
+                  text={getCategoryInfoModalText(INSTITUTIONAL_CATEGORY, categoriesConfig)}
+                />
+              </div>
               <div className="field">
                 <span className="-bold property-label">Lead organization:</span>
                 {project.leadOrganization ? project.leadOrganization : UNREPORTED_TEXT}

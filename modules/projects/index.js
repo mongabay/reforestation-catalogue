@@ -38,7 +38,7 @@ export const selectFilteredProjects = createSelector(
     });
 
     if (sort) {
-      result.sort((a, b) => {
+      return result.sort((a, b) => {
         const catPercA = getProjectCategoriesPercentage(a);
         const catPercB = getProjectCategoriesPercentage(b);
         const aValue = catPercA[sort];
