@@ -1,6 +1,13 @@
 import { connect } from 'react-redux';
 
-import projectsSlice, { selectCountries, selectFilteredProjects } from 'modules/projects';
+import projectsSlice, {
+  selectCountries,
+  selectCountry,
+  selectTotalNumberOfProjects,
+  selectFilteredProjects,
+  selectFilters,
+  selectSort,
+} from 'modules/projects';
 import configSlice, { selectProjectsConfig } from 'modules/config';
 import Component from './component';
 
@@ -12,9 +19,10 @@ export default connect(
     return {
       projects: selectFilteredProjects(state),
       countries: selectCountries(state),
-      sort: state.projects.sort,
-      country: state.projects.country,
-      filters: state.projects.filters,
+      sort: selectSort(state),
+      country: selectCountry(state),
+      filters: selectFilters(state),
+      totalNumberOfProjects: selectTotalNumberOfProjects(state),
       projectsPage: selectProjectsConfig(state),
     };
   },
