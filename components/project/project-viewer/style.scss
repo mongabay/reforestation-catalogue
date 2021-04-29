@@ -50,6 +50,16 @@
       .category-section {
         margin-bottom: 45px;
 
+        .category-title {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          .category-title-text {
+            margin: 0px 5px 0px 0px;
+          }
+        }
+
         .dynamic-text {
           margin-bottom: 10px;
         }
