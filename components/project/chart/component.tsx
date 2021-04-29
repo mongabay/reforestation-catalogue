@@ -11,15 +11,15 @@ import { getProjectCategoriesPercentage } from 'utils/project';
 import { ProjectChartProps } from './types';
 
 // constants
-import { TITLE_MAX_LENGTH } from './constants';
+import { TITLE_MAX_LENGTH, CATEGORY_LABEL_ORDER } from './constants';
 
 export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartProps) => {
   const { project, highlightedCategory, cardMode } = props;
   const [categoryPercentages, setCategoryPercentages] = useState({
     [Category.Context]: 0,
-    [Category.Social]: 0,
-    [Category.Economic]: 0,
     [Category.Ecological]: 0,
+    [Category.Economic]: 0,
+    [Category.Social]: 0,
     [Category.Institutional]: 0,
   });
 
@@ -102,7 +102,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
             appendTo={() => document.body}
             content={
               <div className="categories-tooltip">
-                {Object.keys(categoryPercentages).map(cKey => (
+                {CATEGORY_LABEL_ORDER.map(cKey => (
                   <div
                     key={cKey}
                     className="percentage-value"
