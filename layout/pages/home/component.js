@@ -71,8 +71,6 @@ function HomePageLayout(props) {
     router.push(newRoute, undefined, { shallow: true });
   }, [sort, country, filters]);
 
-  console.log('projectsPage', projectsPage);
-
   return (
     <div className="home-layout">
       <Header />

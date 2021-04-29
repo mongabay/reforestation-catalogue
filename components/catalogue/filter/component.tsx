@@ -95,8 +95,6 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
     return category ? category.infoModalText : '';
   };
 
-  console.log('categoriesConfig', categoriesConfig);
-
   return (
     <div className="c-catalogue-filter">
       {CATEGORIES.map(c => {

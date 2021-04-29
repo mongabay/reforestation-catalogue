@@ -18,7 +18,7 @@ const CategoryInfoTooltip: React.FC<CategoryInfoTooltipProps> = ({
       appendTo={() => document.body}
       content={<div className="info-tooltip">{text}</div>}
     >
-      <img src="icons/info.svg" />
+      <img className="info-icon" src="icons/info.svg" />
     </Tooltip>
   );
 };
