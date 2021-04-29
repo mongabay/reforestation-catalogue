@@ -1,64 +1,6 @@
 .l-static-page {
   position: relative; }
 
-.c-about-page-layout {
-  padding: 0px 10% 100px 10%; }
-  .c-about-page-layout .title {
-    margin: 150px 0px 120px 0px;
-    text-align: center; }
-  .c-about-page-layout .main-container {
-    display: flex; }
-    .c-about-page-layout .main-container .left-container {
-      margin-right: 5%; }
-      .c-about-page-layout .main-container .left-container .radial-chart {
-        display: flex;
-        width: 140px;
-        height: 140px;
-        padding: 10px;
-        background-color: #669900; }
-    .c-about-page-layout .main-container .right-container {
-      margin-left: 5%; }
-      .c-about-page-layout .main-container .right-container h2 {
-        margin-top: 50px; }
-      .c-about-page-layout .main-container .right-container .logos {
-        display: flex;
-        margin-top: 40px; }
-        .c-about-page-layout .main-container .right-container .logos a:last-child {
-          margin-left: 36px; }
-
-.c-catalogue-filter {
-  display: flex;
-  flex-direction: column; }
-  .c-catalogue-filter .category-container {
-    margin-bottom: 10px; }
-    .c-catalogue-filter .category-container .title {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px; }
-      .c-catalogue-filter .category-container .title .info-button {
-        margin-right: 5px;
-        cursor: pointer; }
-      .c-catalogue-filter .category-container .title .category-label {
-        font-size: 16px; }
-    .c-catalogue-filter .category-container .filters-section .select-filter {
-      margin-top: 10px; }
-      .c-catalogue-filter .category-container .filters-section .select-filter select {
-        width: 100%; }
-    .c-catalogue-filter .category-container .filters-section .radio-filter {
-      display: flex;
-      align-items: center;
-      margin-top: 10px; }
-      .c-catalogue-filter .category-container .filters-section .radio-filter .c-radio {
-        margin: 0px 15px 0px 0px; }
-    .c-catalogue-filter .category-container .filters-section .filter-selector {
-      width: 100%; }
-    .c-catalogue-filter .category-container .filters-section .filters-applied {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 10px; }
-      .c-catalogue-filter .category-container .filters-section .filters-applied .c-pill {
-        margin-bottom: 5px; }
-
 .c-radio .custom-control-input:checked:not(:disabled):active ~ .custom-control-label:before {
   background-color: transparent; }
 
@@ -134,49 +76,17 @@ select.c-select {
         transform: translateX(-50%);
         content: attr(data-label); }
 
-.c-project-viewer .title-banner {
+.c-pill {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 70px 0px;
-  margin-bottom: 65px;
-  background-color: #03755e;
-  color: #fff; }
-  .c-project-viewer .title-banner h1 {
-    max-width: 50%;
-    text-align: center; }
-
-.c-project-viewer h5 {
-  font-size: 24px;
-  font-weight: 700; }
-
-.c-project-viewer .main-container {
-  display: flex;
-  padding: 0px 10%; }
-  .c-project-viewer .main-container .left-container {
-    width: 260px; }
-    .c-project-viewer .main-container .left-container .text-container {
-      display: flex;
-      flex-direction: column;
-      margin-top: 85px; }
-    .c-project-viewer .main-container .left-container .buttons {
-      display: flex;
-      flex-direction: column; }
-      .c-project-viewer .main-container .left-container .buttons a {
-        margin-top: 20px; }
-  .c-project-viewer .main-container .right-container {
-    margin-left: 120px; }
-    .c-project-viewer .main-container .right-container .category-section {
-      margin-bottom: 45px; }
-      .c-project-viewer .main-container .right-container .category-section .dynamic-text {
-        margin-bottom: 10px; }
-      .c-project-viewer .main-container .right-container .category-section .property-label {
-        margin-right: 10px; }
-      .c-project-viewer .main-container .right-container .category-section .pills-container {
-        display: flex;
-        flex-wrap: wrap; }
-        .c-project-viewer .main-container .right-container .category-section .pills-container .c-pill {
-          margin: 5px 5px 5px 0px; }
+  padding: 5px 18px;
+  background-color: #DEDEDE;
+  border-radius: 50px; }
+  .c-pill button {
+    border: none;
+    background-color: unset; }
+  .c-pill a {
+    text-decoration: unset; }
 
 .tippy-popper {
   max-width: none !important;
@@ -220,17 +130,42 @@ select.c-select {
     .tippy-popper div.tippy-tooltip.light-theme .tippy-content {
       padding: 0; }
 
-.c-pill {
+.c-category-info-tooltip {
+  max-width: 300px;
+  cursor: pointer; }
+
+.c-catalogue-filter {
   display: flex;
-  align-items: center;
-  padding: 5px 18px;
-  background-color: #DEDEDE;
-  border-radius: 50px; }
-  .c-pill button {
-    border: none;
-    background-color: unset; }
-  .c-pill a {
-    text-decoration: unset; }
+  flex-direction: column; }
+  .c-catalogue-filter .category-container {
+    margin-bottom: 10px; }
+    .c-catalogue-filter .category-container .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; }
+      .c-catalogue-filter .category-container .title .c-category-info-tooltip {
+        margin-right: 5px; }
+      .c-catalogue-filter .category-container .title .category-label {
+        margin-left: 5px;
+        font-size: 16px; }
+    .c-catalogue-filter .category-container .filters-section .select-filter {
+      margin-top: 10px; }
+      .c-catalogue-filter .category-container .filters-section .select-filter select {
+        width: 100%; }
+    .c-catalogue-filter .category-container .filters-section .radio-filter {
+      display: flex;
+      align-items: center;
+      margin-top: 10px; }
+      .c-catalogue-filter .category-container .filters-section .radio-filter .c-radio {
+        margin: 0px 15px 0px 0px; }
+    .c-catalogue-filter .category-container .filters-section .filter-selector {
+      width: 100%; }
+    .c-catalogue-filter .category-container .filters-section .filters-applied {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px; }
+      .c-catalogue-filter .category-container .filters-section .filters-applied .c-pill {
+        margin-bottom: 5px; }
 
 .c-project-chart {
   display: flex;
@@ -335,6 +270,56 @@ select.c-select {
               font-weight: 700; }
           .home-layout .main-container .data-container .right-container .projects-list .c-project-card {
             margin: 0px 10px 40px 10px; }
+
+.c-project-viewer .title-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 0px;
+  margin-bottom: 65px;
+  background-color: #03755e;
+  color: #fff; }
+  .c-project-viewer .title-banner h1 {
+    max-width: 50%;
+    text-align: center; }
+
+.c-project-viewer h5 {
+  font-size: 24px;
+  font-weight: 700; }
+
+.c-project-viewer .main-container {
+  display: flex;
+  padding: 0px 10%; }
+  .c-project-viewer .main-container .left-container {
+    width: 260px; }
+    .c-project-viewer .main-container .left-container .text-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 85px; }
+    .c-project-viewer .main-container .left-container .buttons {
+      display: flex;
+      flex-direction: column; }
+      .c-project-viewer .main-container .left-container .buttons a {
+        margin-top: 20px; }
+  .c-project-viewer .main-container .right-container {
+    margin-left: 120px; }
+    .c-project-viewer .main-container .right-container .category-section {
+      margin-bottom: 45px; }
+      .c-project-viewer .main-container .right-container .category-section .category-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px; }
+        .c-project-viewer .main-container .right-container .category-section .category-title .category-title-text {
+          margin: 0px 5px 0px 0px; }
+      .c-project-viewer .main-container .right-container .category-section .dynamic-text {
+        margin-bottom: 10px; }
+      .c-project-viewer .main-container .right-container .category-section .property-label {
+        margin-right: 10px; }
+      .c-project-viewer .main-container .right-container .category-section .pills-container {
+        display: flex;
+        flex-wrap: wrap; }
+        .c-project-viewer .main-container .right-container .category-section .pills-container .c-pill {
+          margin: 5px 5px 5px 0px; }
 
 .p-project {
   width: 100%;

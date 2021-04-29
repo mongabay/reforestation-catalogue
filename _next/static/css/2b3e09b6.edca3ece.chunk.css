@@ -8781,3 +8781,9 @@ label:not(.custom-control-label) {
   -moz-appearance: none;
   -webkit-appearance: none; }
 
+.info-icon {
+  cursor: pointer; }
+
+.info-tooltip {
+  max-width: 300px; }
+
