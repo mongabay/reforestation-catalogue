@@ -8,10 +8,11 @@ function ProjectPage({ id }) {
   return <LayoutProjectPage id={id} />;
 }
 
-ProjectPage.getInitialProps = async context => {
-  const id = context?.query?.id;
-  return { id };
-};
+export async function getStaticProps(context) {
+  console.log('context', context);
+  // const id = context?.query?.id;
+  return { props: {} };
+}
 
 ProjectPage.propTypes = {
   id: PropTypes.string.isRequired,
