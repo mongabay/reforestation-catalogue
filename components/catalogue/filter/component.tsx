@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 
 import { CATEGORIES } from 'services/catalogue';
+
+import { FilterTypes } from 'types';
+
+// components
+import { Radio, Select } from 'components/forms';
+import Pill from 'components/pill';
+import CategoryInfoTooltip from 'components/category/info-tooltip/component';
+
+//utils
+import { getUniqueValuesForField } from 'utils/project';
+import { getCategoryInfoModalText } from 'utils/category';
+
 import { CatelogueFilterProps } from './types';
 
 import './style.scss';
-import { FilterTypes } from 'types';
-import { Radio, Select } from 'components/forms';
-import Pill from 'components/pill';
-import { getUniqueValuesForField } from 'utils/project';
-import CategoryInfoTooltip from 'components/category/info-tooltip/component';
 
 const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
   filters,
@@ -90,11 +97,6 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
     }
   };
 
-  const getCategoryInfoModalText = categoryId => {
-    const category = categoriesConfig?.find(cat => cat.id === categoryId);
-    return category ? category.infoModalText : '';
-  };
-
   return (
     <div className="c-catalogue-filter">
       {CATEGORIES.map(c => {
@@ -103,7 +105,7 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
         return (
           <div key={`category-${c.id}`} className="category-container">
             <div className="title">
-              <CategoryInfoTooltip text={getCategoryInfoModalText(c.id)} />
+              <CategoryInfoTooltip text={getCategoryInfoModalText(c.id, categoriesConfig)} />
               <div className="-bold category-label"> {`${c.label}:`}</div>
             </div>
             <div className="filters-section">

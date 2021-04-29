@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { selectData } from 'modules/projects';
 
 import projectsSlice from 'modules/projects';
+import { selectCategories } from 'modules/config';
 
 import Component from './component';
 
