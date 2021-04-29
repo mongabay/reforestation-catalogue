@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactTippy from '@tippy.js/react';
 
-import './style.scss';
 import { TooltipProps } from './types';
 
 const Tooltip: React.FC<TooltipProps> = (props: TooltipProps) => {

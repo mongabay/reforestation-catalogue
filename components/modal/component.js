@@ -4,8 +4,6 @@ import ReactModal from 'react-modal';
 
 import Icon from 'components/icon';
 
-import './style.scss';
-
 ReactModal.setAppElement('#root');
 
 const Modal = ({ open, onClose, title, children, className }) => (

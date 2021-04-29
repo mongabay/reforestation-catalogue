@@ -4,8 +4,6 @@ import Tooltip from 'components/tooltip';
 
 import { CategoryInfoTooltipProps } from './types';
 
-import './style.scss';
-
 const CategoryInfoTooltip: React.FC<CategoryInfoTooltipProps> = ({
   text,
 }: CategoryInfoTooltipProps) => {

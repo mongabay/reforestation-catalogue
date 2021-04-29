@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 
 import { HeaderProps } from './types';
 
-import './style.scss';
 import Link from 'next/link';
 
 const Header: React.FC<HeaderProps> = ({ hideAboutButton }: HeaderProps) => (

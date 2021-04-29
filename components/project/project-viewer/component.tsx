@@ -25,9 +25,6 @@ import { ProjectViewerProps } from './types';
 // constants
 import { UNREPORTED_TEXT } from './constants';
 
-// styles
-import './style.scss';
-
 import { FilterTypes } from 'types';
 
 const ProjectViewer: React.FC<ProjectViewerProps> = ({

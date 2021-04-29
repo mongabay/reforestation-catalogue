@@ -6,4 +6,28 @@
 
 @import 'base';
 
+// Components
 @import 'components/accordion/style.scss';
+@import 'components/catalogue/filter/style.scss';
+@import 'components/category/info-tooltip/style.scss';
+@import 'components/icon/style.scss';
+@import 'components/loading-spinner/style.scss';
+@import 'components/modal/style.scss';
+@import 'components/pill/style.scss';
+@import 'components/tooltip/style.scss';
+// forms
+@import 'components/forms/checkbox/style.scss';
+@import 'components/forms/radio/style.scss';
+@import 'components/forms/range/style.scss';
+@import 'components/forms/select/style.scss';
+// project
+@import 'components/project/card/style.scss';
+@import 'components/project/chart/style.scss';
+@import 'components/project/project-viewer/style.scss';
+
+// Layout
+@import 'layout/header/style.scss';
+@import 'layout/pages/about/style.scss';
+@import 'layout/pages/home/style.scss';
+@import 'layout/projects/project-page/style.scss';
+@import 'layout/static-page/style.scss';

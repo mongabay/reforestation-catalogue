@@ -13,8 +13,6 @@ import { ProjectChartProps } from './types';
 // constants
 import { TITLE_MAX_LENGTH } from './constants';
 
-import './style.scss';
-
 export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartProps) => {
   const { project, highlightedCategory, cardMode } = props;
   const [categoryPercentages, setCategoryPercentages] = useState({

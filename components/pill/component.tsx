@@ -5,7 +5,6 @@ import { getFieldByID } from 'services/catalogue';
 
 import { PillProps } from './types';
 
-import './style.scss';
 import Link from 'next/link';
 
 const Pill: React.FC<PillProps> = ({ filter, removeFilter, linkMode }: PillProps) => {

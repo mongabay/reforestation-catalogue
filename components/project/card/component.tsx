@@ -4,7 +4,6 @@ import Router from 'next/router';
 
 import ProjectChart from '../chart';
 
-import './style.scss';
 import { ProjectCardProps } from './types';
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
