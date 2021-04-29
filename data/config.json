@@ -40,5 +40,9 @@
       "id": "Institutional",
       "infoModalText": "What kind of organization is managing the project? Is there a research component?"
     }
-  ]
+  ],
+  "buttons": {
+    "submitProjectInformationURL": "https://www.google.com/url?q=https://docs.google.com/forms/d/e/1FAIpQLSd_3n3y5KwJccpo9uKWc_-Nc__zXR7wfc793s8nL6x8J0bGhA/viewform?usp%3Dsf_link&sa=D&source=editors&ust=1619708622232000&usg=AOvVaw3sofnG6rS0MI4bLfZOL-WU",
+    "suggestPageEditsURL": "https://www.google.com/url?q=https://docs.google.com/forms/d/e/1FAIpQLScqpjjjfEbsYR0Vvu1kWaA9ctQsYO-5GvYBFDb6ZWRJyoBAeA/viewform?usp%3Dsf_link&sa=D&source=editors&ust=1619708622232000&usg=AOvVaw1e4SVi-TEG6M6k8_osLPHZ"
+  }
 }
