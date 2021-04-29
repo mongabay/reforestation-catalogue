@@ -1,28 +1,29 @@
 {
   "projectsPage": {
-    "descriptionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, ",
+    "descriptionText": "Welcome to Mongabay’s directory of reforestation and tree-planting projects. We thought this would be a useful starting point for people wanting to fund reforestation, so they could identify projects that align with their interests. Rather than make an assessment of the effectiveness of the projects, our approach is focused on transparency. We ask: how much information is publicly disclosed by an organization?  We have included criteria that experts say are key to success, drawn largely from the Forest Landscape Restoration approach. This approach centers human well-being, ecological restoration, and strong project monitoring. On the whole, transparency is a signal that an organization is aware of the complexities involved in a successful restoration project and has both the staff and capacity to organize, monitor, and report back on their results. If an organization does not disclose this information, it may be prudent to ask why. We anticipate that tree-planting projects will want to be added to this directory or will want to update their index scores to reflect changes in their disclosure or to correct errors on our part.  This can be done via the Submit Project Information page. The database will be updated monthly. 
+ ",
     "findProjectsOfInterestTitle": "Find Projects of Interest.",
-    "fintProjectsOfInterestDescription": "In this paragraph the user learns about priorities and filters. In this paragraph the user learns about priorities and filters. In this paragraph the user learns about priorities and filters. In this paragraph the user learns about priorities and filters. In this paragraph the user learns.",
+    "fintProjectsOfInterestDescription": "Use these filters to locate reforestation projects that align with your interests and priorities.",
     "categories": [
       {
         "id": "Context",
-        "infoModalText": ""
+        "infoModalText": "Does the project disclose basic information about its size, location, and duration?"
       },
       {
         "id": "Ecological",
-        "infoModalText": ""
+        "infoModalText": "Does the project disclose what kinds of trees it will plant and address threats to a specified ecosystem?"
       },
       {
         "id": "Economic",
-        "infoModalText": ""
+        "infoModalText": "How is the project funded and how does it support local communities?"
       },
       {
         "id": "Social",
-        "infoModalText": ""
+        "infoModalText": "Who is participating and who is benefitting? "
       },
       {
         "id": "Institutional",
-        "infoModalText": ""
+        "infoModalText": "What kind of organization is managing the project? Is there a research component?"
       }
     ],
     "meta": {
