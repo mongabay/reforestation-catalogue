@@ -30,6 +30,7 @@ import { FilterTypes } from 'types';
 const ProjectViewer: React.FC<ProjectViewerProps> = ({
   project,
   categoriesConfig,
+  suggestPageEditsURL,
 }: ProjectViewerProps) => {
   const getReportedFieldsForCategory = (category, reported) => {
     return (
@@ -80,7 +81,7 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
               >
                 Project Website
               </a>
-              <a className="-primary" href="">
+              <a className="-primary" href={suggestPageEditsURL} target="_blank" rel="noreferrer">
                 Suggest Page Edits
               </a>
             </motion.div>

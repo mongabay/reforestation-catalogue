@@ -5,7 +5,10 @@ import { HeaderProps } from './types';
 
 import Link from 'next/link';
 
-const Header: React.FC<HeaderProps> = ({ hideAboutButton }: HeaderProps) => (
+const Header: React.FC<HeaderProps> = ({
+  hideAboutButton,
+  submitProjectInformationURL,
+}: HeaderProps) => (
   <motion.div className="c-header" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
     <a href="https://www.mongabay.com/" target="_blank" rel="noreferrer">
       <img src="/images/logo-gecko.png" alt="Mongabay" className="logo" />
@@ -17,7 +20,9 @@ const Header: React.FC<HeaderProps> = ({ hideAboutButton }: HeaderProps) => (
         </Link>
       )}
       <Link href="./#">
-        <a className="-primary">Submit Project Information</a>
+        <a className="-primary" href={submitProjectInformationURL} target="_blank" rel="noreferrer">
+          Submit Project Information
+        </a>
       </Link>
     </div>
   </motion.div>

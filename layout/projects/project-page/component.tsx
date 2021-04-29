@@ -9,7 +9,7 @@ import ProjectViewer from 'components/project/project-viewer';
 import { ProjectPageLayoutProps } from './types';
 
 import { getCatalogueData } from 'services/catalogue';
-import Header from 'layout/header/component';
+import Header from 'layout/header';
 
 const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
   id,

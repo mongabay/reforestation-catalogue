@@ -15,7 +15,7 @@ import { getCatalogueData, SORT_OPTIONS } from 'services/catalogue';
 import { getConfigData } from 'services/config';
 
 // styles
-import Header from 'layout/header/component';
+import Header from 'layout/header';
 
 function HomePageLayout(props) {
   const {
