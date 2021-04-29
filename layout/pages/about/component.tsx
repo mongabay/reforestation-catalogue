@@ -2,7 +2,6 @@ import React from 'react';
 
 import { AboutPageLayoutProps } from './types';
 
-import './style.scss';
 import Header from 'layout/header';
 
 const AboutPage: React.FC<AboutPageLayoutProps> = () => {
