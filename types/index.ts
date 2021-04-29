@@ -1,5 +1,3 @@
-import { CATEGORIES } from 'services/catalogue';
-
 export enum END_YEAR_SPECIAL_VALUES {
   ONGOING = 'ongoing',
 }
