@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // components
 import LayoutProjectPage from 'layout/projects/project-page';
 
-function ProjectPage({ id }) {
-  return <LayoutProjectPage id={id} />;
-}
+function ProjectPage() {
+  const [id, setId] = useState(undefined);
 
-export async function getStaticProps(context) {
-  console.log('context', context);
-  // const id = context?.query?.id;
-  return { props: {} };
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setId(window.location.search.slice(1).split('=')[1]);
+    }
+  }, []);
+
+  if (!id) return null;
+
+  return <LayoutProjectPage id={id} />;
 }
 
 ProjectPage.propTypes = {
