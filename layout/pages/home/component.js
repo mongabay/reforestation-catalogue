@@ -15,7 +15,6 @@ import { getCatalogueData, SORT_OPTIONS } from 'services/catalogue';
 import { getConfigData } from 'services/config';
 
 // styles
-import './style.scss';
 import Header from 'layout/header/component';
 
 function HomePageLayout(props) {
@@ -32,6 +31,7 @@ function HomePageLayout(props) {
     updateSort,
     loadInitialState,
     projectsPage,
+    totalNumberOfProjects,
   } = props;
 
   const {
@@ -71,6 +71,9 @@ function HomePageLayout(props) {
     router.push(newRoute, undefined, { shallow: true });
   }, [sort, country, filters]);
 
+  const projectsLength = projects.length;
+  const projectsPercentage = Math.round((projectsLength * 100.0) / totalNumberOfProjects);
+
   return (
     <div className="home-layout">
       <Header />
@@ -104,6 +107,9 @@ function HomePageLayout(props) {
             <div className="intro-filters-container">
               <h3>{projectsPage?.findProjectsOfInterestTitle}</h3>
               <p>{projectsPage?.fintProjectsOfInterestDescription}</p>
+              <p className="-bold">
+                {`${projectsLength} projects (${projectsPercentage}%) meet your filtering criteria`}
+              </p>
               <CatalogueFilter />
             </div>
           </div>
@@ -133,19 +139,21 @@ function HomePageLayout(props) {
                   />
                 </div>
               </div>
-              <div className="row justify-content-between">
-                {projects &&
-                  projects.map(p => (
-                    <motion.div
-                      key={p.projectNumber}
-                      className="column"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <ProjectCard project={p} highlightedCategory={sort} />
-                    </motion.div>
-                  ))}
+              <div className="project-cards-container">
+                <div className="row justify-content-between">
+                  {projects &&
+                    projects.map(p => (
+                      <motion.div
+                        key={p.projectNumber}
+                        className="column"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <ProjectCard project={p} highlightedCategory={sort} />
+                      </motion.div>
+                    ))}
+                </div>
               </div>
             </div>
           </div>
@@ -169,6 +177,7 @@ HomePageLayout.propTypes = {
   updateFilters: PropTypes.func.isRequired,
   loadInitialState: PropTypes.func.isRequired,
   setConfig: PropTypes.func.isRequired,
+  totalNumberOfProjects: PropTypes.number.isRequired,
 };
 
 export default HomePageLayout;

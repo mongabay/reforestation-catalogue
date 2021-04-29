@@ -8,7 +8,6 @@ import ProjectViewer from 'components/project/project-viewer';
 
 import { ProjectPageLayoutProps } from './types';
 
-import './style.scss';
 import { getCatalogueData } from 'services/catalogue';
 import Header from 'layout/header/component';
 

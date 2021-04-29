@@ -10,8 +10,6 @@ import {
 
 import Icon from 'components/icon';
 
-import './style.scss';
-
 const Accordion = ({ multi, expanded, className, onChange, children }) => (
   <ReactAccordion
     allowMultipleExpanded={multi}

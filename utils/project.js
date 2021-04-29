@@ -25,7 +25,7 @@ const getPercentageForCategory = (project, category) => {
     if ((type === 'string' || type === 'number' || type === 'not-empty') && !!value) {
       fieldsWithData++;
     }
-    if (type === 'boolean' && value === 'YES') {
+    if (type === 'boolean' && value) {
       fieldsWithData++;
     }
   });

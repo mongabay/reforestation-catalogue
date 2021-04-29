@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.scss';
-
 function LoadingSpinner(props) {
   const { transparent, inner, inline, mini } = props;
   const classNames = ['c-loading-spinner'];

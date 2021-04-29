@@ -10,6 +10,7 @@ export const selectFilters = state => state[SLICE_NAME].filters;
 export const selectCountry = state => state[SLICE_NAME].country;
 export const selectData = state => state[SLICE_NAME].data;
 export const selectSort = state => state[SLICE_NAME].sort;
+export const selectTotalNumberOfProjects = state => state[SLICE_NAME].totalNumberOfProjects;
 
 export const selectCountries = createSelector([selectData], projects =>
   [COUNTRIES_SPECIAL_VALUES.ALL, ...new Set(projects.map(e => e.country))].sort()
@@ -59,10 +60,12 @@ export default projectsActions =>
       filters: [],
       data: [],
       sort: null,
+      totalNumberOfProjects: 0,
     },
     reducers: {
       updateData(state, action) {
         state.data = action.payload;
+        state.totalNumberOfProjects = action.payload.length;
       },
       addFilter(state, action) {
         state.filters.push(action.payload);

@@ -25,9 +25,6 @@ import { ProjectViewerProps } from './types';
 // constants
 import { UNREPORTED_TEXT } from './constants';
 
-// styles
-import './style.scss';
-
 import { FilterTypes } from 'types';
 
 const ProjectViewer: React.FC<ProjectViewerProps> = ({
@@ -110,12 +107,12 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
                   </>
                 )}
                 {!project.treesPlantedNumber && (
-                  <span> The number of trees planted has not been reported. </span>
+                  <span>{` The number of trees planted has not been reported. `}</span>
                 )}
                 {project.treesPlantedNumber && (
                   <span>
                     <span className="-bold">
-                      {d3.format('.2s')(project.treesPlantedNumber)} trees
+                      {` ${d3.format('.2s')(project.treesPlantedNumber)}`} trees
                     </span>
                     {' have been planted as part of this project. '}
                   </span>

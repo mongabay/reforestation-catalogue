@@ -15,8 +15,6 @@ import { getCategoryInfoModalText } from 'utils/category';
 
 import { CatelogueFilterProps } from './types';
 
-import './style.scss';
-
 const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
   filters,
   projects,

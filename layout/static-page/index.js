@@ -6,8 +6,6 @@ import { Icons as VizzIcons } from 'vizzuality-components';
 import Head from 'components/head';
 import Icons from 'components/icons';
 
-import './style.scss';
-
 const StaticPage = ({ className, children }) => (
   <div className={classNames('l-simple-page', className)}>
     <Head />
