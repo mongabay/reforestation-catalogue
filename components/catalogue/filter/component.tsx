@@ -8,10 +8,12 @@ import { FilterTypes } from 'types';
 import { Radio, Select } from 'components/forms';
 import Pill from 'components/pill';
 import { getUniqueValuesForField } from 'utils/project';
+import CategoryInfoTooltip from 'components/category/info-tooltip/component';
 
 const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
   filters,
   projects,
+  categoriesConfig,
   addFilter,
 }: CatelogueFilterProps) => {
   const [filterSelected, setFilterSelected] = useState(null);
@@ -88,6 +90,13 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
     }
   };
 
+  const getCategoryInfoModalText = categoryId => {
+    const category = categoriesConfig?.find(cat => cat.id === categoryId);
+    return category ? category.infoModalText : '';
+  };
+
+  console.log('categoriesConfig', categoriesConfig);
+
   return (
     <div className="c-catalogue-filter">
       {CATEGORIES.map(c => {
@@ -96,9 +105,7 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
         return (
           <div key={`category-${c.id}`} className="category-container">
             <div className="title">
-              <div className="info-button">
-                <img src="icons/info.svg" />
-              </div>
+              <CategoryInfoTooltip text={getCategoryInfoModalText(c.id)} />
               <div className="-bold category-label"> {`${c.label}:`}</div>
             </div>
             <div className="filters-section">

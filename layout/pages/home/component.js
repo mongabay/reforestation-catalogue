@@ -10,8 +10,9 @@ import CatalogueFilter from 'components/catalogue/filter';
 import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card';
 
-// utils
+// services
 import { getCatalogueData, SORT_OPTIONS } from 'services/catalogue';
+import { getConfigData } from 'services/config';
 
 // styles
 import './style.scss';
@@ -25,10 +26,12 @@ function HomePageLayout(props) {
     filters,
     initialQuery,
     updateData,
+    setConfig,
     countries,
     updateCountry,
     updateSort,
     loadInitialState,
+    projectsPage,
   } = props;
 
   const {
@@ -50,10 +53,14 @@ function HomePageLayout(props) {
       updateCountry(COUNTRIES_SPECIAL_VALUES.ALL);
       updateSort(SORT_OPTIONS[0].value);
     }
+    // ------ LOAD DATA ------------
+    // ---- load config -------------
+    getConfigData()
+      .then(response => setConfig(response.data))
+      .catch(error => console.error(error));
+    // ---- load projects
     getCatalogueData()
-      .then(response => {
-        updateData(response.data);
-      })
+      .then(response => updateData(response.data))
       .catch(error => console.error(error));
   }, []);
 
@@ -63,6 +70,8 @@ function HomePageLayout(props) {
     )}&filters=${encodeURIComponent(JSON.stringify(filters))}`;
     router.push(newRoute, undefined, { shallow: true });
   }, [sort, country, filters]);
+
+  console.log('projectsPage', projectsPage);
 
   return (
     <div className="home-layout">
@@ -75,18 +84,7 @@ function HomePageLayout(props) {
               <h1>REFORESTATION DIRECTORY</h1>
             </div>
             <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat, ligula et
-              dignissim aliquet, mauris nisl tincidunt velit, sit amet posuere dolor odio quis diam.
-              Phasellus leo magna, facilisis eget eleifend vitae, aliquam non massa. Mauris quis
-              vestibulum erat. Integer pellentesque elit id neque ornare accumsan. Maecenas a
-              consectetur ligula. Etiam rhoncus lacinia urna eu bibendum. Aliquam scelerisque ut
-              tellus vel vulputate. Vivamus arcu risus, maximus eu tellus et, pretium blandit quam.
-              Fusce in egestas odio. In rhoncus aliquet ex. Vestibulum ante ipsum primis in faucibus
-              orci luctus et ultrices posuere cubilia curae; Pellentesque facilisis sed neque sed
-              ultrices. Cras at vestibulum diam. Donec et lacus et orci dignissim dapibus ut in
-              odio. Etiam laoreet sapien in varius dapibus. Aliquam erat volutpat.
-            </p>
+            <p>{projectsPage?.descriptionText}</p>
           </div>
         </div>
         <div className="data-container">
@@ -100,19 +98,14 @@ function HomePageLayout(props) {
                   <span className="-bold">context</span>, <span className="-bold">ecological</span>,{' '}
                   <span className="-bold">economic</span>, <span className="-bold">social</span>,
                   and
-                  <span className="-bold">institutional</span>.
+                  <span className="-bold"> institutional</span>.
                 </p>
                 <p className="-italic">Finalized projects represented in gray.</p>
               </div>
             </div>
             <div className="intro-filters-container">
-              <h3>Find projects of Interest.</h3>
-              <p>
-                Find Projects of Interest. In this paragraph the user learns about priorities and
-                filters. In this paragraph the user learns about priorities and filters. In this
-                paragraph the user learns about priorities and filters. In this paragraph the user
-                learns about priorities and filters. In this paragraph the user learns.
-              </p>
+              <h3>{projectsPage?.findProjectsOfInterestTitle}</h3>
+              <p>{projectsPage?.fintProjectsOfInterestDescription}</p>
               <CatalogueFilter />
             </div>
           </div>
@@ -166,6 +159,7 @@ function HomePageLayout(props) {
 
 HomePageLayout.propTypes = {
   projects: PropTypes.array.isRequired,
+  projectsPage: PropTypes.object.isRequired,
   countries: PropTypes.array.isRequired,
   sort: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
@@ -176,6 +170,7 @@ HomePageLayout.propTypes = {
   updateSort: PropTypes.func.isRequired,
   updateFilters: PropTypes.func.isRequired,
   loadInitialState: PropTypes.func.isRequired,
+  setConfig: PropTypes.func.isRequired,
 };
 
 export default HomePageLayout;
