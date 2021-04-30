@@ -9,8 +9,8 @@ import {
 
 export const getProjectCategoriesPercentage = project => ({
   [CONTEXT_CATEGORY]: getPercentageForCategory(project, CONTEXT_CATEGORY),
-  [ECONOMIC_CATEGORY]: getPercentageForCategory(project, ECONOMIC_CATEGORY),
   [ECOLOGICAL_CATEGORY]: getPercentageForCategory(project, ECOLOGICAL_CATEGORY),
+  [ECONOMIC_CATEGORY]: getPercentageForCategory(project, ECONOMIC_CATEGORY),
   [INSTITUTIONAL_CATEGORY]: getPercentageForCategory(project, INSTITUTIONAL_CATEGORY),
   [SOCIAL_CATEGORY]: getPercentageForCategory(project, SOCIAL_CATEGORY),
 });
