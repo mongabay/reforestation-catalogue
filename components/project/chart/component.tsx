@@ -17,9 +17,9 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
   const { project, highlightedCategory, cardMode } = props;
   const [categoryPercentages, setCategoryPercentages] = useState({
     [Category.Context]: 0,
-    [Category.Social]: 0,
-    [Category.Economic]: 0,
     [Category.Ecological]: 0,
+    [Category.Economic]: 0,
+    [Category.Social]: 0,
     [Category.Institutional]: 0,
   });
 
@@ -113,7 +113,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
                       minWidth: '100%',
                     }}
                   >
-                    <label>{cKey}:</label>
+                    <label>{cKey === highlightedCategory ? <b>{cKey}</b> : cKey}:</label>
                     <span style={{ margin: '0 0 0.25rem 1rem' }}>
                       {Math.round(categoryPercentages[cKey])}
                     </span>
