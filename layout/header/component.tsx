@@ -10,9 +10,11 @@ const Header: React.FC<HeaderProps> = ({
   submitProjectInformationURL,
 }: HeaderProps) => (
   <motion.div className="c-header" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-    <a href="https://www.mongabay.com/" target="_blank" rel="noreferrer">
-      <img src="/images/logo-gecko.png" alt="Mongabay" className="logo" />
-    </a>
+    <Link href="/">
+      <a>
+        <img src="/images/logo-gecko.png" alt="Mongabay" className="logo" />
+      </a>
+    </Link>
     <div className="buttons">
       {!hideAboutButton && (
         <Link href="about">
