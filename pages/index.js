@@ -6,7 +6,14 @@ import HomeLayout from 'layout/pages/home';
 
 function HomePage(props) {
   return (
-    <StaticPage className="p-home">
+    <StaticPage
+      className="p-home"
+      meta={{
+        title: 'Mongabay Reforestation Catalogue',
+        description: 'Welcome to Mongabay’s directory of reforestation and tree-planting projects.',
+        thumbnailURL: 'https://reforestation.app/images/mogabay-meta-image.png',
+      }}
+    >
       <HomeLayout {...props} />
     </StaticPage>
   );

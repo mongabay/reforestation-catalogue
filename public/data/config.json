@@ -2,20 +2,9 @@
   "projectsPage": {
     "descriptionText": "Welcome to Mongabay’s directory of reforestation and tree-planting projects. We thought this would be a useful starting point for people wanting to fund reforestation, so they could identify projects that align with their interests. Rather than make an assessment of the effectiveness of the projects, our approach is focused on transparency. We ask: how much information is publicly disclosed by an organization?  We have included criteria that experts say are key to success, drawn largely from the Forest Landscape Restoration approach. This approach centers human well-being, ecological restoration, and strong project monitoring. On the whole, transparency is a signal that an organization is aware of the complexities involved in a successful restoration project and has both the staff and capacity to organize, monitor, and report back on their results. If an organization does not disclose this information, it may be prudent to ask why. We anticipate that tree-planting projects will want to be added to this directory or will want to update their index scores to reflect changes in their disclosure or to correct errors on our part.  This can be done via the Submit Project Information page. The database will be updated monthly.",
     "findProjectsOfInterestTitle": "Find Projects of Interest.",
-    "fintProjectsOfInterestDescription": "Use these filters to locate reforestation projects that align with your interests and priorities.",
-    "meta": {
-      "title": "Reforestation Catalogue",
-      "description": "",
-      "thumbnailURL": ""
-    }
+    "fintProjectsOfInterestDescription": "Use these filters to locate reforestation projects that align with your interests and priorities."
   },
-  "projectDetailPage": {
-    "meta": {
-      "title": "Reforestation Catalogue",
-      "description": "",
-      "thumbnailURL": ""
-    }
-  },
+  "projectDetailPage": {},
   "aboutPage": {
     "mainText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },

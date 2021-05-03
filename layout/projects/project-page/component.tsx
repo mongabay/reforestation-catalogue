@@ -29,7 +29,14 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
   const project = projects?.find(p => `${p.projectNumber}` === id);
 
   return (
-    <StaticPage className="p-project">
+    <StaticPage
+      className="p-project"
+      meta={{
+        title: 'Mongabay Reforestation Catalogue',
+        description: 'Welcome to Mongabay’s directory of reforestation and tree-planting projects.',
+        thumbnailURL: 'https://reforestation.app/images/mogabay-meta-image.png',
+      }}
+    >
       <Header />
       <div className="navigation-bar">
         <Link href="/">
