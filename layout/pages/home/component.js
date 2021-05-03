@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
-import { COUNTRIES_SPECIAL_VALUES } from 'types';
+import { Category, COUNTRIES_SPECIAL_VALUES } from 'types';
 
 // components
 import CatalogueFilter from 'components/catalogue/filter';
 import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card';
+import RadialChart from 'components/radial-chart';
 
 // services
 import { getCatalogueData, SORT_OPTIONS } from 'services/catalogue';
@@ -84,7 +85,6 @@ function HomePageLayout(props) {
               <h2>{`MONGABAY'S`}</h2>
               <h1>REFORESTATION DIRECTORY</h1>
             </div>
-            <hr />
             <p>{projectsPage?.descriptionText}</p>
           </div>
         </div>
@@ -92,6 +92,19 @@ function HomePageLayout(props) {
           <div className="left-container">
             <div className="intro-container">
               <h3>A Transparency Index.</h3>
+              <div className="legend-chart">
+                <RadialChart
+                  categoriesPercentages={{
+                    [Category.Context]: 70,
+                    [Category.Ecological]: 70,
+                    [Category.Economic]: 70,
+                    [Category.Social]: 70,
+                    [Category.Institutional]: 70,
+                  }}
+                  highlightedCategory={sort}
+                  legendMode={true}
+                />
+              </div>
               <div className="legend-text">
                 <p>
                   The fingerprint of each project results from five lines representing the
