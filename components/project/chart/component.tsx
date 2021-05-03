@@ -3,6 +3,7 @@ import Link from 'next/link';
 import classnames from 'classnames';
 
 import Tooltip from 'components/tooltip';
+import RadialChart from 'components/radial-chart';
 
 import { Category } from 'types';
 
@@ -26,65 +27,6 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
   useEffect(() => {
     setCategoryPercentages(getProjectCategoriesPercentage(project));
   }, [project]);
-
-  const getStrokeDashArray = (radius, category) => {
-    const length = radius * 2 * 3.14159265359;
-    const fullPercentage = categoryPercentages[category];
-    const fullValue = (fullPercentage * length) / 100.0;
-    const emptyValue = length - fullValue;
-    return `${fullValue} ${emptyValue}`;
-  };
-
-  const getSVG = () => (
-    <svg height="160" width="160">
-      <circle
-        className={classnames({
-          '-highlighted': highlightedCategory === Category.Context,
-        })}
-        cx="80"
-        cy="80"
-        r="77"
-        strokeDasharray={getStrokeDashArray(77, Category.Context)}
-      />
-
-      <circle
-        className={classnames({
-          '-highlighted': highlightedCategory === Category.Ecological,
-        })}
-        cx="80"
-        cy="80"
-        r="65"
-        strokeDasharray={getStrokeDashArray(65, Category.Ecological)}
-      />
-      <circle
-        className={classnames({
-          '-highlighted': highlightedCategory === Category.Economic,
-        })}
-        cx="80"
-        cy="80"
-        r="52"
-        strokeDasharray={getStrokeDashArray(52, Category.Economic)}
-      />
-      <circle
-        className={classnames({
-          '-highlighted': highlightedCategory === Category.Social,
-        })}
-        cx="80"
-        cy="80"
-        r="40"
-        strokeDasharray={getStrokeDashArray(40, Category.Social)}
-      />
-      <circle
-        className={classnames({
-          '-highlighted': highlightedCategory === Category.Institutional,
-        })}
-        cx="80"
-        cy="80"
-        r="27"
-        strokeDasharray={getStrokeDashArray(27, Category.Institutional)}
-      />
-    </svg>
-  );
 
   return (
     <div
@@ -122,7 +64,12 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
               </div>
             }
           >
-            {getSVG()}
+            <div>
+              <RadialChart
+                highlightedCategory={highlightedCategory}
+                categoriesPercentages={categoryPercentages}
+              />
+            </div>
           </Tooltip>
           <Link href={`/project?id=${project.projectNumber}`}>
             <a className="title">
@@ -133,7 +80,12 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
           </Link>
         </>
       )}
-      {!cardMode && getSVG()}
+      {!cardMode && (
+        <RadialChart
+          highlightedCategory={highlightedCategory}
+          categoriesPercentages={categoryPercentages}
+        />
+      )}
     </div>
   );
 };

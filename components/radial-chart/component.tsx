@@ -4,7 +4,18 @@ import classnames from 'classnames';
 import { RadialChartProps } from './types';
 import { Category } from 'types';
 
-const RadialChart: React.FC<RadialChartProps> = ({ highlightedCategory }) => {
+const RadialChart: React.FC<RadialChartProps> = ({
+  highlightedCategory,
+  categoriesPercentages,
+}: RadialChartProps) => {
+  const getStrokeDashArray = (radius, category) => {
+    const length = radius * 2 * 3.14159265359;
+    const fullPercentage = categoriesPercentages[category];
+    const fullValue = (fullPercentage * length) / 100.0;
+    const emptyValue = length - fullValue;
+    return `${fullValue} ${emptyValue}`;
+  };
+
   return (
     <svg height="160" width="160">
       <circle
