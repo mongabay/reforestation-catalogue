@@ -82,7 +82,7 @@ function HomePageLayout(props) {
         <div className="top-container">
           <div className="column col-sm-10 col-md-8 col-xl-6 col-offset-1">
             <div className="title">
-              <h2>{`MONGABAY'S`}</h2>
+              <h2>{`MONGABAY`}</h2>
               <h1>REFORESTATION DIRECTORY</h1>
             </div>
             <p>{projectsPage?.descriptionText}</p>
