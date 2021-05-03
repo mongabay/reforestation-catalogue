@@ -34,7 +34,7 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
       meta={{
         title: 'Mongabay Reforestation Catalogue',
         description: 'Welcome to Mongabay’s directory of reforestation and tree-planting projects.',
-        thumbnailURL: 'https://reforestation.app/images/mogabay-meta-image.png',
+        thumbnailURL: 'https://reforestation.app/images/mongabay-meta-image.png',
       }}
     >
       <Header />
