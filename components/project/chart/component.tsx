@@ -68,6 +68,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
               <RadialChart
                 highlightedCategory={highlightedCategory}
                 categoriesPercentages={categoryPercentages}
+                legendMode={false}
               />
             </div>
           </Tooltip>
@@ -84,6 +85,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
         <RadialChart
           highlightedCategory={highlightedCategory}
           categoriesPercentages={categoryPercentages}
+          legendMode={false}
         />
       )}
     </div>

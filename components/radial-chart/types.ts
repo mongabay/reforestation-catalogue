@@ -4,5 +4,5 @@ export interface RadialChartProps {
   highlightedCategory: string;
   categoriesPercentages: unknown;
   legendMode: boolean;
-  updateSort: (c: Category) => unknown;
+  updateSort?: (c: Category) => unknown;
 }
