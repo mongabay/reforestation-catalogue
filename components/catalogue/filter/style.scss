@@ -30,6 +30,7 @@
           width: 100%;
         }
       }
+
       .radio-filter {
         display: flex;
         align-items: center;
@@ -37,9 +38,28 @@
 
         .c-radio {
           margin: 0px 15px 0px 0px;
-
         }
       }
+
+      .year-filter, .number-filter {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+
+        button {
+          padding: 2px 10px;
+          margin-left: 5px;
+        }
+      }
+
+      .number-filter {
+        justify-content: flex-end;
+
+        input {
+          max-width: 100px;
+        }
+      }
+
       .filter-selector {
         width: 100%;
       }

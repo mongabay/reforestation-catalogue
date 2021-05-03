@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { SORT_OPTIONS } from 'services/catalogue';
-import { FilterModes, FilterTypes, COUNTRIES_SPECIAL_VALUES } from 'types';
+import { FilterModes, FilterTypes, COUNTRIES_SPECIAL_VALUES, END_YEAR_SPECIAL_VALUES } from 'types';
 
 import { getProjectCategoriesPercentage } from 'utils/project';
 
@@ -30,11 +30,19 @@ export const selectFilteredProjects = createSelector(
         result = result.filter(p =>
           p[filter.propertyName] ? p[filter.propertyName].includes(filter.value) : false
         );
-      } else if (
-        filter.mode === FilterModes.GreaterOrEqualThan &&
-        filter.type === FilterTypes.Number
-      ) {
-        result = result.filter(p => p[filter.propertyName] >= filter.value);
+      } else if (filter.type === FilterTypes.Number) {
+        if (filter.mode === FilterModes.GreaterOrEqualThan) {
+          result = result.filter(p => p[filter.propertyName] >= filter.value);
+        } else if (filter.mode === FilterModes.LessOrEqualThan) {
+          result = result.filter(p => {
+            const pValue = p[filter.propertyName];
+            if (filter.value === END_YEAR_SPECIAL_VALUES.ONGOING) {
+              return pValue === filter.value;
+            } else {
+              return pValue <= filter.value;
+            }
+          });
+        }
       }
     });
 

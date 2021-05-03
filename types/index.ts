@@ -57,9 +57,12 @@ export enum FilterModes {
   Exact = 'exact',
   Includes = 'includes',
   GreaterOrEqualThan = 'greater-or-equal-than',
+  LessOrEqualThan = 'less-or-equal-than',
+  Range = 'range',
 }
 
 export enum FilterTypes {
+  Year = 'year',
   Number = 'number',
   String = 'string',
   Boolean = 'boolean',
