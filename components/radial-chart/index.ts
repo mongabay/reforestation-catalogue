@@ -5,6 +5,6 @@ import Component from './component';
 
 const projectsActions = projectsSlice().actions;
 
-export default connect(state => null, {
+export default connect(null, {
   updateSort: projectsActions.updateSort,
 })(Component);

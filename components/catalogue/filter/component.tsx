@@ -5,7 +5,7 @@ import { CATEGORIES } from 'services/catalogue';
 import { FilterTypes } from 'types';
 
 // components
-import { Radio, Select } from 'components/forms';
+import { Radio, Select, Range } from 'components/forms';
 import Pill from 'components/pill';
 import CategoryInfoTooltip from 'components/category/info-tooltip/component';
 
@@ -21,7 +21,10 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
   categoriesConfig,
   addFilter,
 }: CatelogueFilterProps) => {
+  const YEAR_DEFAULT_VALUE = 2012;
   const [filterSelected, setFilterSelected] = useState(null);
+  const [yearValue, setYearValue] = useState(YEAR_DEFAULT_VALUE);
+  const [numberValue, setNumberValue] = useState(0);
 
   const getFilterCreator = filter => {
     if (filter.type === FilterTypes.String) {
@@ -90,6 +93,59 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
           >
             NO
           </Radio>
+        </div>
+      );
+    } else if (filter.type === FilterTypes.Year) {
+      return (
+        <div className="year-filter">
+          <Range
+            min={2000}
+            max={2021}
+            defaultValue={YEAR_DEFAULT_VALUE}
+            onChange={({ target: { value } }) => setYearValue(value)}
+          />
+          <span className="year-value">{yearValue}</span>
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              setFilterSelected(null);
+              addFilter({
+                mode: filter.mode,
+                type: filter.type,
+                propertyName: filter.value,
+                label: filter.label,
+                value: yearValue,
+              });
+            }}
+          >
+            Apply
+          </button>
+        </div>
+      );
+    } else if (filter.type === FilterTypes.Number) {
+      return (
+        <div className="number-filter">
+          <input
+            type="number"
+            step="100"
+            onChange={({ target: { value } }) => setNumberValue(Number(value))}
+            defaultValue={0}
+          />
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              setFilterSelected(null);
+              addFilter({
+                mode: filter.mode,
+                type: filter.type,
+                propertyName: filter.value,
+                label: filter.label,
+                value: numberValue,
+              });
+            }}
+          >
+            Apply
+          </button>
         </div>
       );
     }

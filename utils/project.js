@@ -56,3 +56,6 @@ export const getUniqueValuesForField = (projects, propertyName, commaSeparated) 
   }
   return [...tempSet];
 };
+
+export const DEFAULT_START_YEAR = 2006;
+export const DEFAULT_END_YEAR = 2020;

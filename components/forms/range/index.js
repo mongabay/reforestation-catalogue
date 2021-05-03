@@ -44,10 +44,10 @@ const Range = ({
 Range.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.number,
   value: PropTypes.string,
-  min: PropTypes.string,
-  max: PropTypes.string,
+  min: PropTypes.number,
+  max: PropTypes.number,
   step: PropTypes.string,
   'aria-label': PropTypes.string,
   required: PropTypes.bool,

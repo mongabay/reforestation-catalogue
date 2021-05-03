@@ -15,15 +15,15 @@ export const CATEGORIES = [
       {
         id: 'startYear',
         label: 'Start year',
-        type: FilterTypes.String,
-        mode: FilterModes.Exact,
+        type: FilterTypes.Year,
+        mode: FilterModes.GreaterOrEqualThan,
         hidden: false,
       },
       {
         id: 'endYear',
         label: 'End year',
-        type: FilterTypes.String,
-        mode: FilterModes.Exact,
+        type: FilterTypes.Year,
+        mode: FilterModes.LessOrEqualThan,
         hidden: false,
       },
       {
@@ -58,7 +58,7 @@ export const CATEGORIES = [
         id: 'sizeOfProjectHa',
         label: 'Size of project in ha',
         type: FilterTypes.Number,
-        mode: FilterModes.Exact,
+        mode: FilterModes.GreaterOrEqualThan,
         hidden: false,
       },
     ],
