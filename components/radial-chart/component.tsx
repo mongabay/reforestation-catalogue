@@ -7,6 +7,7 @@ import { Category } from 'types';
 const RadialChart: React.FC<RadialChartProps> = ({
   highlightedCategory,
   categoriesPercentages,
+  legendMode,
 }: RadialChartProps) => {
   const getStrokeDashArray = (radius, category) => {
     const length = radius * 2 * 3.14159265359;
@@ -17,7 +18,33 @@ const RadialChart: React.FC<RadialChartProps> = ({
   };
 
   return (
-    <svg height="160" width="160">
+    <svg
+      height="170"
+      width="170"
+      className={classnames({
+        'c-radial-chart': true,
+        '-legend': legendMode,
+      })}
+    >
+      {legendMode && (
+        <>
+          <text x="30" y="15">
+            Context
+          </text>
+          <text x="18" y="28">
+            Ecological
+          </text>
+          <text x="19" y="41">
+            Economic
+          </text>
+          <text x="42" y="54">
+            Social
+          </text>
+          <text x="7" y="67">
+            Institutional
+          </text>
+        </>
+      )}
       <circle
         className={classnames({
           '-highlighted': highlightedCategory === Category.Context,

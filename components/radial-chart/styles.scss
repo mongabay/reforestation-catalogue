@@ -1,0 +1,23 @@
+.c-radial-chart {
+
+  text {
+    font-size: 12px;
+  }
+
+  &.-legend {
+    circle {
+      transform: rotate(-90deg) translateX(-100%);
+    }
+  }
+
+  circle { 
+    fill: none; 
+    stroke: $text-color-1; 
+    stroke-width: 3px; 
+    animation: fill-circles 2s forwards;
+
+    &.-highlighted {
+      stroke: $orange;
+    } 
+  }
+}
