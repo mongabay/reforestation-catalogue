@@ -76,3 +76,9 @@ export interface Filter {
   mode: FilterModes;
   label?: string;
 }
+
+export interface MetaInfo {
+  title: string;
+  description: string;
+  thumbnailURL: string;
+}
