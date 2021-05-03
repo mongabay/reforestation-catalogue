@@ -52,6 +52,119 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
     );
   };
 
+  const getContextDynamicText = project => {
+    const projectArea = project.sizeOfProjectHa && d3.format('.4s')(project.sizeOfProjectHa);
+    const treesPlanted = project.treesPlantedNumber && d3.format('.4s')(project.treesPlantedNumber);
+    const approach = project.approach;
+    const severalApproaches = approach && approach.indexOf(',') > 0;
+    const primaryObjectivePurpose = project.primaryObjectivePurpose;
+    const severalObjPurposes = primaryObjectivePurpose && primaryObjectivePurpose.indexOf(',') > 0;
+    const typeOfFollowUp = project.typeOfFollowUp;
+    const severalTypesOfFollowUp = typeOfFollowUp && typeOfFollowUp.indexOf(',') > 0;
+
+    return (
+      <>
+        <span>
+          {/* NUMBER OF TREES AND SIZE */}
+          {treesPlanted && projectArea && (
+            <span>
+              {`A total of `}
+              <span className="-bold">{treesPlanted}</span>
+              {` trees have been planted as part of the project, spanning an area of `}
+              <span className="-bold">{projectArea}</span>
+              {` hectares. `}
+            </span>
+          )}
+          {treesPlanted && !projectArea && (
+            <span>
+              {`While there is no reported information on the size of the reforestation, a total of `}
+              <span className="-bold">{treesPlanted}</span>
+              {` trees have been planted as part of the project. `}
+            </span>
+          )}
+          {!treesPlanted && projectArea && (
+            <span>
+              {`The project covers an area of `}
+              <span className="-bold">{projectArea}</span>
+              {` hectares, but does not report the total number of trees planted. `}
+            </span>
+          )}
+          {!treesPlanted && !projectArea && (
+            <span>{`The project doest not report the total area nor the number of trees planted. `}</span>
+          )}
+        </span>
+        <span>
+          {/* PRIMARY OBJECTIVE/PURPOSE */}
+          {primaryObjectivePurpose && !severalObjPurposes && (
+            <span>
+              {`The primary objective/purpose of the project is: `}
+              <span className="-bold">{primaryObjectivePurpose}</span>
+              {` .`}
+            </span>
+          )}
+          {primaryObjectivePurpose && severalObjPurposes && (
+            <span>
+              {`The primary objectives/purposes of the project are: `}
+              <span className="-bold">
+                {primaryObjectivePurpose}
+                {`. `}
+              </span>
+            </span>
+          )}
+          {!primaryObjectivePurpose && approach && (
+            <span>{`The primary objective/purpose of the project hasn't been reported. `}</span>
+          )}
+        </span>
+        <span>
+          {/* APPROACH */}
+          {approach && !severalApproaches && (
+            <span>
+              {`This project follows a`}
+              {approach.startsWith('a') ? 'n ' : ' '}
+              <span className="-bold">{approach}</span>
+              {` approach. `}
+            </span>
+          )}
+          {approach && severalApproaches && (
+            <span>
+              {`This project follows the following approaches: `}
+              <span className="-bold">
+                {approach}
+                {`. `}
+              </span>
+            </span>
+          )}
+          {!approach && primaryObjectivePurpose && (
+            <span>{`The approach for this project hasn't been reported. `}</span>
+          )}
+        </span>
+        {!primaryObjectivePurpose && !approach && (
+          <span>{`This project doest not report its approach nor its primary objective/purpose. `}</span>
+        )}
+        {/* Type of follow up */}
+        <span>
+          {typeOfFollowUp && !severalApproaches && (
+            <span>
+              {`This project has the following follow up type: `}
+              <span className="-bold">{typeOfFollowUp}</span>
+              {`.`}
+            </span>
+          )}
+          {typeOfFollowUp && severalApproaches && (
+            <span>
+              {`This project has the following follow up types associated to it: `}
+              <span className="-bold">{typeOfFollowUp}</span>
+              {`.`}
+            </span>
+          )}
+          {!typeOfFollowUp && (
+            <span>{`There isn't any type of follow up reported for this project. `}</span>
+          )}
+        </span>
+      </>
+    );
+  };
+
   return (
     <div className="c-project-viewer">
       <motion.div className="title-banner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -95,52 +208,7 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
                   text={getCategoryInfoModalText(CONTEXT_CATEGORY, categoriesConfig)}
                 />
               </div>
-              <div className="dynamic-text">
-                {!project.sizeOfProjectHa && (
-                  <span>The size of the project has not been reported. </span>
-                )}
-                {project.sizeOfProjectHa && (
-                  <>
-                    <span>
-                      This project has a size of{' '}
-                      <span className="-bold">{d3.format('.2s')(project.sizeOfProjectHa)} ha.</span>
-                    </span>
-                  </>
-                )}
-                {!project.treesPlantedNumber && (
-                  <span>{` The number of trees planted has not been reported. `}</span>
-                )}
-                {project.treesPlantedNumber && (
-                  <span>
-                    <span className="-bold">
-                      {` ${d3.format('.2s')(project.treesPlantedNumber)}`} trees
-                    </span>
-                    {' have been planted as part of this project. '}
-                  </span>
-                )}
-              </div>
-              {/* <div className="field">
-                <span className="-bold property-label">Size of project (ha):</span>
-                {project.sizeOfProjectHa ? project.sizeOfProjectHa : UNREPORTED_TEXT}
-              </div>
-              <div className="field">
-                <span className="-bold property-label">Trees planted (number):</span>
-                {project.treesPlantedNumber ? project.treesPlantedNumber : UNREPORTED_TEXT}
-              </div> */}
-              <div className="field">
-                <span className="-bold property-label">Primary objective/purpose:</span>
-                {project.primaryObjectivePurpose
-                  ? project.primaryObjectivePurpose
-                  : UNREPORTED_TEXT}
-              </div>
-              <div className="field">
-                <span className="-bold property-label">Approach:</span>
-                {project.approach ? project.approach : UNREPORTED_TEXT}
-              </div>
-              <div className="field">
-                <span className="-bold property-label">Type of follow up:</span>
-                {project.typeOfFollowUp ? project.typeOfFollowUp : UNREPORTED_TEXT}
-              </div>
+              <div className="dynamic-text">{getContextDynamicText(project)}</div>
               <div className="reported-info">
                 <span className="-bold property-label">Reported information:</span>
                 {getReportedFieldsForCategory(CONTEXT_CATEGORY, true)}
