@@ -2,6 +2,41 @@
 
   text {
     font-size: 12px;
+
+    &.-highlighted {
+      font-weight: bold;
+    }
+
+    &:hover {
+      font-weight: bold;
+      cursor: pointer;
+
+      &[data-category="Context"] {
+        ~ circle[data-category="Context"] {
+          stroke-width: 4px;
+        }
+      }
+      &[data-category="Ecological"] {
+        ~ circle[data-category="Ecological"] {
+          stroke-width: 4px;
+        }
+      }
+      &[data-category="Economic"] {
+        ~ circle[data-category="Economic"] {
+          stroke-width: 4px;
+        }
+      }
+      &[data-category="Social"] {
+        ~ circle[data-category="Social"] {
+          stroke-width: 4px;
+        }
+      }
+      &[data-category="Institutional"] {
+        ~ circle[data-category="Institutional"] {
+          stroke-width: 4px;
+        }
+      }
+    }
   }
 
   &.-legend {

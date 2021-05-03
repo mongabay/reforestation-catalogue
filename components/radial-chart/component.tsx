@@ -8,6 +8,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
   highlightedCategory,
   categoriesPercentages,
   legendMode,
+  updateSort,
 }: RadialChartProps) => {
   const getStrokeDashArray = (radius, category) => {
     const length = radius * 2 * 3.14159265359;
@@ -28,19 +29,59 @@ const RadialChart: React.FC<RadialChartProps> = ({
     >
       {legendMode && (
         <>
-          <text x="30" y="15">
+          <text
+            x="30"
+            y="15"
+            data-category={Category.Context}
+            onClick={() => updateSort(Category.Context)}
+            className={classnames({
+              '-highlighted': highlightedCategory === Category.Context,
+            })}
+          >
             Context
           </text>
-          <text x="18" y="28">
+          <text
+            x="18"
+            y="28"
+            data-category={Category.Ecological}
+            onClick={() => updateSort(Category.Ecological)}
+            className={classnames({
+              '-highlighted': highlightedCategory === Category.Ecological,
+            })}
+          >
             Ecological
           </text>
-          <text x="19" y="41">
+          <text
+            x="19"
+            y="41"
+            data-category={Category.Economic}
+            onClick={() => updateSort(Category.Economic)}
+            className={classnames({
+              '-highlighted': highlightedCategory === Category.Economic,
+            })}
+          >
             Economic
           </text>
-          <text x="42" y="54">
+          <text
+            x="42"
+            y="54"
+            data-category={Category.Social}
+            onClick={() => updateSort(Category.Social)}
+            className={classnames({
+              '-highlighted': highlightedCategory === Category.Social,
+            })}
+          >
             Social
           </text>
-          <text x="7" y="67">
+          <text
+            x="7"
+            y="67"
+            data-category={Category.Institutional}
+            onClick={() => updateSort(Category.Institutional)}
+            className={classnames({
+              '-highlighted': highlightedCategory === Category.Institutional,
+            })}
+          >
             Institutional
           </text>
         </>
@@ -53,6 +94,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
         cy="80"
         r="77"
         strokeDasharray={getStrokeDashArray(77, Category.Context)}
+        data-category={Category.Context}
       />
 
       <circle
@@ -63,6 +105,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
         cy="80"
         r="65"
         strokeDasharray={getStrokeDashArray(65, Category.Ecological)}
+        data-category={Category.Ecological}
       />
       <circle
         className={classnames({
@@ -72,6 +115,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
         cy="80"
         r="52"
         strokeDasharray={getStrokeDashArray(52, Category.Economic)}
+        data-category={Category.Economic}
       />
       <circle
         className={classnames({
@@ -81,6 +125,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
         cy="80"
         r="40"
         strokeDasharray={getStrokeDashArray(40, Category.Social)}
+        data-category={Category.Social}
       />
       <circle
         className={classnames({
@@ -90,6 +135,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
         cy="80"
         r="27"
         strokeDasharray={getStrokeDashArray(27, Category.Institutional)}
+        data-category={Category.Institutional}
       />
     </svg>
   );
