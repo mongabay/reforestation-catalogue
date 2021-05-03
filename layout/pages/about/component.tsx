@@ -9,7 +9,7 @@ const AboutPage: React.FC<AboutPageLayoutProps> = () => {
     <div className="c-about-page-layout">
       <Header hideAboutButton={true} />
       <div className="title">
-        <h2>{`MONGABAY'S`}</h2>
+        <h2>{`MONGABAY`}</h2>
         <h1>REFORESTATION DIRECTORY</h1>
       </div>
       <div className="main-container">
