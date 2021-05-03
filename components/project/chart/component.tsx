@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import Tooltip from 'components/tooltip';
 import RadialChart from 'components/radial-chart';
 
-import { Category } from 'types';
+import { Category, END_YEAR_SPECIAL_VALUES } from 'types';
 
 import { getProjectCategoriesPercentage } from 'utils/project';
 
@@ -27,6 +27,12 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
   useEffect(() => {
     setCategoryPercentages(getProjectCategoriesPercentage(project));
   }, [project]);
+
+  const currentYear = new Date().getFullYear();
+  const projectIsFinalised =
+    project.endYear &&
+    project.endYear !== END_YEAR_SPECIAL_VALUES.ONGOING &&
+    project.endYear < currentYear;
 
   return (
     <div
@@ -69,6 +75,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
                 highlightedCategory={highlightedCategory}
                 categoriesPercentages={categoryPercentages}
                 legendMode={false}
+                finalised={projectIsFinalised}
               />
             </div>
           </Tooltip>
@@ -86,6 +93,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
           highlightedCategory={highlightedCategory}
           categoriesPercentages={categoryPercentages}
           legendMode={false}
+          finalised={projectIsFinalised}
         />
       )}
     </div>

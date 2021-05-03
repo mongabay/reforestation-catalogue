@@ -8,6 +8,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
   highlightedCategory,
   categoriesPercentages,
   legendMode,
+  finalised,
   updateSort,
 }: RadialChartProps) => {
   const getStrokeDashArray = (radius, category) => {
@@ -25,6 +26,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
       className={classnames({
         'c-radial-chart': true,
         '-legend': legendMode,
+        '-finalised': finalised,
       })}
     >
       {legendMode && (
