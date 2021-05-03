@@ -7,6 +7,8 @@ import projectsSlice, {
   selectFilteredProjects,
   selectFilters,
   selectSort,
+  selectEmbed,
+  selectEmbedType,
 } from 'modules/projects';
 import configSlice, { selectProjectsConfig } from 'modules/config';
 import Component from './component';
@@ -20,6 +22,8 @@ export default connect(
       projects: selectFilteredProjects(state),
       countries: selectCountries(state),
       sort: selectSort(state),
+      embed: selectEmbed(state),
+      embedType: selectEmbedType(state),
       country: selectCountry(state),
       filters: selectFilters(state),
       totalNumberOfProjects: selectTotalNumberOfProjects(state),

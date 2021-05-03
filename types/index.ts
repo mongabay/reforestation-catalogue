@@ -82,3 +82,9 @@ export interface MetaInfo {
   description: string;
   thumbnailURL: string;
 }
+
+export enum EmbedTypes {
+  Filters = 'filters',
+  ProjectList = 'project-list',
+  ProjectCard = 'project-card',
+}

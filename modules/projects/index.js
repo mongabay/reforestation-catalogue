@@ -10,6 +10,8 @@ export const selectFilters = state => state[SLICE_NAME].filters;
 export const selectCountry = state => state[SLICE_NAME].country;
 export const selectData = state => state[SLICE_NAME].data;
 export const selectSort = state => state[SLICE_NAME].sort;
+export const selectEmbed = state => state[SLICE_NAME].embed;
+export const selectEmbedType = state => state[SLICE_NAME].embedType;
 export const selectTotalNumberOfProjects = state => state[SLICE_NAME].totalNumberOfProjects;
 
 export const selectCountries = createSelector([selectData], projects =>
@@ -69,6 +71,8 @@ export default projectsActions =>
       data: [],
       sort: null,
       totalNumberOfProjects: 0,
+      embed: false,
+      embedType: null,
     },
     reducers: {
       updateData(state, action) {
@@ -95,6 +99,8 @@ export default projectsActions =>
         state.country = newState.country;
         state.sort = newState.sort || SORT_OPTIONS.ALPHABETICAL_OPTION;
         state.filters = newState.filters || [];
+        state.embed = newState.embed;
+        state.embedType = newState.embedType;
       },
     },
   });
