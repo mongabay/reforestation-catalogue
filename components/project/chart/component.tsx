@@ -79,13 +79,11 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
               />
             </div>
           </Tooltip>
-          <Link href={`/project?id=${project.projectNumber}`}>
-            <a className="title">
-              {project.projectName.length < TITLE_MAX_LENGTH
-                ? project.projectName
-                : `${project.projectName.substr(0, TITLE_MAX_LENGTH)}...`}
-            </a>
-          </Link>
+          <div className="title">
+            {project.projectName.length < TITLE_MAX_LENGTH
+              ? project.projectName
+              : `${project.projectName.substr(0, TITLE_MAX_LENGTH)}...`}
+          </div>
         </>
       )}
       {!cardMode && (
