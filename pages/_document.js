@@ -15,6 +15,18 @@ export default class MyDocument extends Document {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="viewport" content="width=1024, initial-scale=1, shrink-to-fit=no" />
           <meta name="author" content="Vizzuality" />
+          {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-K4R5ND4"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-K4R5ND4');`,
+            }}
+          ></script>
+
           {/* Google Tag Manager  */}
           <script
             dangerouslySetInnerHTML={{
