@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import classnames from 'classnames';
 
 import { Category, COUNTRIES_SPECIAL_VALUES, EmbedTypes } from 'types';
 
@@ -53,7 +54,7 @@ function HomePageLayout(props) {
         country: countryInitialQuery,
         sort: sortInitialQuery,
         filters: JSON.parse(filtersInitialQuery),
-        embed: embedInitialQuery,
+        embed: embedInitialQuery === true || embedInitialQuery === 'true',
         embedType: embedTypeInitialQuery,
       });
     } else {
@@ -82,8 +83,8 @@ function HomePageLayout(props) {
 
   const projectsLength = projects.length;
   const projectsPercentage = Math.round((projectsLength * 100.0) / totalNumberOfProjects);
-
-  console.log('embed', embed);
+  const isEmbedFilters = embed && embedType === EmbedTypes.Filters;
+  const isEmbedProjectList = embed && embedType === EmbedTypes.ProjectList;
 
   return (
     <div className="home-layout">
@@ -101,7 +102,13 @@ function HomePageLayout(props) {
           </div>
         )}
         <div className="data-container">
-          <div className="left-container">
+          <div
+            className={classnames({
+              'left-container': true,
+              '-hidden': isEmbedProjectList,
+              '-no-width-restriction': isEmbedFilters,
+            })}
+          >
             {!embed && (
               <div className="intro-container">
                 <h3>A Transparency Index.</h3>
@@ -132,67 +139,80 @@ function HomePageLayout(props) {
                 </div>
               </div>
             )}
-            {!embed ||
-              (embed && embedType === EmbedTypes.Filters && (
-                <div className="intro-filters-container">
-                  <h3>{projectsPage?.findProjectsOfInterestTitle}</h3>
-                  <p>{projectsPage?.fintProjectsOfInterestDescription}</p>
-                  <p className="-bold">
-                    {`${projectsLength} projects (${projectsPercentage}%) meet your filtering criteria`}
-                  </p>
-                  <CatalogueFilter />
-                </div>
-              ))}
+            {(!embed || isEmbedFilters) && (
+              <div className="intro-filters-container">
+                <h3>{projectsPage?.findProjectsOfInterestTitle}</h3>
+                <p>{projectsPage?.fintProjectsOfInterestDescription}</p>
+                <p className="-bold">
+                  {`${projectsLength} projects (${projectsPercentage}%) meet your filtering criteria`}
+                </p>
+                <CatalogueFilter />
+              </div>
+            )}
           </div>
-          {!embed ||
-            (embed && embedType === EmbedTypes.ProjectList && (
-              <div className="right-container">
-                <div className="projects-list">
-                  {!embed && (
-                    <div className="list-header">
-                      <div className="sort-container">
-                        <label htmlFor="sort-select">Sort by category</label>
-                        <Select
-                          id="sort-select"
-                          options={SORT_OPTIONS}
-                          defaultValue={sort}
-                          value={sort}
-                          onChange={({ value }) => {
-                            updateSort(value);
-                          }}
-                        />
-                      </div>
-                      <div className="country-container">
-                        <label htmlFor="country-select">Country: </label>
-                        <Select
-                          id="country-select"
-                          options={countries.map(c => ({ value: c, label: c }))}
-                          onChange={({ value }) => updateCountry(value)}
-                          defaultValue={country}
-                          value={country}
-                        />
-                      </div>
+          {isEmbedFilters && (
+            <div className="embed-filters-button-container">
+              <a
+                className="btn btn-primary"
+                href={`${window.location}`.replace('embed=true', 'embed=false')}
+              >
+                View on the Reforestation Catalogue
+              </a>
+            </div>
+          )}
+          {(!embed || isEmbedProjectList) && (
+            <div
+              className={classnames({
+                'right-container': true,
+                '-fullwidth': embed && embedType === EmbedTypes.ProjectList,
+              })}
+            >
+              <div className="projects-list">
+                {!embed && (
+                  <div className="list-header">
+                    <div className="sort-container">
+                      <label htmlFor="sort-select">Sort by category</label>
+                      <Select
+                        id="sort-select"
+                        options={SORT_OPTIONS}
+                        defaultValue={sort}
+                        value={sort}
+                        onChange={({ value }) => {
+                          updateSort(value);
+                        }}
+                      />
                     </div>
-                  )}
-                  <div className="project-cards-container">
-                    <div className="row justify-content-between">
-                      {projects &&
-                        projects.map(p => (
-                          <motion.div
-                            key={p.projectNumber}
-                            className="column"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                          >
-                            <ProjectCard project={p} highlightedCategory={sort} />
-                          </motion.div>
-                        ))}
+                    <div className="country-container">
+                      <label htmlFor="country-select">Country: </label>
+                      <Select
+                        id="country-select"
+                        options={countries.map(c => ({ value: c, label: c }))}
+                        onChange={({ value }) => updateCountry(value)}
+                        defaultValue={country}
+                        value={country}
+                      />
                     </div>
+                  </div>
+                )}
+                <div className="project-cards-container">
+                  <div className="row justify-content-between">
+                    {projects &&
+                      projects.map(p => (
+                        <motion.div
+                          key={p.projectNumber}
+                          className="column"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          <ProjectCard project={p} highlightedCategory={sort} />
+                        </motion.div>
+                      ))}
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
