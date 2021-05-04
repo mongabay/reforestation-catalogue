@@ -155,6 +155,8 @@ function HomePageLayout(props) {
               <a
                 className="btn btn-primary"
                 href={`${window.location}`.replace('embed=true', 'embed=false')}
+                target="_blank"
+                rel="noreferrer"
               >
                 View on the Reforestation Catalogue
               </a>
@@ -205,7 +207,11 @@ function HomePageLayout(props) {
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.2 }}
                         >
-                          <ProjectCard project={p} highlightedCategory={sort} />
+                          <ProjectCard
+                            project={p}
+                            highlightedCategory={sort}
+                            openInNewWindow={isEmbedProjectList}
+                          />
                         </motion.div>
                       ))}
                   </div>

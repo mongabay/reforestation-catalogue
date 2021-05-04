@@ -12,10 +12,8 @@
   }
 
   &.-hover-animated {
-    svg {
-      &:hover {
-        cursor: pointer;
-      }
+    &:hover {
+      cursor: pointer;
     }
 
     &:hover {
