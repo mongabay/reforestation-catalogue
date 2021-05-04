@@ -65,19 +65,8 @@ const RadialChart: React.FC<RadialChartProps> = ({
             Economic
           </text>
           <text
-            x="42"
-            y="54"
-            data-category={Category.Social}
-            onClick={() => updateSort(Category.Social)}
-            className={classnames({
-              '-highlighted': highlightedCategory === Category.Social,
-            })}
-          >
-            Social
-          </text>
-          <text
             x="7"
-            y="67"
+            y="54"
             data-category={Category.Institutional}
             onClick={() => updateSort(Category.Institutional)}
             className={classnames({
@@ -85,6 +74,17 @@ const RadialChart: React.FC<RadialChartProps> = ({
             })}
           >
             Institutional
+          </text>
+          <text
+            x="42"
+            y="67"
+            data-category={Category.Social}
+            onClick={() => updateSort(Category.Social)}
+            className={classnames({
+              '-highlighted': highlightedCategory === Category.Social,
+            })}
+          >
+            Social
           </text>
         </>
       )}
@@ -121,23 +121,23 @@ const RadialChart: React.FC<RadialChartProps> = ({
       />
       <circle
         className={classnames({
-          '-highlighted': highlightedCategory === Category.Social,
-        })}
-        cx="80"
-        cy="80"
-        r="40"
-        strokeDasharray={getStrokeDashArray(40, Category.Social)}
-        data-category={Category.Social}
-      />
-      <circle
-        className={classnames({
           '-highlighted': highlightedCategory === Category.Institutional,
         })}
         cx="80"
         cy="80"
-        r="27"
-        strokeDasharray={getStrokeDashArray(27, Category.Institutional)}
+        r="40"
+        strokeDasharray={getStrokeDashArray(40, Category.Institutional)}
         data-category={Category.Institutional}
+      />
+      <circle
+        className={classnames({
+          '-highlighted': highlightedCategory === Category.Social,
+        })}
+        cx="80"
+        cy="80"
+        r="27"
+        strokeDasharray={getStrokeDashArray(27, Category.Social)}
+        data-category={Category.Social}
       />
     </svg>
   );

@@ -141,33 +141,6 @@ export const CATEGORIES = [
     ],
   },
   {
-    id: SOCIAL_CATEGORY,
-    label: 'Social',
-    fields: [
-      {
-        id: 'hasCommunityInvolvement',
-        label: 'Has community involvement',
-        type: FilterTypes.Boolean,
-        mode: FilterModes.Exact,
-        hidden: false,
-      },
-      {
-        id: 'hasGenderComponent',
-        label: 'Has gender component',
-        type: FilterTypes.Boolean,
-        mode: FilterModes.Exact,
-        hidden: false,
-      },
-      {
-        id: 'newsArticlesAssociatedWithProject',
-        label: 'Has news articles associated with project',
-        type: FilterTypes.Boolean,
-        mode: FilterModes.Exact,
-        hidden: true,
-      },
-    ],
-  },
-  {
     id: INSTITUTIONAL_CATEGORY,
     label: 'Institutional',
     fields: [
@@ -196,6 +169,33 @@ export const CATEGORIES = [
       {
         id: 'hasProjectPartners',
         label: 'Has project partners',
+        type: FilterTypes.Boolean,
+        mode: FilterModes.Exact,
+        hidden: true,
+      },
+    ],
+  },
+  {
+    id: SOCIAL_CATEGORY,
+    label: 'Social',
+    fields: [
+      {
+        id: 'hasCommunityInvolvement',
+        label: 'Has community involvement',
+        type: FilterTypes.Boolean,
+        mode: FilterModes.Exact,
+        hidden: false,
+      },
+      {
+        id: 'hasGenderComponent',
+        label: 'Has gender component',
+        type: FilterTypes.Boolean,
+        mode: FilterModes.Exact,
+        hidden: false,
+      },
+      {
+        id: 'newsArticlesAssociatedWithProject',
+        label: 'Has news articles associated with project',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: true,
