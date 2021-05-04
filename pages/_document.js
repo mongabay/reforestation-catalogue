@@ -38,6 +38,7 @@ export default class MyDocument extends Document {
             }}
           ></script>
           {/* End Google Tag Manager */}
+          <link rel="icon" type="image/png" href="/icons/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Cardo&display=swap"
             rel="stylesheet"
