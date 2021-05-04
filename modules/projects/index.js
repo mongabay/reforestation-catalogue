@@ -101,6 +101,7 @@ export default projectsActions =>
         state.filters = newState.filters || [];
         state.embed = newState.embed;
         state.embedType = newState.embedType;
+        state.id = newState.id;
       },
     },
   });

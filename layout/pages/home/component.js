@@ -44,6 +44,7 @@ function HomePageLayout(props) {
     filters: filtersInitialQuery,
     embed: embedInitialQuery,
     embedType: embedTypeInitialQuery,
+    id,
   } = initialQuery;
   const router = useRouter();
 
@@ -56,6 +57,7 @@ function HomePageLayout(props) {
         filters: JSON.parse(filtersInitialQuery),
         embed: embedInitialQuery === true || embedInitialQuery === 'true',
         embedType: embedTypeInitialQuery,
+        id,
       });
     } else {
       updateCountry(COUNTRIES_SPECIAL_VALUES.ALL);
@@ -77,14 +79,17 @@ function HomePageLayout(props) {
       country
     )}&filters=${encodeURIComponent(
       JSON.stringify(filters)
-    )}&embed=${embed}&embedType=${embedType}`;
+    )}&embed=${embed}&embedType=${embedType}&id=${id}`;
     router.push(newRoute, undefined, { shallow: true });
-  }, [sort, country, filters, embed, embedType]);
+  }, [sort, country, filters, embed, embedType, id]);
 
   const projectsLength = projects.length;
   const projectsPercentage = Math.round((projectsLength * 100.0) / totalNumberOfProjects);
+  // embed options
   const isEmbedFilters = embed && embedType === EmbedTypes.Filters;
   const isEmbedProjectList = embed && embedType === EmbedTypes.ProjectList;
+  const isEmbedProject = embed && embedType === EmbedTypes.ProjectCard;
+  const embeddedProject = projects.find(p => `${p.projectNumber}` === id);
 
   return (
     <div className="home-layout">
@@ -99,6 +104,11 @@ function HomePageLayout(props) {
               </div>
               <p>{projectsPage?.descriptionText}</p>
             </div>
+          </div>
+        )}
+        {isEmbedProject && embeddedProject && (
+          <div className="embed-project-card">
+            <ProjectCard project={embeddedProject} openInNewWindow={true} />
           </div>
         )}
         <div className="data-container">
