@@ -1,5 +1,4 @@
 import math
-from slugify import slugify
 import os
 import pandas as pd
 import numpy as np
@@ -7,6 +6,8 @@ import json
 import warnings
 
 IN_PATH = './input/'
+with open('./lib/consts/validation_consts.json') as f:
+    VALIDATION_CONSTS = json.load(f)
 
 
 def importCsv(in_path=IN_PATH):
@@ -50,9 +51,6 @@ def importCsv(in_path=IN_PATH):
 
 
 def validateCols(df):
-    with open('./lib/consts/validation_consts.json') as f:
-        VALIDATION_CONSTS = json.load(f)
-
     validation_keys = list(VALIDATION_CONSTS.keys())
 
     data_cols = list(df.columns)
@@ -73,9 +71,6 @@ def validateCols(df):
 
 
 def castValues(df):
-    with open('./lib/consts/validation_consts.json') as f:
-        VALIDATION_CONSTS = json.load(f)
-
     is_valid = True
 
     # booleans
@@ -93,7 +88,6 @@ def castValues(df):
 
     for k, whitelist in number_keys.items():
 
-        # TODO: fix nan
         def castFunc(x):
             if x is None:
                 return np.nan
@@ -105,7 +99,17 @@ def castValues(df):
         df[k] = df[k].apply(
             lambda x: castFunc(x))
 
-    # remove nans introduced by apply
+    # cast species keys
+    def castSpecies(row):
+        has_species = row["Discloses species used"]
+        if not has_species:
+            row['Use native species'] = None
+            row['Use exotic species'] = None
+        return row
+
+    df = df.apply(lambda r: castSpecies(r), axis=1)
+
+    # remove nans introduced by .apply
     df = df.fillna(np.nan).replace([np.nan], [None])
 
     # clean Project names
@@ -143,15 +147,9 @@ def cleanNames(df):
     return df
 
 
-def toCamel(s):
-    snake_str = slugify(s, separator='_', replacements=[["'s", ' is']])
-    first_word, *others = snake_str.split('_')
-    return ''.join([first_word.lower(), *map(str.title, others)])
-
-
 def convertColumns(df):
-    cols = df.columns
-    slug_mapping = {k: toCamel(k) for k in cols}
+    """Map columns from the csv to camelcase slugs"""
+    slug_mapping = {k: v['slug'] for k, v in VALIDATION_CONSTS.items()}
     parsed_df = df.rename(columns=slug_mapping)
     return parsed_df
 
