@@ -99,6 +99,10 @@
             
             .country-container {
               margin-left: 36px;
+
+              select {
+                max-width: 300px;
+              }
             }
 
             .country-container, .sort-container {

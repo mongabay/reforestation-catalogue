@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { AboutPageLayoutProps } from './types';
+// services
+import { getConfigData } from 'services/config';
 
 import Header from 'layout/header';
 
-const AboutPage: React.FC<AboutPageLayoutProps> = () => {
+import { AboutPageLayoutProps } from './types';
+
+const AboutPage: React.FC<AboutPageLayoutProps> = ({
+  aboutPage,
+  setConfig,
+}: AboutPageLayoutProps) => {
+  useEffect(() => {
+    // ------ LOAD DATA ------------
+    // ---- load config -------------
+    getConfigData()
+      .then(response => setConfig(response.data))
+      .catch(error => console.error(error));
+  }, []);
+
   return (
     <div className="c-about-page-layout">
       <Header hideAboutButton={true} />
@@ -19,38 +33,7 @@ const AboutPage: React.FC<AboutPageLayoutProps> = () => {
           </div>
         </div>
         <div className="right-container">
-          <div className="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </div>
+          <div className="content" dangerouslySetInnerHTML={{ __html: aboutPage.mainText }} />
           <div className="partners">
             <h2>Project Partners</h2>
             <div className="logos">
