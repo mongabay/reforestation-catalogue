@@ -198,6 +198,11 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
                 Suggest Page Edits
               </a>
             </motion.div>
+            <motion.div className="id-container">
+              {`*Use ID `}
+              <span className="-bold">{project?.projectNumber}</span>
+              {` in the submission form.`}
+            </motion.div>
           </div>
           <div className="right-container">
             {/* ----------------------CONTEXT --------------------- */}
