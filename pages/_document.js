@@ -16,14 +16,14 @@ export default class MyDocument extends Document {
           <meta name="viewport" content="width=1024, initial-scale=1, shrink-to-fit=no" />
           <meta name="author" content="Vizzuality" />
           {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-K4R5ND4"></script>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW"></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'GTM-K4R5ND4');`,
+  gtag('config', 'G-T9GHWQF8VW');`,
             }}
           ></script>
 

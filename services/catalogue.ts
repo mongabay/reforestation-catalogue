@@ -84,7 +84,7 @@ export const CATEGORIES = [
       },
       {
         id: 'addressesKnownThreats',
-        label: 'Adresses known threats',
+        label: 'Addresses known threats',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
