@@ -57,6 +57,7 @@ function HomePageLayout(props) {
       embedInitialQuery ||
       embedTypeInitialQuery
     ) {
+      console.log('useEffect loadInitialState', embedTypeInitialQuery);
       loadInitialState({
         country: countryInitialQuery,
         sort: sortInitialQuery,
