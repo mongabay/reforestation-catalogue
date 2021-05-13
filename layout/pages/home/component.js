@@ -38,6 +38,8 @@ function HomePageLayout(props) {
     embedType,
   } = props;
 
+  const router = useRouter();
+
   const {
     country: countryInitialQuery,
     sort: sortInitialQuery,
@@ -46,7 +48,6 @@ function HomePageLayout(props) {
     embedType: embedTypeInitialQuery,
     id,
   } = initialQuery;
-  const router = useRouter();
 
   useEffect(() => {
     // Load params into Redux if they're present in the URL when loading
@@ -57,7 +58,6 @@ function HomePageLayout(props) {
       embedInitialQuery ||
       embedTypeInitialQuery
     ) {
-      console.log('useEffect loadInitialState', embedTypeInitialQuery);
       loadInitialState({
         country: countryInitialQuery,
         sort: sortInitialQuery,

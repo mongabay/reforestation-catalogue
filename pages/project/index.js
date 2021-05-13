@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 
 // components
 import LayoutProjectPage from 'layout/projects/project-page';
@@ -17,9 +16,5 @@ function ProjectPage() {
 
   return <LayoutProjectPage id={id} />;
 }
-
-ProjectPage.propTypes = {
-  id: PropTypes.string.isRequired,
-};
 
 export default ProjectPage;

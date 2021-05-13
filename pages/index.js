@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // layout
 import StaticPage from 'layout/static-page';
 import HomeLayout from 'layout/pages/home';
 
 function HomePage(props) {
+  const [initialQuery, setInitialQuery] = useState(undefined);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Function to decode URL params to object used from https://stackoverflow.com/questions/8648892/how-to-convert-url-parameters-to-a-javascript-object
+      const search = location.search.substring(1);
+      const queryParams = JSON.parse(
+        '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
+        (key, value) => {
+          return key === '' ? value : decodeURIComponent(value);
+        }
+      );
+      setInitialQuery(queryParams);
+    }
+  }, []);
+
+  if (!initialQuery) return null;
+
   return (
     <StaticPage
       className="p-home"
@@ -14,13 +32,9 @@ function HomePage(props) {
         thumbnailURL: 'https://reforestation.app/images/mongabay-meta-image.png',
       }}
     >
-      <HomeLayout {...props} />
+      <HomeLayout {...props} initialQuery={initialQuery} />
     </StaticPage>
   );
 }
-
-HomePage.getInitialProps = async props => {
-  return { initialQuery: props.query };
-};
 
 export default HomePage;
