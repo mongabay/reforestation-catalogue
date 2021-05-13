@@ -28,7 +28,7 @@ export default class MyDocument extends Document {
           ></script>
 
           {/* Google Tag Manager  */}
-          <script
+          {/* <script
             dangerouslySetInnerHTML={{
               __html: `(function(w,d,s,l,i){w[l] = w[l] || []{'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-K4R5ND4');`,
             }}
-          ></script>
+          ></script> */}
           {/* End Google Tag Manager */}
           <link rel="icon" type="image/png" href="/icons/favicon.ico" />
           <link
