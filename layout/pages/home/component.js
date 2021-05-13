@@ -50,7 +50,13 @@ function HomePageLayout(props) {
 
   useEffect(() => {
     // Load params into Redux if they're present in the URL when loading
-    if (countryInitialQuery || sortInitialQuery || filtersInitialQuery) {
+    if (
+      countryInitialQuery ||
+      sortInitialQuery ||
+      filtersInitialQuery ||
+      embedInitialQuery ||
+      embedTypeInitialQuery
+    ) {
       loadInitialState({
         country: countryInitialQuery,
         sort: sortInitialQuery,
@@ -137,16 +143,23 @@ function HomePageLayout(props) {
                 </div>
                 <div className="legend-text">
                   <p>
-                    Every project in the database is represented with a circular diagram made of five lines, each corresponding to a category:{' '}
+                    Every project in the database is represented with a circular diagram made of
+                    five lines, each corresponding to a category:{' '}
                     <span className="-bold">context</span>,{' '}
                     <span className="-bold">ecological</span>,{' '}
                     <span className="-bold">economic</span>, <span className="-bold">social</span>,
                     and
-                    <span className="-bold"> institutional</span>.
-                    The completeness of the line indicates how much information is publicly disclosed about the project. 
+                    <span className="-bold"> institutional</span>. The completeness of the line
+                    indicates how much information is publicly disclosed about the project.
                   </p>
-                  <p className="-italic">Diagrams with black lines means that projects are ongoing, while gray lines denote projects that are no longer active.</p>
-                  <p className="-italic">The orange line highlights the category selected to sort the projects from greatest to least transparency.</p>
+                  <p className="-italic">
+                    Diagrams with black lines means that projects are ongoing, while gray lines
+                    denote projects that are no longer active.
+                  </p>
+                  <p className="-italic">
+                    The orange line highlights the category selected to sort the projects from
+                    greatest to least transparency.
+                  </p>
                 </div>
               </div>
             )}
