@@ -26,14 +26,36 @@
     display: flex;
     padding: 0px 10%;
 
-    .left-container {
-      width: 260px;
+    &.-mobile {
+      flex-direction: column;
+    }
 
-      .text-container {
-        display: flex;
-        flex-direction: column;
-        margin-top: 85px;
+    .left-container {
+
+      &.-desktop {
+        width: 260px;
       }
+
+      &.-mobile {
+        margin-bottom: 40px;
+      }
+
+      .chart-and-text-container {
+        &.-mobile {
+          display: flex;
+          align-items: center;
+        }
+        &.-desktop {
+          .text-container {
+            margin-top: 85px;
+          }
+        }
+        .text-container {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
       .buttons {
         display: flex;
         flex-direction: column;
@@ -50,7 +72,10 @@
     }
 
     .right-container {
-      margin-left: 120px;
+
+      &.-desktop {
+        margin-left: 120px;
+      }
 
       .category-section {
         margin-bottom: 45px;

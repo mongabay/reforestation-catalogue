@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import * as d3 from 'd3';
+import classnames from 'classnames';
 
 // components
 import Pill from 'components/pill/component';
@@ -9,6 +10,7 @@ import ProjectChart from 'components/project/chart';
 
 // utils
 import { getCategoryInfoModalText } from 'utils/category';
+import { MediaContextProvider, Mobile, Desktop } from 'utils/responsive';
 
 // services
 import {
@@ -60,7 +62,6 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
     const primaryObjectivePurpose = project.primaryObjectivePurpose;
     const severalObjPurposes = primaryObjectivePurpose && primaryObjectivePurpose.indexOf(',') > 0;
     const typeOfFollowUp = project.typeOfFollowUp;
-    const severalTypesOfFollowUp = typeOfFollowUp && typeOfFollowUp.indexOf(',') > 0;
 
     return (
       <>
@@ -165,26 +166,39 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
     );
   };
 
-  return (
-    <div className="c-project-viewer">
-      <motion.div className="title-banner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <h1>{project?.projectName}</h1>
-      </motion.div>
+  const getMainContainer = mobile => (
+    <>
       {project && (
-        <div className="main-container">
-          <div className="left-container">
-            <ProjectChart project={project} cardMode={false} />
-            <motion.div
-              className="text-container"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+        <div
+          className={classnames({ 'main-container': true, '-desktop': !mobile, '-mobile': mobile })}
+        >
+          <div
+            className={classnames({
+              'left-container': true,
+              '-desktop': !mobile,
+              '-mobile': mobile,
+            })}
+          >
+            <div
+              className={classnames({
+                'chart-and-text-container': true,
+                '-desktop': !mobile,
+                '-mobile': mobile,
+              })}
             >
-              <div className="lead-organization">{project?.leadOrganization}</div>
-              <div className="date">
-                {project?.startYear} - {project?.endYear}
-              </div>
-              <div className="country">{project?.country}</div>
-            </motion.div>
+              <ProjectChart project={project} cardMode={false} />
+              <motion.div
+                className="text-container"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <div className="lead-organization">{project?.leadOrganization}</div>
+                <div className="date">
+                  {project?.startYear} - {project?.endYear}
+                </div>
+                <div className="country">{project?.country}</div>
+              </motion.div>
+            </div>
             <motion.div className="buttons">
               <a
                 className="-secondary"
@@ -204,7 +218,13 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
               {` in the submission form.`}
             </motion.div>
           </div>
-          <div className="right-container">
+          <div
+            className={classnames({
+              'right-container': true,
+              '-desktop': !mobile,
+              '-mobile': mobile,
+            })}
+          >
             {/* ----------------------CONTEXT --------------------- */}
             <div className="context category-section">
               <div className="category-title">
@@ -322,6 +342,18 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
           </div>
         </div>
       )}
+    </>
+  );
+
+  return (
+    <div className="c-project-viewer">
+      <motion.div className="title-banner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <h1>{project?.projectName}</h1>
+      </motion.div>
+      <MediaContextProvider>
+        <Mobile>{getMainContainer(true)}</Mobile>
+        <Desktop>{getMainContainer(false)}</Desktop>
+      </MediaContextProvider>
     </div>
   );
 };

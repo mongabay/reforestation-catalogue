@@ -8,10 +8,19 @@
     display: flex;
 
     a {
-      width: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      &:last-child {
-        margin-left: 25px;
+      &.-desktop {
+        width: 260px;
+        &:last-child {
+          margin-left: 25px;
+        }
+      }
+
+      &.-mobile {
+        margin: 0px 10px;
       }
     }
   }
