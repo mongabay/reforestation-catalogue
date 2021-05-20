@@ -71,7 +71,7 @@ const AboutPage: React.FC<AboutPageLayoutProps> = ({
         </Mobile>
         <Desktop>
           {getTitle(false)}
-          {getMainContainer(true)}
+          {getMainContainer(false)}
         </Desktop>
       </MediaContextProvider>
     </div>
