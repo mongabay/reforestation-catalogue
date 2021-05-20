@@ -6,6 +6,9 @@ import classnames from 'classnames';
 
 import { Category, COUNTRIES_SPECIAL_VALUES, EmbedTypes } from 'types';
 
+// utils
+import { Mobile, MediaContextProvider, Desktop } from 'utils/responsive';
+
 // components
 import CatalogueFilter from 'components/catalogue/filter';
 import Select from 'components/forms/select';
@@ -98,154 +101,177 @@ function HomePageLayout(props) {
   const isEmbedProject = embed && embedType === EmbedTypes.ProjectCard;
   const embeddedProject = projects.find(p => `${p.projectNumber}` === id);
 
-  return (
-    <div className="home-layout">
-      {!embed && <Header />}
-      <div className="main-container">
-        {!embed && (
-          <div className="top-container">
-            <div className="column col-sm-10 col-md-8 col-xl-6 col-offset-1">
-              <div className="title">
-                <h2>{`MONGABAY`}</h2>
-                <h1>REFORESTATION DIRECTORY</h1>
-              </div>
-              <p>{projectsPage?.descriptionText}</p>
+  const getMainContainer = mobile => (
+    <div className={classnames({ 'main-container': true, '-mobile': mobile, '-desktop': !mobile })}>
+      {!embed && (
+        <div className="top-container">
+          <div className="column col-sm-10 col-md-8 col-xl-6 col-offset-1">
+            <div className="title">
+              <h2>{`MONGABAY`}</h2>
+              <h1>REFORESTATION DIRECTORY</h1>
             </div>
+            <p>{projectsPage?.descriptionText}</p>
           </div>
-        )}
-        {isEmbedProject && embeddedProject && (
-          <div className="embed-project-card">
-            <ProjectCard project={embeddedProject} openInNewWindow={true} />
-          </div>
-        )}
-        <div className="data-container">
-          <div
-            className={classnames({
-              'left-container': true,
-              '-hidden': isEmbedProjectList,
-              '-no-width-restriction': isEmbedFilters,
-            })}
-          >
-            {!embed && (
-              <div className="intro-container">
-                <h3>A Transparency Index.</h3>
-                <div className="legend-chart">
-                  <RadialChart
-                    categoriesPercentages={{
-                      [Category.Context]: 70,
-                      [Category.Ecological]: 70,
-                      [Category.Economic]: 70,
-                      [Category.Social]: 70,
-                      [Category.Institutional]: 70,
-                    }}
-                    highlightedCategory={sort}
-                    legendMode={true}
-                  />
-                </div>
-                <div className="legend-text">
-                  <p>
-                    Every project in the database is represented with a circular diagram made of
-                    five lines, each corresponding to a category:{' '}
-                    <span className="-bold">context</span>,{' '}
-                    <span className="-bold">ecological</span>,{' '}
-                    <span className="-bold">economic</span>, <span className="-bold">social</span>,
-                    and
-                    <span className="-bold"> institutional</span>. The completeness of the line
-                    indicates how much information is publicly disclosed about the project.
-                  </p>
-                  <p className="-italic">
-                    Diagrams with black lines means that projects are ongoing, while gray lines
-                    denote projects that are no longer active.
-                  </p>
-                  <p className="-italic">
-                    The orange line highlights the category selected to sort the projects from
-                    greatest to least transparency.
-                  </p>
-                </div>
+        </div>
+      )}
+      {isEmbedProject && embeddedProject && (
+        <div className="embed-project-card">
+          <ProjectCard project={embeddedProject} openInNewWindow={true} />
+        </div>
+      )}
+      <div
+        className={classnames({ 'data-container': true, '-mobile': mobile, '-desktop': !mobile })}
+      >
+        <div
+          className={classnames({
+            'left-container': true,
+            '-hidden': isEmbedProjectList,
+            '-no-width-restriction': isEmbedFilters,
+            '-mobile': mobile,
+            '-desktop': !mobile,
+          })}
+        >
+          {!embed && (
+            <div className="intro-container">
+              <h3>A Transparency Index.</h3>
+              <div className="legend-chart">
+                <RadialChart
+                  categoriesPercentages={{
+                    [Category.Context]: 70,
+                    [Category.Ecological]: 70,
+                    [Category.Economic]: 70,
+                    [Category.Social]: 70,
+                    [Category.Institutional]: 70,
+                  }}
+                  highlightedCategory={sort}
+                  legendMode={true}
+                />
               </div>
-            )}
-            {(!embed || isEmbedFilters) && (
-              <div className="intro-filters-container">
-                <h3>{projectsPage?.findProjectsOfInterestTitle}</h3>
-                <p>{projectsPage?.fintProjectsOfInterestDescription}</p>
-                <p className="-bold">
-                  {`${projectsLength} projects (${projectsPercentage}%) meet your filtering criteria`}
+              <div className="legend-text">
+                <p>
+                  Every project in the database is represented with a circular diagram made of five
+                  lines, each corresponding to a category: <span className="-bold">context</span>,{' '}
+                  <span className="-bold">ecological</span>, <span className="-bold">economic</span>
+                  , <span className="-bold">social</span>, and
+                  <span className="-bold"> institutional</span>. The completeness of the line
+                  indicates how much information is publicly disclosed about the project.
                 </p>
-                <CatalogueFilter />
+                <p className="-italic">
+                  Diagrams with black lines means that projects are ongoing, while gray lines denote
+                  projects that are no longer active.
+                </p>
+                <p className="-italic">
+                  The orange line highlights the category selected to sort the projects from
+                  greatest to least transparency.
+                </p>
               </div>
-            )}
-          </div>
-          {isEmbedFilters && (
-            <div className="embed-filters-button-container">
-              <a
-                className="btn btn-primary"
-                href={`${window.location}`.replace('embed=true', 'embed=false')}
-                target="_blank"
-                rel="noreferrer"
-              >
-                View on the Reforestation Catalogue
-              </a>
             </div>
           )}
-          {(!embed || isEmbedProjectList) && (
-            <div
-              className={classnames({
-                'right-container': true,
-                '-fullwidth': embed && embedType === EmbedTypes.ProjectList,
-              })}
-            >
-              <div className="projects-list">
-                {!embed && (
-                  <div className="list-header">
-                    <div className="sort-container">
-                      <label htmlFor="sort-select">Sort by category</label>
-                      <Select
-                        id="sort-select"
-                        options={SORT_OPTIONS}
-                        defaultValue={sort}
-                        value={sort}
-                        onChange={({ value }) => {
-                          updateSort(value);
-                        }}
-                      />
-                    </div>
-                    <div className="country-container">
-                      <label htmlFor="country-select">Country: </label>
-                      <Select
-                        id="country-select"
-                        options={countries.map(c => ({ value: c, label: c }))}
-                        onChange={({ value }) => updateCountry(value)}
-                        defaultValue={country}
-                        value={country}
-                      />
-                    </div>
-                  </div>
-                )}
-                <div className="project-cards-container">
-                  <div className="row justify-content-between">
-                    {projects &&
-                      projects.map(p => (
-                        <motion.div
-                          key={p.projectNumber}
-                          className="column"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.2 }}
-                        >
-                          <ProjectCard
-                            project={p}
-                            highlightedCategory={sort}
-                            openInNewWindow={isEmbedProjectList}
-                          />
-                        </motion.div>
-                      ))}
-                  </div>
-                </div>
-              </div>
+          {(!embed || isEmbedFilters) && (
+            <div className="intro-filters-container">
+              <h3>{projectsPage?.findProjectsOfInterestTitle}</h3>
+              <p>{projectsPage?.fintProjectsOfInterestDescription}</p>
+              <p className="-bold">
+                {`${projectsLength} projects (${projectsPercentage}%) meet your filtering criteria`}
+              </p>
+              <CatalogueFilter />
             </div>
           )}
         </div>
+        {isEmbedFilters && (
+          <div className="embed-filters-button-container">
+            <a
+              className="btn btn-primary"
+              href={`${window.location}`.replace('embed=true', 'embed=false')}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View on the Reforestation Catalogue
+            </a>
+          </div>
+        )}
+        {(!embed || isEmbedProjectList) && (
+          <div
+            className={classnames({
+              'right-container': true,
+              '-fullwidth': embed && embedType === EmbedTypes.ProjectList,
+              '-mobile': mobile,
+              '-desktop': !mobile,
+            })}
+          >
+            <div className="projects-list">
+              {!embed && (
+                <div
+                  className={classnames({
+                    'list-header': true,
+                    '-mobile': mobile,
+                    '-desktop': !mobile,
+                  })}
+                >
+                  <div className="sort-container">
+                    <label htmlFor="sort-select">Sort by category</label>
+                    <Select
+                      id="sort-select"
+                      options={SORT_OPTIONS}
+                      defaultValue={sort}
+                      value={sort}
+                      onChange={({ value }) => {
+                        updateSort(value);
+                      }}
+                    />
+                  </div>
+                  <div className="country-container">
+                    <label htmlFor="country-select">Country: </label>
+                    <Select
+                      id="country-select"
+                      options={countries.map(c => ({ value: c, label: c }))}
+                      onChange={({ value }) => updateCountry(value)}
+                      defaultValue={country}
+                      value={country}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className="project-cards-container">
+                <div
+                  className={classnames({
+                    row: true,
+                    'justify-content-between': !mobile,
+                    'justify-content-center': mobile,
+                  })}
+                >
+                  {projects &&
+                    projects.map(p => (
+                      <motion.div
+                        key={p.projectNumber}
+                        className="column"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <ProjectCard
+                          project={p}
+                          highlightedCategory={sort}
+                          openInNewWindow={isEmbedProjectList}
+                        />
+                      </motion.div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
+    </div>
+  );
+
+  return (
+    <div className="home-layout">
+      {!embed && <Header />}
+      <MediaContextProvider>
+        <Mobile>{getMainContainer(true)}</Mobile>
+        <Desktop>{getMainContainer(false)}</Desktop>
+      </MediaContextProvider>
     </div>
   );
 }

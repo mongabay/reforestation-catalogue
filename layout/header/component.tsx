@@ -14,15 +14,19 @@ const Header: React.FC<HeaderProps> = ({
 }: HeaderProps) => {
   const getButtons = mobile => (
     <>
-      <div className="buttons">
+      <div className={classnames({ buttons: true, '-mobile': mobile, '-desktop': !mobile })}>
         {!hideAboutButton && (
           <Link href="about">
-            <a className="-secondary">About</a>
+            <a
+              className={classnames({ '-secondary': true, '-mobile': mobile, '-desktop': !mobile })}
+            >
+              About
+            </a>
           </Link>
         )}
         <Link href="./#">
           <a
-            className="-primary"
+            className={classnames({ '-primary': true, '-mobile': mobile, '-desktop': !mobile })}
             href={submitProjectInformationURL}
             target="_blank"
             rel="noreferrer"

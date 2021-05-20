@@ -8,7 +8,10 @@
     display: flex;
 
     a {
-      width: 260px;
+
+      &.-desktop {
+        width: 260px;
+      }
 
       &:last-child {
         margin-left: 25px;
