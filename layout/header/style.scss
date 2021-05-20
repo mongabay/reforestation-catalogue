@@ -8,13 +8,19 @@
     display: flex;
 
     a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &.-desktop {
         width: 260px;
+        &:last-child {
+          margin-left: 25px;
+        }
       }
 
-      &:last-child {
-        margin-left: 25px;
+      &.-mobile {
+        margin: 0px 10px;
       }
     }
   }
