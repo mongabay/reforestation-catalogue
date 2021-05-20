@@ -116,9 +116,11 @@
 
             &.-mobile {
               flex-direction: column;
+              
               .country-container, .sort-container {
                 display: flex;
                 flex-direction: column;
+                margin-bottom: 10px;
               }
             }
 
