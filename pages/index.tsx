@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import StaticPage from 'layout/static-page';
 import HomeLayout from 'layout/pages/home';
 
-function HomePage(props) {
+const HomePage: React.FC = () => {
   const [initialQuery, setInitialQuery] = useState(undefined);
 
   useEffect(() => {
@@ -36,9 +36,9 @@ function HomePage(props) {
         thumbnailURL: 'https://reforestation.app/images/mongabay-meta-image.png',
       }}
     >
-      <HomeLayout {...props} initialQuery={initialQuery} />
+      <HomeLayout initialQuery={initialQuery} />
     </StaticPage>
   );
-}
+};
 
 export default HomePage;

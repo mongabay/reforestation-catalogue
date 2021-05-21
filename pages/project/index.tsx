@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 // components
 import LayoutProjectPage from 'layout/projects/project-page';
 
-function ProjectPage() {
+const ProjectPage: React.FC = () => {
   const [id, setId] = useState(undefined);
 
   useEffect(() => {
@@ -15,6 +15,6 @@ function ProjectPage() {
   if (!id) return null;
 
   return <LayoutProjectPage id={id} />;
-}
+};
 
 export default ProjectPage;
