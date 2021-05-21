@@ -1,12 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import ReactModal from 'react-modal';
 
 import Icon from 'components/icon';
 
 ReactModal.setAppElement('#root');
 
-const Modal = ({ open, onClose, title, children, className }) => (
+interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  children: ReactNode;
+  className?: string;
+}
+
+const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, className }: ModalProps) => (
   <ReactModal
     isOpen={open}
     onRequestClose={onClose}
@@ -19,17 +26,5 @@ const Modal = ({ open, onClose, title, children, className }) => (
     <div className="content">{children}</div>
   </ReactModal>
 );
-
-Modal.propTypes = {
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
-Modal.defaultProps = {
-  className: null,
-};
 
 export default Modal;
