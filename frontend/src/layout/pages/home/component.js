@@ -1,26 +1,28 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
+
 import classnames from 'classnames';
 
-import { Category, COUNTRIES_SPECIAL_VALUES, EmbedTypes } from 'types';
+import { useRouter } from 'next/router';
+
+import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 // utils
-import { Mobile, MediaContextProvider, Desktop } from 'utils/responsive';
 
 // components
 import CatalogueFilter from 'components/catalogue/filter';
 import Select from 'components/forms/select';
 import ProjectCard from 'components/project/card';
 import RadialChart from 'components/radial-chart';
+import { Category, COUNTRIES_SPECIAL_VALUES, EmbedTypes } from 'types';
+import { Mobile, MediaContextProvider, Desktop } from 'utils/responsive';
 
 // services
 import { getCatalogueData, SORT_OPTIONS } from 'services/catalogue';
 import { getConfigData } from 'services/config';
 
 // styles
-import Header from 'layout/header';
+// import Header from 'layout/header';
 
 function HomePageLayout(props) {
   const {
@@ -76,16 +78,16 @@ function HomePageLayout(props) {
     // ------ LOAD DATA ------------
     // ---- load config -------------
     getConfigData()
-      .then(response => setConfig(response.data))
-      .catch(error => console.error(error));
+      .then((response) => setConfig(response.data))
+      .catch((error) => console.error(error));
     // ---- load projects
     getCatalogueData()
-      .then(response => updateData(response.data))
-      .catch(error => console.error(error));
+      .then((response) => updateData(response.data))
+      .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
-    const newRoute = `/?sort=${encodeURIComponent(sort)}&country=${encodeURIComponent(
+    const newRoute = `/explore?sort=${encodeURIComponent(sort)}&country=${encodeURIComponent(
       country
     )}&filters=${encodeURIComponent(
       JSON.stringify(filters)
@@ -99,9 +101,9 @@ function HomePageLayout(props) {
   const isEmbedFilters = embed && embedType === EmbedTypes.Filters;
   const isEmbedProjectList = embed && embedType === EmbedTypes.ProjectList;
   const isEmbedProject = embed && embedType === EmbedTypes.ProjectCard;
-  const embeddedProject = projects.find(p => `${p.projectNumber}` === id);
+  const embeddedProject = projects.find((p) => `${p.projectNumber}` === id);
 
-  const getMainContainer = mobile => (
+  const getMainContainer = (mobile) => (
     <div className={classnames({ 'main-container': true, '-mobile': mobile, '-desktop': !mobile })}>
       {!embed && (
         <div className="top-container">
@@ -224,7 +226,7 @@ function HomePageLayout(props) {
                     <label htmlFor="country-select">Country: </label>
                     <Select
                       id="country-select"
-                      options={countries.map(c => ({ value: c, label: c }))}
+                      options={countries.map((c) => ({ value: c, label: c }))}
                       onChange={({ value }) => updateCountry(value)}
                       defaultValue={country}
                       value={country}
@@ -241,7 +243,7 @@ function HomePageLayout(props) {
                   })}
                 >
                   {projects &&
-                    projects.map(p => (
+                    projects.map((p) => (
                       <motion.div
                         key={p.projectNumber}
                         className="column"
@@ -267,7 +269,7 @@ function HomePageLayout(props) {
 
   return (
     <div className="home-layout">
-      {!embed && <Header />}
+      {/* {!embed && <Header />} */}
       <MediaContextProvider>
         <Mobile>{getMainContainer(true)}</Mobile>
         <Desktop>{getMainContainer(false)}</Desktop>

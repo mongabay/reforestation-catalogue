@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 // layout
+import Head from 'components/head';
 import HomeLayout from 'layout/pages/home';
-import StaticPage from 'layout/static-page';
+import { StaticPageLayoutProps } from 'layout/static-page';
+import { PageComponent } from 'types';
 
-function HomePage(props) {
+export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => {
   const [initialQuery, setInitialQuery] = useState(undefined);
 
   useEffect(() => {
@@ -28,17 +30,11 @@ function HomePage(props) {
   if (!initialQuery) return null;
 
   return (
-    <StaticPage
-      className="p-home"
-      meta={{
-        title: 'Mongabay Reforestation Catalogue',
-        description: 'Welcome to Mongabay’s directory of reforestation and tree-planting projects.',
-        thumbnailURL: 'https://reforestation.app/images/mongabay-meta-image.png',
-      }}
-    >
+    <>
+      <Head />
       <HomeLayout {...props} initialQuery={initialQuery} />
-    </StaticPage>
+    </>
   );
-}
+};
 
-export default HomePage;
+export default ExplorePage;

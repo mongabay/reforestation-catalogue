@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
+
 import Link from 'next/link';
+
 import { motion } from 'framer-motion';
 
+import ProjectViewer from 'components/project/project-viewer';
 import StaticPage from 'layout/static-page';
 
-import ProjectViewer from 'components/project/project-viewer';
+import { getCatalogueData } from 'services/catalogue';
 
 import { ProjectPageLayoutProps } from './types';
-
-import { getCatalogueData } from 'services/catalogue';
-import Header from 'layout/header';
 
 const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
   id,
@@ -21,23 +21,15 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
 
     if (!projects || projects.length === 0) {
       getCatalogueData()
-        .then(resp => updateData(resp.data))
-        .catch(err => console.error(err));
+        .then((resp) => updateData(resp.data))
+        .catch((err) => console.error(err));
     }
   }, []);
 
-  const project = projects?.find(p => `${p.projectNumber}` === id);
+  const project = projects?.find((p) => `${p.projectNumber}` === id);
 
   return (
-    <StaticPage
-      className="p-project"
-      meta={{
-        title: 'Mongabay Reforestation Catalogue',
-        description: 'Welcome to Mongabay’s directory of reforestation and tree-planting projects.',
-        thumbnailURL: 'https://reforestation.app/images/mongabay-meta-image.png',
-      }}
-    >
-      <Header />
+    <StaticPage className="p-project">
       <div className="navigation-bar">
         <Link href="/">
           <a>

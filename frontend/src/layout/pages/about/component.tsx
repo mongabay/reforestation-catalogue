@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
+
 import classnames from 'classnames';
 
 // services
+import { MediaContextProvider, Mobile, Desktop } from 'utils/responsive';
+
 import { getConfigData } from 'services/config';
 
-// layout
-import Header from 'layout/header';
-
 // utils
-import { MediaContextProvider, Mobile, Desktop } from 'utils/responsive';
 
 // types
 import { AboutPageLayoutProps } from './types';
@@ -21,11 +20,11 @@ const AboutPage: React.FC<AboutPageLayoutProps> = ({
     // ------ LOAD DATA ------------
     // ---- load config -------------
     getConfigData()
-      .then(response => setConfig(response.data))
-      .catch(error => console.error(error));
+      .then((response) => setConfig(response.data))
+      .catch((error) => console.error(error));
   }, []);
 
-  const getMainContainer = mobile => (
+  const getMainContainer = (mobile) => (
     <div className={classnames({ 'main-container': true, '-desktop': !mobile, '-mobile': mobile })}>
       {!mobile && (
         <div className="left-container">
@@ -54,7 +53,7 @@ const AboutPage: React.FC<AboutPageLayoutProps> = ({
     </div>
   );
 
-  const getTitle = mobile => (
+  const getTitle = (mobile) => (
     <div className={classnames({ title: true, '-desktop': !mobile, '-mobile': mobile })}>
       <h2>{`MONGABAY`}</h2>
       <h1>REFORESTATION DIRECTORY</h1>
@@ -63,7 +62,6 @@ const AboutPage: React.FC<AboutPageLayoutProps> = ({
 
   return (
     <div className="c-about-page-layout">
-      <Header hideAboutButton={true} />
       <MediaContextProvider>
         <Mobile>
           {getTitle(true)}

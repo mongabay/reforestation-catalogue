@@ -1,25 +1,32 @@
 import React from 'react';
 
-import classNames from 'classnames';
+import cx from 'classnames';
 
-import PropTypes from 'prop-types';
+import { omit } from 'lodash-es';
 
-import Head from 'components/head';
-import Icons from 'components/icons';
+import Footer from './footer';
+import Header from './header';
+import { StaticPageLayoutProps } from './types';
 
-const StaticPage = ({ className, children, meta }) => (
-  <div className={classNames('l-simple-page', className)}>
-    <Head meta={meta} />
-    <main className="l-static-page">{children}</main>
-    <Icons />
+export const StaticPageLayout: React.FC<StaticPageLayoutProps> = ({
+  children,
+  headerProps,
+  mainProps,
+  footerProps,
+  ...rest
+}: StaticPageLayoutProps) => (
+  <div {...rest}>
+    <Header props={headerProps} />
+    <main
+      {...omit(mainProps, 'className')}
+      className={cx({
+        [mainProps?.className]: !!mainProps?.className,
+      })}
+    >
+      {children}
+    </main>
+    <Footer props={footerProps} />
   </div>
 );
 
-StaticPage.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
-StaticPage.defaultProps = { className: null };
-
-export default StaticPage;
+export default StaticPageLayout;
