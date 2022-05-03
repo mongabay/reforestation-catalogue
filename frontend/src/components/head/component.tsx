@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Head from 'next/head';
+
 import { HeadProps } from './types';
 
 const HeadComponent: React.FC<HeadProps> = ({

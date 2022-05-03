@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+
 import PropTypes from 'prop-types';
 
 const Select = ({
@@ -15,8 +16,8 @@ const Select = ({
   selectAnOptionText,
 }) => {
   const onChangeSelect = useCallback(
-    e => {
-      const option = options.find(option => option.value === e.target.selectedOptions[0].value);
+    (e) => {
+      const option = options.find((option) => option.value === e.target.selectedOptions[0].value);
       onChange(option);
     },
     [options, onChange]
@@ -38,7 +39,7 @@ const Select = ({
           {selectAnOptionText}
         </option>
       )}
-      {options.map(option => (
+      {options.map((option) => (
         <option key={option.value} value={option.value} disabled={option.disabled}>
           {option.label}
         </option>

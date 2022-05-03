@@ -1,0 +1,4 @@
+/.next
+/node_modules
+/src/public
+next-env.d.ts

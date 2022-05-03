@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+
 import classnames from 'classnames';
 
-import Tooltip from 'components/tooltip';
+import Link from 'next/link';
+
 import RadialChart from 'components/radial-chart';
-
+import Tooltip from 'components/tooltip';
 import { Category, END_YEAR_SPECIAL_VALUES } from 'types';
-
 import { getProjectCategoriesPercentage } from 'utils/project';
 
+import { TITLE_MAX_LENGTH } from './constants';
 import { ProjectChartProps } from './types';
 
 // constants
-import { TITLE_MAX_LENGTH } from './constants';
 
 export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartProps) => {
   const { project, highlightedCategory, cardMode } = props;
@@ -50,7 +50,7 @@ export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartPro
             appendTo={() => document.body}
             content={
               <div className="categories-tooltip">
-                {Object.keys(categoryPercentages).map(cKey => (
+                {Object.keys(categoryPercentages).map((cKey) => (
                   <div
                     key={cKey}
                     className="percentage-value"

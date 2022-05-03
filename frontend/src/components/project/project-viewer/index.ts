@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-import { selectData } from 'modules/projects';
 import { selectCategories, selectButtons } from 'modules/config';
+import { selectData } from 'modules/projects';
 
 import Component from './component';
 
 export default connect(
-  state => ({
+  (state) => ({
     projects: selectData(state),
     categoriesConfig: selectCategories(state),
     suggestPageEditsURL: selectButtons(state).suggestPageEditsURL,

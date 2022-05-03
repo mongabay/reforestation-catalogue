@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import projectsSlice from 'modules/projects';
 import configSlice from 'modules/config';
+import projectsSlice from 'modules/projects';
 
 export default configureStore({
   reducer: combineReducers({

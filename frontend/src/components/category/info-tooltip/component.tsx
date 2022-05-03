@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Image from 'next/image';
+
 import Tooltip from 'components/tooltip';
 
 import { CategoryInfoTooltipProps } from './types';
@@ -16,7 +18,7 @@ const CategoryInfoTooltip: React.FC<CategoryInfoTooltipProps> = ({
       appendTo={() => document.body}
       content={<div className="info-tooltip">{text}</div>}
     >
-      <img className="info-icon" src="icons/info.svg" />
+      <Image className="info-icon" src="/icons/info.svg" width="12" height="12" alt="Info" />
     </Tooltip>
   );
 };

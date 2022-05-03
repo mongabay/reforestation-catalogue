@@ -12,16 +12,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   openInNewWindow,
 }: ProjectCardProps) => {
   return (
-    <div
+    <a
       className="c-project-card"
-      onClick={() =>
-        openInNewWindow
-          ? window.open(`/project?id=${project.projectNumber}`, '_blank')
-          : Router.push(`/project?id=${project.projectNumber}`)
-      }
+      href={`/project?id=${project.projectNumber}`}
+      target={openInNewWindow ? '_blank' : undefined}
+      rel="noreferrer"
     >
       <ProjectChart project={project} highlightedCategory={highlightedCategory} cardMode={true} />
-    </div>
+    </a>
   );
 };
 

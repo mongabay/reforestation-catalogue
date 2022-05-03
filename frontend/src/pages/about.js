@@ -1,8 +1,8 @@
 import React from 'react';
 
 // layout
-import StaticPage from 'layout/static-page';
 import AboutLayout from 'layout/pages/about';
+import StaticPage from 'layout/static-page';
 
 function AboutPage(props) {
   return (
@@ -19,7 +19,7 @@ function AboutPage(props) {
   );
 }
 
-AboutPage.getInitialProps = async props => {
+AboutPage.getInitialProps = async (props) => {
   return { initialQuery: props.query };
 };
 

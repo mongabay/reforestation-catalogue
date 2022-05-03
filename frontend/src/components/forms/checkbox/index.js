@@ -1,4 +1,5 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 
 const Checkbox = ({ id, name, disabled, checked, onChange, children, className }) => (

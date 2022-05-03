@@ -1,11 +1,13 @@
 import React from 'react';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { motion } from 'framer-motion';
 
 import { getFieldByID } from 'services/catalogue';
 
 import { PillProps } from './types';
-
-import Link from 'next/link';
 
 const Pill: React.FC<PillProps> = ({ filter, removeFilter, linkMode }: PillProps) => {
   const filterValue = getFieldByID(filter.propertyName);
@@ -28,8 +30,9 @@ const Pill: React.FC<PillProps> = ({ filter, removeFilter, linkMode }: PillProps
       {!linkMode && (
         <>
           {getText()}
-          <button onClick={() => removeFilter(filter)}>
-            <img src="/icons/cross.svg" />
+          <button type="button" onClick={() => removeFilter(filter)}>
+            <span className="sr-only">Remove</span>
+            <Image src="/icons/cross.svg" width="10" height="10" alt="Cross" aria-hidden />
           </button>
         </>
       )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import {
   Accordion as ReactAccordion,
   AccordionItem as ReactAccordionItem,
@@ -7,6 +7,8 @@ import {
   AccordionItemButton as ReactAccordionItemButton,
   AccordionItemPanel as ReactAccordionItemPanel,
 } from 'react-accessible-accordion';
+
+import PropTypes from 'prop-types';
 
 import Icon from 'components/icon';
 

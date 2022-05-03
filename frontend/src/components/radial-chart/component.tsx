@@ -1,8 +1,10 @@
 import React from 'react';
+
 import classnames from 'classnames';
 
-import { RadialChartProps } from './types';
 import { Category } from 'types';
+
+import { RadialChartProps } from './types';
 
 const RadialChart: React.FC<RadialChartProps> = ({
   highlightedCategory,

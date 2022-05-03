@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 // layout
-import StaticPage from 'layout/static-page';
 import HomeLayout from 'layout/pages/home';
+import StaticPage from 'layout/static-page';
 
 function HomePage(props) {
   const [initialQuery, setInitialQuery] = useState(undefined);

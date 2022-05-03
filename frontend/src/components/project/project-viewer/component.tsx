@@ -1,14 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import * as d3 from 'd3';
+
 import classnames from 'classnames';
 
-// components
-import Pill from 'components/pill/component';
-import CategoryInfoTooltip from 'components/category/info-tooltip/component';
-import ProjectChart from 'components/project/chart';
+import * as d3 from 'd3';
+import { motion } from 'framer-motion';
 
-// utils
+import CategoryInfoTooltip from 'components/category/info-tooltip/component';
+import Pill from 'components/pill/component';
+import ProjectChart from 'components/project/chart';
+import { FilterTypes } from 'types';
 import { getCategoryInfoModalText } from 'utils/category';
 import { MediaContextProvider, Mobile, Desktop } from 'utils/responsive';
 
@@ -22,12 +22,10 @@ import {
   SOCIAL_CATEGORY,
 } from 'services/catalogue';
 
+import { UNREPORTED_TEXT } from './constants';
 import { ProjectViewerProps } from './types';
 
 // constants
-import { UNREPORTED_TEXT } from './constants';
-
-import { FilterTypes } from 'types';
 
 const ProjectViewer: React.FC<ProjectViewerProps> = ({
   project,
@@ -37,13 +35,13 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
   const getReportedFieldsForCategory = (category, reported) => {
     return (
       <div className="pills-container">
-        {CATEGORIES.find(c => c.id === category)
+        {CATEGORIES.find((c) => c.id === category)
           .fields.filter(
-            field =>
+            (field) =>
               field.type === FilterTypes.Boolean &&
               (reported ? project[field.id] : !project[field.id])
           )
-          .map(f => (
+          .map((f) => (
             <Pill
               key={`pill-${f.id}`}
               filter={{ ...f, propertyName: f.id, value: reported }}
@@ -54,7 +52,7 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
     );
   };
 
-  const getContextDynamicText = project => {
+  const getContextDynamicText = (project) => {
     const projectArea = project.sizeOfProjectHa && d3.format('.4s')(project.sizeOfProjectHa);
     const treesPlanted = project.treesPlantedNumber && d3.format('.4s')(project.treesPlantedNumber);
     const approach = project.approach;
@@ -166,7 +164,7 @@ const ProjectViewer: React.FC<ProjectViewerProps> = ({
     );
   };
 
-  const getMainContainer = mobile => (
+  const getMainContainer = (mobile) => (
     <>
       {project && (
         <div

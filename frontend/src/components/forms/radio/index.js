@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+
 import PropTypes from 'prop-types';
 
 const Component = ({ id, name, disabled, checked, onChange, children, className }, ref) => (

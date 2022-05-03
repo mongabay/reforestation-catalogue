@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 
-import { CATEGORIES } from 'services/catalogue';
-
-import { FilterTypes } from 'types';
-
-// components
+import CategoryInfoTooltip from 'components/category/info-tooltip/component';
 import { Radio, Select, Range } from 'components/forms';
 import Pill from 'components/pill';
-import CategoryInfoTooltip from 'components/category/info-tooltip/component';
-
-//utils
-import { getUniqueValuesForField } from 'utils/project';
+import { FilterTypes } from 'types';
 import { getCategoryInfoModalText } from 'utils/category';
+import { getUniqueValuesForField } from 'utils/project';
+
+import { CATEGORIES } from 'services/catalogue';
 
 import { CatelogueFilterProps } from './types';
 
@@ -26,13 +22,13 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
   const [yearValue, setYearValue] = useState(YEAR_DEFAULT_VALUE);
   const [numberValue, setNumberValue] = useState(0);
 
-  const getFilterCreator = filter => {
+  const getFilterCreator = (filter) => {
     if (filter.type === FilterTypes.String) {
       return (
         <div className="select-filter">
           <Select
             options={getUniqueValuesForField(projects, filter.value, filter.commaSeparated).map(
-              e => ({
+              (e) => ({
                 value: e,
                 label: e,
               })
@@ -153,8 +149,8 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
 
   return (
     <div className="c-catalogue-filter">
-      {CATEGORIES.map(c => {
-        const categoryFieldIDs = c.fields.map(cf => cf.id);
+      {CATEGORIES.map((c) => {
+        const categoryFieldIDs = c.fields.map((cf) => cf.id);
 
         return (
           <div key={`category-${c.id}`} className="category-container">
@@ -168,8 +164,8 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
                 className="filter-selector"
                 defaultValue={null}
                 onChange={({ value }) => {
-                  const filterValue = CATEGORIES.find(elem => elem.id === c.id).fields.find(
-                    f => f.id === value
+                  const filterValue = CATEGORIES.find((elem) => elem.id === c.id).fields.find(
+                    (f) => f.id === value
                   );
                   setFilterSelected({
                     ...filterValue,
@@ -178,8 +174,8 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
                   });
                 }}
                 options={c.fields
-                  .filter(f => !f.hidden)
-                  .map(f => ({
+                  .filter((f) => !f.hidden)
+                  .map((f) => ({
                     ...f,
                     label: f.label,
                     value: f.id,
@@ -193,8 +189,10 @@ const CatelogueFilter: React.FC<CatelogueFilterProps> = ({
               <div className="filters-applied">
                 {filters &&
                   filters
-                    .filter(f => categoryFieldIDs.includes(f.propertyName))
-                    .map(f => <Pill key={`pill-${f.propertyName}`} filter={f} linkMode={false} />)}
+                    .filter((f) => categoryFieldIDs.includes(f.propertyName))
+                    .map((f) => (
+                      <Pill key={`pill-${f.propertyName}`} filter={f} linkMode={false} />
+                    ))}
               </div>
             </div>
           </div>

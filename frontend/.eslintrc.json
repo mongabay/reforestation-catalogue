@@ -1,0 +1,113 @@
+{
+  "extends": ["next/core-web-vitals", "next", "prettier", "plugin:prettier/recommended", "plugin:jsx-a11y/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    // This rule is necessary to fix some issues between jsx-a11y and Next.js:
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/ea877c4cf4c8df7e735cafceefd591c203cca7d7/docs/rules/anchor-is-valid.md#case-i-use-nextjs-and-im-getting-this-error-inside-of-links
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "hrefLeft", "hrefRight" ],
+      "aspects": [ "invalidHref", "preferButton" ]
+    }],
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "import/no-anonymous-default-export": 0,
+    "import/no-named-as-default": 0,
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react**",
+            "group": "builtin"
+          },
+          {
+            "pattern": "@react**",
+            "group": "builtin"
+          },
+          {
+            "pattern": "classnames",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "lodash-es/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "next/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "node_modules/**",
+            "group": "builtin"
+          },
+          {
+            "pattern": "hoc/**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "store/**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "hooks/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "helpers/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "containers/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "components/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "services/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "images/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "svgs/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"]
+      }
+    ],
+    "import/prefer-default-export": 0
+  }
+}
