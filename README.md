@@ -1,11 +1,5 @@
 # reforestation-catalogue
-
-
-<p align="center">
-  
-</p>
-
-## Getting Started
+## Getting Started (front-end)
 
 In order to start modifying the app, please make sure to correctly configure your workstation:
 
