@@ -1,16 +1,19 @@
 import axios from 'axios';
-import { FilterModes, FilterTypes } from 'types';
 
-export const getCatalogueData = () => axios.get('/data/mongabay-data.json').then(resp => resp);
+import { Category, FilterModes, FilterTypes } from 'types';
+
+export const getCatalogueData = () => axios.get('/data/mongabay-data.json').then((resp) => resp);
 export const CONTEXT_CATEGORY = 'Context';
 export const ECOLOGICAL_CATEGORY = 'Ecological';
 export const ECONOMIC_CATEGORY = 'Economic';
 export const SOCIAL_CATEGORY = 'Social';
 export const INSTITUTIONAL_CATEGORY = 'Institutional';
-export const CATEGORIES = [
+export const CATEGORIES: Category[] = [
   {
     id: CONTEXT_CATEGORY,
     label: 'Context',
+    description:
+      'Does the project disclose basic information about its size, location, and duration?',
     fields: [
       {
         id: 'startYear',
@@ -51,6 +54,7 @@ export const CATEGORIES = [
         id: 'country',
         label: 'Country',
         type: FilterTypes.String,
+        options: [],
         mode: FilterModes.Exact,
         hidden: true,
       },
@@ -66,11 +70,14 @@ export const CATEGORIES = [
   {
     id: ECOLOGICAL_CATEGORY,
     label: 'Ecological',
+    description:
+      'Does the project disclose what kinds of trees it will plant and address threats to a specified ecosystem?',
     fields: [
       {
         id: 'forestType',
         label: 'Forest type',
         type: FilterTypes.String,
+        options: [],
         commaSeparated: true,
         mode: FilterModes.Exact,
         hidden: false,
@@ -101,11 +108,13 @@ export const CATEGORIES = [
   {
     id: ECONOMIC_CATEGORY,
     label: 'Economic',
+    description: 'How is the project funded and how does it support local communities?',
     fields: [
       {
         id: 'nameOrgDonor',
         label: 'Name Org/Donor',
         type: FilterTypes.String,
+        options: [],
         mode: FilterModes.Exact,
         hidden: true,
       },
@@ -127,6 +136,7 @@ export const CATEGORIES = [
         id: 'financialModel',
         label: 'Financial model',
         type: FilterTypes.String,
+        options: [],
         commaSeparated: true,
         mode: FilterModes.Includes,
         hidden: false,
@@ -143,20 +153,16 @@ export const CATEGORIES = [
   {
     id: INSTITUTIONAL_CATEGORY,
     label: 'Institutional',
+    description:
+      'What kind of organization is managing the project? Is there a research component?',
     fields: [
       {
         id: 'organizationType',
         label: 'Organization type',
         type: FilterTypes.String,
+        options: [],
         commaSeparated: true,
         mode: FilterModes.Includes,
-        hidden: false,
-      },
-      {
-        id: 'partnerName',
-        label: 'Partner name',
-        type: FilterTypes.NotEmpty,
-        mode: FilterModes.Exact,
         hidden: false,
       },
       {
@@ -178,6 +184,7 @@ export const CATEGORIES = [
   {
     id: SOCIAL_CATEGORY,
     label: 'Social',
+    description: 'Who is participating and who is benefitting?',
     fields: [
       {
         id: 'hasCommunityInvolvement',
@@ -204,12 +211,12 @@ export const CATEGORIES = [
   },
 ];
 
-export const SORT_OPTIONS = CATEGORIES.map(c => ({ label: c.label, value: c.id }));
+export const SORT_OPTIONS = CATEGORIES.map((c) => ({ label: c.label, value: c.id }));
 
-export const getCategoryByID = id => CATEGORIES.find(c => c.id === id);
-export const getFieldByID = id => {
+export const getCategoryByID = (id) => CATEGORIES.find((c) => c.id === id);
+export const getFieldByID = (id) => {
   for (let i = 0; i < CATEGORIES.length; i++) {
-    const found = CATEGORIES[i].fields.find(f => f.id === id);
+    const found = CATEGORIES[i].fields.find((f) => f.id === id);
     if (found) {
       return found;
     }

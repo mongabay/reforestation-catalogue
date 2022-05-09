@@ -1,3 +1,83 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  input[type="range"] {
+    @apply appearance-none my-2.5 w-full bg-transparent;
+  }
+
+  input[type="range"]:focus {
+    @apply outline-none;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    @apply w-full h-2 border-0 rounded-full shadow-none cursor-pointer bg-grey-medium/40;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    @apply w-4 h-4 -mt-1 transition border-0 rounded-full shadow-none appearance-none bg-green;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    @apply bg-green-dark;
+  }
+
+  input[type="range"]:focus-visible::-webkit-slider-thumb {
+    @apply outline outline-2 outline-offset-2 outline-green;
+  }
+
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+    @apply bg-grey-medium/40;
+  }
+
+  input[type="range"]::-moz-range-track {
+    @apply w-full h-2 border-0 rounded-full shadow-none cursor-pointer bg-grey-medium/40;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    @apply w-4 h-4 transition border-0 rounded-full shadow-none cursor-pointer bg-green;
+  }
+
+  input[type="range"]::-moz-range-thumb:hover {
+    @apply bg-green-dark;
+  }
+
+  input[type="range"]:focus-visible::-moz-range-thumb {
+    @apply outline outline-2 outline-offset-2 outline-green;
+  }
+
+  input[type="range"]::-ms-track {
+    @apply w-full h-2 text-transparent bg-transparent border-0 cursor-pointer;
+  }
+
+  input[type="range"]::-ms-fill-lower {
+    @apply border-0 rounded-full shadow-none bg-grey-medium/40;
+  }
+
+  input[type="range"]::-ms-fill-upper {
+    @apply border-0 rounded-full shadow-none bg-grey-medium/40;
+  }
+
+  input[type="range"]::-ms-thumb {
+    @apply w-4 h-4 mt-px transition border-0 rounded-full shadow-none cursor-pointer bg-green;
+  }
+
+  input[type="range"]::-ms-thumb:hover {
+    @apply bg-green-dark;
+  }
+
+  input[type="range"]:focus-visible::-ms-thumb {
+    @apply outline outline-2 outline-offset-2 outline-green;
+  }
+
+  input[type="range"]:focus::-ms-fill-lower {
+    @apply bg-grey-medium/40;
+  }
+
+  input[type="range"]:focus::-ms-fill-upper {
+    @apply bg-grey-medium/40;
+  }
+
+}

@@ -2,7 +2,14 @@ import React, { PropsWithChildren } from 'react';
 
 export interface ButtonCommonProps {
   /** Color theme of the button */
-  theme?: 'primary-green' | 'primary-white' | 'secondary-green' | 'secondary-white' | 'naked';
+  theme?:
+    | 'primary-green'
+    | 'primary-white'
+    | 'secondary-green'
+    | 'secondary-white'
+    | 'link'
+    | 'transparent'
+    | 'naked';
 }
 
 export type HTMLAnchorProps = PropsWithChildren<

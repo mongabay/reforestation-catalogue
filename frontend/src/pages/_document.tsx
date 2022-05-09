@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body id="root" className="font-sans">
+        <body id="root" className="font-sans text-grey-darker">
           {/* Google Tag Manager (noscript)  */}
           <noscript
             dangerouslySetInnerHTML={{

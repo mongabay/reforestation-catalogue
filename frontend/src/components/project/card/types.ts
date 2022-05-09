@@ -1,7 +1,7 @@
-import { Category, Project } from 'types';
+import { Categories, Project } from 'types';
 
 export interface ProjectCardProps {
   project: Project;
-  highlightedCategory: Category;
+  highlightedCategory: Categories;
   openInNewWindow?: boolean;
 }

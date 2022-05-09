@@ -1376,6 +1376,13 @@
     "@svgr/plugin-jsx" "^6.2.1"
     "@svgr/plugin-svgo" "^6.2.0"
 
+"@tailwindcss/forms@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.1.tgz#7fe86b9b67e6d91cb902e2d3f4ebe561cc057a13"
+  integrity sha512-QSwsFORnC2BAP0lRzQkz1pw+EzIiiPdk4e27vGQjyXkwJPeC7iLIRVndJzf9CJVbcrrIcirb/TfxF3gRTyFEVA==
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
+
 "@tippyjs/react@^4.2.5":
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/@tippyjs/react/-/react-4.2.6.tgz#971677a599bf663f20bb1c60a62b9555b749cc71"
@@ -3866,6 +3873,11 @@ mimic-response@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/mimic-response/-/mimic-response-3.1.0.tgz#2d1d59af9c1b129815accc2c46a022a5ce1fa3c9"
   integrity sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==
+
+mini-svg-data-uri@^1.2.3:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimatch@^3.0.4:
   version "3.0.4"

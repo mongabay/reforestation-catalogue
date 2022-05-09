@@ -2,7 +2,7 @@ import React from 'react';
 
 import classnames from 'classnames';
 
-import { Category } from 'types';
+import { Categories } from 'types';
 
 import { RadialChartProps } from './types';
 
@@ -36,10 +36,10 @@ const RadialChart: React.FC<RadialChartProps> = ({
           <text
             x="30"
             y="15"
-            data-category={Category.Context}
-            onClick={() => updateSort(Category.Context)}
+            data-category={Categories.Context}
+            onClick={() => updateSort(Categories.Context)}
             className={classnames({
-              '-highlighted': highlightedCategory === Category.Context,
+              '-highlighted': highlightedCategory === Categories.Context,
             })}
           >
             Context
@@ -47,10 +47,10 @@ const RadialChart: React.FC<RadialChartProps> = ({
           <text
             x="18"
             y="28"
-            data-category={Category.Ecological}
-            onClick={() => updateSort(Category.Ecological)}
+            data-category={Categories.Ecological}
+            onClick={() => updateSort(Categories.Ecological)}
             className={classnames({
-              '-highlighted': highlightedCategory === Category.Ecological,
+              '-highlighted': highlightedCategory === Categories.Ecological,
             })}
           >
             Ecological
@@ -58,10 +58,10 @@ const RadialChart: React.FC<RadialChartProps> = ({
           <text
             x="19"
             y="41"
-            data-category={Category.Economic}
-            onClick={() => updateSort(Category.Economic)}
+            data-category={Categories.Economic}
+            onClick={() => updateSort(Categories.Economic)}
             className={classnames({
-              '-highlighted': highlightedCategory === Category.Economic,
+              '-highlighted': highlightedCategory === Categories.Economic,
             })}
           >
             Economic
@@ -69,10 +69,10 @@ const RadialChart: React.FC<RadialChartProps> = ({
           <text
             x="7"
             y="54"
-            data-category={Category.Institutional}
-            onClick={() => updateSort(Category.Institutional)}
+            data-category={Categories.Institutional}
+            onClick={() => updateSort(Categories.Institutional)}
             className={classnames({
-              '-highlighted': highlightedCategory === Category.Institutional,
+              '-highlighted': highlightedCategory === Categories.Institutional,
             })}
           >
             Institutional
@@ -80,10 +80,10 @@ const RadialChart: React.FC<RadialChartProps> = ({
           <text
             x="42"
             y="67"
-            data-category={Category.Social}
-            onClick={() => updateSort(Category.Social)}
+            data-category={Categories.Social}
+            onClick={() => updateSort(Categories.Social)}
             className={classnames({
-              '-highlighted': highlightedCategory === Category.Social,
+              '-highlighted': highlightedCategory === Categories.Social,
             })}
           >
             Social
@@ -92,54 +92,54 @@ const RadialChart: React.FC<RadialChartProps> = ({
       )}
       <circle
         className={classnames({
-          '-highlighted': highlightedCategory === Category.Context,
+          '-highlighted': highlightedCategory === Categories.Context,
         })}
         cx="80"
         cy="80"
         r="77"
-        strokeDasharray={getStrokeDashArray(77, Category.Context)}
-        data-category={Category.Context}
+        strokeDasharray={getStrokeDashArray(77, Categories.Context)}
+        data-category={Categories.Context}
       />
 
       <circle
         className={classnames({
-          '-highlighted': highlightedCategory === Category.Ecological,
+          '-highlighted': highlightedCategory === Categories.Ecological,
         })}
         cx="80"
         cy="80"
         r="65"
-        strokeDasharray={getStrokeDashArray(65, Category.Ecological)}
-        data-category={Category.Ecological}
+        strokeDasharray={getStrokeDashArray(65, Categories.Ecological)}
+        data-category={Categories.Ecological}
       />
       <circle
         className={classnames({
-          '-highlighted': highlightedCategory === Category.Economic,
+          '-highlighted': highlightedCategory === Categories.Economic,
         })}
         cx="80"
         cy="80"
         r="52"
-        strokeDasharray={getStrokeDashArray(52, Category.Economic)}
-        data-category={Category.Economic}
+        strokeDasharray={getStrokeDashArray(52, Categories.Economic)}
+        data-category={Categories.Economic}
       />
       <circle
         className={classnames({
-          '-highlighted': highlightedCategory === Category.Institutional,
+          '-highlighted': highlightedCategory === Categories.Institutional,
         })}
         cx="80"
         cy="80"
         r="40"
-        strokeDasharray={getStrokeDashArray(40, Category.Institutional)}
-        data-category={Category.Institutional}
+        strokeDasharray={getStrokeDashArray(40, Categories.Institutional)}
+        data-category={Categories.Institutional}
       />
       <circle
         className={classnames({
-          '-highlighted': highlightedCategory === Category.Social,
+          '-highlighted': highlightedCategory === Categories.Social,
         })}
         cx="80"
         cy="80"
         r="27"
-        strokeDasharray={getStrokeDashArray(27, Category.Social)}
-        data-category={Category.Social}
+        strokeDasharray={getStrokeDashArray(27, Categories.Social)}
+        data-category={Categories.Social}
       />
     </svg>
   );

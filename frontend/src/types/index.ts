@@ -57,7 +57,7 @@ export interface Project {
   comment: string;
 }
 
-export enum Category {
+export enum Categories {
   Context = 'Context',
   Ecological = 'Ecological',
   Economic = 'Economic',
@@ -78,15 +78,28 @@ export enum FilterTypes {
   Number = 'number',
   String = 'string',
   Boolean = 'boolean',
-  NotEmpty = 'not-empty',
+}
+
+export interface Field {
+  id: string;
+  type: FilterTypes;
+  mode: FilterModes;
+  options?: { label: string; value: string }[];
+  commaSeparated?: boolean;
+  label: string;
+  hidden: boolean;
+}
+
+export interface Category {
+  id: string;
+  label: string;
+  description: string;
+  fields: Field[];
 }
 
 export interface Filter {
-  type: FilterTypes;
+  field: Field['id'];
   value: number | string | boolean;
-  propertyName: string;
-  mode: FilterModes;
-  label?: string;
 }
 
 export interface MetaInfo {

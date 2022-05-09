@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // components
-import LayoutProjectPage from 'layout/projects/project-page';
+import LayoutProjectPage from 'layouts/projects/project-page';
 
 function ProjectPage() {
   const [id, setId] = useState(undefined);

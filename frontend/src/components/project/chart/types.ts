@@ -1,7 +1,7 @@
-import { Project, Category } from 'types';
+import { Project, Categories } from 'types';
 
 export interface ProjectChartProps {
   project: Project;
-  highlightedCategory?: Category;
+  highlightedCategory?: Categories;
   cardMode?: boolean;
 }

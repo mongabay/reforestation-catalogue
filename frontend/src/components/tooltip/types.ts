@@ -1,3 +1,7 @@
-import { TippyProps } from '@tippyjs/react';
+import { ReactElement } from 'react';
 
-export type TooltipProps = TippyProps;
+import { TippyProps } from '@tippyjs/react/headless';
+
+export interface TooltipProps extends TippyProps {
+  children: ReactElement;
+}

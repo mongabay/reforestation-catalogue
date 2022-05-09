@@ -10,6 +10,9 @@ module.exports = {
         DEFAULT: '#03755E',
         dark: '#014739',
       },
+      blue: {
+        DEFAULT: '#0066CC',
+      },
       grey: {
         DEFAULT: '#EFEFEF',
         light: '#F9F7F7',
@@ -22,5 +25,5 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

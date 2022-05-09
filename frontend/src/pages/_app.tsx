@@ -7,7 +7,7 @@ import Script from 'next/script';
 
 import { AnimateSharedLayout } from 'framer-motion';
 
-import StaticPageLayout from 'layout/static-page';
+import StaticPageLayout from 'layouts/static-page';
 import store from 'lib/store';
 import 'styles/globals.css';
 import { LayoutStaticProp } from 'types';

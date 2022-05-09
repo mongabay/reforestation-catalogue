@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import RadialChart from 'components/radial-chart';
 import Tooltip from 'components/tooltip';
-import { Category, END_YEAR_SPECIAL_VALUES } from 'types';
+import { Categories, END_YEAR_SPECIAL_VALUES } from 'types';
 import { getProjectCategoriesPercentage } from 'utils/project';
 
 import { TITLE_MAX_LENGTH } from './constants';
@@ -17,11 +17,11 @@ import { ProjectChartProps } from './types';
 export const ProjectChart: React.FC<ProjectChartProps> = (props: ProjectChartProps) => {
   const { project, highlightedCategory, cardMode } = props;
   const [categoryPercentages, setCategoryPercentages] = useState({
-    [Category.Context]: 0,
-    [Category.Ecological]: 0,
-    [Category.Economic]: 0,
-    [Category.Social]: 0,
-    [Category.Institutional]: 0,
+    [Categories.Context]: 0,
+    [Categories.Ecological]: 0,
+    [Categories.Economic]: 0,
+    [Categories.Social]: 0,
+    [Categories.Institutional]: 0,
   });
 
   useEffect(() => {

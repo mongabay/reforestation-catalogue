@@ -1,20 +1,25 @@
-import React from 'react';
+import { FC } from 'react';
 
-import ReactTippy from '@tippyjs/react';
+import cx from 'classnames';
 
-import { TooltipProps } from './types';
+import Tippy from '@tippyjs/react/headless';
+import { omit } from 'lodash-es';
 
-const Tooltip: React.FC<TooltipProps> = (props: TooltipProps) => {
-  const mergeProps = {
-    interactive: true,
-    trigger: 'click',
-    arrow: true,
-    theme: 'light',
-    ...props,
-  };
-  const { children } = mergeProps;
+import Arrow from './arrow';
+import type { TooltipProps } from './types';
 
-  return <ReactTippy {...mergeProps}>{children}</ReactTippy>;
-};
+export const Tooltip: FC<TooltipProps> = ({ children, content, ...props }: TooltipProps) => (
+  <Tippy
+    {...omit(props, 'className')}
+    render={(attrs) => (
+      <div className={cx('relative p-4 text-sm bg-white shadow-md rounded-xl', props.className)}>
+        {content}
+        {props.arrow && <Arrow data-popper-arrow="" {...attrs} />}
+      </div>
+    )}
+  >
+    {children}
+  </Tippy>
+);
 
 export default Tooltip;
