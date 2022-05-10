@@ -5,9 +5,9 @@ import {
   ECOLOGICAL_CATEGORY,
   INSTITUTIONAL_CATEGORY,
   getCategoryByID,
-} from 'services/catalogue';
+} from 'services/catalog';
 
-export const getProjectCategoriesPercentage = project => ({
+export const getProjectCategoriesPercentage = (project) => ({
   [CONTEXT_CATEGORY]: getPercentageForCategory(project, CONTEXT_CATEGORY),
   [ECOLOGICAL_CATEGORY]: getPercentageForCategory(project, ECOLOGICAL_CATEGORY),
   [ECONOMIC_CATEGORY]: getPercentageForCategory(project, ECONOMIC_CATEGORY),
@@ -19,7 +19,7 @@ const getPercentageForCategory = (project, category) => {
   let fieldsWithData = 0;
   const contextFields = getCategoryByID(category).fields;
   const numberOfFields = contextFields.length;
-  contextFields.forEach(cc => {
+  contextFields.forEach((cc) => {
     const { type, id } = cc;
     const value = project[id];
     if ((type === 'string' || type === 'number' || type === 'not-empty') && !!value) {
@@ -39,18 +39,18 @@ export const getUniqueValuesForField = (projects, propertyName, commaSeparated) 
     tempSet = new Set(
       []
         .concat(
-          ...projects.map(e =>
-            e[propertyName] ? e[propertyName].split(',').map(e => e.trim()) : null
+          ...projects.map((e) =>
+            e[propertyName] ? e[propertyName].split(',').map((e) => e.trim()) : null
           )
         )
-        .filter(e => !!e)
+        .filter((e) => !!e)
         .sort()
     );
   } else {
     tempSet = new Set(
       projects
-        .map(e => (e[propertyName] ? e[propertyName].trim() : null))
-        .filter(e => !!e)
+        .map((e) => (e[propertyName] ? e[propertyName].trim() : null))
+        .filter((e) => !!e)
         .sort()
     );
   }

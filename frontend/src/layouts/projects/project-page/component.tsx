@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import ProjectViewer from 'components/project/project-viewer';
 import StaticPage from 'layouts/static-page';
 
-import { getCatalogueData } from 'services/catalogue';
+import { getCatalogData } from 'services/catalog';
 
 import { ProjectPageLayoutProps } from './types';
 
@@ -20,7 +20,7 @@ const ProjectPage: React.FC<ProjectPageLayoutProps> = ({
     window.scrollTo(0, 0);
 
     if (!projects || projects.length === 0) {
-      getCatalogueData()
+      getCatalogData()
         .then((resp) => updateData(resp.data))
         .catch((err) => console.error(err));
     }

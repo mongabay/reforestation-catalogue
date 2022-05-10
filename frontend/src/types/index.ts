@@ -19,7 +19,7 @@ export enum COUNTRIES_SPECIAL_VALUES {
 }
 
 export interface Project {
-  projectNumber: number;
+  id: number;
   projectName: string;
   leadOrganization: string;
   organizationType: string;

@@ -4,12 +4,12 @@ import classnames from 'classnames';
 
 import * as d3 from 'd3';
 import { motion } from 'framer-motion';
+import { getCategoryInfoModalText } from 'utils/category';
 
 import CategoryInfoTooltip from 'components/category/info-tooltip/component';
 import Pill from 'components/pill/component';
 import ProjectChart from 'components/project/chart';
 import { FilterTypes } from 'types';
-import { getCategoryInfoModalText } from 'utils/category';
 import { MediaContextProvider, Mobile, Desktop } from 'utils/responsive';
 
 // services
@@ -20,7 +20,7 @@ import {
   ECONOMIC_CATEGORY,
   INSTITUTIONAL_CATEGORY,
   SOCIAL_CATEGORY,
-} from 'services/catalogue';
+} from 'services/catalog';
 
 import { UNREPORTED_TEXT } from './constants';
 import { ProjectViewerProps } from './types';

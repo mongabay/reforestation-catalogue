@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -11,6 +11,7 @@ import Button from 'components/button';
 import CatalogFilters from 'components/catalog-filters';
 import Head from 'components/head';
 import Icon from 'components/icon';
+import ProjectCatalog from 'components/project-catalog';
 import Tooltip from 'components/tooltip';
 import ExplorePageLayout from 'layouts/explore-page';
 import { StaticPageLayoutProps } from 'layouts/static-page';
@@ -118,7 +119,11 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
             <Icon icon={LeftArrowIcon} aria-hidden className="w-4 h-4 rotate-90" />
           </Button>
         </div>
-        <div className="md:overflow-y-scroll"></div>
+        <div className="w-full md:pr-10">
+          <div className="h-full py-8 md:overflow-y-scroll">
+            <ProjectCatalog />
+          </div>
+        </div>
       </div>
     </>
   );

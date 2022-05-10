@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 
 import { AppProps } from 'next/app';
@@ -18,6 +19,8 @@ type Props = AppProps & {
   };
 };
 
+const queryClient = new QueryClient();
+
 const ReforestationCatalogueApp: React.FC<AppProps> = ({ Component, pageProps }: Props) => {
   // By getting the layout from the child component, we can prevent it from re-rendering when
   // navigating to a page with the same one
@@ -35,15 +38,17 @@ const ReforestationCatalogueApp: React.FC<AppProps> = ({ Component, pageProps }:
   }
 
   return (
-    <Provider store={store}>
-      {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
-      <AnimateSharedLayout>
-        <Layout {...layoutProps}>
-          <Component {...pageProps} />
-        </Layout>
-      </AnimateSharedLayout>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
+        <AnimateSharedLayout>
+          <Layout {...layoutProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </AnimateSharedLayout>
+      </Provider>
+    </QueryClientProvider>
   );
 };
 

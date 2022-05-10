@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import Button from 'components/button';
 
-import { getFieldByID } from 'services/catalogue';
+import { getFieldByID } from 'services/catalog';
 
 import { FilterPillProps } from './types';
 

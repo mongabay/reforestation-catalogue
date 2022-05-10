@@ -14,7 +14,7 @@ export const Tooltip: FC<TooltipProps> = ({ children, content, ...props }: Toolt
     render={(attrs) => (
       <div className={cx('relative p-4 text-sm bg-white shadow-md rounded-xl', props.className)}>
         {content}
-        {props.arrow && <Arrow data-popper-arrow="" {...attrs} />}
+        {props.arrow !== false && <Arrow data-popper-arrow="" {...attrs} />}
       </div>
     )}
   >

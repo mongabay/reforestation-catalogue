@@ -19,7 +19,7 @@ export const ExplorePageLayout: React.FC<ExplorePageLayoutProps> = ({
     <main
       {...omit(mainProps, 'className')}
       className={cx({
-        'flex-grow-1 md:h-full md:max-w-[1920px] md:mx-auto w-full': true,
+        'flex-grow-1 md:h-full md:max-w-[1920px] md:mx-auto w-full md:overflow-hidden': true,
         [mainProps?.className]: !!mainProps?.className,
       })}
     >

@@ -51,7 +51,7 @@
     "react-hook-form": "^7.28.0",
     "react-modal": "^3.11.2",
     "react-popper": "^2.2.5",
-    "react-query": "^3.16.0",
+    "react-query": "^3.39.0",
     "react-redux": "^7.2.4",
     "rooks": "^5.10.0",
     "sharp": "^0.30.1",

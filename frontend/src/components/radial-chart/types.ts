@@ -1,9 +1,10 @@
 import { Categories } from 'types';
 
 export interface RadialChartProps {
-  highlightedCategory: string;
+  /** The chart's highlighted category */
+  highlightedCategory?: Categories;
+  /** Value for each category */
   categoriesPercentages: unknown;
-  legendMode: boolean;
-  finalised?: boolean;
-  updateSort?: (c: Categories) => unknown;
+  /** Whether the project was finalized */
+  finalized: boolean;
 }

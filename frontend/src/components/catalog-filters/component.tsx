@@ -9,7 +9,7 @@ import { filtersActions } from 'modules';
 import { filtersSelectors } from 'modules';
 import { Field, Filter, FilterTypes } from 'types';
 
-import { CATEGORIES } from 'services/catalogue';
+import { CATEGORIES } from 'services/catalog';
 
 import BooleanFilter from './boolean-filter';
 import NumberFilter from './number-filter';
