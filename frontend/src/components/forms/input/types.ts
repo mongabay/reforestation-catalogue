@@ -15,6 +15,8 @@ export type InputProps = PropsWithChildren<{
   defaultValue?: number | string;
   /** Value of the input */
   value?: number | string;
+  /** Placeholder of the input */
+  placeholder?: string;
   /** Resolution of the step (number input only) */
   step?: number;
   /** Callback executed when the value changes */

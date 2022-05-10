@@ -29,7 +29,7 @@ export default (globalActions) =>
     },
     extraReducers: {
       [globalActions.restoreState.fulfilled]: (state, action: PayloadAction<unknown>) => {
-        const stateToRestore: typeof INITIAL_STATE = action.payload[SLICE_NAME] || [];
+        const stateToRestore: typeof INITIAL_STATE = action.payload[SLICE_NAME] ?? INITIAL_STATE;
         return [...(Array.isArray(stateToRestore) ? stateToRestore : [stateToRestore])];
       },
     },

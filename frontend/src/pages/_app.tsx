@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
 import Script from 'next/script';
 
+import { OverlayProvider } from '@react-aria/overlays';
+import { SSRProvider } from '@react-aria/ssr';
 import { AnimateSharedLayout } from 'framer-motion';
 
 import StaticPageLayout from 'layouts/static-page';
@@ -42,11 +44,15 @@ const ReforestationCatalogueApp: React.FC<AppProps> = ({ Component, pageProps }:
       <Provider store={store}>
         {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
-        <AnimateSharedLayout>
-          <Layout {...layoutProps}>
-            <Component {...pageProps} />
-          </Layout>
-        </AnimateSharedLayout>
+        <SSRProvider>
+          <OverlayProvider>
+            <AnimateSharedLayout>
+              <Layout {...layoutProps}>
+                <Component {...pageProps} />
+              </Layout>
+            </AnimateSharedLayout>
+          </OverlayProvider>
+        </SSRProvider>
       </Provider>
     </QueryClientProvider>
   );

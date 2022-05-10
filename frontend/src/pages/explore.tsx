@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -11,11 +11,19 @@ import Button from 'components/button';
 import CatalogFilters from 'components/catalog-filters';
 import Head from 'components/head';
 import Icon from 'components/icon';
+import Modal from 'components/modal';
 import ProjectCatalog from 'components/project-catalog';
+import ProjectSearch from 'components/project-search';
 import Tooltip from 'components/tooltip';
 import ExplorePageLayout from 'layouts/explore-page';
 import { StaticPageLayoutProps } from 'layouts/static-page';
-import { filtersActions, globalActions, globalSelectors } from 'modules';
+import {
+  filtersActions,
+  globalActions,
+  globalSelectors,
+  restorationActions,
+  restorationSelectors,
+} from 'modules';
 import { PageComponent } from 'types';
 
 import LayersIcon from 'svgs/layers.svg';
@@ -25,32 +33,51 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const [restored, setRestored] = useState(false);
+  const catalogRef = useRef<HTMLDivElement>(null);
 
   const serializedState = useAppSelector(globalSelectors.selectSerializedState);
   const previousSerializedState = usePreviousImmediate(serializedState);
+  const restored = useAppSelector(restorationSelectors.selectRestoration);
 
-  const [showGuidanceModal, setShowGuidanceModal] = useState(true);
-  const [showGlossaryModal, setShowGlossaryModal] = useState(true);
+  const [showGuidanceModal, setShowGuidanceModal] = useState(false);
+  const [showGlossaryModal, setShowGlossaryModal] = useState(false);
 
   // When the component is mounted, we restore its state from the URL
   useEffect(() => {
     if (router.isReady && !restored) {
       dispatch(globalActions.restoreState(router.query));
-      setRestored(true);
+      dispatch(restorationActions.updateRestoration(true));
     }
-  }, [router, restored, setRestored, dispatch]);
+  }, [router, restored, dispatch]);
 
   // Each time the serialized state changes, we update the URL
   useEffect(() => {
-    if (serializedState !== previousSerializedState) {
+    if (restored && serializedState !== previousSerializedState) {
       router.replace('/explore', { query: serializedState });
     }
-  }, [router, serializedState, previousSerializedState]);
+  }, [router, serializedState, previousSerializedState, restored]);
 
   return (
     <>
       <Head />
+      <Modal
+        title="Glossary"
+        size="wide"
+        open={showGlossaryModal}
+        onDismiss={() => setShowGlossaryModal(false)}
+      >
+        <div className="md:px-20">
+          <h1 className="font-serif text-3xl font-bold text-green">Glossary</h1>
+          <p className="mt-6">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+        </div>
+      </Modal>
       <aside className="mr-6 bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
         <div className="p-1 md:h-full md:overflow-y-scroll">
           <Button className="w-full" onClick={() => setShowGuidanceModal(true)}>
@@ -113,14 +140,23 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
           </Tooltip>
           <Button
             className="justify-center hidden w-10 h-10 pl-0 pr-0 ml-12 md:inline-flex"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => catalogRef.current.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <span className="sr-only">Scroll to top</span>
             <Icon icon={LeftArrowIcon} aria-hidden className="w-4 h-4 rotate-90" />
           </Button>
         </div>
-        <div className="w-full md:pr-10">
-          <div className="h-full py-8 md:overflow-y-scroll">
+        <div className="flex flex-col w-full px-5 md:pr-12 md:px-0">
+          <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
+            Viewing 120 projects of 240
+          </p>
+          <div className="flex-shrink-0 mt-2">
+            <ProjectSearch />
+          </div>
+          <div
+            ref={catalogRef}
+            className="pt-8 pb-8 mt-2 md:overflow-y-scroll focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+          >
             <ProjectCatalog />
           </div>
         </div>

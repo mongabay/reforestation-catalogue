@@ -28,7 +28,7 @@ export const Select: FC<SelectProps> = ({
     <select
       id={id}
       aria-label={ariaLabel}
-      defaultValue={defaultValue ?? (placeholder ? '' : undefined)}
+      defaultValue={defaultValue}
       value={value}
       onChange={onChangeSelect}
       disabled={disabled}

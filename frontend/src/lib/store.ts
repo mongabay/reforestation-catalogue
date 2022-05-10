@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import { filtersReducer } from 'modules';
+import { filtersReducer, restorationReducer, searchReducer, sortReducer } from 'modules';
 import configSlice from 'modules/config';
 import projectsSlice from 'modules/projects';
 
@@ -8,6 +8,9 @@ const rootReducer = combineReducers({
   projects: projectsSlice().reducer,
   config: configSlice().reducer,
   filters: filtersReducer,
+  search: searchReducer,
+  sort: sortReducer,
+  restoration: restorationReducer,
 });
 
 const store = configureStore({

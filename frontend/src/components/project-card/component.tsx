@@ -11,7 +11,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   openInNewWindow,
 }: ProjectCardProps) => {
   return (
-    <div className="flex flex-col w-64 px-3 py-5 text-sm text-center transition hover:shadow-md bg-grey-light rounded-3xl">
+    <div className="flex flex-col w-64 px-3 py-5 text-sm text-center transition hover:shadow-md focus-within:shadow-md bg-grey-light rounded-3xl">
       <div className="flex justify-center">
         <ProjectChart project={project} highlightedCategory={highlightedCategory} />
       </div>

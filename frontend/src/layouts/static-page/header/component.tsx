@@ -1,5 +1,7 @@
 import React from 'react';
 
+import cx from 'classnames';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,7 +15,7 @@ import UploadIcon from 'svgs/upload.svg';
 import { HeaderProps } from './types';
 
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => (
-  <header {...props} className="bg-green text-white/60">
+  <header {...props} className={cx('bg-green text-white/60', props.className)}>
     <LayoutContainer className="flex items-center justify-between">
       <Link href="/">
         <a className="flex-shrink-0 focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-white">

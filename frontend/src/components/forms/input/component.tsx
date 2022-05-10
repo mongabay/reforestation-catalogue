@@ -11,6 +11,7 @@ export const Input: FC<InputProps> = ({
   name,
   defaultValue,
   value,
+  placeholder,
   step,
   onChange,
   disabled,
@@ -18,7 +19,7 @@ export const Input: FC<InputProps> = ({
   className,
   children,
 }: InputProps) => (
-  <div className={cx('flex items-center', className)}>
+  <div className="flex items-center">
     <input
       type={type}
       id={id}
@@ -26,15 +27,21 @@ export const Input: FC<InputProps> = ({
       aria-label={ariaLabel}
       defaultValue={defaultValue}
       value={value}
+      placeholder={placeholder}
       step={step}
       onChange={({ target }) => onChange(target.value)}
       disabled={disabled}
       required={required}
-      className="block w-full px-4 py-2 text-sm bg-transparent border rounded-full focus:outline-none focus:ring-transparent focus:border-grey-dark/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green disabled:opacity-60 disabled:pointer-events-none border-grey-dark/20"
+      className={cx(
+        'block w-full px-4 py-2 text-sm bg-transparent border rounded-full focus:outline-none focus:ring-transparent focus:border-grey-dark/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green disabled:opacity-60 disabled:pointer-events-none border-grey-dark/20',
+        className
+      )}
     />
-    <label htmlFor={id} className="ml-3 text-sm">
-      {children}
-    </label>
+    {!!children && (
+      <label htmlFor={id} className="ml-3 text-sm">
+        {children}
+      </label>
+    )}
   </div>
 );
 

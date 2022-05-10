@@ -1,4 +1,4 @@
-export interface HeaderProps {
-  /** Props to apply to the container */
-  props?: React.ComponentProps<'header'>;
-}
+export type HeaderProps = React.ComponentProps<'header'> & {
+  /** Class to apply to the header */
+  className?: string;
+};

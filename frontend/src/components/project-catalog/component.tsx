@@ -5,7 +5,7 @@ import { useAppSelector } from 'hooks/redux';
 
 import LoadingSpinner from 'components/loading-spinner';
 import ProjectCard from 'components/project-card';
-import { filtersSelectors } from 'modules';
+import { filtersSelectors, searchSelectors, sortSelectors } from 'modules';
 import { Categories } from 'types';
 
 import { ProjectCatalogProps } from './types';
@@ -15,8 +15,10 @@ export const ProjectCatalog: FC<ProjectCatalogProps> = ({
   hightlightSortingCategory,
 }: ProjectCatalogProps) => {
   const filters = useAppSelector(filtersSelectors.selectFilters);
+  const search = useAppSelector(searchSelectors.selectSearch);
+  const sort = useAppSelector(sortSelectors.selectSort);
 
-  const { isLoading, isError, data } = useProjects(filters, '');
+  const { isLoading, isError, data } = useProjects(filters, search, sort);
 
   if (isLoading) {
     return <LoadingSpinner inner transparent />;
