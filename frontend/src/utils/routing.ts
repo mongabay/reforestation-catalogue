@@ -32,6 +32,7 @@ export const deserialize = (
   try {
     return Object.entries(serializedState).reduce(
       (res, [key, value]) => ({
+        ...res,
         [key]: Array.isArray(value) ? value.map((v) => JSON.parse(v)) : JSON.parse(value),
       }),
       {}
