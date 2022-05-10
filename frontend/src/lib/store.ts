@@ -1,14 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
+import { filtersReducer } from 'modules';
 import configSlice from 'modules/config';
-import filtersSlice from 'modules/filters';
 import projectsSlice from 'modules/projects';
 
-// TODO: remove unused reducers
 const rootReducer = combineReducers({
   projects: projectsSlice().reducer,
   config: configSlice().reducer,
-  filters: filtersSlice,
+  filters: filtersReducer,
 });
 
 const store = configureStore({

@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import FilterPill from 'components/filter-pill';
 import Select from 'components/forms/select';
 import InfoTooltip from 'components/info-tooltip';
-import { selectFilters } from 'modules/filters';
-import { addFilter, removeFilter } from 'modules/filters';
+import { filtersActions } from 'modules';
+import { filtersSelectors } from 'modules';
 import { Field, Filter, FilterTypes } from 'types';
 
 import { CATEGORIES } from 'services/catalogue';
@@ -18,7 +18,7 @@ import { CatalogFiltersProps } from './types';
 import YearFilter from './year-filter';
 
 export const CatalogFilters: React.FC<CatalogFiltersProps> = ({}: CatalogFiltersProps) => {
-  const filters = useAppSelector(selectFilters);
+  const filters = useAppSelector(filtersSelectors.selectFilters);
   const dispatch = useAppDispatch();
 
   const [selectedField, setSelectedField] = useState<
@@ -27,7 +27,7 @@ export const CatalogFilters: React.FC<CatalogFiltersProps> = ({}: CatalogFilters
 
   const onCreateFilter = useCallback(
     (filter: Filter) => {
-      dispatch(addFilter(filter));
+      dispatch(filtersActions.addFilter(filter));
       setSelectedField(null);
     },
     [dispatch]
@@ -83,7 +83,7 @@ export const CatalogFilters: React.FC<CatalogFiltersProps> = ({}: CatalogFilters
                     <FilterPill
                       key={filter.field}
                       filter={filter}
-                      onRemove={() => dispatch(removeFilter(filter))}
+                      onRemove={() => dispatch(filtersActions.removeFilter(filter))}
                     />
                   ))}
             </div>

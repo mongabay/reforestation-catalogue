@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import { useAppDispatch } from 'hooks/redux';
+import { usePreviousImmediate } from 'rooks';
+
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 
 import Button from 'components/button';
 import CatalogFilters from 'components/catalog-filters';
@@ -11,7 +14,7 @@ import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
 import ExplorePageLayout from 'layouts/explore-page';
 import { StaticPageLayoutProps } from 'layouts/static-page';
-import { clearFilters } from 'modules/filters';
+import { filtersActions, globalActions, globalSelectors } from 'modules';
 import { PageComponent } from 'types';
 
 import LayersIcon from 'svgs/layers.svg';
@@ -19,9 +22,30 @@ import LeftArrowIcon from 'svgs/left-arrow.svg';
 
 export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const [restored, setRestored] = useState(false);
+
+  const serializedState = useAppSelector(globalSelectors.selectSerializedState);
+  const previousSerializedState = usePreviousImmediate(serializedState);
 
   const [showGuidanceModal, setShowGuidanceModal] = useState(true);
   const [showGlossaryModal, setShowGlossaryModal] = useState(true);
+
+  // When the component is mounted, we restore its state from the URL
+  useEffect(() => {
+    if (router.isReady && !restored) {
+      dispatch(globalActions.restoreState(router.query));
+      setRestored(true);
+    }
+  }, [router, restored, setRestored, dispatch]);
+
+  // Each time the serialized state changes, we update the URL
+  useEffect(() => {
+    if (serializedState !== previousSerializedState) {
+      router.replace('/explore', { query: serializedState });
+    }
+  }, [router, serializedState, previousSerializedState]);
 
   return (
     <>
@@ -34,7 +58,7 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
           </Button>
           <div className="flex items-center justify-between mt-8 md:mt-12">
             <h1 className="font-serif text-3xl font-bold text-green">Filters</h1>
-            <Button theme="link" onClick={() => dispatch(clearFilters())}>
+            <Button theme="link" onClick={() => dispatch(filtersActions.clearFilters())}>
               Clear all filters
             </Button>
           </div>
