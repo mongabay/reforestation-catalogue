@@ -1,4 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { RootState } from 'lib/store';
 import { Categories } from 'types';
@@ -22,6 +23,13 @@ export default (globalActions) =>
       },
     },
     extraReducers: {
+      [HYDRATE]: (state, action) => {
+        if (action.payload[SLICE_NAME] !== INITIAL_STATE) {
+          return action.payload[SLICE_NAME];
+        }
+
+        return state;
+      },
       [globalActions.restoreState.fulfilled]: (state, action: PayloadAction<unknown>) => {
         const stateToRestore: typeof INITIAL_STATE = action.payload[SLICE_NAME] ?? INITIAL_STATE;
         return stateToRestore;

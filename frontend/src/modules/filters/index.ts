@@ -1,4 +1,6 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { isEqual } from 'lodash-es';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { RootState } from 'lib/store';
 import { Filter } from 'types';
@@ -28,6 +30,13 @@ export default (globalActions) =>
       },
     },
     extraReducers: {
+      [HYDRATE]: (state, action) => {
+        if (!isEqual(action.payload[SLICE_NAME], INITIAL_STATE)) {
+          return action.payload[SLICE_NAME];
+        }
+
+        return state;
+      },
       [globalActions.restoreState.fulfilled]: (state, action: PayloadAction<unknown>) => {
         const stateToRestore: typeof INITIAL_STATE = action.payload[SLICE_NAME] ?? INITIAL_STATE;
         return [...(Array.isArray(stateToRestore) ? stateToRestore : [stateToRestore])];

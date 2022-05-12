@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
-import { usePreviousImmediate } from 'rooks';
+import { GetServerSideProps } from 'next';
 
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { useAppDispatch } from 'hooks/redux';
 
 import Button from 'components/button';
 import CatalogFilters from 'components/catalog-filters';
@@ -15,51 +14,42 @@ import Modal from 'components/modal';
 import ProjectCatalog from 'components/project-catalog';
 import ProjectSearch from 'components/project-search';
 import Tooltip from 'components/tooltip';
+import UrlSync from 'components/url-sync';
 import ExplorePageLayout from 'layouts/explore-page';
 import { StaticPageLayoutProps } from 'layouts/static-page';
-import {
-  filtersActions,
-  globalActions,
-  globalSelectors,
-  restorationActions,
-  restorationSelectors,
-} from 'modules';
+import wrapper from 'lib/store';
+import { filtersActions, globalActions } from 'modules';
 import { PageComponent } from 'types';
 
 import LayersIcon from 'svgs/layers.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';
 
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    const isClientSideNavigation = context.req.url.startsWith('/_next');
+
+    // We don't want to restore the URL state when navigating between pages because `context.query`
+    // will be empty and it will overwrite the client-side state
+    if (!isClientSideNavigation) {
+      await store.dispatch(globalActions.restoreState(context.query));
+    }
+
+    return { props: {} };
+  }
+);
+
 export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => {
   const dispatch = useAppDispatch();
-  const router = useRouter();
 
   const catalogRef = useRef<HTMLDivElement>(null);
-
-  const serializedState = useAppSelector(globalSelectors.selectSerializedState);
-  const previousSerializedState = usePreviousImmediate(serializedState);
-  const restored = useAppSelector(restorationSelectors.selectRestoration);
 
   const [showGuidanceModal, setShowGuidanceModal] = useState(false);
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
 
-  // When the component is mounted, we restore its state from the URL
-  useEffect(() => {
-    if (router.isReady && !restored) {
-      dispatch(globalActions.restoreState(router.query));
-      dispatch(restorationActions.updateRestoration(true));
-    }
-  }, [router, restored, dispatch]);
-
-  // Each time the serialized state changes, we update the URL
-  useEffect(() => {
-    if (restored && serializedState !== previousSerializedState) {
-      router.replace('/explore', { query: serializedState });
-    }
-  }, [router, serializedState, previousSerializedState, restored]);
-
   return (
     <>
       <Head />
+      <UrlSync />
       <Modal
         title="Glossary"
         size="wide"

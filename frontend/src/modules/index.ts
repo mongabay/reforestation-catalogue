@@ -5,7 +5,6 @@ import { createSelector, createAsyncThunk } from '@reduxjs/toolkit';
 import { deserialize, serialize } from 'utils/routing';
 
 import createFiltersSlice, * as filtersModule from './filters';
-import createRestorationSlice, * as restorationModule from './restoration';
 import createSearchSlice, * as searchModule from './search';
 import createSortSlice, * as sortModule from './sort';
 
@@ -18,7 +17,6 @@ const actions = {
 const filtersSlice = createFiltersSlice(actions);
 const searchSlice = createSearchSlice(actions);
 const sortSlice = createSortSlice(actions);
-const restorationSlice = createRestorationSlice(actions);
 
 const selectors = {
   selectSerializedState: createSelector(
@@ -50,7 +48,3 @@ export const searchSelectors = searchModule;
 export const sortReducer = sortSlice.reducer;
 export const sortActions = sortSlice.actions;
 export const sortSelectors = sortModule;
-
-export const restorationReducer = restorationSlice.reducer;
-export const restorationActions = restorationSlice.actions;
-export const restorationSelectors = restorationModule;
