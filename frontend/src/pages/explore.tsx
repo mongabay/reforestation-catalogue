@@ -148,7 +148,7 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
         </div>
         <div className="flex flex-col w-full px-5 md:pr-12 md:px-0">
           <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
-            Viewing 120 projects of 240
+            46 projects (13%) out of 240 meet your filtering criteria
           </p>
           <div className="flex-shrink-0 mt-2">
             <ProjectSearch />
