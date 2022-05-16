@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Button from 'components/button';
+import { serialize } from 'utils/routing';
 
 import { getFieldByID } from 'services/catalog';
 
@@ -28,11 +29,11 @@ export const FilterPill: FC<FilterPillProps> = ({
     >
       {link && (
         <Link
-          href={`/explore?filters=${encodeURI(
-            JSON.stringify([{ id: filter.field, value: filter.value }])
-          )}`}
+          href={`/explore?filters=${
+            serialize({ filters: [{ field: filter.field, value: filter.value }] }).filters
+          }`}
         >
-          <a className="underline">{filter.value.toString()}</a>
+          <a className="underline">{field.label}</a>
         </Link>
       )}
       {!link && (

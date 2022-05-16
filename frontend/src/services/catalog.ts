@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { Category, FilterModes, FilterTypes, Project } from 'types';
 
-export const getCatalogData = () =>
-  axios.get<Project[]>('/data/mongabay-data.json').then(({ data }) => data);
+export const getCatalogData = (): Promise<Project[]> =>
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/data/mongabay-data.json`).then((res) => res.json());
 export const CONTEXT_CATEGORY = 'Context';
 export const ECOLOGICAL_CATEGORY = 'Ecological';
 export const ECONOMIC_CATEGORY = 'Economic';

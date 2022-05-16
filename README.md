@@ -1,5 +1,5 @@
 # reforestation-catalogue
-## Getting Started (front-end)
+## Getting started (front-end)
 
 In order to start modifying the app, please make sure to correctly configure your workstation:
 
@@ -16,3 +16,13 @@ You can access a hot-reloaded version of the app on [http://localhost:3000](http
 The application is built using [React](https://reactjs.org/) and the framework [Next.js](https://nextjs.org/). The styles use [Sass](https://sass-lang.com/) and the [Bootstrap](https://getbootstrap.com/) framework.
 
 A continuous deployment system is in place. Each time you push to the `main` branch, the application is deployed in GitHub Pages through a GitHub Action defined in `.github/workflows/build.yml`. You can see the status of the build in the “Actions” tab of the repository on GitHub.
+
+## Environment variables (front-end)
+
+The application is configured via environment variables stored in a `.env` file that must be placed at the root of the `frontend` folder. You can create one by copying `.env.sample` and setting a value for each key.
+
+Below is a description of each of the keys.
+
+| Variable                        | Description                                                                                                                              |
+|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| NEXT_PUBLIC_API_URL         | Complete URL from which the API is served (including https) and without a trailing slash (e.g. https://vizzuality.com)  |

@@ -39,6 +39,8 @@
     "@react-aria/focus": "^3.3.0",
     "@react-aria/overlays": "^3.6.3",
     "@react-aria/ssr": "^3.1.0",
+    "@react-aria/tabs": "^3.0.0-rc.0",
+    "@react-stately/tabs": "^3.0.0-rc.0",
     "@reduxjs/toolkit": "^1.5.1",
     "@tippyjs/react": "^4.2.5",
     "@types/lodash-es": "^4.17.6",

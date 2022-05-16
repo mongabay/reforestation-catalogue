@@ -18,7 +18,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
       <p className="flex-grow block mt-3">{project.projectName}</p>
       <Button
         theme="link"
-        to={`/project/${project.id}`}
+        to={`/explore/project/${project.id}`}
         target={openInNewWindow ? '_blank' : undefined}
         className="justify-center mt-5 focus-visible:!outline-grey-darker"
       >

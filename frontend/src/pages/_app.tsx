@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { AppProps } from 'next/app';
 import Script from 'next/script';
@@ -20,9 +20,9 @@ type Props = AppProps & {
   };
 };
 
-const queryClient = new QueryClient();
-
 const ReforestationCatalogApp: React.FC<AppProps> = ({ Component, pageProps }: Props) => {
+  const [queryClient] = useState(() => new QueryClient());
+
   // By getting the layout from the child component, we can prevent it from re-rendering when
   // navigating to a page with the same one
   // Source: https://github.com/vercel/next.js/issues/8193#issuecomment-590654825
@@ -44,17 +44,19 @@ const ReforestationCatalogApp: React.FC<AppProps> = ({ Component, pageProps }: P
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
-      <SSRProvider>
-        <OverlayProvider>
-          <AnimateSharedLayout>
-            <Layout {...layoutProps}>
-              <Component {...pageProps} />
-            </Layout>
-          </AnimateSharedLayout>
-        </OverlayProvider>
-      </SSRProvider>
+      <Hydrate state={pageProps.dehydratedState}>
+        {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
+        <SSRProvider>
+          <OverlayProvider>
+            <AnimateSharedLayout>
+              <Layout {...layoutProps}>
+                <Component {...pageProps} />
+              </Layout>
+            </AnimateSharedLayout>
+          </OverlayProvider>
+        </SSRProvider>
+      </Hydrate>
     </QueryClientProvider>
   );
 };

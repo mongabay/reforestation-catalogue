@@ -7,11 +7,14 @@ import Tooltip from 'components/tooltip';
 import { END_YEAR_SPECIAL_VALUES } from 'types';
 import { getProjectCategoriesPercentage } from 'utils/project';
 
-import { ProjectChartProps } from './types';
+import { ProjectChartProps, ProjectChartSize } from './types';
 
 export const ProjectChart: FC<ProjectChartProps> = ({
   project,
   highlightedCategory,
+  reducedContrast = false,
+  tooltip = true,
+  size = ProjectChartSize.Default,
 }: ProjectChartProps) => {
   const categoryPercentages = getProjectCategoriesPercentage(project);
 
@@ -21,8 +24,14 @@ export const ProjectChart: FC<ProjectChartProps> = ({
     project.endYear < new Date().getFullYear();
 
   return (
-    <div className="max-w-[150px]">
+    <div
+      className={cx({
+        'max-w-[150px]': size == ProjectChartSize.Default,
+        'max-w-[85px]': size == ProjectChartSize.Small,
+      })}
+    >
       <Tooltip
+        disabled={!tooltip}
         placement="bottom"
         interactive={false}
         content={
@@ -47,6 +56,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
             highlightedCategory={highlightedCategory}
             categoriesPercentages={categoryPercentages}
             finalized={isFinalized}
+            reducedContrast={reducedContrast}
           />
         </div>
       </Tooltip>

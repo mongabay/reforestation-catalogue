@@ -10,6 +10,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
   highlightedCategory,
   categoriesPercentages,
   finalized,
+  reducedContrast,
 }: RadialChartProps) => {
   const getStrokeDashArray = (radius, category) => {
     const length = radius * 2 * Math.PI;
@@ -18,6 +19,36 @@ const RadialChart: React.FC<RadialChartProps> = ({
     const emptyValue = length - fullValue;
     return `${fullValue} ${emptyValue}`;
   };
+
+  const getCircleClassName = (category: Categories) =>
+    classnames({
+      'fill-transparent': true,
+      'stroke-orange':
+        !!highlightedCategory && highlightedCategory === category && !reducedContrast,
+      'stroke-grey-medium':
+        (!!highlightedCategory && highlightedCategory === category && reducedContrast) ||
+        (!!highlightedCategory &&
+          highlightedCategory !== category &&
+          !finalized &&
+          !reducedContrast) ||
+        (!highlightedCategory && finalized && reducedContrast) ||
+        (!highlightedCategory && !finalized),
+      'stroke-grey-darker':
+        (!!highlightedCategory &&
+          highlightedCategory !== category &&
+          finalized &&
+          !reducedContrast) ||
+        (!highlightedCategory && finalized && !reducedContrast),
+      'stroke-grey':
+        (!!highlightedCategory &&
+          highlightedCategory !== category &&
+          finalized &&
+          reducedContrast) ||
+        (!!highlightedCategory &&
+          highlightedCategory !== category &&
+          !finalized &&
+          reducedContrast),
+    });
 
   return (
     <svg viewBox="0 0 160 160">
@@ -30,12 +61,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
       </g>
       <g className="origin-center -rotate-90">
         <circle
-          className={classnames({
-            'fill-transparent': true,
-            'stroke-orange': highlightedCategory === Categories.Context,
-            'stroke-grey-darker': highlightedCategory !== Categories.Context && finalized,
-            'stroke-grey-medium': highlightedCategory !== Categories.Context && !finalized,
-          })}
+          className={getCircleClassName(Categories.Context)}
           cx="80"
           cy="80"
           r="77"
@@ -45,12 +71,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
         />
 
         <circle
-          className={classnames({
-            'fill-transparent': true,
-            'stroke-orange': highlightedCategory === Categories.Ecological,
-            'stroke-grey-darker': highlightedCategory !== Categories.Ecological && finalized,
-            'stroke-grey-medium': highlightedCategory !== Categories.Ecological && !finalized,
-          })}
+          className={getCircleClassName(Categories.Ecological)}
           cx="80"
           cy="80"
           r="65"
@@ -59,12 +80,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
           strokeDasharray={getStrokeDashArray(65, Categories.Ecological)}
         />
         <circle
-          className={classnames({
-            'fill-transparent': true,
-            'stroke-orange': highlightedCategory === Categories.Economic,
-            'stroke-grey-darker': highlightedCategory !== Categories.Economic && finalized,
-            'stroke-grey-medium': highlightedCategory !== Categories.Economic && !finalized,
-          })}
+          className={getCircleClassName(Categories.Economic)}
           cx="80"
           cy="80"
           r="52"
@@ -73,12 +89,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
           strokeDasharray={getStrokeDashArray(52, Categories.Economic)}
         />
         <circle
-          className={classnames({
-            'fill-transparent': true,
-            'stroke-orange': highlightedCategory === Categories.Institutional,
-            'stroke-grey-darker': highlightedCategory !== Categories.Institutional && finalized,
-            'stroke-grey-medium': highlightedCategory !== Categories.Institutional && !finalized,
-          })}
+          className={getCircleClassName(Categories.Institutional)}
           cx="80"
           cy="80"
           r="40"
@@ -87,12 +98,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
           strokeDasharray={getStrokeDashArray(40, Categories.Institutional)}
         />
         <circle
-          className={classnames({
-            'fill-transparent': true,
-            'stroke-orange': highlightedCategory === Categories.Social,
-            'stroke-grey-darker': highlightedCategory !== Categories.Social && finalized,
-            'stroke-grey-medium': highlightedCategory !== Categories.Social && !finalized,
-          })}
+          className={getCircleClassName(Categories.Social)}
           cx="80"
           cy="80"
           r="27"

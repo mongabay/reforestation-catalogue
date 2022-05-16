@@ -27,11 +27,11 @@ export default class MyDocument extends Document {
           ></script>
           <link rel="icon" type="image/png" href="/icons/favicon.ico" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Cardo&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;600;700&display=swap"
             rel="stylesheet"
           ></link>
           <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
             rel="stylesheet"
           ></link>
         </Head>

@@ -8,9 +8,9 @@ import { useAppDispatch } from 'hooks/redux';
 
 import Button from 'components/button';
 import CatalogFilters from 'components/catalog-filters';
+import GlossaryModal from 'components/glossary-modal';
 import Head from 'components/head';
 import Icon from 'components/icon';
-import Modal from 'components/modal';
 import ProjectCatalog from 'components/project-catalog';
 import ProjectSearch from 'components/project-search';
 import Tooltip from 'components/tooltip';
@@ -26,14 +26,7 @@ import LeftArrowIcon from 'svgs/left-arrow.svg';
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    const isClientSideNavigation = context.req.url.startsWith('/_next');
-
-    // We don't want to restore the URL state when navigating between pages because `context.query`
-    // will be empty and it will overwrite the client-side state
-    if (!isClientSideNavigation) {
-      await store.dispatch(globalActions.restoreState(context.query));
-    }
-
+    await store.dispatch(globalActions.restoreState(context.query));
     return { props: {} };
   }
 );
@@ -50,24 +43,7 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
     <>
       <Head />
       <UrlSync />
-      <Modal
-        title="Glossary"
-        size="wide"
-        open={showGlossaryModal}
-        onDismiss={() => setShowGlossaryModal(false)}
-      >
-        <div className="md:px-20">
-          <h1 className="font-serif text-3xl font-bold text-green">Glossary</h1>
-          <p className="mt-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </p>
-        </div>
-      </Modal>
+      <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
       <aside className="mr-6 bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
         <div className="p-1 md:h-full md:overflow-y-scroll">
           <Button className="w-full" onClick={() => setShowGuidanceModal(true)}>

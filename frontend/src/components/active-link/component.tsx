@@ -33,7 +33,10 @@ export const ActiveLink: React.FC<ActiveLinkProps> = ({
 
       // Using URL().pathname to get rid of query and hash
       const activePathname = new URL(asPath, window.location.href).pathname;
-      const isActive = linkPathname === activePathname;
+      const isActive =
+        linkPathname === '/'
+          ? activePathname == linkPathname
+          : activePathname.startsWith(linkPathname);
 
       setClassName(
         cx({

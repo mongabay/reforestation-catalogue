@@ -7,4 +7,6 @@ export interface RadialChartProps {
   categoriesPercentages: unknown;
   /** Whether the project was finalized */
   finalized: boolean;
+  /** Reduce the contract of the chart */
+  reducedContrast: boolean;
 }

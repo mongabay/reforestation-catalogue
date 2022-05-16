@@ -10,13 +10,13 @@ import { StaticPageLayoutProps } from './types';
 
 export const StaticPageLayout: React.FC<StaticPageLayoutProps> = ({
   children,
-  headerProps,
+  headerProps = {},
   mainProps,
   footerProps,
   ...rest
 }: StaticPageLayoutProps) => (
   <div {...rest}>
-    <Header props={headerProps} />
+    <Header {...headerProps} />
     <main
       {...omit(mainProps, 'className')}
       className={cx({
