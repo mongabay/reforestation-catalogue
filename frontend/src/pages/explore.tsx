@@ -147,7 +147,7 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
             ref={catalogRef}
             className="pt-8 pb-8 mt-2 md:overflow-y-scroll focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
           >
-            <ProjectCatalog />
+            <ProjectCatalog hightlightSortingCategory />
           </div>
         </div>
       </div>

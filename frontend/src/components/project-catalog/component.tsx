@@ -34,8 +34,7 @@ export const ProjectCatalog: FC<ProjectCatalogProps> = ({
         <ProjectCard
           key={project.id}
           project={project}
-          // TODO: should be the sorting option which determines highlight
-          highlightedCategory={Categories.Context}
+          highlightedCategory={hightlightSortingCategory ? sort : undefined}
           openInNewWindow={openInNewWindow}
         />
       ))}
