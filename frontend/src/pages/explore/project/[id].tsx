@@ -175,7 +175,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
   return (
     <div className="relative pt-5 pb-12">
       <LayoutContainer>
-        <Head />
+        <Head title={project.projectName} />
         <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
         <ProjectLinksModal
           open={showProjectLinksModal}

@@ -41,7 +41,7 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
 
   return (
     <>
-      <Head />
+      <Head title="Explore" />
       <UrlSync />
       <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
       <aside className="mr-6 bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
