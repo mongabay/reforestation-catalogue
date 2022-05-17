@@ -45,7 +45,7 @@ const AboutPage: React.FC<AboutPageLayoutProps> = ({
               <img src="/images/mongabay-logo-about.png" />
             </a>
             <a href="https://vizzuality.com" target="_blank" rel="noreferrer">
-              <img src="/images/vizzuality-logo.png" />
+              <img src="/images/vizzuality.png" />
             </a>
           </div>
         </div>
