@@ -9,4 +9,6 @@ export interface RadialChartProps {
   finalized: boolean;
   /** Reduce the contract of the chart */
   reducedContrast: boolean;
+  /** Display the arcs with light colors */
+  invertColors: boolean;
 }

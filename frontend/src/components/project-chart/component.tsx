@@ -14,7 +14,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
   highlightedCategory,
   reducedContrast = false,
   tooltip = true,
-  size = ProjectChartSize.Default,
+  invertColors = false,
 }: ProjectChartProps) => {
   const categoryPercentages = getProjectCategoriesPercentage(project);
 
@@ -24,12 +24,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
     project.endYear < new Date().getFullYear();
 
   return (
-    <div
-      className={cx({
-        'max-w-[150px]': size == ProjectChartSize.Default,
-        'max-w-[85px]': size == ProjectChartSize.Small,
-      })}
-    >
+    <div className="max-w-[150px]">
       <Tooltip
         disabled={!tooltip}
         placement="bottom"
@@ -57,6 +52,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
             categoriesPercentages={categoryPercentages}
             finalized={isFinalized}
             reducedContrast={reducedContrast}
+            invertColors={invertColors}
           />
         </div>
       </Tooltip>

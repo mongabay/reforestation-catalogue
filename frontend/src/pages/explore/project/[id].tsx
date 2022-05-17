@@ -151,6 +151,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
 }) => {
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
   const [showProjectLinksModal, setShowProjectLinksModal] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<Categories>(Categories.Context);
 
   const getReportedFieldsForCategory = (category: Categories, reported: boolean) => {
     const fields = CATEGORIES.find((c) => c.id === category).fields.filter(
@@ -188,8 +189,12 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
             <span className="text-base font-semibold">Glossary</span>
           </Button>
         </div>
-        <div className="md:flex">
-          <div className="flex-shrink-0 md:w-36" />
+        <div className="flex flex-col-reverse md:flex-row">
+          <div className="flex justify-center flex-shrink-0 mt-12 md:block">
+            <div className="px-4 py-3 bg-green">
+              <ProjectChart project={project} reducedContrast invertColors />
+            </div>
+          </div>
           <div className="flex-grow md:ml-7">
             <Breadcrumbs
               items={[
@@ -197,184 +202,157 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 { label: project.projectName },
               ]}
             />
-          </div>
-        </div>
-        <div className="flex flex-col-reverse mt-8 md:mt-0 md:flex-row">
-          <div className="flex justify-center flex-shrink-0 md:block md:w-36 md:pt-1">
-            <ProjectChart project={project} reducedContrast />
-          </div>
-          <div className="flex-grow mb-7 md:mb-0 md:ml-7 md:pt-8">
-            <h1 className="max-w-2xl font-serif text-3xl font-bold text-green">
-              {project.projectName}
-            </h1>
-            <div className="mt-4">
-              {!!project.leadOrganization && <div>{project.leadOrganization}</div>}
-              {(!!project.startYear || !!project.endYear) && (
-                <div>
-                  {project.startYear ?? '−'} - {project.endYear ?? '−'}
-                </div>
+            <div className="pt-8">
+              <h1 className="max-w-2xl font-serif text-3xl font-bold text-green">
+                {project.projectName}
+              </h1>
+              <div className="mt-4">
+                {!!project.leadOrganization && <div>{project.leadOrganization}</div>}
+                {(!!project.startYear || !!project.endYear) && (
+                  <div>
+                    {project.startYear ?? '−'} - {project.endYear ?? '−'}
+                  </div>
+                )}
+                {!!project.country && <div>{project.country}</div>}
+              </div>
+              {!!project.projectOrgUrl && (
+                <Link href={project.projectOrgUrl}>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="block mt-4 text-blue hover:underline"
+                  >
+                    {project.projectOrgUrl.replace(/^https?:\/\//, '').split('/')[0]}
+                  </a>
+                </Link>
               )}
-              {!!project.country && <div>{project.country}</div>}
             </div>
-            {!!project.projectOrgUrl && (
-              <Link href={project.projectOrgUrl}>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="block mt-4 text-blue hover:underline"
+            <div className="mt-7">
+              <div className="flex flex-col gap-4 md:flex-row md:gap-11">
+                <Button
+                  theme="secondary-green"
+                  className="justify-center md:justify-start"
+                  onClick={() => setShowProjectLinksModal(true)}
                 >
-                  {project.projectOrgUrl.replace(/^https?:\/\//, '').split('/')[0]}
-                </a>
-              </Link>
-            )}
+                  Project links
+                </Button>
+                <Button
+                  to={`/explore/project/${project.id}/edit`}
+                  className="justify-center md:justify-start"
+                >
+                  Suggest page edits
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="md:flex mt-7">
-          <div className="flex-shrink-0 md:w-36" />
+        <div className="flex flex-col-reverse mt-16 md:flex-row">
+          <div className="flex justify-center flex-shrink-0 mt-12 md:block">
+            <div className="px-4 py-3">
+              <ProjectChart
+                project={project}
+                highlightedCategory={activeCategory}
+                reducedContrast
+                tooltip={false}
+              />
+            </div>
+          </div>
           <div className="flex-grow md:ml-7">
-            <div className="flex flex-col gap-4 md:flex-row md:gap-11">
-              <Button
-                theme="secondary-green"
-                className="justify-center md:justify-start"
-                onClick={() => setShowProjectLinksModal(true)}
-              >
-                Project links
-              </Button>
-              <Button
-                to={`/explore/project/${project.id}/edit`}
-                className="justify-center md:justify-start"
-              >
-                Suggest page edits
-              </Button>
-            </div>
-            <div className="mt-16">
-              <Tabs aria-label="Categories">
-                <TabItem key={Categories.Context} title={Categories.Context}>
-                  <div className="mt-5">
-                    <ProjectChart
-                      project={project}
-                      highlightedCategory={Categories.Context}
-                      reducedContrast
-                      tooltip={false}
-                      size={ProjectChartSize.Small}
-                    />
-                    <p className="mt-8">{getContextDynamicText(project)}</p>
-                    <div className="mt-8">
-                      <span className="font-semibold">Reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Context, true)}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Non-reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Context, false)}
-                    </div>
+            <Tabs
+              aria-label="Categories"
+              selectedKey={activeCategory}
+              onChange={(category) => setActiveCategory(category as Categories)}
+            >
+              <TabItem key={Categories.Context} title={Categories.Context}>
+                <div className="mt-8 md:mt-12">
+                  <p>{getContextDynamicText(project)}</p>
+                  <div className="mt-8">
+                    <span className="font-semibold">Reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Context, true)}
                   </div>
-                </TabItem>
-                <TabItem key={Categories.Ecological} title={Categories.Ecological}>
-                  <div className="mt-5">
-                    <ProjectChart
-                      project={project}
-                      highlightedCategory={Categories.Ecological}
-                      reducedContrast
-                      tooltip={false}
-                      size={ProjectChartSize.Small}
-                    />
-                    <div className="mt-8">
-                      <span className="font-semibold">Forest type:</span>{' '}
-                      {project.forestType ? project.forestType : 'Unreported'}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Ecological, true)}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Non-reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Ecological, false)}
-                    </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Non-reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Context, false)}
                   </div>
-                </TabItem>
-                <TabItem key={Categories.Economic} title={Categories.Economic}>
-                  <div className="mt-5">
-                    <ProjectChart
-                      project={project}
-                      highlightedCategory={Categories.Economic}
-                      reducedContrast
-                      tooltip={false}
-                      size={ProjectChartSize.Small}
-                    />
-                    <div className="mt-8">
-                      <span className="font-semibold">Name Org/Donor:</span>{' '}
-                      {project.nameOrgDonor ? project.nameOrgDonor : 'Unreported'}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Financial model:</span>{' '}
-                      {project.financialModel ? project.financialModel : 'Unreported'}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Economic, true)}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Non-reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Economic, false)}
-                    </div>
+                </div>
+              </TabItem>
+              <TabItem key={Categories.Ecological} title={Categories.Ecological}>
+                <div className="mt-8 md:mt-12">
+                  <div>
+                    <span className="font-semibold">Forest type:</span>{' '}
+                    {project.forestType ? project.forestType : 'Unreported'}
                   </div>
-                </TabItem>
-                <TabItem key={Categories.Institutional} title={Categories.Institutional}>
-                  <div className="mt-5">
-                    <ProjectChart
-                      project={project}
-                      highlightedCategory={Categories.Institutional}
-                      reducedContrast
-                      tooltip={false}
-                      size={ProjectChartSize.Small}
-                    />
-                    <div className="mt-8">
-                      <span className="font-semibold">Lead organization:</span>{' '}
-                      {project.leadOrganization ? project.leadOrganization : 'Unreported'}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Organization type:</span>{' '}
-                      {project.organizationType ? project.organizationType : 'Unreported'}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">{`Who's involved:`}</span>{' '}
-                      {project.whoIsInvolved ? project.whoIsInvolved : 'Unreported'}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Partner name:</span>{' '}
-                      {project.partnerName ? project.partnerName : 'Unreported'}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Institutional, true)}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Non-reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Institutional, false)}
-                    </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Ecological, true)}
                   </div>
-                </TabItem>
-                <TabItem key={Categories.Social} title={Categories.Social}>
-                  <div className="mt-5">
-                    <ProjectChart
-                      project={project}
-                      highlightedCategory={Categories.Social}
-                      reducedContrast
-                      tooltip={false}
-                      size={ProjectChartSize.Small}
-                    />
-                    <div className="mt-8">
-                      <span className="font-semibold">Reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Social, true)}
-                    </div>
-                    <div className="mt-8">
-                      <span className="font-semibold">Non-reported information:</span>
-                      {getReportedFieldsForCategory(Categories.Social, false)}
-                    </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Non-reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Ecological, false)}
                   </div>
-                </TabItem>
-              </Tabs>
-            </div>
+                </div>
+              </TabItem>
+              <TabItem key={Categories.Economic} title={Categories.Economic}>
+                <div className="mt-8 md:mt-12">
+                  <div>
+                    <span className="font-semibold">Name Org/Donor:</span>{' '}
+                    {project.nameOrgDonor ? project.nameOrgDonor : 'Unreported'}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Financial model:</span>{' '}
+                    {project.financialModel ? project.financialModel : 'Unreported'}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Economic, true)}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Non-reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Economic, false)}
+                  </div>
+                </div>
+              </TabItem>
+              <TabItem key={Categories.Institutional} title={Categories.Institutional}>
+                <div className="mt-8 md:mt-12">
+                  <div>
+                    <span className="font-semibold">Lead organization:</span>{' '}
+                    {project.leadOrganization ? project.leadOrganization : 'Unreported'}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Organization type:</span>{' '}
+                    {project.organizationType ? project.organizationType : 'Unreported'}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">{`Who's involved:`}</span>{' '}
+                    {project.whoIsInvolved ? project.whoIsInvolved : 'Unreported'}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Partner name:</span>{' '}
+                    {project.partnerName ? project.partnerName : 'Unreported'}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Institutional, true)}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Non-reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Institutional, false)}
+                  </div>
+                </div>
+              </TabItem>
+              <TabItem key={Categories.Social} title={Categories.Social}>
+                <div className="mt-8 md:mt-12">
+                  <div>
+                    <span className="font-semibold">Reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Social, true)}
+                  </div>
+                  <div className="mt-8">
+                    <span className="font-semibold">Non-reported information:</span>
+                    {getReportedFieldsForCategory(Categories.Social, false)}
+                  </div>
+                </div>
+              </TabItem>
+            </Tabs>
           </div>
         </div>
       </LayoutContainer>

@@ -13,6 +13,6 @@ export interface ProjectChartProps {
   reducedContrast?: boolean;
   /** Whether to show a tooltip on hover. Default to `true`. */
   tooltip?: boolean;
-  /** Size of the chart. Default to `ProjectChartSize.Default`. */
-  size?: ProjectChartSize;
+  /** Display the arcs with light colors. Default to `false`. */
+  invertColors?: boolean;
 }
