@@ -46,9 +46,9 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
       <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
       <aside className="mr-6 bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
         <div className="p-1 md:h-full md:overflow-y-scroll">
-          <Button className="w-full" onClick={() => setShowGuidanceModal(true)}>
+          <Button className="w-full md:w-auto" onClick={() => setShowGuidanceModal(true)}>
             <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
-            Go back to the step by step guidance
+            Step-by-step guidance
           </Button>
           <div className="flex items-center justify-between mt-8 md:mt-12">
             <h1 className="font-serif text-3xl font-bold text-green">Filters</h1>
