@@ -9,10 +9,8 @@ export interface ProjectChartProps {
   project: Project;
   /** Highlighted category */
   highlightedCategory?: Categories;
-  /** Reduce the contract of the chart. Default to `false`. */
-  reducedContrast?: boolean;
+  /** Stroke width of the highlighted category. Default to `2`. */
+  highlightedCategoryStroke?: number;
   /** Whether to show a tooltip on hover. Default to `true`. */
   tooltip?: boolean;
-  /** Display the arcs with light colors. Default to `false`. */
-  invertColors?: boolean;
 }

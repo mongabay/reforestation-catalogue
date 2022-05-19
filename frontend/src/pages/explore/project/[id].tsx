@@ -191,9 +191,11 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
         </div>
         <div className="flex flex-col-reverse md:flex-row">
           <div className="flex justify-center flex-shrink-0 mt-12 md:block">
-            <div className="px-4 py-3 bg-green">
-              <ProjectChart project={project} reducedContrast invertColors />
-            </div>
+            <ProjectChart
+              project={project}
+              highlightedCategory={activeCategory}
+              highlightedCategoryStroke={4}
+            />
           </div>
           <div className="flex-grow md:ml-7">
             <Breadcrumbs
@@ -247,16 +249,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
           </div>
         </div>
         <div className="flex flex-col-reverse mt-16 md:flex-row">
-          <div className="flex justify-center flex-shrink-0 mt-12 md:block">
-            <div className="px-4 py-3">
-              <ProjectChart
-                project={project}
-                highlightedCategory={activeCategory}
-                reducedContrast
-                tooltip={false}
-              />
-            </div>
-          </div>
+          <div className="flex-shrink-0 md:w-36" />
           <div className="flex-grow md:ml-7">
             <Tabs
               aria-label="Categories"

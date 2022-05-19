@@ -12,9 +12,8 @@ import { ProjectChartProps, ProjectChartSize } from './types';
 export const ProjectChart: FC<ProjectChartProps> = ({
   project,
   highlightedCategory,
-  reducedContrast = false,
+  highlightedCategoryStroke = 2,
   tooltip = true,
-  invertColors = false,
 }: ProjectChartProps) => {
   const categoryPercentages = getProjectCategoriesPercentage(project);
 
@@ -49,10 +48,9 @@ export const ProjectChart: FC<ProjectChartProps> = ({
         <div>
           <RadialChart
             highlightedCategory={highlightedCategory}
+            highlightedCategoryStroke={highlightedCategoryStroke}
             categoriesPercentages={categoryPercentages}
             finalized={isFinalized}
-            reducedContrast={reducedContrast}
-            invertColors={invertColors}
           />
         </div>
       </Tooltip>
