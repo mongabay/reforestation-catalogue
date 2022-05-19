@@ -9,11 +9,16 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   project,
   highlightedCategory,
   openInNewWindow,
+  tooltip = true,
 }: ProjectCardProps) => {
   return (
     <div className="flex flex-col w-64 px-3 py-5 text-sm text-center transition hover:shadow-md focus-within:shadow-md bg-grey-light rounded-3xl">
       <div className="flex justify-center">
-        <ProjectChart project={project} highlightedCategory={highlightedCategory} />
+        <ProjectChart
+          project={project}
+          highlightedCategory={highlightedCategory}
+          tooltip={tooltip}
+        />
       </div>
       <p className="flex-grow block mt-3">{project.projectName}</p>
       <Button
