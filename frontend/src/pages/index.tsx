@@ -57,7 +57,7 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
         </LayoutContainer>
       </div>
       <LayoutContainer className="py-12 md:py-40">
-        <div className="flex flex-col gap-10 md:flex-row md:gap-28 md:items-center">
+        <div className="flex flex-col gap-10 lg:flex-row lg:gap-28 md:items-center">
           <div className="shrink-0">
             <Image
               src="/images/home-approach.png"
@@ -127,7 +127,7 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
         </LayoutContainer>
       </div>
       <LayoutContainer className="py-12 md:py-40">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:gap-28 md:items-center">
+        <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-28 md:items-center">
           <div className="max-w-3xl">
             <h2 className="font-serif text-3xl md:text-[40px] text-green font-bold md:leading-[56px] max-w-lg">
               How it works?
