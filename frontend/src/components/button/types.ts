@@ -8,6 +8,7 @@ export interface ButtonCommonProps {
     | 'secondary-green'
     | 'secondary-white'
     | 'link'
+    | 'link-primary'
     | 'transparent'
     | 'naked';
 }

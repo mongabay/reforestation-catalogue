@@ -1,6 +1,6 @@
-import { QueryClient, useQuery, UseQueryOptions } from 'react-query';
+import { useMutation, useQuery, UseQueryOptions } from 'react-query';
 
-import { Categories, Filter, Project } from 'types';
+import { Categories, Filter, Project, ProjectFormData } from 'types';
 
 import { getCatalogData } from 'services/catalog';
 
@@ -9,8 +9,30 @@ export const fetchProject = async (id: Project['id']) => {
   return projects.find((project) => project.id == id);
 };
 
+export const createProject = async (values: ProjectFormData) =>
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/project`, {
+    method: 'POST',
+    body: JSON.stringify(values),
+  }).then((res) => res.json());
+
+export const updateProject = async ({
+  id,
+  values,
+}: {
+  id: Project['id'];
+  values: ProjectFormData;
+}) =>
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/${id}`, {
+    method: 'POST',
+    body: JSON.stringify(values),
+  }).then((res) => res.json());
+
 export const useProjects = (filters: Filter[], search: string, sort: Categories) =>
   useQuery(['projects', filters, search, sort], getCatalogData);
 
 export const useProject = (id: Project['id'], options?: UseQueryOptions<Project, unknown>) =>
   useQuery(['project', id], () => fetchProject(id), options);
+
+export const useCreateProject = () => useMutation(createProject);
+
+export const useUpdateProject = () => useMutation(updateProject);

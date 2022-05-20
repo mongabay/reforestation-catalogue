@@ -9,12 +9,14 @@ export const LoadingSpinner: FC<LoadingSpinnerProps> = ({
   inner = false,
   inline = false,
   mini = false,
+  invertColor = false,
 }: LoadingSpinnerProps) => (
   <div
     className={cx({
       'top-0 left-0 z-10': true,
       fixed: !inner && !inline,
-      'bg-white/40': !transparent,
+      'bg-white/40': !transparent && !invertColor,
+      'bg-green/10': !transparent && invertColor,
       'w-full h-full': !inline && !mini,
       'bg-transparent': transparent,
       absolute: inner,
@@ -24,7 +26,7 @@ export const LoadingSpinner: FC<LoadingSpinnerProps> = ({
   >
     <svg
       className={cx({
-        'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/26': true,
+        'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2': true,
         'w-16 h-16': !mini,
         'w-5 h-5': mini,
       })}
@@ -37,10 +39,10 @@ export const LoadingSpinner: FC<LoadingSpinnerProps> = ({
           fill="none"
           strokeWidth={mini ? 2 : 3}
           strokeMiterlimit="10"
-          strokeDasharray="100, 200"
+          strokeDasharray={mini ? '10, 20' : '100, 200'}
           strokeDashoffset="0"
           strokeLinecap="round"
-          className="stroke-green"
+          className={invertColor ? 'stroke-white' : 'stroke-green'}
         />
       </g>
     </svg>

@@ -6,9 +6,9 @@ import LayoutContainer from 'components/layout-container';
 import { StaticPageLayoutProps } from 'layouts/static-page';
 import { PageComponent } from 'types';
 
-export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => (
+export const Error404Page: PageComponent<{}, StaticPageLayoutProps> = () => (
   <LayoutContainer className="py-24">
-    <Head />
+    <Head title="404 Page not found" />
     <div className="min-h-full px-4 py-16 bg-white sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
       <div className="mx-auto max-w-max">
         <main className="sm:flex">
@@ -30,4 +30,4 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => (
   </LayoutContainer>
 );
 
-export default HomePage;
+export default Error404Page;

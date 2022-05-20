@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 import cx from 'classnames';
 
-import { RadioProps } from './types';
+import { CheckboxProps } from './types';
 
-export const Radio: FC<RadioProps> = ({
+export const Checkbox: FC<CheckboxProps> = ({
   id,
   'aria-label': ariaLabel,
   name,
@@ -16,11 +16,11 @@ export const Radio: FC<RadioProps> = ({
   required,
   className,
   children,
-}: RadioProps) => (
+}: CheckboxProps) => (
   <div className={cx('flex items-center', className)}>
     <input
-      type="radio"
-      className="w-4 h-4 focus-visible:ring-green focus:ring-transparent text-green border-grey-dark"
+      type="checkbox"
+      className="w-4 h-4 rounded-md focus-visible:ring-green focus:ring-transparent text-green border-grey-dark"
       id={id}
       name={name}
       aria-label={ariaLabel}
@@ -37,4 +37,4 @@ export const Radio: FC<RadioProps> = ({
   </div>
 );
 
-export default Radio;
+export default Checkbox;

@@ -177,6 +177,14 @@ export interface Project {
   comment?: string;
 }
 
+export type ProjectFormData = Omit<Project, 'id' | 'countryCode' | 'comment'> & {
+  id?: Project['id'];
+} & {
+  name: string;
+  email?: string;
+  backgroundInfo?: string;
+};
+
 export enum Categories {
   Context = 'Context',
   Ecological = 'Ecological',

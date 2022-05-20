@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-export type RadioProps = PropsWithChildren<{
+export type CheckboxProps = PropsWithChildren<{
   /** ID of the input */
   id: string;
   /** Label announced to screen readers */

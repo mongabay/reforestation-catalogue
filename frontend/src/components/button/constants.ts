@@ -11,6 +11,8 @@ export const COLOR_THEMES: Record<NonNullable<ButtonCommonProps['theme']>, strin
   'secondary-white':
     'border border-white text-white hover:border-grey hover:text-grey focus-visible:outline-white',
   link: 'pl-2 pr-2 pt-1 pb-1 bg-transparent text-blue underline focus-visible:outline-blue',
+  'link-primary':
+    'pl-2 pr-2 pt-1 pb-1 bg-transparent text-green underline focus-visible:outline-green',
   transparent: 'bg-transparent text-grey-darker hover:bg-grey focus-visible:outline-grey-darker',
   naked: '',
 };

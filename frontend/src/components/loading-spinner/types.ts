@@ -5,6 +5,8 @@ export interface LoadingSpinnerProps {
   inner?: boolean;
   /** Make the loading spinner behave like an inline-block. Default to `false`. */
   inline?: boolean;
-  //**  Reduced size of the loading spinner. Default to `false`. */
+  /**  Reduced size of the loading spinner. Default to `false`. */
   mini?: boolean;
+  /** Display the loader with light colors. Default to `false`. */
+  invertColor?: boolean;
 }
