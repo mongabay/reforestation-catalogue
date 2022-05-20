@@ -38,9 +38,7 @@ const getContextDynamicText = (project: Project) => {
   const projectArea = project.sizeOfProjectHa && d3.format('.4s')(project.sizeOfProjectHa);
   const treesPlanted = project.treesPlantedNumber && d3.format('.4s')(project.treesPlantedNumber);
   const approach = project.approach;
-  const severalApproaches = approach && approach.indexOf(',') > 0;
   const primaryObjectivePurpose = project.primaryObjectivePurpose;
-  const severalObjPurposes = primaryObjectivePurpose && primaryObjectivePurpose.indexOf(',') > 0;
   const typeOfFollowUp = project.typeOfFollowUp;
 
   return (
@@ -76,69 +74,69 @@ const getContextDynamicText = (project: Project) => {
       </span>
       <span>
         {/* PRIMARY OBJECTIVE/PURPOSE */}
-        {primaryObjectivePurpose && !severalObjPurposes && (
+        {primaryObjectivePurpose?.length === 1 && (
           <span>
             {`The primary objective/purpose of the project is: `}
-            <span className="font-bold">{primaryObjectivePurpose}</span>
+            <span className="font-bold">{primaryObjectivePurpose[0]}</span>
             {` .`}
           </span>
         )}
-        {primaryObjectivePurpose && severalObjPurposes && (
+        {primaryObjectivePurpose?.length > 1 && (
           <span>
             {`The primary objectives/purposes of the project are: `}
             <span className="font-bold">
-              {primaryObjectivePurpose}
+              {primaryObjectivePurpose.join(', ')}
               {`. `}
             </span>
           </span>
         )}
-        {!primaryObjectivePurpose && approach && (
+        {!primaryObjectivePurpose?.length && approach?.length > 0 && (
           <span>{`The primary objective/purpose of the project hasn't been reported. `}</span>
         )}
       </span>
       <span>
         {/* APPROACH */}
-        {approach && !severalApproaches && (
+        {approach?.length === 1 && (
           <span>
             {`This project follows a`}
-            {approach.startsWith('a') ? 'n ' : ' '}
-            <span className="font-bold">{approach}</span>
+            {approach[0].startsWith('a') ? 'n ' : ' '}
+            <span className="font-bold">{approach[0]}</span>
             {` approach. `}
           </span>
         )}
-        {approach && severalApproaches && (
+        {approach?.length > 1 && (
           <span>
             {`This project follows the following approaches: `}
             <span className="font-bold">
-              {approach}
+              {approach.join(', ')}
               {`. `}
             </span>
           </span>
         )}
-        {!approach && primaryObjectivePurpose && (
+        {!approach?.length && !!primaryObjectivePurpose?.length && (
           <span>{`The approach for this project hasn't been reported. `}</span>
         )}
       </span>
-      {!primaryObjectivePurpose && !approach && (
+      {!primaryObjectivePurpose?.length && !approach?.length && (
         <span>{`This project doest not report its approach nor its primary objective/purpose. `}</span>
       )}
       {/* Type of follow up */}
       <span>
-        {typeOfFollowUp && !severalApproaches && (
+        {typeOfFollowUp?.length > 0 && !(approach?.length > 1) && (
           <span>
             {`This project has the following follow up type: `}
-            <span className="font-bold">{typeOfFollowUp}</span>
+            <span className="font-bold">{typeOfFollowUp.join(', ')}</span>
             {`.`}
           </span>
         )}
-        {typeOfFollowUp && severalApproaches && (
+        {typeOfFollowUp?.length > 0 && approach?.length > 1 && (
           <span>
             {`This project has the following follow up types associated to it: `}
-            <span className="font-bold">{typeOfFollowUp}</span>
+            <span className="font-bold">{typeOfFollowUp.join(', ')}</span>
             {`.`}
           </span>
         )}
-        {!typeOfFollowUp && (
+        {!typeOfFollowUp?.length && (
           <span>{`There isn't any type of follow up reported for this project. `}</span>
         )}
       </span>
@@ -273,7 +271,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Forest type:</span>{' '}
-                    {project.forestType ? project.forestType : 'Unreported'}
+                    {project.forestType ? project.forestType.join(', ') : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Reported information:</span>
@@ -293,7 +291,9 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Financial model:</span>{' '}
-                    {project.financialModel ? project.financialModel : 'Unreported'}
+                    {project.financialModel?.length > 0
+                      ? project.financialModel.join(', ')
+                      : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Reported information:</span>
@@ -317,7 +317,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">{`Who's involved:`}</span>{' '}
-                    {project.whoIsInvolved ? project.whoIsInvolved : 'Unreported'}
+                    {project.whoIsInvolved ? project.whoIsInvolved.join(', ') : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Partner name:</span>{' '}
