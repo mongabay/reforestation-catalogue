@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => (
           </a>
         </ActiveLink>
         <div className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5">
-          <Button to="/projects/new" theme="primary-white">
+          <Button to="/explore/project/new" theme="primary-white">
             <Icon icon={UploadIcon} aria-hidden className="w-4 h-4 mr-2 sm:hidden" />
             <span className="sm:hidden">Project</span>
             <span className="hidden sm:inline">Submit project</span>

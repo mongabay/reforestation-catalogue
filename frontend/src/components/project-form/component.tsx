@@ -103,14 +103,19 @@ export const ProjectForm: FC<ProjectFormProps> = ({
           </p>
         )}
         {isSuccess && (
-          <p className="p-4 font-semibold mb-14 bg-green/10 rounded-2xl">
-            <Icon
-              icon={CheckIcon}
-              aria-hidden
-              className="inline-block w-6 h-6 mr-2 align-text-top text-green"
-            />
-            Data submitted! Thank you for contributing.
-          </p>
+          <div className="p-4 mb-14 bg-green/10 rounded-2xl">
+            <p className="font-semibold">
+              <Icon
+                icon={CheckIcon}
+                aria-hidden
+                className="inline-block w-6 h-6 mr-2 align-text-top text-green"
+              />
+              Data submitted! Thank you for contributing.
+            </p>
+            <p className="mt-2 text-sm">
+              Mongabay will review your submission before making it public.
+            </p>
+          </div>
         )}
         <h2 className="font-serif text-3xl text-center">{step.name}</h2>
         <p className="mt-4 text-center">{step.description}</p>

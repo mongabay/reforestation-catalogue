@@ -23,7 +23,7 @@ export const updateProject = async ({
   values: ProjectFormData;
 }) =>
   fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/${id}`, {
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify(values),
   }).then((res) => res.json());
 
