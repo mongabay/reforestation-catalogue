@@ -11,18 +11,15 @@ import AlertIcon from 'svgs/alert.svg';
 import CheckIcon from 'svgs/check.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';
 
+import { PROJECT_FORM_STEPS } from './constants';
 import { getFormValues } from './helpers';
 import { ProjectFormProps } from './types';
 
 type GetProps<C> = C extends FC<infer P> ? P : never;
 
-export const ProjectForm: FC<ProjectFormProps> = ({
-  steps,
-  currentStep,
-  project,
-  onChangeStep,
-}: ProjectFormProps) => {
-  const step = steps[currentStep];
+export const ProjectForm: FC<ProjectFormProps> = ({ project }: ProjectFormProps) => {
+  const [stepIndex, setStepIndex] = useState(0);
+  const step = PROJECT_FORM_STEPS[stepIndex];
   const [values, setValues] = useState<Partial<ProjectFormData>>(project ?? {});
 
   const formRef = useRef<HTMLFormElement>();
@@ -48,12 +45,12 @@ export const ProjectForm: FC<ProjectFormProps> = ({
   const onPrevious = useCallback(() => {
     const values = getFormValues(formRef);
 
-    if (currentStep > 0) {
+    if (stepIndex > 0) {
       setValues((v) => ({ ...v, ...values }));
-      onChangeStep(currentStep - 1);
+      setStepIndex(stepIndex - 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [currentStep, formRef, onChangeStep]);
+  }, [stepIndex, formRef, setStepIndex]);
 
   const onSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -63,8 +60,8 @@ export const ProjectForm: FC<ProjectFormProps> = ({
       const data = { ...values, ...newValues };
       setValues(data);
 
-      if (currentStep < steps.length - 1) {
-        onChangeStep(currentStep + 1);
+      if (stepIndex < PROJECT_FORM_STEPS.length - 1) {
+        setStepIndex(stepIndex + 1);
         // The `setTimeout` is required on Firefox to scroll the page
         setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
       } else {
@@ -86,7 +83,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({
         }
       }
     },
-    [values, currentStep, steps, onChangeStep, project, updateProject, createProject]
+    [values, stepIndex, setStepIndex, project, updateProject, createProject]
   );
 
   return (
@@ -125,7 +122,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({
           <step.Component values={values} />
         </div>
         <div className="relative flex flex-col justify-between max-w-4xl mx-auto mt-10 sm:flex-row md:mt-16">
-          {currentStep > 0 ? (
+          {stepIndex > 0 ? (
             <Button
               theme="link-primary"
               onClick={onPrevious}
@@ -134,16 +131,16 @@ export const ProjectForm: FC<ProjectFormProps> = ({
             >
               <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
               <span className="sr-only">Go to </span>
-              {steps[currentStep - 1].name}
+              {PROJECT_FORM_STEPS[stepIndex - 1].name}
             </Button>
           ) : (
             <div />
           )}
           <div className="my-2 text-sm font-semibold text-center sm:my-0 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:absolute text-grey-medium top-1/2 left-1/2">
-            Page {currentStep + 1} out of {steps.length}
+            Page {stepIndex + 1} out of {PROJECT_FORM_STEPS.length}
           </div>
           <Button
-            theme={currentStep < steps.length - 1 ? 'link-primary' : 'primary-green'}
+            theme={stepIndex < PROJECT_FORM_STEPS.length - 1 ? 'link-primary' : 'primary-green'}
             type="submit"
             className="items-center"
             disabled={isLoading}
@@ -153,14 +150,14 @@ export const ProjectForm: FC<ProjectFormProps> = ({
                 <LoadingSpinner inline mini transparent invertColor />
               </div>
             )}
-            {currentStep < steps.length - 1 && (
+            {stepIndex < PROJECT_FORM_STEPS.length - 1 && (
               <>
                 <span className="sr-only">Go to </span>
-                {steps[currentStep + 1].name}
+                {PROJECT_FORM_STEPS[stepIndex + 1].name}
                 <Icon icon={LeftArrowIcon} aria-hidden className="h-3 ml-2 rotate-180" />
               </>
             )}
-            {currentStep === steps.length - 1 && 'Submit'}
+            {stepIndex === PROJECT_FORM_STEPS.length - 1 && 'Submit'}
           </Button>
         </div>
       </form>
