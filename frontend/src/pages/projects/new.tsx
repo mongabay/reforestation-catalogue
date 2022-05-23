@@ -56,9 +56,9 @@ export const NewProjectPage: PageComponent<{}, StaticPageLayoutProps> = () => {
   const [step, setStep] = useState(0);
 
   return (
-    <LayoutContainer className="py-24">
+    <LayoutContainer className="py-12 sm:py-24">
       <Head title="Submit project" />
-      <div className="max-w-lg mx-auto mb-8">
+      <div className="max-w-lg mx-auto mb-6 sm:mb-8">
         <h1 className="font-serif text-3xl font-bold text-center text-green">Submit project</h1>
       </div>
       <ProjectForm currentStep={step} onChangeStep={setStep} steps={STEPS} />

@@ -51,7 +51,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         >{`${orgType.substring(0, 1).toUpperCase()}${orgType.substring(1)}`}</Checkbox>
       ))}
     </fieldset>
-    <div className="flex mt-7 gap-11">
+    <div className="flex flex-col sm:flex-row mt-7 gap-7 sm:gap-11">
       <div className="flex-grow">
         <label htmlFor="start-year" className="font-semibold">
           Start year
@@ -125,7 +125,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
     </div>
     <fieldset className="mt-7">
       <legend className="mb-3 font-semibold">Primary objective/purpose</legend>
-      <div className="columns-2 gap-11">
+      <div className="sm:columns-2 sm:gap-11">
         {Object.values(PrimaryObjectivePurposeType).map((purposeType) => (
           <Checkbox
             key={purposeType}

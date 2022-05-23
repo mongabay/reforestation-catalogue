@@ -115,11 +115,11 @@ export const ProjectForm: FC<ProjectFormProps> = ({
         <h2 className="font-serif text-3xl text-center">{step.name}</h2>
         <p className="mt-4 text-center">{step.description}</p>
       </div>
-      <form ref={formRef} onSubmit={onSubmit} className="mt-14">
+      <form ref={formRef} onSubmit={onSubmit} className="mt-10 sm:mt-14">
         <div className="max-w-lg mx-auto">
           <step.Component values={values} />
         </div>
-        <div className="relative flex justify-between max-w-4xl mx-auto mt-10 md:mt-16">
+        <div className="relative flex flex-col justify-between max-w-4xl mx-auto mt-10 sm:flex-row md:mt-16">
           {currentStep > 0 ? (
             <Button
               theme="link-primary"
@@ -134,7 +134,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({
           ) : (
             <div />
           )}
-          <div className="absolute text-sm font-semibold -translate-x-1/2 -translate-y-1/2 text-grey-medium top-1/2 left-1/2">
+          <div className="my-2 text-sm font-semibold text-center sm:my-0 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:absolute text-grey-medium top-1/2 left-1/2">
             Page {currentStep + 1} out of {steps.length}
           </div>
           <Button
