@@ -10,7 +10,7 @@ export const ProjectLinksModal: FC<ProjectLinksModalProps> = ({
 }: ProjectLinksModalProps) => (
   <Modal title="Project links" open={open} onDismiss={onDismiss}>
     <div className="md:px-20">
-      <h1 className="font-serif text-3xl font-bold text-green">Project links</h1>
+      <h1 className="font-serif text-3xl font-bold text-green">Project Links</h1>
       <p className="mt-6">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco

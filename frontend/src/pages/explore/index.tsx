@@ -48,12 +48,12 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
         <div className="p-1 md:h-full md:overflow-y-scroll">
           <Button className="w-full md:w-auto" onClick={() => setShowGuidanceModal(true)}>
             <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
-            Step-by-step guidance
+            Step-by-step Guidance
           </Button>
           <div className="flex items-center justify-between mt-8 md:mt-12">
             <h1 className="font-serif text-3xl font-bold text-green">Filters</h1>
             <Button theme="link" onClick={() => dispatch(filtersActions.clearFilters())}>
-              Clear all filters
+              Clear all Filters
             </Button>
           </div>
           <div className="mt-6">

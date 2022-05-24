@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => (
           <Button to="/explore/project/new" theme="primary-white">
             <Icon icon={UploadIcon} aria-hidden className="w-4 h-4 mr-2 sm:hidden" />
             <span className="sm:hidden">Project</span>
-            <span className="hidden sm:inline">Submit project</span>
+            <span className="hidden sm:inline">Submit Project</span>
           </Button>
         </div>
       </nav>

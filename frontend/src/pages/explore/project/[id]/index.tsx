@@ -234,13 +234,13 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   className="justify-center md:justify-start"
                   onClick={() => setShowProjectLinksModal(true)}
                 >
-                  Project links
+                  Project Links
                 </Button>
                 <Button
                   to={`/explore/project/${project.id}/edit`}
                   className="justify-center md:justify-start"
                 >
-                  Suggest page edits
+                  Suggest Page Edits
                 </Button>
               </div>
             </div>

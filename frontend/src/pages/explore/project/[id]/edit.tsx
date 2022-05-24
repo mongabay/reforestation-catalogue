@@ -31,7 +31,7 @@ export const NewProjectPage: PageComponent<{ project: Project }, FormLayoutProps
   project,
 }) => (
   <LayoutContainer className="pt-6 pb-12 sm:pb-24">
-    <Head title="Submit project" />
+    <Head title="Submit Project Changes" />
     <Button
       theme="secondary-green"
       to={`/explore/project/${project.id}`}
@@ -42,7 +42,7 @@ export const NewProjectPage: PageComponent<{ project: Project }, FormLayoutProps
     </Button>
     <div className="max-w-lg mx-auto mb-6 sm:mb-8 mt-11">
       <h1 className="font-serif text-3xl font-bold text-center text-green">
-        Submit project changes
+        Submit Project Changes
       </h1>
     </div>
     <ProjectForm project={project} />

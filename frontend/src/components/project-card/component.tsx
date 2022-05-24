@@ -27,7 +27,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
         target={openInNewWindow ? '_blank' : undefined}
         className="justify-center mt-5 focus-visible:!outline-grey-darker"
       >
-        <span className="underline text-grey-darker">Go to project</span>
+        <span className="underline text-grey-darker">Go to Project</span>
       </Button>
     </div>
   );

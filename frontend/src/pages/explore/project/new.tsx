@@ -8,9 +8,9 @@ import { PageComponent } from 'types';
 
 export const NewProjectPage: PageComponent<{}, FormLayoutProps> = () => (
   <LayoutContainer className="py-12 sm:py-24">
-    <Head title="Submit project" />
+    <Head title="Submit Project" />
     <div className="max-w-lg mx-auto mb-6 sm:mb-8">
-      <h1 className="font-serif text-3xl font-bold text-center text-green">Submit project</h1>
+      <h1 className="font-serif text-3xl font-bold text-center text-green">Submit Project</h1>
     </div>
     <ProjectForm />
   </LayoutContainer>
