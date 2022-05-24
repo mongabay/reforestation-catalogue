@@ -113,6 +113,14 @@
     @apply mt-4;
   }
 
+  .cms-content b, .cms-content strong {
+    @apply font-semibold;
+  }
+
+  .cms-content a {
+    @apply underline;
+  }
+
   .cms-content ul {
     @apply pl-4 my-4 list-disc list-outside;
   }

@@ -6,7 +6,6 @@ import { useAppSelector } from 'hooks/redux';
 import LoadingSpinner from 'components/loading-spinner';
 import ProjectCard from 'components/project-card';
 import { filtersSelectors, searchSelectors, sortSelectors } from 'modules';
-import { Categories } from 'types';
 
 import { ProjectCatalogProps } from './types';
 

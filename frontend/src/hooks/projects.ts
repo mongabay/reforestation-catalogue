@@ -4,6 +4,11 @@ import { Categories, Filter, Project, ProjectFormData } from 'types';
 
 import { getCatalogData } from 'services/catalog';
 
+export const fetchProjects = async (filters: Filter[], search: string, sort: Categories) => {
+  const projects = await getCatalogData();
+  return projects;
+};
+
 export const fetchProject = async (id: Project['id']) => {
   const projects = await getCatalogData();
   return projects.find((project) => project.id == id);
@@ -28,7 +33,7 @@ export const updateProject = async ({
   }).then((res) => res.json());
 
 export const useProjects = (filters: Filter[], search: string, sort: Categories) =>
-  useQuery(['projects', filters, search, sort], getCatalogData);
+  useQuery(['projects', filters, search, sort], () => fetchProjects(filters, search, sort));
 
 export const useProject = (id: Project['id'], options?: UseQueryOptions<Project, unknown>) =>
   useQuery(['project', id], () => fetchProject(id), options);
