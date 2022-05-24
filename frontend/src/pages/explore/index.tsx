@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { FC, useState, useRef } from 'react';
 
 import Image from 'next/image';
 
@@ -11,6 +11,7 @@ import CatalogFilters from 'components/catalog-filters';
 import GlossaryModal from 'components/glossary-modal';
 import Head from 'components/head';
 import Icon from 'components/icon';
+import LayoutContainer from 'components/layout-container';
 import ProjectCatalog from 'components/project-catalog';
 import ProjectSearch from 'components/project-search';
 import Tooltip from 'components/tooltip';
@@ -24,29 +25,90 @@ import { PageComponent } from 'types';
 import LayersIcon from 'svgs/layers.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';
 
+const FIRST_VISIT_COOKIE_NAME = 'first_visit';
+
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
+    const isFirstVisit = !(FIRST_VISIT_COOKIE_NAME in context.req.cookies);
+    const emptyQuery = Object.keys(context.query).length === 0;
+
+    let showWelcomeScreen = false;
+    if (isFirstVisit && emptyQuery) {
+      showWelcomeScreen = true;
+      context.res.setHeader('Set-Cookie', `${FIRST_VISIT_COOKIE_NAME}=false`);
+    }
+
     await store.dispatch(globalActions.restoreState(context.query));
-    return { props: {} };
+
+    return {
+      props: {
+        showWelcomeScreen,
+      },
+    };
   }
 );
 
-export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => {
+const WelcomeScreen: FC<{
+  onNavigateToCatalog: () => void;
+  onNavigateToGuidance: () => void;
+}> = ({ onNavigateToCatalog, onNavigateToGuidance }) => {
+  return (
+    <div className="flex-grow lg:relative">
+      <LayoutContainer className="flex justify-center lg:justify-end lg:w-3/5 lg:ml-[40%] py-12 md:py-20">
+        <div className="lg:flex-grow lg:pl-24">
+          <div className="relative lg:-ml-32 before:block before:absolute before:h-full before:aspect-square before:bg-white before:rounded-full before:-translate-x-1/2 before:z-10">
+            <div className="relative z-10 flex flex-col-reverse items-center gap-4 md:flex-row lg:-ml-12">
+              <h1 className="font-serif text-4xl font-bold text-center text-grey-dark lg:text-left">
+                A Transparency Index
+              </h1>
+              <Image
+                src="/images/about-chart.png"
+                width={183}
+                height={203}
+                alt=""
+                className="shrink-0"
+              />
+            </div>
+          </div>
+          <p className="max-w-lg text-center mt-11 lg:text-left">
+            Transparency is a signal that a tree-planting organization is aware of the complexities
+            involved in a successful restoration project and has both the staff and capacity to
+            organize, monitor, and report back on its results. If an organization does not disclose
+            important information about its projects, it may be prudent to ask why.
+          </p>
+          <h2 className="font-serif text-3xl font-bold text-center mt-11 text-grey-dark lg:text-left">
+            Discover projects of interest
+          </h2>
+          <div className="flex flex-col justify-center gap-4 mt-8 md:flex-row lg:justify-start">
+            <Button onClick={onNavigateToGuidance}>Start with step-by-step guidance</Button>
+            <Button theme="secondary-green" onClick={onNavigateToCatalog}>
+              Explore all the projects
+            </Button>
+          </div>
+        </div>
+      </LayoutContainer>
+      <div className="hidden lg:block relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:left-0 lg:w-2/5 lg:h-full bg-[#013329]/20 bg-blend-normal">
+        <div className="absolute inset-0 object-cover w-full h-full -z-10">
+          <Image layout="fill" objectFit="cover" src="/images/explore-welcome.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToGuidance }) => {
   const dispatch = useAppDispatch();
 
   const catalogRef = useRef<HTMLDivElement>(null);
 
-  const [showGuidanceModal, setShowGuidanceModal] = useState(false);
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
 
   return (
     <>
-      <Head title="Explore" />
-      <UrlSync />
       <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
       <aside className="mr-6 bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
         <div className="p-1 md:h-full md:overflow-y-scroll">
-          <Button className="w-full md:w-auto" onClick={() => setShowGuidanceModal(true)}>
+          <Button className="w-full md:w-auto" onClick={onNavigateToGuidance}>
             <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
             Step-by-step Guidance
           </Button>
@@ -128,6 +190,28 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
           </div>
         </div>
       </div>
+    </>
+  );
+};
+
+export const ExplorePage: PageComponent<{ showWelcomeScreen: boolean }, StaticPageLayoutProps> = ({
+  showWelcomeScreen,
+}) => {
+  const [screen, setScreen] = useState<'welcome' | 'catalog' | 'guidance'>(
+    showWelcomeScreen ? 'welcome' : 'catalog'
+  );
+
+  return (
+    <>
+      <Head title="Explore" />
+      <UrlSync />
+      {screen === 'welcome' && (
+        <WelcomeScreen
+          onNavigateToCatalog={() => setScreen('catalog')}
+          onNavigateToGuidance={() => setScreen('guidance')}
+        />
+      )}
+      {screen === 'catalog' && <CatalogScreen onNavigateToGuidance={() => setScreen('guidance')} />}
     </>
   );
 };
