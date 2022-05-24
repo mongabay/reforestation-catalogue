@@ -113,6 +113,7 @@ export const ExplorePage: PageComponent<{}, StaticPageLayoutProps> = (props) => 
           </Button>
         </div>
         <div className="flex flex-col w-full px-5 md:pr-12 md:px-0">
+          {/* TODO: implement the dynamic sentence */}
           <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
             46 projects (13%) out of 240 meet your filtering criteria
           </p>

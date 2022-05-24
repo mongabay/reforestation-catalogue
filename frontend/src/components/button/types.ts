@@ -1,5 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 
+import { LinkProps } from 'next/link';
+
 export interface ButtonCommonProps {
   /** Color theme of the button */
   theme?:
@@ -17,7 +19,7 @@ export type HTMLAnchorProps = PropsWithChildren<
   ButtonCommonProps &
     React.AnchorHTMLAttributes<HTMLAnchorElement> & {
       /** Href of the link */
-      to: string;
+      to: LinkProps['href'];
       /**
        * Whether the link is external. If `true`, the router won't be used and the page will open in
        * a new tab/window.
