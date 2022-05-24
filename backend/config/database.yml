@@ -79,8 +79,13 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+staging:
+  <<: *default
+  database: reforestation_catalogue_staging
+  username: deploy_user
+  password: Rails.application.credentials.dig(:staging, :db_password)
 production:
   <<: *default
-  database: backend_production
-  username: backend
-  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+  database: reforestation_catalogue_production
+  username: deploy_user
+  password: Rails.application.credentials.dig(:production, :db_password)

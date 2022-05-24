@@ -7,7 +7,7 @@ set :application, 'backend'
 set :repo_url, 'git@github.com:mongabay/reforestation-catalogue.git'
 set :repo_tree, 'backend'
 set :deploy_to, '/home/deploy_user/reforestation-catalogue-backend'
-set :branch, ENV['BRANCH'] if ENV['BRANCH']
+set :branch, 'feature/backend_scaffold'
 
 set :linked_files, %w{config/database.yml config/master.key}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
