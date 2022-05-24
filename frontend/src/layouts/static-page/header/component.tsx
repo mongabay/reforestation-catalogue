@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => (
               width="33"
               height="30"
               alt="Mongabay"
-              className="font-semibold text-white "
+              className="font-semibold text-white"
             />
           </span>
           <span className="hidden md:flex">
@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => (
               width="205"
               height="30"
               alt="Mongabay"
-              className="font-semibold text-white "
+              className="font-semibold text-white"
             />
           </span>
         </a>
