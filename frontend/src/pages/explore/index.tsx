@@ -54,7 +54,7 @@ const WelcomeScreen: FC<{
 }> = ({ onNavigateToCatalog, onNavigateToGuidance }) => {
   return (
     <div className="flex-grow lg:relative">
-      <LayoutContainer className="flex justify-center lg:justify-end lg:w-3/5 lg:ml-[40%] py-12 md:py-20">
+      <LayoutContainer className="flex justify-center lg:justify-end lg:w-[calc(1024px_-_40%)] xl:w-[calc(1280px_-_40%)] 2xl:w-[calc(1536px_-_40%)] lg:ml-[40%] py-12 md:py-20">
         <div className="lg:flex-grow lg:pl-24">
           <div className="relative lg:-ml-32 before:block before:absolute before:h-full before:aspect-square before:bg-white before:rounded-full before:-translate-x-1/2 before:z-10">
             <div className="relative z-10 flex flex-col-reverse items-center gap-4 md:flex-row lg:-ml-12">
@@ -87,7 +87,7 @@ const WelcomeScreen: FC<{
           </div>
         </div>
       </LayoutContainer>
-      <div className="hidden lg:block relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:left-0 lg:w-2/5 lg:h-full bg-[#013329]/20 bg-blend-normal">
+      <div className="hidden lg:block relative w-full lg:absolute lg:inset-y-0 lg:left-0 lg:w-2/5 lg:h-full bg-[#013329]/20 bg-blend-normal">
         <div className="absolute inset-0 object-cover w-full h-full -z-10">
           <Image layout="fill" objectFit="cover" src="/images/explore-welcome.jpg" alt="" />
         </div>
