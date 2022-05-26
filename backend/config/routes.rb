@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'health/check'
+      get 'projects' => 'projects#index'
+      get 'projects/:id' => 'projects#show'
+      post 'projects' => 'projects#create'
+      patch 'projects/:id' => 'projects#update'
+      put 'projects/:id' => 'projects#update'
     end
   end
 end
