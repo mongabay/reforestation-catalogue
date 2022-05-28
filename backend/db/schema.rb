@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_144152) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_28_144534) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "slug"
+    t.string "label"
+    t.string "tooltip_description"
+    t.string "form_description"
+    t.string "step_by_step_description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "filters", force: :cascade do |t|
+    t.string "slug"
+    t.string "label"
+    t.integer "data_type"
+    t.integer "query_mode"
+    t.boolean "hide"
+    t.integer "enum_id"
+    t.integer "form_order"
+    t.integer "filter_group_order"
+    t.boolean "form_required"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_filters_on_category_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.integer "project_number"
@@ -55,4 +81,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_144152) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "filters", "categories"
 end
