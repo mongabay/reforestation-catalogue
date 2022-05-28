@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.string :project_name
       t.string :lead_organization
       t.string :organization_type
-      t.string :who_is_involved
+      t.text :who_is_involved, array: true, default: []
       t.string :project_org_url
       t.boolean :has_project_partners
       t.string :partner_name

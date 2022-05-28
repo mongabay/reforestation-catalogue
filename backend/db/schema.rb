@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_144534) do
     t.string "project_name"
     t.string "lead_organization"
     t.string "organization_type"
-    t.string "who_is_involved"
+    t.text "who_is_involved", default: [], array: true
     t.string "project_org_url"
     t.boolean "has_project_partners"
     t.string "partner_name"
