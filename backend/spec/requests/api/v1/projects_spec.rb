@@ -145,6 +145,52 @@ RSpec.describe "Api::V1::Projects", type: :request do
       end
     end
     context 'filter' do
+      it 'returns a list of projects filtered by start year greater or equal' do
+        category = FactoryBot.create(:category, slug: 'context_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'start_year')
+        project_first = Project.first
+        project_first.start_year = 2012
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.start_year = 2013
+        project_second.save!
+        project_last = Project.last
+        project_last.start_year = 2017
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?start_year=2013"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_last.id, project_second.id])
+      end
+      it 'returns a list of projects filtered by end year less or equal' do
+        category = FactoryBot.create(:category, slug: 'context_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'end_year')
+        project_first = Project.first
+        project_first.end_year = 2012
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.end_year = 2013
+        project_second.save!
+        project_last = Project.last
+        project_last.end_year = 2017
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?end_year=2013"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_second.id])
+      end
     end
   end
 end

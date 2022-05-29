@@ -7,21 +7,8 @@ class Api::V1::ProjectsController < ApplicationController
     
     # TODO:
     # Filterer
-    # filters_slugs = Filter.all.pluck(:slug)
-    # filters_to_apply = []
-    # filters_slugs.each do |filter_slug|
-    #   if params.include?(filter_slug)
-    #     filters_to_apply.push(Filter.where(slug: filter_slug).first)
-    #   end
-    # end
-
-    # if filters_to_apply.any?
-    #   filters_to_apply.each do |filter_to_apply|
-    #     if filter_to_apply.query_mode_greater_or_equal_than?
-    #       @projects = @projects.where("#{filter_to_apply.slug} >= : value", value: params[filter_to_apply.slug])
-    #     end
-    #   end
-    # end
+    @projects = Api::Filter.new(@projects, filters_to_apply).call if filters_to_apply.any?
+      
     # TODO:
     # pagination
     @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
@@ -55,7 +42,6 @@ class Api::V1::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    byebug
 
     if @project.save
       render json: ProjectSerializer.new(
@@ -97,5 +83,18 @@ class Api::V1::ProjectsController < ApplicationController
     return 20 if params[:page_size].to_i <= 0
 
     (params[:page_size] || 20).to_i
+  end
+
+  def filters_to_apply
+    filters_to_apply = {}
+    filters_slugs = Filter.all.pluck(:slug)
+    filters_slugs.each do |filter_slug|
+      if params.include?(filter_slug)
+        # filters_to_apply.push(Filter.where(slug: filter_slug).first)
+        filters_to_apply[filter_slug] = params[filter_slug].to_i
+      end
+    end
+
+    filters_to_apply
   end
 end
