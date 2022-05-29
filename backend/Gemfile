@@ -44,6 +44,8 @@ gem "bootsnap", require: false
 
 #
 gem 'jsonapi-serializer'
+# [https://github.com/ddnexus/pagy]
+gem 'pagy'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -56,6 +58,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   # [https://github.com/rspec/rspec-rails]
   gem 'rspec-rails'
+   # factory_bot is a fixtures replacement with a straightforward definition syntax. Read more: https://github.com/thoughtbot/factory_bot
+  gem "factory_bot_rails"
+  # This gem is a port of Perl's Data::Faker library that generates fake data. Read more: https://github.com/faker-ruby/faker
+  gem 'faker'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  has_many :project_categories
+  has_many :categories, :through => :project_categories
 
   def get_project_categories_percentage
     project_categories_percentage = {}
