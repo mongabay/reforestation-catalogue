@@ -16,9 +16,9 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.float :size_of_project_ha
       t.integer :trees_planted_number
       t.boolean :has_explicit_location
-      t.string :forest_type
-      t.string :primary_objective_purpose
-      t.string :approach
+      t.text :forest_type, array: true, default: []
+      t.text :primary_objective_purpose, array: true, default: []
+      t.text :approach, array: true, default: []
       t.boolean :identify_deforestation_driver
       t.boolean :fire_prevention
       t.boolean :has_justification_for_approach
@@ -27,11 +27,11 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.boolean :use_native_species
       t.boolean :use_exotic_species
       t.boolean :local_seedling_nurseries
-      t.string :financial_model
+      t.text :financial_model, array: true, default: []
       t.string :name_org_donor
       t.boolean :has_public_reports
       t.boolean :follow_up_disclosed
-      t.string :type_of_follow_up
+      t.text :type_of_follow_up, array: true, default: []
       t.boolean :has_community_involvement
       t.boolean :has_gender_component
       t.boolean :scientific_research_associated_with_project

@@ -66,9 +66,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_161341) do
     t.float "size_of_project_ha"
     t.integer "trees_planted_number"
     t.boolean "has_explicit_location"
-    t.string "forest_type"
-    t.string "primary_objective_purpose"
-    t.string "approach"
+    t.text "forest_type", default: [], array: true
+    t.text "primary_objective_purpose", default: [], array: true
+    t.text "approach", default: [], array: true
     t.boolean "identify_deforestation_driver"
     t.boolean "fire_prevention"
     t.boolean "has_justification_for_approach"
@@ -77,11 +77,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_161341) do
     t.boolean "use_native_species"
     t.boolean "use_exotic_species"
     t.boolean "local_seedling_nurseries"
-    t.string "financial_model"
+    t.text "financial_model", default: [], array: true
     t.string "name_org_donor"
     t.boolean "has_public_reports"
     t.boolean "follow_up_disclosed"
-    t.string "type_of_follow_up"
+    t.text "type_of_follow_up", default: [], array: true
     t.boolean "has_community_involvement"
     t.boolean "has_gender_component"
     t.boolean "scientific_research_associated_with_project"

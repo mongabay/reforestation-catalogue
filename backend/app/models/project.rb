@@ -1,4 +1,8 @@
 class Project < ApplicationRecord
+  # serialize :who_is_involved
+  # serialize :primary_objective_purpose
+  # serialize :approach
+
   has_many :project_categories
   has_many :categories, :through => :project_categories
 
@@ -15,6 +19,8 @@ class Project < ApplicationRecord
     fields_with_data = 0
     context_fields = category.filters
     number_of_fields = context_fields.count
+    
+    return number_of_fields if number_of_fields <= 0
 
     context_fields.each do |field|
       value = self[field.slug]

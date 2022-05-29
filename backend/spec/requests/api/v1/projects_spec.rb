@@ -18,8 +18,20 @@ RSpec.describe "Api::V1::Projects", type: :request do
         header 'Content-Type', 'application/json'
         get "/api/v1/projects"
 
-        expected_number_of_projects = Project.all.count
         expect(parsed_body['data'].count).to eq(20)
+      end
+      it 'returns a list of projects sorted by context percentage desc by default' do
+        project_first = Project.first
+        project_last = Project.last
+        category = FactoryBot.create(:category)
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 100)
+        project_category_second = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 99)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects"
+
+        expect(parsed_body['data'][0]['id'].to_i).to eq(project_first.id)
+        expect(parsed_body['data'][1]['id'].to_i).to eq(project_last.id)
       end
       it 'returns a list of projects with expected fields and attributes' do
         header 'Content-Type', 'application/json'
@@ -103,6 +115,36 @@ RSpec.describe "Api::V1::Projects", type: :request do
 
         expect(parsed_body['data'].count).to eq(0)
       end
+    end
+    context 'sort' do
+      it 'returns a list of projects sorted by category percentage desc' do
+        project_first = Project.first
+        project_last = Project.last
+        category = FactoryBot.create(:category)
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 100)
+        project_category_second = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 99)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?sort_by=context&order=desc"
+
+        expect(parsed_body['data'][0]['id'].to_i).to eq(project_first.id)
+        expect(parsed_body['data'][1]['id'].to_i).to eq(project_last.id)
+      end
+      it 'returns a list of projects sorted by category percentage asc' do
+        project_first = Project.first
+        project_last = Project.last
+        category = FactoryBot.create(:category, slug: 'context_category')
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?sort_by=context&order=asc"
+
+        expect(parsed_body['data'][0]['id'].to_i).to eq(project_first.id)
+        expect(parsed_body['data'][1]['id'].to_i).to eq(project_last.id)
+      end
+    end
+    context 'filter' do
     end
   end
 end

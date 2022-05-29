@@ -3,35 +3,25 @@ class Api::V1::ProjectsController < ApplicationController
     # TODO:
     # Sorterer
     # exception if category does not exist
-    if params['sort_by'].present?
-      @category = Category.where(slug: "#{params['sort_by']}_category").first
-      exit unless @category.present?
-
-      if params['order']&.downcase = 'asc'
-        @projects = @category.projects_asc
-      else
-        @projects = @category.projects_desc
-      end
-    else
-      @projects = Project.all
-    end
+    @projects = Api::Sorter.new(params['sort_by'], params['order']).call
+    
     # TODO:
     # Filterer
-    filters_slugs = Filter.all.pluck(:slug)
-    filters_to_apply = []
-    filters_slugs.each do |filter_slug|
-      if params.include?(filter_slug)
-        filters_to_apply.push(Filter.where(slug: filter_slug).first)
-      end
-    end
+    # filters_slugs = Filter.all.pluck(:slug)
+    # filters_to_apply = []
+    # filters_slugs.each do |filter_slug|
+    #   if params.include?(filter_slug)
+    #     filters_to_apply.push(Filter.where(slug: filter_slug).first)
+    #   end
+    # end
 
-    if filters_to_apply.any?
-      filters_to_apply.each do |filter_to_apply|
-        if filter_to_apply.query_mode_greater_or_equal_than?
-          @projects = @projects.where("#{filter_to_apply.slug} >= : value", value: params[filter_to_apply.slug])
-        end
-      end
-    end
+    # if filters_to_apply.any?
+    #   filters_to_apply.each do |filter_to_apply|
+    #     if filter_to_apply.query_mode_greater_or_equal_than?
+    #       @projects = @projects.where("#{filter_to_apply.slug} >= : value", value: params[filter_to_apply.slug])
+    #     end
+    #   end
+    # end
     # TODO:
     # pagination
     @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
@@ -97,10 +87,15 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def current_page
+    return 1 if params[:page_number].blank?
+    return 1 if params[:page_number].to_i <= 0
     (params[:page_number] || 1).to_i
   end
 
   def per_page
+    return 20 if params[:page_size].blank?
+    return 20 if params[:page_size].to_i <= 0
+
     (params[:page_size] || 20).to_i
   end
 end

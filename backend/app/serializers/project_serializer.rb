@@ -38,6 +38,6 @@ class ProjectSerializer
   :comment
 
   attribute :percentages do |object|
-    "#{object.get_project_categories_percentage}"
+    object.get_project_categories_percentage
   end
 end
