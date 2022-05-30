@@ -7,7 +7,6 @@ import Script from 'next/script';
 
 import { OverlayProvider } from '@react-aria/overlays';
 import { SSRProvider } from '@react-aria/ssr';
-import { AnimateSharedLayout } from 'framer-motion';
 
 import StaticPageLayout from 'layouts/static-page';
 import wrapper from 'lib/store';
@@ -49,11 +48,9 @@ const ReforestationCatalogApp: React.FC<AppProps> = ({ Component, pageProps }: P
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
         <SSRProvider>
           <OverlayProvider>
-            <AnimateSharedLayout>
-              <Layout {...layoutProps}>
-                <Component {...pageProps} />
-              </Layout>
-            </AnimateSharedLayout>
+            <Layout {...layoutProps}>
+              <Component {...pageProps} />
+            </Layout>
           </OverlayProvider>
         </SSRProvider>
       </Hydrate>
