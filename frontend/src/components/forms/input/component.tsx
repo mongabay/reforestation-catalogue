@@ -13,6 +13,8 @@ export const Input: FC<InputProps> = ({
   value,
   placeholder,
   step,
+  min,
+  max,
   pattern,
   onChange,
   disabled,
@@ -32,6 +34,8 @@ export const Input: FC<InputProps> = ({
       value={value}
       placeholder={placeholder}
       step={step}
+      min={min}
+      max={max}
       pattern={pattern}
       onChange={({ target }) => onChange?.(target.value)}
       disabled={disabled}

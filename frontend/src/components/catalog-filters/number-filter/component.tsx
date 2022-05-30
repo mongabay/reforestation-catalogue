@@ -15,7 +15,7 @@ export const NumberFilter: FC<FilterProps> = ({ field, onCreate }: FilterProps) 
         id={field.id}
         type="number"
         aria-label={field.label}
-        step={100}
+        step={1}
         value={value}
         onChange={(value) => setValue(value as string)}
         className="w-full"

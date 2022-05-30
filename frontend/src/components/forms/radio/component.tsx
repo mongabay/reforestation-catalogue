@@ -2,9 +2,11 @@ import { FC } from 'react';
 
 import cx from 'classnames';
 
+import { INPUT_CLASSNAME, LABEL_CLASSNAME } from './constants';
 import { RadioProps } from './types';
 
 export const Radio: FC<RadioProps> = ({
+  theme = 'default',
   id,
   'aria-label': ariaLabel,
   name,
@@ -20,7 +22,7 @@ export const Radio: FC<RadioProps> = ({
   <div className={cx('flex items-center', className)}>
     <input
       type="radio"
-      className="w-4 h-4 focus-visible:ring-green focus:ring-transparent text-green border-grey-dark"
+      className={INPUT_CLASSNAME[theme]}
       id={id}
       name={name}
       aria-label={ariaLabel}
@@ -31,7 +33,7 @@ export const Radio: FC<RadioProps> = ({
       disabled={disabled}
       required={required}
     />
-    <label htmlFor={id} className="ml-3 text-sm">
+    <label htmlFor={id} className={LABEL_CLASSNAME[theme]}>
       {children}
     </label>
   </div>

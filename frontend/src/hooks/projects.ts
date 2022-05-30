@@ -32,8 +32,17 @@ export const updateProject = async ({
     body: JSON.stringify(values),
   }).then((res) => res.json());
 
-export const useProjects = (filters: Filter[], search: string, sort: Categories) =>
-  useQuery(['projects', filters, search, sort], () => fetchProjects(filters, search, sort));
+export const useProjects = (
+  filters: Filter[],
+  search: string,
+  sort: Categories,
+  options?: UseQueryOptions<Project[], unknown>
+) =>
+  useQuery(
+    ['projects', filters, search, sort],
+    () => fetchProjects(filters, search, sort),
+    options
+  );
 
 export const useProject = (id: Project['id'], options?: UseQueryOptions<Project, unknown>) =>
   useQuery(['project', id], () => fetchProject(id), options);

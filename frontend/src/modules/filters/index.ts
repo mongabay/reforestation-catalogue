@@ -20,7 +20,13 @@ export default (globalActions) =>
     initialState: INITIAL_STATE,
     reducers: {
       addFilter(state, action: PayloadAction<Filter>) {
-        state.push(action.payload);
+        const index = state.findIndex((filter) => filter.field === action.payload.field);
+
+        if (index !== -1) {
+          state.splice(index, 1, action.payload);
+        } else {
+          state.push(action.payload);
+        }
       },
       removeFilter(state, action: PayloadAction<Filter>) {
         return state.filter((filter) => filter.field !== action.payload.field);

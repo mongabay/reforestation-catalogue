@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: ['src/**/*.ts', 'src/**/*.tsx'],
   theme: {
@@ -9,6 +11,7 @@ module.exports = {
       green: {
         DEFAULT: '#03755E',
         dark: '#014739',
+        light: '#CDE3DF',
       },
       blue: {
         DEFAULT: '#0066CC',
@@ -32,5 +35,16 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+    plugin(function ({ addVariant }) {
+      addVariant('progress-bar', ['&::-webkit-progress-bar']);
+      addVariant('progress-value', [
+        '&::-webkit-progress-value',
+        '&::-moz-progress-bar',
+        '&::-ms-fill',
+      ]);
+    }),
+  ],
 };

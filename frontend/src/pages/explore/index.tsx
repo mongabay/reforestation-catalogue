@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from 'react';
+import { FC, useState, useRef, useEffect } from 'react';
 
 import Image from 'next/image';
 
@@ -14,6 +14,7 @@ import Icon from 'components/icon';
 import LayoutContainer from 'components/layout-container';
 import ProjectCatalog from 'components/project-catalog';
 import ProjectSearch from 'components/project-search';
+import StepByStepGuidance from 'components/step-by-step-guidance';
 import Tooltip from 'components/tooltip';
 import UrlSync from 'components/url-sync';
 import ExplorePageLayout from 'layouts/explore-page';
@@ -201,6 +202,11 @@ export const ExplorePage: PageComponent<{ showWelcomeScreen: boolean }, StaticPa
     showWelcomeScreen ? 'welcome' : 'catalog'
   );
 
+  // When the screen changes, we make sure to scroll at the top
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [screen]);
+
   return (
     <>
       <Head title="Explore" />
@@ -212,6 +218,9 @@ export const ExplorePage: PageComponent<{ showWelcomeScreen: boolean }, StaticPa
         />
       )}
       {screen === 'catalog' && <CatalogScreen onNavigateToGuidance={() => setScreen('guidance')} />}
+      {screen === 'guidance' && (
+        <StepByStepGuidance onNavigateToCatalog={() => setScreen('catalog')} />
+      )}
     </>
   );
 };

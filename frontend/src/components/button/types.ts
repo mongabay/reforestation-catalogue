@@ -9,6 +9,8 @@ export interface ButtonCommonProps {
     | 'primary-white'
     | 'secondary-green'
     | 'secondary-white'
+    | 'secondary-orange'
+    | 'light-green'
     | 'link'
     | 'link-primary'
     | 'transparent'

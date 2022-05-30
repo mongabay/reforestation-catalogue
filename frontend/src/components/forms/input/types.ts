@@ -18,6 +18,10 @@ export type InputProps = PropsWithChildren<
     placeholder?: string;
     /** Resolution of the step (number input only) */
     step?: number;
+    /** Minimum value of the input */
+    min?: number;
+    /** Maximum value of the input */
+    max?: number;
     /** Pattern used for validation */
     pattern?: string;
     /** Callback executed when the value changes */

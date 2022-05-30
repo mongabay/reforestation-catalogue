@@ -1,6 +1,8 @@
 import { PropsWithChildren } from 'react';
 
 export type RadioProps = PropsWithChildren<{
+  /** Theme of the input */
+  theme?: 'default' | 'toggle';
   /** ID of the input */
   id: string;
   /** Label announced to screen readers */

@@ -10,6 +10,9 @@ export const COLOR_THEMES: Record<NonNullable<ButtonCommonProps['theme']>, strin
     'border border-green text-green hover:border-green-dark hover:text-green-dark focus-visible:outline-green',
   'secondary-white':
     'border border-white text-white hover:border-grey hover:text-grey focus-visible:outline-white',
+  'secondary-orange':
+    'border border-orange text-orange hover:bg-orange/10 focus-visible:outline-orange',
+  'light-green': 'bg-green/20 text-green hover:bg-green/40 focus-visible:outline-green',
   link: 'pl-2 pr-2 pt-1 pb-1 bg-transparent text-blue underline focus-visible:outline-blue',
   'link-primary':
     'pl-2 pr-2 pt-1 pb-1 bg-transparent text-green underline focus-visible:outline-green',

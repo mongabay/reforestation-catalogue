@@ -49,7 +49,7 @@ export const CATEGORIES: Category[] = [
         label: 'Has justification for approach',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
-        hidden: true,
+        hidden: false,
       },
       {
         id: 'country',
@@ -176,6 +176,14 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: true,
+      },
+      {
+        id: 'whoIsInvolved',
+        label: 'Who is involved',
+        type: FilterTypes.String,
+        options: [],
+        mode: FilterModes.Includes,
+        hidden: false,
       },
     ],
   },
