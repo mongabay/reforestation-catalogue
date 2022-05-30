@@ -6,6 +6,9 @@ class Project < ApplicationRecord
   has_many :project_categories
   has_many :categories, :through => :project_categories
 
+  scope :approved, -> { where(approved: true) }
+  scope :highlighted, -> { where(highlighted: true) }
+
   def get_project_categories_percentage
     project_categories_percentage = {}
     Category.all.each do |category|

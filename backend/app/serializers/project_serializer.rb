@@ -35,7 +35,9 @@ class ProjectSerializer
   :has_gender_component,
   :scientific_research_associated_with_project,
   :news_articles_associated_with_project,
-  :comment
+  :comment,
+  :approved,
+  :highlighted
 
   attribute :percentages do |object|
     object.get_project_categories_percentage

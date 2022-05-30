@@ -145,6 +145,17 @@ RSpec.describe "Api::V1::Projects", type: :request do
       end
     end
     context 'filter' do
+      it 'returns a list of projects filtered by highlighted' do
+        project_first = Project.first
+        project_first.highlighted = true
+        project_first.save!
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?highlighted=true"
+
+        expect(parsed_body['data'].count).to eq(1)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id])
+      end
       it 'returns a list of projects filtered by start year greater or equal' do
         category = FactoryBot.create(:category, slug: 'context_category')
         filter = FactoryBot.create(:filter, category: category, slug: 'start_year')

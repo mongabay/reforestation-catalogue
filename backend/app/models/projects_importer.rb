@@ -11,6 +11,7 @@ class ProjectsImporter
         sanitized_key = key.to_s.underscore.to_sym
         new_project[sanitized_key] = value
       end
+      new_project.approved = true
       new_project.save!
       puts new_project.id      
     end

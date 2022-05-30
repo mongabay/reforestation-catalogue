@@ -88,6 +88,10 @@ class Api::V1::ProjectsController < ApplicationController
   def filters_to_apply
     filters_to_apply = {}
     filters_slugs = Filter.all.pluck(:slug)
+    # TODO: please, find a more elegant way to handle this
+    # highlighted is a filter that does not belong to any category
+    #
+    filters_slugs.push('highlighted')
     filters_slugs.each do |filter_slug|
       if params.include?(filter_slug)
         # filters_to_apply.push(Filter.where(slug: filter_slug).first)

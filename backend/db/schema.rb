@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_28_161341) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_30_152154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_161341) do
     t.boolean "scientific_research_associated_with_project"
     t.boolean "news_articles_associated_with_project"
     t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "highlighted", default: false
+    t.boolean "approved", default: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "remember_token"
+    t.datetime "remember_token_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
