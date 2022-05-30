@@ -46,6 +46,10 @@ gem "bootsnap", require: false
 gem 'jsonapi-serializer'
 # [https://github.com/ddnexus/pagy]
 gem 'pagy'
+# A modern, responsive admin framework for Ruby on Rails [https://github.com/TrestleAdmin/trestle]
+gem 'trestle'
+# 
+gem 'sassc-rails'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
