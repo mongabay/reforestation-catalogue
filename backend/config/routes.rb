@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api, format: "json" do
     namespace :v1 do
       get 'health/check'
+      get 'categories' => 'categories#index'
       get 'projects' => 'projects#index'
       get 'projects/:id' => 'projects#show'
       post 'projects' => 'projects#create'

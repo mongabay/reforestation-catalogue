@@ -9,7 +9,7 @@ module Api
 
     def call
       if @sort_by.present?
-        @category = Category.where(slug: "#{@sort_by}_category").first
+        @category = Category.where(slug: "#{@sort_by}").first
         exit unless @category.present?
   
         if @order&.downcase =='asc'
@@ -18,7 +18,7 @@ module Api
           @projects = @category.projects_desc.where(approved: true)
         end
       else
-        @category = Category.where(slug: "context_category").first
+        @category = Category.where(slug: "context").first
         
         return @projects = @category.projects_desc.where(approved: true) if @category.present?
         @projects = Project.where(approved: true)
