@@ -1,2 +1,2 @@
-export type { InputProps } from './types';
+export type { TextareaProps } from './types';
 export { default } from './component';

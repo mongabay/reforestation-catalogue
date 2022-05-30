@@ -10,7 +10,7 @@ export interface MainProps {
 export type ExplorePageLayoutProps = React.PropsWithChildren<
   React.ComponentProps<'div'> & {
     /** Props for the header */
-    headerProps?: HeaderProps['props'];
+    headerProps?: HeaderProps;
     /** Props for the `<main />` element of the page */
     mainProps?: MainProps['props'];
   }
