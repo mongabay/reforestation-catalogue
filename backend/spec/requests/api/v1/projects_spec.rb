@@ -191,6 +191,342 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_second.id])
       end
+      it 'returns a list of projects filtered by size_of_project_ha greater or equal' do
+        category = FactoryBot.create(:category, slug: 'context_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'size_of_project_ha')
+        project_first = Project.first
+        project_first.size_of_project_ha = 20
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.size_of_project_ha = 13
+        project_second.save!
+        project_last = Project.last
+        project_last.size_of_project_ha = 17
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?size_of_project_ha=17"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by has_explicit_location equal' do
+        category = FactoryBot.create(:category, slug: 'context_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'has_explicit_location')
+        project_first = Project.first
+        project_first.has_explicit_location = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.has_explicit_location = false
+        project_second.save!
+        project_last = Project.last
+        project_last.has_explicit_location = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?has_explicit_location=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by fire_prevention equal' do
+        category = FactoryBot.create(:category, slug: 'ecological_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'fire_prevention')
+        project_first = Project.first
+        project_first.fire_prevention = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.fire_prevention = false
+        project_second.save!
+        project_last = Project.last
+        project_last.fire_prevention = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?fire_prevention=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by addresses_known_threats equal' do
+        category = FactoryBot.create(:category, slug: 'ecological_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'addresses_known_threats')
+        project_first = Project.first
+        project_first.addresses_known_threats = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.addresses_known_threats = false
+        project_second.save!
+        project_last = Project.last
+        project_last.addresses_known_threats = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?addresses_known_threats=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by discloses_species_used equal' do
+        category = FactoryBot.create(:category, slug: 'ecological_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'discloses_species_used')
+        project_first = Project.first
+        project_first.discloses_species_used = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.discloses_species_used = false
+        project_second.save!
+        project_last = Project.last
+        project_last.discloses_species_used = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?discloses_species_used=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by identify_deforestation_driver equal' do
+        category = FactoryBot.create(:category, slug: 'economic_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'identify_deforestation_driver')
+        project_first = Project.first
+        project_first.identify_deforestation_driver = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.identify_deforestation_driver = false
+        project_second.save!
+        project_last = Project.last
+        project_last.identify_deforestation_driver = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?identify_deforestation_driver=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by local_seedling_nurseries equal' do
+        category = FactoryBot.create(:category, slug: 'economic_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'local_seedling_nurseries')
+        project_first = Project.first
+        project_first.local_seedling_nurseries = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.local_seedling_nurseries = false
+        project_second.save!
+        project_last = Project.last
+        project_last.local_seedling_nurseries = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?local_seedling_nurseries=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by follow_up_disclosed equal' do
+        category = FactoryBot.create(:category, slug: 'economic_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'follow_up_disclosed')
+        project_first = Project.first
+        project_first.follow_up_disclosed = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.follow_up_disclosed = false
+        project_second.save!
+        project_last = Project.last
+        project_last.follow_up_disclosed = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?follow_up_disclosed=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by scientific_research_associated_with_project equal' do
+        category = FactoryBot.create(:category, slug: 'institutional_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'scientific_research_associated_with_project')
+        project_first = Project.first
+        project_first.scientific_research_associated_with_project = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.scientific_research_associated_with_project = false
+        project_second.save!
+        project_last = Project.last
+        project_last.scientific_research_associated_with_project = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?scientific_research_associated_with_project=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by has_gender_component equal' do
+        category = FactoryBot.create(:category, slug: 'social_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'has_gender_component')
+        project_first = Project.first
+        project_first.has_gender_component = true
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.has_gender_component = false
+        project_second.save!
+        project_last = Project.last
+        project_last.has_gender_component = true
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?has_gender_component=true"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by forest_type equal' do
+        category = FactoryBot.create(:category, slug: 'ecological_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'forest_type')
+        project_first = Project.first
+        project_first.forest_type = ['boreal_mountain_system']
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.forest_type = ['subtropical_dry_forest']
+        project_second.save!
+        project_last = Project.last
+        project_last.forest_type = ['boreal_mountain_system']
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?forest_type=boreal_mountain_system"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by financial_model equal' do
+        category = FactoryBot.create(:category, slug: 'ecological_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'financial_model')
+        project_first = Project.first
+        project_first.financial_model = ['business_partners']
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.financial_model = ['charity_organization']
+        project_second.save!
+        project_last = Project.last
+        project_last.financial_model = ['business_partners']
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?financial_model=business_partners"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of projects filtered by organization_type equal' do
+        category = FactoryBot.create(:category, slug: 'economic_category')
+        filter = FactoryBot.create(:filter, category: category, slug: 'organization_type')
+        project_first = Project.first
+        project_first.organization_type = 'company'
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.organization_type = 'charity_organization'
+        project_second.save!
+        project_last = Project.last
+        project_last.organization_type = 'company'
+        project_last.save!
+
+        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
+        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
+        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
+        
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?organization_type=company"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+    end
+    context 'search' do
+      it 'returns a list of project with partial matching project_name' do
+        project_first = Project.first
+        project_first.project_name = 'company x'
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.project_name = 'charity y'
+        project_second.save!
+        project_last = Project.last
+        project_last.project_name = 'company y'
+        project_last.save!
+
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?search=company"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
+      it 'returns a list of project with partial matching project_name or lead_organization' do
+        project_first = Project.first
+        project_first.project_name = 'duck x'
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.project_name = 'charity x'
+        project_second.save!
+        project_last = Project.last
+        project_last.project_name = 'charity y'
+        project_last.lead_organization = 'DUCK y'
+        project_last.save!
+
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?search=duck"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
+      end
     end
   end
 end

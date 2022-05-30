@@ -4,8 +4,21 @@ FactoryBot.define do
 	factory :project do
 		start_year { 1980 }
 		end_year { 2022 }
+		size_of_project_ha { 1 }
+		has_explicit_location { }
+		fire_prevention { }
+		addresses_known_threats { }
+		discloses_species_used { }
+		identify_deforestation_driver { }
+		local_seedling_nurseries { }
+		follow_up_disclosed { }
+		scientific_research_associated_with_project { }
+		has_gender_component { }
 		project_number { Faker::Number.number(digits: 3) }
-    project_name { Faker::Company.name }
-    lead_organization { Faker::Company.industry }
+    project_name { }
+    lead_organization { }
+		forest_type { [] }
+		financial_model { [] }
+		organization_type { }
 	end
 end

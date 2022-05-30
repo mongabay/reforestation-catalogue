@@ -1,19 +1,18 @@
 class Api::V1::ProjectsController < ApplicationController
   def index
     # TODO:
-    # Sorterer
     # exception if category does not exist
     @projects = Api::Sorter.new(params['sort_by'], params['order']).call
-    
-    # TODO:
-    # Filterer
     @projects = Api::Filter.new(@projects, filters_to_apply).call if filters_to_apply.any?
+    
+    search = params['search']
+    @projects = Api::Searcher.new(@projects, search).call if (search.present? and search.class == String)
       
-    # TODO:
-    # pagination
     @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
 
     options = {}
+    # TODO
+    # options[:links]
     options[:meta] = {
       projects_total: Project.all.count,
       projects_matching_query: @pagy.count,
@@ -30,6 +29,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def show
+    # TODO
     # Fetch object before show
     @project = Project.find(params['id'])
     
@@ -91,7 +91,7 @@ class Api::V1::ProjectsController < ApplicationController
     filters_slugs.each do |filter_slug|
       if params.include?(filter_slug)
         # filters_to_apply.push(Filter.where(slug: filter_slug).first)
-        filters_to_apply[filter_slug] = params[filter_slug].to_i
+        filters_to_apply[filter_slug] = params[filter_slug]
       end
     end
 
