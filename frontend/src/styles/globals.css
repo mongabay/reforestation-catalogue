@@ -109,8 +109,20 @@
     @apply mt-12 mb-8 font-serif text-3xl md:mt-20 md:mb-16;
   }
 
+  .cms-content.glossary h2 {
+    @apply mb-2 font-sans text-2xl font-semibold mt-7 sm:mt-12 text-green;
+  }
+
+  .cms-content.glossary h3 {
+    @apply mb-2 font-semibold;
+  }
+
   .cms-content p {
     @apply mt-4;
+  }
+
+  .cms-content.glossary p {
+    @apply mt-2 mb-7;
   }
 
   .cms-content b, .cms-content strong {

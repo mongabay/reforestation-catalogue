@@ -1,3 +1,5 @@
+import { useQuery, UseQueryOptions } from 'react-query';
+
 import { Categories } from 'types';
 
 import { fetchProjects } from './projects';
@@ -16,3 +18,13 @@ export const fetchAboutPageContent = async () => {
 
   return CONTENT.replace('{{projectsCount}}', projectsCount);
 };
+
+export const fetchGlossaryContent = async () => {
+  const CONTENT =
+    '<h2 id="a">A</h2><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h2 id="b">B</h2><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h2 id="c">C</h2><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p><h3>Name of indicator</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque id ut lectus blandit. Vestibulum vulputate tellus enim</p>';
+
+  return CONTENT;
+};
+
+export const useGlossaryContent = (options?: UseQueryOptions<string, unknown>) =>
+  useQuery(['glossary'], () => fetchGlossaryContent(), options);
