@@ -1,17 +1,35 @@
 class Api::V1::ProjectsController < ApplicationController
   def index
-    @projects = Project.all
     # TODO:
-    # Filterer, Sorterer, pagination
+    # exception if category does not exist
+    @projects = Api::Sorter.new(params['sort_by'], params['order']).call
+    @projects = Api::Filter.new(@projects, filters_to_apply).call if filters_to_apply.any?
+    
+    search = params['search']
+    @projects = Api::Searcher.new(@projects, search).call if (search.present? and search.class == String)
+      
+    @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
+
+    options = {}
+    # TODO
+    # options[:links]
+    options[:meta] = {
+      projects_total: Project.all.count,
+      projects_matching_query: @pagy.count,
+      from: @pagy.from,
+      to: @pagy.to,
+      pages: @pagy.pages,
+      current_page: current_page
+    }
     
     render json: ProjectSerializer.new(
-      @projects
-      # links
-      # meta
+      @projects,
+      options 
     ).serializable_hash
   end
 
   def show
+    # TODO
     # Fetch object before show
     @project = Project.find(params['id'])
     
@@ -24,7 +42,6 @@ class Api::V1::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    byebug
 
     if @project.save
       render json: ProjectSerializer.new(
@@ -53,5 +70,31 @@ class Api::V1::ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit!
+  end
+
+  def current_page
+    return 1 if params[:page_number].blank?
+    return 1 if params[:page_number].to_i <= 0
+    (params[:page_number] || 1).to_i
+  end
+
+  def per_page
+    return 20 if params[:page_size].blank?
+    return 20 if params[:page_size].to_i <= 0
+
+    (params[:page_size] || 20).to_i
+  end
+
+  def filters_to_apply
+    filters_to_apply = {}
+    filters_slugs = Filter.all.pluck(:slug)
+    filters_slugs.each do |filter_slug|
+      if params.include?(filter_slug)
+        # filters_to_apply.push(Filter.where(slug: filter_slug).first)
+        filters_to_apply[filter_slug] = params[filter_slug]
+      end
+    end
+
+    filters_to_apply
   end
 end

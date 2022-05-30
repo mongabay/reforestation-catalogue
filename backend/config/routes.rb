@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  namespace :api do
+  namespace :api, format: "json" do
     namespace :v1 do
       get 'health/check'
       get 'projects' => 'projects#index'
