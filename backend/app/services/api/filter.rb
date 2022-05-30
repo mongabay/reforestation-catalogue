@@ -53,6 +53,9 @@ module Api
       if @filters_to_apply['organization_type'].present?
         @projects = @projects.where(organization_type: @filters_to_apply['organization_type'])
       end
+      if @filters_to_apply['highlighted'].present?
+        @projects = @projects.where(highlighted: @filters_to_apply['highlighted'])
+      end
 
       return @projects
     end

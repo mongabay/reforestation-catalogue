@@ -20,5 +20,7 @@ FactoryBot.define do
 		forest_type { [] }
 		financial_model { [] }
 		organization_type { }
+		highlighted { false }
+		approved { true }
 	end
 end
