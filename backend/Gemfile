@@ -48,11 +48,10 @@ gem 'jsonapi-serializer'
 gem 'pagy'
 # A modern, responsive admin framework for Ruby on Rails [https://github.com/TrestleAdmin/trestle]
 gem 'trestle'
-# 
-gem 'sassc-rails'
-
+# Authentication plugin for the Trestle admin framework [https://github.com/TrestleAdmin/trestle-auth]
+gem 'trestle-auth'
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

@@ -5,9 +5,9 @@ Trestle.resource(:projects) do
 
   scopes do
     scope :all, default: true
-    scope :approved, -> { Project.where(approved: true) }
-    scope :pending, -> { Project.where(approved: false) }
-    scope :highlighted, -> { Project.where(highlighted: true) }
+    scope :approved, -> { Project.unscoped.where(approved: true) }
+    scope :pending, -> { Project.unscoped.where(approved: false) }
+    scope :highlighted, -> { Project.unscoped.where(highlighted: true) }
   end
 
   # Customize the table columns shown on the index view.
@@ -18,6 +18,8 @@ Trestle.resource(:projects) do
     column :organization_type
     column :start_year
     column :end_year
+    column :approved
+    column :highlighted
     # column :created_at, align: :center
     actions
   end
