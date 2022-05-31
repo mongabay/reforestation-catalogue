@@ -41,18 +41,17 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(project_params)
-    if params.keys.include?('project_links_attributes')
-      project_params['project_links_attributes'].each do |link_attributes|
-        @project.project_links.create(link_attributes)
-      end
+    @project = Project.new(project_params)
+    
+    if @project.save
+      render json: ProjectSerializer.new(
+        @project
+        # links
+        # meta
+      ).serializable_hash
+    else
+      render json: @project.errors, status: :unprocessable_entity
     end
-
-    render json: ProjectSerializer.new(
-      @project
-      # links
-      # meta
-    ).serializable_hash
   end
 
   def update
@@ -106,6 +105,7 @@ class Api::V1::ProjectsController < ApplicationController
       :scientific_research_associated_with_project,
       :news_articles_associated_with_project,
       :comment,
+      :project_contacts_attributes => [:email, :name, :company],
       :project_links_attributes => [:url, :title, :description])
   end
 

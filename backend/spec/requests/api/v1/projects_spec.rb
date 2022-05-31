@@ -76,7 +76,8 @@ RSpec.describe "Api::V1::Projects", type: :request do
           "comment",
           "percentages",
           "approved",
-          "highlighted"
+          "highlighted",
+          "project_links"
         ]
         expect(parsed_body['data'].first.keys).to match_array(expected_fields)
         expect(parsed_body['data'].first['attributes'].keys).to match_array(expected_attributes)
@@ -171,10 +172,6 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_last.start_year = 2017
         project_last.save!
 
-        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
-        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
-        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
-        
         header 'Content-Type', 'application/json'
         get "/api/v1/projects?start_year=2013"
 
@@ -193,11 +190,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_last = Project.last
         project_last.end_year = 2017
         project_last.save!
-
-        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
-        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
-        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
-        
+ 
         header 'Content-Type', 'application/json'
         get "/api/v1/projects?end_year=2013"
 
@@ -217,10 +210,6 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_last.size_of_project_ha = 17
         project_last.save!
 
-        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
-        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
-        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
-        
         header 'Content-Type', 'application/json'
         get "/api/v1/projects?size_of_project_ha=17"
 
@@ -239,11 +228,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_last = Project.last
         project_last.has_explicit_location = true
         project_last.save!
-
-        project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
-        project_category_second = FactoryBot.create(:project_category, project: project_second, category: category, percentage: 1)
-        project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
-        
+ 
         header 'Content-Type', 'application/json'
         get "/api/v1/projects?has_explicit_location=true"
 
