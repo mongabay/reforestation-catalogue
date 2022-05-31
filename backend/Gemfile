@@ -54,6 +54,8 @@ gem 'trestle-auth'
 gem 'trestle-tinymce'
 # Use Sass to process CSS
 gem "sassc-rails"
+# Provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications. Read more: https://github.com/cyu/rack-cors
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

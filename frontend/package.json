@@ -51,6 +51,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "d3": "^6.7.0",
+    "jsona": "^1.9.7",
     "lodash-es": "^4.17.21",
     "next": "^12.1.0",
     "next-redux-wrapper": "^7.0.5",

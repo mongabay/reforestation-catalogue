@@ -1,4 +1,8 @@
+import { Project } from 'types';
+
 export interface ProjectLinksModalProps {
+  /** Project for which we want to display the links */
+  project: Project;
   /** Whether the modal is open or not */
   open: boolean;
   /** Callback executed when the user wants to close the modal */

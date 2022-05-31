@@ -48,7 +48,8 @@ export const ProjectForm: FC<ProjectFormProps> = ({ project }: ProjectFormProps)
     if (stepIndex > 0) {
       setValues((v) => ({ ...v, ...values }));
       setStepIndex(stepIndex - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // The `setTimeout` is required on Firefox to scroll the page
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
     }
   }, [stepIndex, formRef, setStepIndex]);
 

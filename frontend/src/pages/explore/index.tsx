@@ -12,6 +12,7 @@ import GlossaryModal from 'components/glossary-modal';
 import Head from 'components/head';
 import Icon from 'components/icon';
 import LayoutContainer from 'components/layout-container';
+import NewsletterSignup from 'components/newsletter-signup';
 import ProjectCatalog from 'components/project-catalog';
 import ProjectSearch from 'components/project-search';
 import StepByStepGuidance from 'components/step-by-step-guidance';
@@ -103,11 +104,16 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
+  const [showNewsletterSignup, setShowNewsletterSignup] = useState(false);
 
   return (
     <>
       <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
-      <aside className="mr-6 bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
+      <NewsletterSignup
+        open={showNewsletterSignup}
+        onDismiss={() => setShowNewsletterSignup(false)}
+      />
+      <aside className="bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
         <div className="p-1 md:h-full md:overflow-y-scroll">
           <Button className="w-full md:w-auto" onClick={onNavigateToGuidance}>
             <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
@@ -175,19 +181,38 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
             <Icon icon={LeftArrowIcon} aria-hidden className="w-4 h-4 rotate-90" />
           </Button>
         </div>
-        <div className="flex flex-col w-full px-5 md:pr-12 md:px-0">
-          {/* TODO: implement the dynamic sentence */}
-          <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
-            46 projects (13%) out of 240 meet your filtering criteria
-          </p>
-          <div className="flex-shrink-0 mt-2">
-            <ProjectSearch />
+        <div className="flex flex-col w-full">
+          <div className="px-5 md:ml-6 md:pr-12 md:px-0">
+            {/* TODO: implement the dynamic sentence */}
+            <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
+              46 projects (13%) out of 240 meet your filtering criteria
+            </p>
+            <div className="flex-shrink-0 mt-2">
+              <ProjectSearch />
+            </div>
           </div>
           <div
             ref={catalogRef}
-            className="pt-8 pb-8 mt-2 md:overflow-y-scroll focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+            className="pt-8 mt-2 md:overflow-y-scroll focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
           >
-            <ProjectCatalog hightlightSortingCategory />
+            <div className="px-5 pb-8 md:pr-12 md:px-0">
+              <ProjectCatalog hightlightSortingCategory />
+            </div>
+            <div className="py-12 text-white md:pl-6 bg-orange">
+              <LayoutContainer>
+                <p className="max-w-3xl font-serif text-3xl font-bold md:leading-tight">
+                  Subscribe to our newsletter to find out about reforestation projects, original
+                  stories, activism awareness and more.
+                </p>
+                <Button
+                  theme="primary-white"
+                  onClick={() => setShowNewsletterSignup(true)}
+                  className="justify-center mt-10 md:inline-flex md:px-12"
+                >
+                  <span className="text-orange">Subscribe</span>
+                </Button>
+              </LayoutContainer>
+            </div>
           </div>
         </div>
       </div>

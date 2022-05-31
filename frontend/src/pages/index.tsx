@@ -237,17 +237,6 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
           </div>
         </div>
       </LayoutContainer>
-      <div className="py-12 md:py-40 bg-green/10">
-        <LayoutContainer>
-          <p className="font-serif text-3xl md:text-[40px] md:leading-tight max-w-3xl text-green font-bold">
-            Start exploring. Get involved in Mongabay’s global directory of reforestation and
-            tree-planting projects.
-          </p>
-          <Button to="/explore" className="justify-center mt-10 md:inline-flex md:mt-32 md:px-12">
-            Explore the Catalog
-          </Button>
-        </LayoutContainer>
-      </div>
     </>
   );
 };

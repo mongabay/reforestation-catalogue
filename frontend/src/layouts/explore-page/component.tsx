@@ -15,7 +15,7 @@ export const ExplorePageLayout: React.FC<ExplorePageLayoutProps> = ({
   ...rest
 }: ExplorePageLayoutProps) => (
   <div {...rest} className="md:flex md:flex-col md:h-screen">
-    <Header {...headerProps} className="relative flex-shrink-0" />
+    <Header {...headerProps} className="relative z-10 flex-shrink-0" />
     <main
       {...omit(mainProps, 'className')}
       className={cx({

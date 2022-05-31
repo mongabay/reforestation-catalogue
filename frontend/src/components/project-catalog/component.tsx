@@ -20,7 +20,11 @@ export const ProjectCatalog: FC<ProjectCatalogProps> = ({
   const { isLoading, isError, data } = useProjects(filters, search, sort);
 
   if (isLoading) {
-    return <LoadingSpinner inner transparent />;
+    return (
+      <div className="relative py-16">
+        <LoadingSpinner inner transparent />
+      </div>
+    );
   }
 
   if (isError) {

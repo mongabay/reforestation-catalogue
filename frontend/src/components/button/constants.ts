@@ -6,6 +6,7 @@ export const COMMON_CLASSES =
 export const COLOR_THEMES: Record<NonNullable<ButtonCommonProps['theme']>, string> = {
   'primary-green': 'bg-green text-white hover:bg-green-dark focus-visible:outline-green',
   'primary-white': 'bg-white text-green hover:bg-grey focus-visible:outline-white',
+  'primary-orange': 'bg-orange text-white hover:bg-orange/90 focus-visible:outline-orange',
   'secondary-green':
     'border border-green text-green hover:border-green-dark hover:text-green-dark focus-visible:outline-green',
   'secondary-white':

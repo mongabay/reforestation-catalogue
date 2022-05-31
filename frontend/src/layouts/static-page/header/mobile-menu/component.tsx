@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -12,7 +12,7 @@ import MenuIcon from 'svgs/menu.svg';
 
 import { MobileMenuProps } from './types';
 
-export const MobileMenu: FC<MobileMenuProps> = () => {
+export const MobileMenu: FC<MobileMenuProps> = ({ onClickSubscribe }) => {
   const router = useRouter();
 
   const isAboutActive = useActivePath('/about');
@@ -22,6 +22,17 @@ export const MobileMenu: FC<MobileMenuProps> = () => {
     isAboutActive ? '/about' : null,
     isExploreActive ? '/explore' : null,
   ].filter((key) => !!key);
+
+  const onAction = useCallback(
+    (key: string) => {
+      if (key === 'subscribe') {
+        onClickSubscribe();
+      } else {
+        router.push(key);
+      }
+    },
+    [router, onClickSubscribe]
+  );
 
   return (
     <Menu
@@ -34,11 +45,14 @@ export const MobileMenu: FC<MobileMenuProps> = () => {
           <Icon icon={MenuIcon} className="w-6 h-6" />
         </Button>
       }
-      onAction={(key) => router.push(key as string)}
+      onAction={onAction}
     >
       <MenuItem key="/about">About</MenuItem>
       <MenuItem key="/explore">Explore</MenuItem>
       <MenuItem key="/explore/project/new">Submit Project</MenuItem>
+      <MenuItem key="subscribe">
+        <span className="font-bold text-orange">Subscribe</span>
+      </MenuItem>
     </Menu>
   );
 };

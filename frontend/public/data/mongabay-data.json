@@ -35,7 +35,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 2,
@@ -73,7 +74,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 3,
@@ -111,7 +113,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 4,
@@ -149,7 +152,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "good example of NWFP to improve people's income, they were not ready for forest firest, but highlight the need in implementing a monitoring in reforestation projects"
+        "comment": "good example of NWFP to improve people's income, they were not ready for forest firest, but highlight the need in implementing a monitoring in reforestation projects",
+        "relatedLinks": []
     },
     {
         "id": 5,
@@ -187,7 +191,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 6,
@@ -225,7 +230,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "decrease rural exodus of young farmers"
+        "comment": "decrease rural exodus of young farmers",
+        "relatedLinks": []
     },
     {
         "id": 7,
@@ -263,7 +269,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 8,
@@ -301,7 +308,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 9,
@@ -339,7 +347,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 10,
@@ -377,7 +386,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 11,
@@ -415,7 +425,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 12,
@@ -453,7 +464,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 13,
@@ -491,7 +503,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 14,
@@ -529,7 +542,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 15,
@@ -567,7 +581,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 16,
@@ -605,7 +620,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 17,
@@ -643,7 +659,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 18,
@@ -681,7 +698,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 19,
@@ -719,7 +737,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 20,
@@ -757,7 +776,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 21,
@@ -795,7 +815,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 22,
@@ -833,7 +854,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "mainly exotic species"
+        "comment": "mainly exotic species",
+        "relatedLinks": []
     },
     {
         "id": 23,
@@ -871,7 +893,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "projects #23 and #78; local people feared the project would take their land - locals were not consulted when the project started"
+        "comment": "projects #23 and #78; local people feared the project would take their land - locals were not consulted when the project started",
+        "relatedLinks": []
     },
     {
         "id": 24,
@@ -909,7 +932,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 25,
@@ -947,7 +971,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 26,
@@ -985,7 +1010,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 27,
@@ -1023,7 +1049,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 28,
@@ -1061,7 +1088,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 29,
@@ -1099,7 +1127,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 30,
@@ -1137,7 +1166,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 31,
@@ -1175,7 +1205,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 32,
@@ -1213,7 +1244,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 33,
@@ -1251,7 +1283,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 34,
@@ -1289,7 +1322,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "there's a publication about WeForest's work: https://www.weforest.org/newsroom/funding-forest-landscape-restoration-using-business-centred-approach-ngo%E2%80%99s-perspective"
+        "comment": "there's a publication about WeForest's work: https://www.weforest.org/newsroom/funding-forest-landscape-restoration-using-business-centred-approach-ngo%E2%80%99s-perspective",
+        "relatedLinks": []
     },
     {
         "id": 35,
@@ -1327,7 +1361,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 36,
@@ -1365,7 +1400,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "linked to project #220; https://www.weforest.org/webmap/#/ZM?popup=true"
+        "comment": "linked to project #220; https://www.weforest.org/webmap/#/ZM?popup=true",
+        "relatedLinks": []
     },
     {
         "id": 37,
@@ -1403,7 +1439,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "In FAQ, they mention about firebreaks and mitigation"
+        "comment": "In FAQ, they mention about firebreaks and mitigation",
+        "relatedLinks": []
     },
     {
         "id": 38,
@@ -1441,7 +1478,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 39,
@@ -1479,7 +1517,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 40,
@@ -1517,7 +1556,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 41,
@@ -1555,7 +1595,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 42,
@@ -1593,7 +1634,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 43,
@@ -1631,7 +1673,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 44,
@@ -1669,7 +1712,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 45,
@@ -1707,7 +1751,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 46,
@@ -1745,7 +1790,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "hectares by method (1000: mix-species; 1500: natural reg.; 1500: enrichment). The total hectare might be 1500 or the sum of all (4k), but the report is not explicit"
+        "comment": "hectares by method (1000: mix-species; 1500: natural reg.; 1500: enrichment). The total hectare might be 1500 or the sum of all (4k), but the report is not explicit",
+        "relatedLinks": []
     },
     {
         "id": 47,
@@ -1783,7 +1829,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "implement field schools so the local people can learn from researchers and technitians how to better take care of the land and improve their local business"
+        "comment": "implement field schools so the local people can learn from researchers and technitians how to better take care of the land and improve their local business",
+        "relatedLinks": []
     },
     {
         "id": 48,
@@ -1821,7 +1868,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "published as an scientific paper"
+        "comment": "published as an scientific paper",
+        "relatedLinks": []
     },
     {
         "id": 49,
@@ -1859,7 +1907,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 50,
@@ -1897,7 +1946,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "the project has the largest native tree nursery in Uganda"
+        "comment": "the project has the largest native tree nursery in Uganda",
+        "relatedLinks": []
     },
     {
         "id": 51,
@@ -1935,7 +1985,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "one important goal was to build the capacity of grassroots communities to manage their own resources"
+        "comment": "one important goal was to build the capacity of grassroots communities to manage their own resources",
+        "relatedLinks": []
     },
     {
         "id": 52,
@@ -1973,7 +2024,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "part of Uplink A Trillion Tree Challenge; this project has 19 smaller projects (they do not say, but probably is a different area/region)"
+        "comment": "part of Uplink A Trillion Tree Challenge; this project has 19 smaller projects (they do not say, but probably is a different area/region)",
+        "relatedLinks": []
     },
     {
         "id": 53,
@@ -2011,7 +2063,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 54,
@@ -2049,7 +2102,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 55,
@@ -2087,7 +2141,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 56,
@@ -2125,7 +2180,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 57,
@@ -2163,7 +2219,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 58,
@@ -2201,7 +2258,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 59,
@@ -2239,7 +2297,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 60,
@@ -2277,7 +2336,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 61,
@@ -2315,7 +2375,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "study area: planting trees for commercial use, it's under the 1000 trees programme"
+        "comment": "study area: planting trees for commercial use, it's under the 1000 trees programme",
+        "relatedLinks": []
     },
     {
         "id": 62,
@@ -2353,7 +2414,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 63,
@@ -2391,7 +2453,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 64,
@@ -2429,7 +2492,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 65,
@@ -2467,7 +2531,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 66,
@@ -2505,7 +2570,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 67,
@@ -2543,7 +2609,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 68,
@@ -2581,7 +2648,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 69,
@@ -2619,7 +2687,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 70,
@@ -2657,7 +2726,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 71,
@@ -2695,7 +2765,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "it's focus on indigenous community. Train young man and women in agroforestry"
+        "comment": "it's focus on indigenous community. Train young man and women in agroforestry",
+        "relatedLinks": []
     },
     {
         "id": 72,
@@ -2733,7 +2804,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 73,
@@ -2771,7 +2843,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "this organization doesn't look legit"
+        "comment": "this organization doesn't look legit",
+        "relatedLinks": []
     },
     {
         "id": 74,
@@ -2809,7 +2882,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 75,
@@ -2847,7 +2921,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 76,
@@ -2885,7 +2960,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 77,
@@ -2923,7 +2999,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "the species and other info: https://treesisters.org/blog/mount-bamboutos-cameroon"
+        "comment": "the species and other info: https://treesisters.org/blog/mount-bamboutos-cameroon",
+        "relatedLinks": []
     },
     {
         "id": 78,
@@ -2961,7 +3038,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "projects #23 and #78 - Eden Project doesn't show partners per country, but there's a section with all partners involved with Eden"
+        "comment": "projects #23 and #78 - Eden Project doesn't show partners per country, but there's a section with all partners involved with Eden",
+        "relatedLinks": []
     },
     {
         "id": 79,
@@ -2999,7 +3077,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 80,
@@ -3037,7 +3116,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 81,
@@ -3075,7 +3155,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 82,
@@ -3113,7 +3194,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 83,
@@ -3151,7 +3233,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 84,
@@ -3189,7 +3272,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 85,
@@ -3227,7 +3311,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 86,
@@ -3265,7 +3350,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "largest reforestation initiative in Nicaragua; https://restoration.elti.yale.edu/resource/taking-root-reforestation"
+        "comment": "largest reforestation initiative in Nicaragua; https://restoration.elti.yale.edu/resource/taking-root-reforestation",
+        "relatedLinks": []
     },
     {
         "id": 87,
@@ -3303,7 +3389,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 88,
@@ -3341,7 +3428,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 89,
@@ -3379,7 +3467,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 90,
@@ -3417,7 +3506,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 91,
@@ -3455,7 +3545,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "this project aims to increase farmer's productivity to avoid more deforestation. Producing more in the same area rather than increasing land area hoping to increase produciton"
+        "comment": "this project aims to increase farmer's productivity to avoid more deforestation. Producing more in the same area rather than increasing land area hoping to increase produciton",
+        "relatedLinks": []
     },
     {
         "id": 92,
@@ -3493,7 +3584,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "this project aims to increase farmer's productivity to avoid more deforestation"
+        "comment": "this project aims to increase farmer's productivity to avoid more deforestation",
+        "relatedLinks": []
     },
     {
         "id": 93,
@@ -3531,7 +3623,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 94,
@@ -3569,7 +3662,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 95,
@@ -3607,7 +3701,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 96,
@@ -3645,7 +3740,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 97,
@@ -3683,7 +3779,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 98,
@@ -3721,7 +3818,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 99,
@@ -3759,7 +3857,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "this project says it has VCS, but I did not find it on the VERRA website the project"
+        "comment": "this project says it has VCS, but I did not find it on the VERRA website the project",
+        "relatedLinks": []
     },
     {
         "id": 100,
@@ -3797,7 +3896,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "it says it's under the Verified Carbon Standard (VCS) but I didn't find anything"
+        "comment": "it says it's under the Verified Carbon Standard (VCS) but I didn't find anything",
+        "relatedLinks": []
     },
     {
         "id": 101,
@@ -3835,7 +3935,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 102,
@@ -3873,7 +3974,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 103,
@@ -3911,7 +4013,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 104,
@@ -3949,7 +4052,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 105,
@@ -3987,7 +4091,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "ArBolivia Reforestation Project | Tropical Restoration Library (yale.edu)"
+        "comment": "ArBolivia Reforestation Project | Tropical Restoration Library (yale.edu)",
+        "relatedLinks": []
     },
     {
         "id": 106,
@@ -4025,7 +4130,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 107,
@@ -4063,7 +4169,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "implement farmer field school"
+        "comment": "implement farmer field school",
+        "relatedLinks": []
     },
     {
         "id": 108,
@@ -4101,7 +4208,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "https://registry.verra.org/app/projectDetail/VCS/674"
+        "comment": "https://registry.verra.org/app/projectDetail/VCS/674",
+        "relatedLinks": []
     },
     {
         "id": 109,
@@ -4139,7 +4247,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 110,
@@ -4177,7 +4286,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 111,
@@ -4215,7 +4325,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 112,
@@ -4253,7 +4364,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 113,
@@ -4291,7 +4403,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 114,
@@ -4329,7 +4442,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 115,
@@ -4367,7 +4481,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 116,
@@ -4405,7 +4520,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 117,
@@ -4443,7 +4559,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 118,
@@ -4481,7 +4598,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 119,
@@ -4519,7 +4637,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 120,
@@ -4557,7 +4676,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 121,
@@ -4595,7 +4715,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 122,
@@ -4633,7 +4754,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 123,
@@ -4671,7 +4793,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 124,
@@ -4709,7 +4832,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 125,
@@ -4747,7 +4871,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 126,
@@ -4785,7 +4910,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 127,
@@ -4823,7 +4949,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 128,
@@ -4861,7 +4988,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 129,
@@ -4899,7 +5027,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 130,
@@ -4937,7 +5066,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 131,
@@ -4975,7 +5105,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 132,
@@ -5013,7 +5144,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 133,
@@ -5051,7 +5183,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 134,
@@ -5089,7 +5222,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 135,
@@ -5127,7 +5261,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 136,
@@ -5165,7 +5300,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 137,
@@ -5203,7 +5339,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "this organization buys the land"
+        "comment": "this organization buys the land",
+        "relatedLinks": []
     },
     {
         "id": 138,
@@ -5241,7 +5378,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 139,
@@ -5279,7 +5417,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 140,
@@ -5317,7 +5456,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 141,
@@ -5355,7 +5495,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 142,
@@ -5393,7 +5534,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 143,
@@ -5431,7 +5573,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 144,
@@ -5469,7 +5612,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "produce cook stove"
+        "comment": "produce cook stove",
+        "relatedLinks": []
     },
     {
         "id": 145,
@@ -5507,7 +5651,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 146,
@@ -5545,7 +5690,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 147,
@@ -5583,7 +5729,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 148,
@@ -5621,7 +5768,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 149,
@@ -5659,7 +5807,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 150,
@@ -5697,7 +5846,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 151,
@@ -5735,7 +5885,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 152,
@@ -5773,7 +5924,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 153,
@@ -5811,7 +5963,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 154,
@@ -5849,7 +6002,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 155,
@@ -5887,7 +6041,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 156,
@@ -5925,7 +6080,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 157,
@@ -5963,7 +6119,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 158,
@@ -6001,7 +6158,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 159,
@@ -6039,7 +6197,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 160,
@@ -6077,7 +6236,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 161,
@@ -6115,7 +6275,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "interesting for PES, the publication shows the successes and challenges"
+        "comment": "interesting for PES, the publication shows the successes and challenges",
+        "relatedLinks": []
     },
     {
         "id": 162,
@@ -6153,7 +6314,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 163,
@@ -6191,7 +6353,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 164,
@@ -6229,7 +6392,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "https://portals.iucn.org/library/sites/library/files/documents/2015-034.pdf"
+        "comment": "https://portals.iucn.org/library/sites/library/files/documents/2015-034.pdf",
+        "relatedLinks": []
     },
     {
         "id": 165,
@@ -6267,7 +6431,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 166,
@@ -6305,7 +6470,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 167,
@@ -6343,7 +6509,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 168,
@@ -6381,7 +6548,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 169,
@@ -6419,7 +6587,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 170,
@@ -6457,7 +6626,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "GLF Restoration Steward Programme"
+        "comment": "GLF Restoration Steward Programme",
+        "relatedLinks": []
     },
     {
         "id": 171,
@@ -6495,7 +6665,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "GLF Restoration Steward Programme"
+        "comment": "GLF Restoration Steward Programme",
+        "relatedLinks": []
     },
     {
         "id": 172,
@@ -6533,7 +6704,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "GLF Restoration Steward Programme"
+        "comment": "GLF Restoration Steward Programme",
+        "relatedLinks": []
     },
     {
         "id": 173,
@@ -6571,7 +6743,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "GLF Restoration Steward Programme"
+        "comment": "GLF Restoration Steward Programme",
+        "relatedLinks": []
     },
     {
         "id": 174,
@@ -6609,7 +6782,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 175,
@@ -6647,7 +6821,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 176,
@@ -6685,7 +6860,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 177,
@@ -6723,7 +6899,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 178,
@@ -6761,7 +6938,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 179,
@@ -6799,7 +6977,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "great start for policy making"
+        "comment": "great start for policy making",
+        "relatedLinks": []
     },
     {
         "id": 180,
@@ -6837,7 +7016,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "explore more about NTFP"
+        "comment": "explore more about NTFP",
+        "relatedLinks": []
     },
     {
         "id": 181,
@@ -6875,7 +7055,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 182,
@@ -6913,7 +7094,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 183,
@@ -6951,7 +7133,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 184,
@@ -6989,7 +7172,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 185,
@@ -7027,7 +7211,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 186,
@@ -7065,7 +7250,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "TreeTracker App has this project was a partner"
+        "comment": "TreeTracker App has this project was a partner",
+        "relatedLinks": []
     },
     {
         "id": 187,
@@ -7103,7 +7289,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "youth initiative"
+        "comment": "youth initiative",
+        "relatedLinks": []
     },
     {
         "id": 188,
@@ -7141,7 +7328,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 189,
@@ -7179,7 +7367,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 190,
@@ -7217,7 +7406,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 191,
@@ -7255,7 +7445,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 192,
@@ -7293,7 +7484,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 193,
@@ -7331,7 +7523,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "Trillion Tree Challenge"
+        "comment": "Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 194,
@@ -7369,7 +7562,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "they buy lands"
+        "comment": "they buy lands",
+        "relatedLinks": []
     },
     {
         "id": 195,
@@ -7407,7 +7601,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 196,
@@ -7445,7 +7640,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "part of A Million Tree Project"
+        "comment": "part of A Million Tree Project",
+        "relatedLinks": []
     },
     {
         "id": 197,
@@ -7483,7 +7679,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 198,
@@ -7521,7 +7718,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 199,
@@ -7559,7 +7757,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 200,
@@ -7597,7 +7796,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 201,
@@ -7635,7 +7835,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 202,
@@ -7673,7 +7874,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 203,
@@ -7711,7 +7913,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 204,
@@ -7749,7 +7952,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 205,
@@ -7787,7 +7991,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 206,
@@ -7825,7 +8030,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 207,
@@ -7863,7 +8069,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 208,
@@ -7901,7 +8108,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 209,
@@ -7939,7 +8147,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 210,
@@ -7977,7 +8186,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 211,
@@ -8015,7 +8225,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 212,
@@ -8053,7 +8264,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 213,
@@ -8091,7 +8303,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 214,
@@ -8129,7 +8342,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 215,
@@ -8167,7 +8381,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 216,
@@ -8205,7 +8420,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 217,
@@ -8243,7 +8459,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 218,
@@ -8281,7 +8498,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 219,
@@ -8319,7 +8537,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "part of Uplink A Trillion Tree Challenge"
+        "comment": "part of Uplink A Trillion Tree Challenge",
+        "relatedLinks": []
     },
     {
         "id": 220,
@@ -8357,7 +8576,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "project linked to #36"
+        "comment": "project linked to #36",
+        "relatedLinks": []
     },
     {
         "id": 221,
@@ -8395,7 +8615,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 222,
@@ -8433,7 +8654,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 223,
@@ -8471,7 +8693,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 224,
@@ -8509,7 +8732,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 225,
@@ -8547,7 +8771,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 226,
@@ -8585,7 +8810,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 227,
@@ -8623,7 +8849,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 228,
@@ -8661,7 +8888,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 229,
@@ -8699,7 +8927,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 230,
@@ -8737,7 +8966,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 231,
@@ -8775,7 +9005,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "BioCarbon Engineering (Dendra Systems) has the same approach"
+        "comment": "BioCarbon Engineering (Dendra Systems) has the same approach",
+        "relatedLinks": []
     },
     {
         "id": 232,
@@ -8813,7 +9044,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "there are case studies for this project. Article: Reforesting \u2018\u2018Bare Hills\u2019\u2019 in Vietnam: Social and Environmental Consequences of the 5 Million Hectare Reforestation Program"
+        "comment": "there are case studies for this project. Article: Reforesting \u2018\u2018Bare Hills\u2019\u2019 in Vietnam: Social and Environmental Consequences of the 5 Million Hectare Reforestation Program",
+        "relatedLinks": []
     },
     {
         "id": 233,
@@ -8851,7 +9083,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 234,
@@ -8889,7 +9122,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "this organization has many projects but it's hard to add in the database, most of them are for carbon offset"
+        "comment": "this organization has many projects but it's hard to add in the database, most of them are for carbon offset",
+        "relatedLinks": []
     },
     {
         "id": 235,
@@ -8927,7 +9161,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 236,
@@ -8965,7 +9200,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 237,
@@ -9003,7 +9239,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "the org. is located in many locations and the results here are compillation of all projects mentioned in the website"
+        "comment": "the org. is located in many locations and the results here are compillation of all projects mentioned in the website",
+        "relatedLinks": []
     },
     {
         "id": 238,
@@ -9041,7 +9278,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "the org. is located in many locations and the results here are compillation of all projects mentioned in the website"
+        "comment": "the org. is located in many locations and the results here are compillation of all projects mentioned in the website",
+        "relatedLinks": []
     },
     {
         "id": 239,
@@ -9079,7 +9317,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 240,
@@ -9117,7 +9356,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 241,
@@ -9155,7 +9395,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "the number of trees and hectares are just for the year 2019-2020"
+        "comment": "the number of trees and hectares are just for the year 2019-2020",
+        "relatedLinks": []
     },
     {
         "id": 242,
@@ -9193,7 +9434,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 243,
@@ -9231,7 +9473,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "In 2019, the country 11m trees and most of them died. Just to show a contrast: https://www.theguardian.com/world/2020/jan/30/most-of-11m-trees-planted-in-turkish-project-may-be-dead"
+        "comment": "In 2019, the country 11m trees and most of them died. Just to show a contrast: https://www.theguardian.com/world/2020/jan/30/most-of-11m-trees-planted-in-turkish-project-may-be-dead",
+        "relatedLinks": []
     },
     {
         "id": 244,
@@ -9269,7 +9512,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 245,
@@ -9307,7 +9551,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 246,
@@ -9345,7 +9590,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 247,
@@ -9383,7 +9629,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "the company just started, so they do not have many information about the projects; however, all of their projects are managed by Ecosia"
+        "comment": "the company just started, so they do not have many information about the projects; however, all of their projects are managed by Ecosia",
+        "relatedLinks": []
     },
     {
         "id": 248,
@@ -9421,7 +9668,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 249,
@@ -9459,7 +9707,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 250,
@@ -9497,7 +9746,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 251,
@@ -9535,7 +9785,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 252,
@@ -9573,7 +9824,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 253,
@@ -9611,7 +9863,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 254,
@@ -9649,7 +9902,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 255,
@@ -9687,7 +9941,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "there's a vonlunteer program where they show how much is the \"package\" to participate in the initiative"
+        "comment": "there's a vonlunteer program where they show how much is the \"package\" to participate in the initiative",
+        "relatedLinks": []
     },
     {
         "id": 256,
@@ -9725,7 +9980,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "there's a vonlunteer program where they show how much is the \"package\" to participate in the initiative"
+        "comment": "there's a vonlunteer program where they show how much is the \"package\" to participate in the initiative",
+        "relatedLinks": []
     },
     {
         "id": 257,
@@ -9763,7 +10019,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "there's a vonlunteer program where they show how much is the \"package\" to participate in the initiative"
+        "comment": "there's a vonlunteer program where they show how much is the \"package\" to participate in the initiative",
+        "relatedLinks": []
     },
     {
         "id": 258,
@@ -9801,7 +10058,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 259,
@@ -9839,7 +10097,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 260,
@@ -9877,7 +10136,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 261,
@@ -9915,7 +10175,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "check project #14 and link: (http://www.fao.org/3/cb1600en/CB1600EN.pdf) page 25"
+        "comment": "check project #14 and link: (http://www.fao.org/3/cb1600en/CB1600EN.pdf) page 25",
+        "relatedLinks": []
     },
     {
         "id": 262,
@@ -9953,7 +10214,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "more info: https://popups.uliege.be/2295-8010/index.php?id=1179&file=1"
+        "comment": "more info: https://popups.uliege.be/2295-8010/index.php?id=1179&file=1",
+        "relatedLinks": []
     },
     {
         "id": 263,
@@ -9991,7 +10253,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 264,
@@ -10029,7 +10292,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 265,
@@ -10067,7 +10331,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 266,
@@ -10105,7 +10370,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 267,
@@ -10143,7 +10409,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 268,
@@ -10181,7 +10448,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 269,
@@ -10219,7 +10487,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 270,
@@ -10257,7 +10526,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 271,
@@ -10295,7 +10565,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 272,
@@ -10333,7 +10604,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 273,
@@ -10371,7 +10643,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 274,
@@ -10409,7 +10682,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 275,
@@ -10447,7 +10721,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 276,
@@ -10485,7 +10760,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 277,
@@ -10523,7 +10799,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "project #276 and #278 are part of this project; for additional information check OpenForest"
+        "comment": "project #276 and #278 are part of this project; for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 278,
@@ -10561,7 +10838,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 279,
@@ -10599,7 +10877,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 280,
@@ -10637,7 +10916,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 281,
@@ -10675,7 +10955,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 282,
@@ -10713,7 +10994,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 283,
@@ -10751,7 +11033,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 284,
@@ -10789,7 +11072,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 285,
@@ -10827,7 +11111,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 286,
@@ -10865,7 +11150,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 287,
@@ -10903,7 +11189,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 288,
@@ -10941,7 +11228,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 289,
@@ -10979,7 +11267,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 290,
@@ -11017,7 +11306,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 291,
@@ -11055,7 +11345,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 292,
@@ -11093,7 +11384,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 293,
@@ -11131,7 +11423,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 294,
@@ -11169,7 +11462,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 295,
@@ -11207,7 +11501,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 296,
@@ -11245,7 +11540,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 297,
@@ -11283,7 +11579,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "also project #86"
+        "comment": "also project #86",
+        "relatedLinks": []
     },
     {
         "id": 298,
@@ -11321,7 +11618,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 299,
@@ -11359,7 +11657,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 300,
@@ -11397,7 +11696,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 301,
@@ -11435,7 +11735,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 302,
@@ -11473,7 +11774,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 303,
@@ -11511,7 +11813,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 304,
@@ -11549,7 +11852,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 305,
@@ -11587,7 +11891,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 306,
@@ -11625,7 +11930,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 307,
@@ -11663,7 +11969,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 308,
@@ -11701,7 +12008,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 309,
@@ -11739,7 +12047,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "for additional information check OpenForest"
+        "comment": "for additional information check OpenForest",
+        "relatedLinks": []
     },
     {
         "id": 310,
@@ -11777,7 +12086,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 311,
@@ -11815,7 +12125,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 312,
@@ -11853,7 +12164,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 313,
@@ -11891,7 +12203,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 314,
@@ -11929,7 +12242,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "for additional information check OpenForest; land acquisition"
+        "comment": "for additional information check OpenForest; land acquisition",
+        "relatedLinks": []
     },
     {
         "id": 315,
@@ -11967,7 +12281,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 316,
@@ -12005,7 +12320,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 317,
@@ -12043,7 +12359,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 318,
@@ -12081,7 +12398,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 319,
@@ -12119,7 +12437,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 320,
@@ -12157,7 +12476,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 321,
@@ -12195,7 +12515,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 322,
@@ -12233,7 +12554,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "Cloudbridge Reforestation Project | Tropical Restoration Library (yale.edu)"
+        "comment": "Cloudbridge Reforestation Project | Tropical Restoration Library (yale.edu)",
+        "relatedLinks": []
     },
     {
         "id": 323,
@@ -12271,7 +12593,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 324,
@@ -12309,7 +12632,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 325,
@@ -12347,7 +12671,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": "Awacachi Corridor now represents one of the first and largest privately-owned reserves in Ecuador; https://cms.fauna-flora.org/wp-content/uploads/2017/12/Awacachi-Case-Study_July-2018.pdf"
+        "comment": "Awacachi Corridor now represents one of the first and largest privately-owned reserves in Ecuador; https://cms.fauna-flora.org/wp-content/uploads/2017/12/Awacachi-Case-Study_July-2018.pdf",
+        "relatedLinks": []
     },
     {
         "id": 326,
@@ -12385,7 +12710,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 327,
@@ -12423,7 +12749,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 328,
@@ -12461,7 +12788,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "Publications, reports and video's of Wetlands International"
+        "comment": "Publications, reports and video's of Wetlands International",
+        "relatedLinks": []
     },
     {
         "id": 329,
@@ -12499,7 +12827,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 330,
@@ -12537,7 +12866,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 331,
@@ -12575,7 +12905,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 332,
@@ -12613,7 +12944,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 333,
@@ -12651,7 +12983,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 334,
@@ -12689,7 +13022,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 335,
@@ -12727,7 +13061,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 336,
@@ -12765,7 +13100,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 337,
@@ -12803,7 +13139,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 338,
@@ -12841,7 +13178,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 339,
@@ -12879,7 +13217,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "Daikin Industries Reforestation Project | Tropical Restoration Library (yale.edu)"
+        "comment": "Daikin Industries Reforestation Project | Tropical Restoration Library (yale.edu)",
+        "relatedLinks": []
     },
     {
         "id": 340,
@@ -12917,7 +13256,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 341,
@@ -12955,7 +13295,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 342,
@@ -12993,7 +13334,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 343,
@@ -13031,7 +13373,8 @@
         "hasGenderComponent": true,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 344,
@@ -13069,7 +13412,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 345,
@@ -13107,7 +13451,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": "Rio Bogota - Fundacion al verde vivo | Tropical Restoration Library (yale.edu)"
+        "comment": "Rio Bogota - Fundacion al verde vivo | Tropical Restoration Library (yale.edu)",
+        "relatedLinks": []
     },
     {
         "id": 346,
@@ -13145,7 +13490,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 347,
@@ -13183,7 +13529,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": true,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 348,
@@ -13221,7 +13568,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": true,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 349,
@@ -13259,7 +13607,8 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     },
     {
         "id": 350,
@@ -13297,6 +13646,7 @@
         "hasGenderComponent": false,
         "scientificResearchAssociatedWithProject": false,
         "newsArticlesAssociatedWithProject": false,
-        "comment": null
+        "comment": null,
+        "relatedLinks": []
     }
 ]

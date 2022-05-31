@@ -145,6 +145,11 @@ export interface Project {
   organizationType?: OrganizationType;
   whoIsInvolved?: InvolvedOrgType[];
   projectOrgUrl: string;
+  relatedLinks: {
+    title?: string;
+    description?: string;
+    url: string;
+  }[];
   hasProjectPartners: boolean;
   partnerName?: string;
   startYear?: number;
@@ -239,4 +244,12 @@ export enum EmbedTypes {
   Filters = 'filters',
   ProjectList = 'project-list',
   ProjectCard = 'project-card',
+}
+
+export interface CMSStaticPage {
+  id: string;
+  slug: string;
+  type: 'static_page';
+  title: string;
+  body: string;
 }

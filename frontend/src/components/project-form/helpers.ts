@@ -34,14 +34,29 @@ export const getFormValues = (formRef: MutableRefObject<HTMLFormElement>) => {
     return value;
   };
 
-  return Array.from(formData.keys()).reduce(
-    (res, key) => ({
+  return Array.from(formData.keys()).reduce((res, key) => {
+    const value =
+      formData.getAll(key).length > 1
+        ? formData.getAll(key).map((value) => correctType(key, value))
+        : correctType(key, formData.get(key));
+
+    const hasNestedPath = /.+\[\d+\]\..+/.test(key);
+    if (hasNestedPath) {
+      const rootKey = key.split(/\[\d+\]\./)[0];
+      const nestedKey = key.split(/\[\d+\]\./)[1];
+      const index = +key.match(/.+\[(\d+)\]\..+/)[1];
+
+      return {
+        ...res,
+        [rootKey]: Array.from({ length: Math.max(res[rootKey]?.length ?? 0, index + 1) }, (v, i) =>
+          i === index ? { ...(res[rootKey]?.[i] ?? {}), [nestedKey]: value } : res[rootKey]?.[i]
+        ),
+      };
+    }
+
+    return {
       ...res,
-      [key]:
-        formData.getAll(key).length > 1
-          ? formData.getAll(key).map((value) => correctType(key, value))
-          : correctType(key, formData.get(key)),
-    }),
-    {}
-  );
+      [key]: value,
+    };
+  }, {});
 };
