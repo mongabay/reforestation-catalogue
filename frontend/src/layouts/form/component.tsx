@@ -4,7 +4,8 @@ import cx from 'classnames';
 
 import { omit } from 'lodash-es';
 
-import Header from './header';
+import Header from '../static-page/header';
+
 import { FormLayoutProps } from './types';
 
 export const FormLayout: React.FC<FormLayoutProps> = ({

@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import Icon from 'components/icon';
 
-import UploadIcon from 'svgs/left-arrow.svg';
+import ArrowIcon from 'svgs/left-arrow.svg';
 
 import { BreadcrumbsProps } from './types';
 
@@ -36,7 +36,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ items, className }: Breadcru
         >
           <Container>{item.label}</Container>
           <Icon
-            icon={UploadIcon}
+            icon={ArrowIcon}
             aria-hidden
             className="w-2.5 h-2.5 ml-4 rotate-180 group-last:hidden"
           />
