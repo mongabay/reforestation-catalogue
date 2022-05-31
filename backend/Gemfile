@@ -50,6 +50,8 @@ gem 'pagy'
 gem 'trestle'
 # Authentication plugin for the Trestle admin framework [https://github.com/TrestleAdmin/trestle-auth]
 gem 'trestle-auth'
+# TinyMCE integration plugin for the Trestle admin framework
+gem 'trestle-tinymce'
 # Use Sass to process CSS
 gem "sassc-rails"
 

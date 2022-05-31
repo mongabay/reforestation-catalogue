@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'projects' => 'projects#create'
       patch 'projects/:id' => 'projects#update'
       put 'projects/:id' => 'projects#update'
+      get 'static_pages/:slug' => 'static_pages#show'
     end
   end
 end

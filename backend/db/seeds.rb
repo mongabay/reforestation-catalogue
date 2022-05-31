@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create(email: "admin@example.com", password: "password", first_name: "Admin", last_name: "User")
+StaticPage.create(slug:"about", title:"About")
+StaticPage.create(slug:"glosary", title:"Glosary")
 User.create(email: "ibrahim.lachguer@vizzuality.com", password: "password", first_name: "Admin", last_name: "User")
 User.create(email: "pablo.urrutia@vizzuality.com", password: "password", first_name: "Admin", last_name: "User")
 User.create(email: "ibrahim.lachguer@vizzuality.com", password: "password", first_name: "Admin", last_name: "User")
