@@ -37,7 +37,8 @@ class ProjectSerializer
   :news_articles_associated_with_project,
   :comment,
   :approved,
-  :highlighted
+  :highlighted,
+  :project_links
 
   attribute :percentages do |object|
     object.get_project_categories_percentage

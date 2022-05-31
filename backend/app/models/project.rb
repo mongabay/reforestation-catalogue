@@ -1,10 +1,13 @@
 class Project < ApplicationRecord
-  # serialize :who_is_involved
-  # serialize :primary_objective_purpose
-  # serialize :approach
-
+  has_many :project_contacts
+  has_many :project_links
   has_many :project_categories
   has_many :categories, :through => :project_categories
+
+  accepts_nested_attributes_for :project_contacts
+  accepts_nested_attributes_for :project_links
+
+  after_save :set_percentage_for_all_categories
 
   scope :approved, -> { where(approved: true) }
   scope :highlighted, -> { where(highlighted: true) }
@@ -36,5 +39,12 @@ class Project < ApplicationRecord
     end
 
     return (fields_with_data * 100) / number_of_fields
+  end
+
+  def set_percentage_for_all_categories
+    self.get_project_categories_percentage.each do |k,v|
+      category = Category.where(slug: k).first
+      ProjectCategory.create(project: self, category: category, percentage: v)
+    end
   end
 end
