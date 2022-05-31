@@ -176,6 +176,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
         <Head title={project.projectName} />
         <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
         <ProjectLinksModal
+          project={project}
           open={showProjectLinksModal}
           onDismiss={() => setShowProjectLinksModal(false)}
         />
@@ -229,13 +230,15 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
             </div>
             <div className="mt-7">
               <div className="flex flex-col gap-4 md:flex-row md:gap-11">
-                <Button
-                  theme="secondary-green"
-                  className="justify-center md:justify-start"
-                  onClick={() => setShowProjectLinksModal(true)}
-                >
-                  Project Links
-                </Button>
+                {project.relatedLinks.length > 0 && (
+                  <Button
+                    theme="secondary-green"
+                    className="justify-center md:justify-start"
+                    onClick={() => setShowProjectLinksModal(true)}
+                  >
+                    Project Links
+                  </Button>
+                )}
                 <Button
                   to={`/explore/project/${project.id}/edit`}
                   className="justify-center md:justify-start"

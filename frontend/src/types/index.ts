@@ -145,6 +145,11 @@ export interface Project {
   organizationType?: OrganizationType;
   whoIsInvolved?: InvolvedOrgType[];
   projectOrgUrl: string;
+  relatedLinks: {
+    title?: string;
+    description?: string;
+    url: string;
+  }[];
   hasProjectPartners: boolean;
   partnerName?: string;
   startYear?: number;
