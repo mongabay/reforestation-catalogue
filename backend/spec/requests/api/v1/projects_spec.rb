@@ -74,7 +74,9 @@ RSpec.describe "Api::V1::Projects", type: :request do
           "scientific_research_associated_with_project",
           "news_articles_associated_with_project",
           "comment",
-          "percentages"
+          "percentages",
+          "approved",
+          "highlighted"
         ]
         expect(parsed_body['data'].first.keys).to match_array(expected_fields)
         expect(parsed_body['data'].first['attributes'].keys).to match_array(expected_attributes)
@@ -133,7 +135,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
       it 'returns a list of projects sorted by category percentage asc' do
         project_first = Project.first
         project_last = Project.last
-        category = FactoryBot.create(:category, slug: 'context_category')
+        category = FactoryBot.create(:category, slug: 'context')
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
         project_category_second = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
@@ -157,7 +159,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id])
       end
       it 'returns a list of projects filtered by start year greater or equal' do
-        category = FactoryBot.create(:category, slug: 'context_category')
+        category = FactoryBot.create(:category, slug: 'context')
         filter = FactoryBot.create(:filter, category: category, slug: 'start_year')
         project_first = Project.first
         project_first.start_year = 2012
@@ -180,7 +182,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_last.id, project_second.id])
       end
       it 'returns a list of projects filtered by end year less or equal' do
-        category = FactoryBot.create(:category, slug: 'context_category')
+        category = FactoryBot.create(:category, slug: 'context')
         filter = FactoryBot.create(:filter, category: category, slug: 'end_year')
         project_first = Project.first
         project_first.end_year = 2012
@@ -203,7 +205,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_second.id])
       end
       it 'returns a list of projects filtered by size_of_project_ha greater or equal' do
-        category = FactoryBot.create(:category, slug: 'context_category')
+        category = FactoryBot.create(:category, slug: 'context')
         filter = FactoryBot.create(:filter, category: category, slug: 'size_of_project_ha')
         project_first = Project.first
         project_first.size_of_project_ha = 20
@@ -226,7 +228,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by has_explicit_location equal' do
-        category = FactoryBot.create(:category, slug: 'context_category')
+        category = FactoryBot.create(:category, slug: 'context')
         filter = FactoryBot.create(:filter, category: category, slug: 'has_explicit_location')
         project_first = Project.first
         project_first.has_explicit_location = true
@@ -249,7 +251,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by fire_prevention equal' do
-        category = FactoryBot.create(:category, slug: 'ecological_category')
+        category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'fire_prevention')
         project_first = Project.first
         project_first.fire_prevention = true
@@ -272,7 +274,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by addresses_known_threats equal' do
-        category = FactoryBot.create(:category, slug: 'ecological_category')
+        category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'addresses_known_threats')
         project_first = Project.first
         project_first.addresses_known_threats = true
@@ -295,7 +297,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by discloses_species_used equal' do
-        category = FactoryBot.create(:category, slug: 'ecological_category')
+        category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'discloses_species_used')
         project_first = Project.first
         project_first.discloses_species_used = true
@@ -318,7 +320,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by identify_deforestation_driver equal' do
-        category = FactoryBot.create(:category, slug: 'economic_category')
+        category = FactoryBot.create(:category, slug: 'economic')
         filter = FactoryBot.create(:filter, category: category, slug: 'identify_deforestation_driver')
         project_first = Project.first
         project_first.identify_deforestation_driver = true
@@ -341,7 +343,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by local_seedling_nurseries equal' do
-        category = FactoryBot.create(:category, slug: 'economic_category')
+        category = FactoryBot.create(:category, slug: 'economic')
         filter = FactoryBot.create(:filter, category: category, slug: 'local_seedling_nurseries')
         project_first = Project.first
         project_first.local_seedling_nurseries = true
@@ -364,7 +366,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by follow_up_disclosed equal' do
-        category = FactoryBot.create(:category, slug: 'economic_category')
+        category = FactoryBot.create(:category, slug: 'economic')
         filter = FactoryBot.create(:filter, category: category, slug: 'follow_up_disclosed')
         project_first = Project.first
         project_first.follow_up_disclosed = true
@@ -387,7 +389,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by scientific_research_associated_with_project equal' do
-        category = FactoryBot.create(:category, slug: 'institutional_category')
+        category = FactoryBot.create(:category, slug: 'institutional')
         filter = FactoryBot.create(:filter, category: category, slug: 'scientific_research_associated_with_project')
         project_first = Project.first
         project_first.scientific_research_associated_with_project = true
@@ -410,7 +412,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by has_gender_component equal' do
-        category = FactoryBot.create(:category, slug: 'social_category')
+        category = FactoryBot.create(:category, slug: 'social')
         filter = FactoryBot.create(:filter, category: category, slug: 'has_gender_component')
         project_first = Project.first
         project_first.has_gender_component = true
@@ -433,7 +435,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by forest_type equal' do
-        category = FactoryBot.create(:category, slug: 'ecological_category')
+        category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'forest_type')
         project_first = Project.first
         project_first.forest_type = ['boreal_mountain_system']
@@ -456,7 +458,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by financial_model equal' do
-        category = FactoryBot.create(:category, slug: 'ecological_category')
+        category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'financial_model')
         project_first = Project.first
         project_first.financial_model = ['business_partners']
@@ -479,7 +481,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
       end
       it 'returns a list of projects filtered by organization_type equal' do
-        category = FactoryBot.create(:category, slug: 'economic_category')
+        category = FactoryBot.create(:category, slug: 'economic')
         filter = FactoryBot.create(:filter, category: category, slug: 'organization_type')
         project_first = Project.first
         project_first.organization_type = 'company'
