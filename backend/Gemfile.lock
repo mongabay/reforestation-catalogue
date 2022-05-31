@@ -263,6 +263,8 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.2.0)
+    tinymce-rails (5.10.4)
+      railties (>= 3.1.1)
     trestle (0.9.6)
       activemodel (>= 4.2.0)
       kaminari (>= 1.1.0)
@@ -271,6 +273,9 @@ GEM
     trestle-auth (0.4.4)
       bcrypt (~> 3.1.7)
       trestle (~> 0.9.0, >= 0.9.3)
+    trestle-tinymce (0.3.1)
+      tinymce-rails (~> 5.1)
+      trestle (~> 0.9.0)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -322,6 +327,7 @@ DEPENDENCIES
   stimulus-rails
   trestle
   trestle-auth
+  trestle-tinymce
   turbo-rails
   tzinfo-data
   web-console
