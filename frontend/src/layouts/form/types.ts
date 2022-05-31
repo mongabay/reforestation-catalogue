@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { HeaderProps } from './header';
+import { FooterProps } from 'layouts/static-page/footer';
+import { HeaderProps } from 'layouts/static-page/header';
 
 export interface MainProps {
   /** Props to apply to the container */
@@ -13,5 +14,7 @@ export type FormLayoutProps = React.PropsWithChildren<
     headerProps?: HeaderProps;
     /** Props for the `<main />` element of the page */
     mainProps?: MainProps['props'];
+    /** Props for the footer */
+    footerProps?: FooterProps['props'];
   }
 >;

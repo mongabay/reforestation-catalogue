@@ -7,6 +7,7 @@ export interface ButtonCommonProps {
   theme?:
     | 'primary-green'
     | 'primary-white'
+    | 'primary-orange'
     | 'secondary-green'
     | 'secondary-white'
     | 'secondary-orange'
