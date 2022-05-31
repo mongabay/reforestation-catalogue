@@ -7,8 +7,10 @@ class ProjectsImporter
 
     data_hash.each do |project_data|
       new_project = Project.new()
+      byebug
       project_data.each do |key, value|
         sanitized_key = key.to_s.underscore.to_sym
+        next if sanitized_key == :id
         new_project[sanitized_key] = value
       end
       new_project.approved = true

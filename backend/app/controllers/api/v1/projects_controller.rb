@@ -41,17 +41,18 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
-
-    if @project.save
-      render json: ProjectSerializer.new(
-        @project
-        # links
-        # meta
-      ).serializable_hash
-    else
-      render json: @project.errors, status: :unprocessable_entity
+    @project = Project.create(project_params)
+    if params.keys.include?('project_links_attributes')
+      project_params['project_links_attributes'].each do |link_attributes|
+        @project.project_links.create(link_attributes)
+      end
     end
+
+    render json: ProjectSerializer.new(
+      @project
+      # links
+      # meta
+    ).serializable_hash
   end
 
   def update
@@ -69,7 +70,43 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit!
+    params.require(:project).permit(
+      :project_name,                                                                                     
+      :lead_organization,                                                                                
+      :organization_type,                                                                                
+      :who_is_involved,                                                                                  
+      :project_org_url,                                                                                  
+      :has_project_partners,                                                                             
+      :partner_name,                                                                                     
+      :start_year,                                                                                       
+      :end_year,                                                                                         
+      :country,                                                                                          
+      :country_code,                                                                                     
+      :size_of_project_ha,                                                                               
+      :trees_planted_number,                                                                             
+      :has_explicit_location,
+      :forest_type,
+      :primary_objective_purpose,
+      :approach,
+      :identify_deforestation_driver,
+      :fire_prevention,
+      :has_justification_for_approach,
+      :addresses_known_threats,
+      :discloses_species_used,
+      :use_native_species,
+      :use_exotic_species,
+      :local_seedling_nurseries,
+      :financial_model,
+      :name_org_donor,
+      :has_public_reports,
+      :follow_up_disclosed,
+      :type_of_follow_up,
+      :has_community_involvement,
+      :has_gender_component,
+      :scientific_research_associated_with_project,
+      :news_articles_associated_with_project,
+      :comment,
+      :project_links_attributes => [:url, :title, :description])
   end
 
   def current_page

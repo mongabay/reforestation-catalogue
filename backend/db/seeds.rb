@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 StaticPage.create(slug:"about", title:"About")
 StaticPage.create(slug:"glosary", title:"Glosary")
-User.create(email: "ibrahim.lachguer@vizzuality.com", password: "password", first_name: "Admin", last_name: "User")
+User.create(email: "admin@example.com", password: "password", first_name: "Admin", last_name: "User")
 User.create(email: "pablo.urrutia@vizzuality.com", password: "password", first_name: "Admin", last_name: "User")
 User.create(email: "ibrahim.lachguer@vizzuality.com", password: "password", first_name: "Admin", last_name: "User")
 User.create(email: "teona.teodorescu@vizzuality.com", password: "password", first_name: "Admin", last_name: "User")
