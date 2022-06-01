@@ -15,7 +15,7 @@ set :keep_releases, 3
 set :init_system, :systemd
 set :passenger_restart_with_touch, true
 
-append :linked_files, '.env'
+append :linked_files, '.env.local'
 append :linked_dirs, 'node_modules'
 
 namespace :yarn do
@@ -31,3 +31,6 @@ namespace :yarn do
     end
   end
 end
+
+
+after 'deploy:cleanup', :'passenger:restart'
