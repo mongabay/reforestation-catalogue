@@ -23,6 +23,7 @@ The application is configured via environment variables stored in a `.env` file 
 
 Below is a description of each of the keys.
 
-| Variable                        | Description                                                                                                                              |
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| NEXT_PUBLIC_API_URL         | Complete URL from which the API is served (including https) and without a trailing slash (e.g. https://vizzuality.com)  |
+| Variable                      | Description                                                                                                                                             |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| NEXT_PUBLIC_API_URL           | Complete URL from which the API is served (including https) and without a trailing slash (e.g. https://vizzuality.com)                                  |
+| NEXT_PUBLIC_MONGABAY_DATA_URL | Base path to where the `mongabay-data.json` file is server. The actual file should be available at `<NEXT_PUBLIC_MONGABAY_DATA_URL>/mongabay-data.json` |
