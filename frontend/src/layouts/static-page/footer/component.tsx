@@ -41,6 +41,11 @@ const Footer: React.FC<FooterProps> = (props: FooterProps) => (
               Explore
             </a>
           </Link>
+          <Link href="mailto:editor@mongabay.com?subject=Reforestation.app feedback">
+            <a className="flex items-center text-xs font-bold leading-5 uppercase focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-white">
+              Contact
+            </a>
+          </Link>
         </nav>
         <div>
           <p className="text-sm font-bold">Follow us on:</p>
