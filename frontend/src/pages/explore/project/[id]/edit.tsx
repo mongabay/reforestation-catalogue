@@ -18,7 +18,7 @@ import LeftArrowIcon from 'svgs/left-arrow.svg';
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
 
-  const project = await fetchProject(+id);
+  const project = await fetchProject(id as Project['id']);
 
   return {
     notFound: !project,

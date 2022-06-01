@@ -17,35 +17,35 @@ export const CATEGORIES: Category[] = [
       'Does the project disclose basic information about its size, location, and duration?',
     fields: [
       {
-        id: 'startYear',
+        id: 'start_year',
         label: 'Start year',
         type: FilterTypes.Year,
         mode: FilterModes.GreaterOrEqualThan,
         hidden: false,
       },
       {
-        id: 'endYear',
+        id: 'end_year',
         label: 'End year',
         type: FilterTypes.Year,
         mode: FilterModes.LessOrEqualThan,
         hidden: false,
       },
       {
-        id: 'hasExplicitLocation',
+        id: 'has_explicit_location',
         label: 'Has a explicit location',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'hasPublicReports',
+        id: 'has_public_reports',
         label: 'Has public reports',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: true,
       },
       {
-        id: 'hasJustificationForApproach',
+        id: 'has_justification_for_approach',
         label: 'Has justification for approach',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
@@ -60,7 +60,7 @@ export const CATEGORIES: Category[] = [
         hidden: true,
       },
       {
-        id: 'sizeOfProjectHa',
+        id: 'size_of_project_ha',
         label: 'Size of project in ha',
         type: FilterTypes.Number,
         mode: FilterModes.GreaterOrEqualThan,
@@ -75,7 +75,7 @@ export const CATEGORIES: Category[] = [
       'Does the project disclose what kinds of trees it will plant and address threats to a specified ecosystem?',
     fields: [
       {
-        id: 'forestType',
+        id: 'forest_type',
         label: 'Forest type',
         type: FilterTypes.String,
         options: [],
@@ -83,21 +83,21 @@ export const CATEGORIES: Category[] = [
         hidden: false,
       },
       {
-        id: 'firePrevention',
+        id: 'fire_prevention',
         label: 'Fire prevention',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'addressesKnownThreats',
+        id: 'addresses_known_threats',
         label: 'Addresses known threats',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'disclosesSpeciesUsed',
+        id: 'discloses_species_used',
         label: 'Discloses species used',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
@@ -111,7 +111,7 @@ export const CATEGORIES: Category[] = [
     description: 'How is the project funded and how does it support local communities?',
     fields: [
       {
-        id: 'nameOrgDonor',
+        id: 'name_org_donor',
         label: 'Name Org/Donor',
         type: FilterTypes.String,
         options: [],
@@ -119,21 +119,21 @@ export const CATEGORIES: Category[] = [
         hidden: true,
       },
       {
-        id: 'identifyDeforestationDriver',
+        id: 'identify_deforestation_driver',
         label: 'Identifies deforestation driver',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'localSeedlingNurseries',
+        id: 'local_seedling_nurseries',
         label: 'Local seedling nurseries',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'financialModel',
+        id: 'financial_model',
         label: 'Financial model',
         type: FilterTypes.String,
         options: [],
@@ -141,7 +141,7 @@ export const CATEGORIES: Category[] = [
         hidden: false,
       },
       {
-        id: 'followUpDisclosed',
+        id: 'follow_up_disclosed',
         label: 'Follow up disclosed',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
@@ -156,7 +156,7 @@ export const CATEGORIES: Category[] = [
       'What kind of organization is managing the project? Is there a research component?',
     fields: [
       {
-        id: 'organizationType',
+        id: 'organization_type',
         label: 'Organization type',
         type: FilterTypes.String,
         options: [],
@@ -164,21 +164,21 @@ export const CATEGORIES: Category[] = [
         hidden: false,
       },
       {
-        id: 'scientificResearchAssociatedWithProject',
+        id: 'scientific_research_associated_with_project',
         label: 'Scientific research associated with project',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'hasProjectPartners',
+        id: 'has_project_partners',
         label: 'Has project partners',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: true,
       },
       {
-        id: 'whoIsInvolved',
+        id: 'who_is_involved',
         label: 'Who is involved',
         type: FilterTypes.String,
         options: [],
@@ -193,21 +193,21 @@ export const CATEGORIES: Category[] = [
     description: 'Who is participating and who is benefitting?',
     fields: [
       {
-        id: 'hasCommunityInvolvement',
+        id: 'has_community_involvement',
         label: 'Has community involvement',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'hasGenderComponent',
+        id: 'has_gender_component',
         label: 'Has gender component',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
       },
       {
-        id: 'newsArticlesAssociatedWithProject',
+        id: 'news_articles_associated_with_project',
         label: 'Has news articles associated with project',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,

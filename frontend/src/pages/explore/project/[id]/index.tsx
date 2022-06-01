@@ -24,7 +24,7 @@ import { CATEGORIES } from 'services/catalog';
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
 
-  const project = await fetchProject(+id);
+  const project = await fetchProject(id as Project['id']);
 
   return {
     notFound: !project,
@@ -35,11 +35,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const getContextDynamicText = (project: Project) => {
-  const projectArea = project.sizeOfProjectHa && d3.format('.4s')(project.sizeOfProjectHa);
-  const treesPlanted = project.treesPlantedNumber && d3.format('.4s')(project.treesPlantedNumber);
+  const projectArea = project.size_of_project_ha && d3.format('.4s')(project.size_of_project_ha);
+  const treesPlanted =
+    project.trees_planted_number && d3.format('.4s')(project.trees_planted_number);
   const approach = project.approach;
-  const primaryObjectivePurpose = project.primaryObjectivePurpose;
-  const typeOfFollowUp = project.typeOfFollowUp;
+  const primaryObjectivePurpose = project.primary_objective_purpose;
+  const typeOfFollowUp = project.type_of_follow_up;
 
   return (
     <>
@@ -173,7 +174,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
   return (
     <div className="relative pt-5 pb-12">
       <LayoutContainer>
-        <Head title={project.projectName} />
+        <Head title={project.project_name} />
         <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
         <ProjectLinksModal
           project={project}
@@ -200,37 +201,37 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
             <Breadcrumbs
               items={[
                 { label: 'Projects results', url: '/explore' },
-                { label: project.projectName },
+                { label: project.project_name },
               ]}
             />
             <div className="pt-8">
               <h1 className="max-w-2xl font-serif text-3xl font-bold text-green">
-                {project.projectName}
+                {project.project_name}
               </h1>
               <div className="mt-4">
-                {!!project.leadOrganization && <div>{project.leadOrganization}</div>}
-                {(!!project.startYear || !!project.endYear) && (
+                {!!project.lead_organization && <div>{project.lead_organization}</div>}
+                {(!!project.start_year || !!project.end_year) && (
                   <div>
-                    {project.startYear ?? '−'} - {project.endYear ?? '−'}
+                    {project.start_year ?? '−'} - {project.end_year ?? '−'}
                   </div>
                 )}
                 {!!project.country && <div>{project.country}</div>}
               </div>
-              {!!project.projectOrgUrl && (
-                <Link href={project.projectOrgUrl}>
+              {!!project.project_org_url && (
+                <Link href={project.project_org_url}>
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
                     className="block mt-4 text-blue hover:underline"
                   >
-                    {project.projectOrgUrl.replace(/^https?:\/\//, '').split('/')[0]}
+                    {project.project_org_url.replace(/^https?:\/\//, '').split('/')[0]}
                   </a>
                 </Link>
               )}
             </div>
             <div className="mt-7">
               <div className="flex flex-col gap-4 md:flex-row md:gap-11">
-                {project.relatedLinks.length > 0 && (
+                {project.project_links.length > 0 && (
                   <Button
                     theme="secondary-green"
                     className="justify-center md:justify-start"
@@ -274,7 +275,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Forest type:</span>{' '}
-                    {project.forestType ? project.forestType.join(', ') : 'Unreported'}
+                    {project.forest_type ? project.forest_type.join(', ') : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Reported information:</span>
@@ -290,12 +291,12 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Name Org/Donor:</span>{' '}
-                    {project.nameOrgDonor ? project.nameOrgDonor : 'Unreported'}
+                    {project.name_org_donor ? project.name_org_donor : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Financial model:</span>{' '}
-                    {project.financialModel?.length > 0
-                      ? project.financialModel.join(', ')
+                    {project.financial_model?.length > 0
+                      ? project.financial_model.join(', ')
                       : 'Unreported'}
                   </div>
                   <div className="mt-8">
@@ -312,19 +313,19 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Lead organization:</span>{' '}
-                    {project.leadOrganization ? project.leadOrganization : 'Unreported'}
+                    {project.lead_organization ? project.lead_organization : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Organization type:</span>{' '}
-                    {project.organizationType ? project.organizationType : 'Unreported'}
+                    {project.organization_type ? project.organization_type : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">{`Who's involved:`}</span>{' '}
-                    {project.whoIsInvolved ? project.whoIsInvolved.join(', ') : 'Unreported'}
+                    {project.who_is_involved ? project.who_is_involved.join(', ') : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Partner name:</span>{' '}
-                    {project.partnerName ? project.partnerName : 'Unreported'}
+                    {project.partner_name ? project.partner_name : 'Unreported'}
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Reported information:</span>

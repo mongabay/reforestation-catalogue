@@ -16,8 +16,8 @@ import TrashIcon from 'svgs/trash.svg';
 import { ContextStepProps } from './types';
 
 export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) => {
-  const [relatedLinks, setRelatedLinks] = useState<Project['relatedLinks']>(
-    values.relatedLinks ?? []
+  const [relatedLinks, setRelatedLinks] = useState<Project['project_links']>(
+    values.project_links ?? []
   );
 
   return (
@@ -31,10 +31,10 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         </label>
         <Input
           id="project-name"
-          name="projectName"
+          name="project_name"
           type="text"
           placeholder="Type your answer"
-          defaultValue={values.projectName}
+          defaultValue={values.project_name}
           className="mt-3"
           required
         />
@@ -45,10 +45,10 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         </label>
         <Input
           id="lead-organization"
-          name="leadOrganization"
+          name="lead_organization"
           type="text"
           placeholder="Type your answer"
-          defaultValue={values.leadOrganization}
+          defaultValue={values.lead_organization}
           className="mt-3"
         />
       </div>
@@ -59,8 +59,8 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
             key={orgType}
             id={orgType}
             value={orgType}
-            defaultChecked={values.whoIsInvolved?.includes(orgType)}
-            name="whoIsInvolved"
+            defaultChecked={values.who_is_involved?.includes(orgType)}
+            name="who_is_involved"
           >{`${orgType.substring(0, 1).toUpperCase()}${orgType.substring(1)}`}</Checkbox>
         ))}
       </fieldset>
@@ -71,11 +71,11 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
           </label>
           <Input
             id="start-year"
-            name="startYear"
+            name="start_year"
             type="number"
             step={1}
             placeholder="Type your answer"
-            defaultValue={values.startYear}
+            defaultValue={values.start_year}
             className="mt-3"
           />
         </div>
@@ -85,11 +85,11 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
           </label>
           <Input
             id="end-year"
-            name="endYear"
+            name="end_year"
             type="number"
             step={1}
             placeholder="Type your answer"
-            defaultValue={values.endYear}
+            defaultValue={values.end_year}
             className="mt-3"
           />
         </div>
@@ -120,7 +120,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         </label>
         <Input
           id="project-org-url"
-          name="projectOrgUrl"
+          name="project_org_url"
           // The reason we use a type text here and then a pattern is that if we were to use a type
           // url, the validation would require the user to enter the full URL including http(s) at the
           // beginning. This is not what the user is expecting so we're providing a custom validation
@@ -131,14 +131,14 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
           // validate. Proper validation must be implemented in the back-end.
           pattern="^(https?:\/\/)?[^\s]+\.[^\s\.]{2,}$"
           placeholder="Type your answer"
-          defaultValue={values.projectOrgUrl}
+          defaultValue={values.project_org_url}
           className="mt-3"
           required
         />
       </div>
       <fieldset className="mt-7">
         <legend className="mb-3 font-semibold">Other project related links</legend>
-        {!values.relatedLinks?.length && relatedLinks.length === 0 && (
+        {!values.project_links?.length && relatedLinks.length === 0 && (
           <div className="py-4 border px-7 border-grey-dark/20 rounded-2xl">None</div>
         )}
         {relatedLinks.map((link, index) => (
@@ -162,7 +162,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
             </label>
             <Input
               id={`link-title-${index}`}
-              name={`relatedLinks[${index}].title`}
+              name={`project_links[${index}].title`}
               type="text"
               placeholder="Type your answer"
               value={link.title}
@@ -178,7 +178,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
             </label>
             <Input
               id={`link-description-${index}`}
-              name={`relatedLinks[${index}].description`}
+              name={`project_links[${index}].description`}
               type="text"
               placeholder="Type your answer"
               value={link.description}
@@ -197,7 +197,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
             </label>
             <Input
               id={`link-url-${index}`}
-              name={`relatedLinks[${index}].url`}
+              name={`project_links[${index}].url`}
               // The reason we use a type text here and then a pattern is that if we were to use a type
               // url, the validation would require the user to enter the full URL including http(s) at the
               // beginning. This is not what the user is expecting so we're providing a custom validation
@@ -239,8 +239,8 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
               key={purposeType}
               id={purposeType}
               value={purposeType}
-              defaultChecked={values.primaryObjectivePurpose?.includes(purposeType)}
-              name="primaryObjectivePurpose"
+              defaultChecked={values.primary_objective_purpose?.includes(purposeType)}
+              name="primary_objective_purpose"
             >{`${purposeType.substring(0, 1).toUpperCase()}${purposeType.substring(1)}`}</Checkbox>
           ))}
         </div>
@@ -267,8 +267,8 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         <Radio
           id="justification-approach-yes"
           value="true"
-          defaultChecked={values.hasJustificationForApproach === true}
-          name="hasJustificationForApproach"
+          defaultChecked={values.has_justification_for_approach === true}
+          name="has_justification_for_approach"
           required
         >
           Yes
@@ -276,8 +276,8 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         <Radio
           id="justification-approach-no"
           value="false"
-          defaultChecked={values.hasJustificationForApproach === false}
-          name="hasJustificationForApproach"
+          defaultChecked={values.has_justification_for_approach === false}
+          name="has_justification_for_approach"
           required
         >
           No
@@ -288,16 +288,16 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         <Radio
           id="public-reports-yes"
           value="true"
-          defaultChecked={values.hasPublicReports === true}
-          name="hasPublicReports"
+          defaultChecked={values.has_public_reports === true}
+          name="has_public_reports"
         >
           Yes
         </Radio>
         <Radio
           id="public-reports-no"
           value="false"
-          defaultChecked={values.hasPublicReports === false}
-          name="hasPublicReports"
+          defaultChecked={values.has_public_reports === false}
+          name="has_public_reports"
         >
           No
         </Radio>
@@ -312,8 +312,8 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         <Radio
           id="explicit-location-yes"
           value="true"
-          defaultChecked={values.hasExplicitLocation === true}
-          name="hasExplicitLocation"
+          defaultChecked={values.has_explicit_location === true}
+          name="has_explicit_location"
           required
         >
           Yes
@@ -321,8 +321,8 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         <Radio
           id="explicit-location-no"
           value="false"
-          defaultChecked={values.hasExplicitLocation === false}
-          name="hasExplicitLocation"
+          defaultChecked={values.has_explicit_location === false}
+          name="has_explicit_location"
           required
         >
           No
@@ -334,11 +334,11 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         </label>
         <Input
           id="trees-planted"
-          name="treesPlantedNumber"
+          name="trees_planted_number"
           type="number"
           step={1}
           placeholder="Type your answer"
-          defaultValue={values.treesPlantedNumber}
+          defaultValue={values.trees_planted_number}
           className="mt-3"
         />
       </div>
@@ -348,11 +348,11 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
         </label>
         <Input
           id="project-size"
-          name="sizeOfProjectHa"
+          name="size_of_project_ha"
           type="number"
           step={1}
           placeholder="Type your answer"
-          defaultValue={values.sizeOfProjectHa}
+          defaultValue={values.size_of_project_ha}
           className="mt-3"
         />
       </div>

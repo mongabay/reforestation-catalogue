@@ -16,8 +16,8 @@ export const SocialStep: FC<SocialStepProps> = ({ values }: SocialStepProps) => 
       <Radio
         id="community-involvement-yes"
         value="true"
-        defaultChecked={values.hasCommunityInvolvement === true}
-        name="hasCommunityInvolvement"
+        defaultChecked={values.has_community_involvement === true}
+        name="has_community_involvement"
         required
       >
         Yes
@@ -25,8 +25,8 @@ export const SocialStep: FC<SocialStepProps> = ({ values }: SocialStepProps) => 
       <Radio
         id="community-involvement-no"
         value="false"
-        defaultChecked={values.hasCommunityInvolvement === false}
-        name="hasCommunityInvolvement"
+        defaultChecked={values.has_community_involvement === false}
+        name="has_community_involvement"
         required
       >
         No
@@ -42,8 +42,8 @@ export const SocialStep: FC<SocialStepProps> = ({ values }: SocialStepProps) => 
       <Radio
         id="gender-component-yes"
         value="true"
-        defaultChecked={values.hasGenderComponent === true}
-        name="hasGenderComponent"
+        defaultChecked={values.has_gender_component === true}
+        name="has_gender_component"
         required
       >
         Yes
@@ -51,8 +51,8 @@ export const SocialStep: FC<SocialStepProps> = ({ values }: SocialStepProps) => 
       <Radio
         id="gender-component-no"
         value="false"
-        defaultChecked={values.hasGenderComponent === false}
-        name="hasGenderComponent"
+        defaultChecked={values.has_gender_component === false}
+        name="has_gender_component"
         required
       >
         No
@@ -68,8 +68,8 @@ export const SocialStep: FC<SocialStepProps> = ({ values }: SocialStepProps) => 
       <Radio
         id="news-articles-yes"
         value="true"
-        defaultChecked={values.newsArticlesAssociatedWithProject === true}
-        name="newsArticlesAssociatedWithProject"
+        defaultChecked={values.news_articles_associated_with_project === true}
+        name="news_articles_associated_with_project"
         required
       >
         Yes
@@ -77,8 +77,8 @@ export const SocialStep: FC<SocialStepProps> = ({ values }: SocialStepProps) => 
       <Radio
         id="news-articles-no"
         value="false"
-        defaultChecked={values.newsArticlesAssociatedWithProject === false}
-        name="newsArticlesAssociatedWithProject"
+        defaultChecked={values.news_articles_associated_with_project === false}
+        name="news_articles_associated_with_project"
         required
       >
         No

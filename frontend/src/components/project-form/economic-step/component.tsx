@@ -15,10 +15,10 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
       </label>
       <Input
         id="donors"
-        name="nameOrgDonor"
+        name="name_org_donor"
         type="text"
         placeholder="Type your answer"
-        defaultValue={values.nameOrgDonor}
+        defaultValue={values.name_org_donor}
         className="mt-3"
       />
     </div>
@@ -32,8 +32,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
       <Radio
         id="follow-up-yes"
         value="true"
-        defaultChecked={values.followUpDisclosed === true}
-        name="followUpDisclosed"
+        defaultChecked={values.follow_up_disclosed === true}
+        name="follow_up_disclosed"
         required
       >
         Yes
@@ -41,8 +41,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
       <Radio
         id="follow-up-no"
         value="false"
-        defaultChecked={values.followUpDisclosed === false}
-        name="followUpDisclosed"
+        defaultChecked={values.follow_up_disclosed === false}
+        name="follow_up_disclosed"
         required
       >
         No
@@ -55,8 +55,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
           key={followUpType}
           id={followUpType}
           value={followUpType}
-          defaultChecked={values.typeOfFollowUp?.includes(followUpType)}
-          name="typeOfFollowUp"
+          defaultChecked={values.type_of_follow_up?.includes(followUpType)}
+          name="type_of_follow_up"
         >{`${followUpType.substring(0, 1).toUpperCase()}${followUpType.substring(1)}`}</Checkbox>
       ))}
     </fieldset>
@@ -70,8 +70,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
       <Radio
         id="deforestation-driver-yes"
         value="true"
-        defaultChecked={values.identifyDeforestationDriver === true}
-        name="identifyDeforestationDriver"
+        defaultChecked={values.identify_deforestation_driver === true}
+        name="identify_deforestation_driver"
         required
       >
         Yes
@@ -79,8 +79,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
       <Radio
         id="deforestation-driver-no"
         value="false"
-        defaultChecked={values.identifyDeforestationDriver === false}
-        name="identifyDeforestationDriver"
+        defaultChecked={values.identify_deforestation_driver === false}
+        name="identify_deforestation_driver"
         required
       >
         No
@@ -96,8 +96,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
       <Radio
         id="local-seedling-nurseries-yes"
         value="true"
-        defaultChecked={values.localSeedlingNurseries === true}
-        name="localSeedlingNurseries"
+        defaultChecked={values.local_seedling_nurseries === true}
+        name="local_seedling_nurseries"
         required
       >
         Yes
@@ -105,8 +105,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
       <Radio
         id="local-seedling-nurseries-no"
         value="false"
-        defaultChecked={values.localSeedlingNurseries === false}
-        name="localSeedlingNurseries"
+        defaultChecked={values.local_seedling_nurseries === false}
+        name="local_seedling_nurseries"
         required
       >
         No
@@ -119,8 +119,8 @@ export const EconomicStep: FC<EconomicStepProps> = ({ values }: EconomicStepProp
           key={financialModel}
           id={financialModel}
           value={financialModel}
-          defaultChecked={values.financialModel?.includes(financialModel)}
-          name="financialModel"
+          defaultChecked={values.financial_model?.includes(financialModel)}
+          name="financial_model"
         >{`${financialModel.substring(0, 1).toUpperCase()}${financialModel.substring(
           1
         )}`}</Checkbox>

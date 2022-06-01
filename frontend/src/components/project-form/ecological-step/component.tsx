@@ -18,8 +18,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="known-threats-yes"
         value="true"
-        defaultChecked={values.addressesKnownThreats === true}
-        name="addressesKnownThreats"
+        defaultChecked={values.addresses_known_threats === true}
+        name="addresses_known_threats"
         required
       >
         Yes
@@ -27,8 +27,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="known-threats-no"
         value="false"
-        defaultChecked={values.addressesKnownThreats === false}
-        name="addressesKnownThreats"
+        defaultChecked={values.addresses_known_threats === false}
+        name="addresses_known_threats"
         required
       >
         No
@@ -44,8 +44,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="used-species-yes"
         value="true"
-        defaultChecked={values.disclosesSpeciesUsed === true}
-        name="disclosesSpeciesUsed"
+        defaultChecked={values.discloses_species_used === true}
+        name="discloses_species_used"
         required
       >
         Yes
@@ -53,8 +53,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="used-species-no"
         value="false"
-        defaultChecked={values.disclosesSpeciesUsed === false}
-        name="disclosesSpeciesUsed"
+        defaultChecked={values.discloses_species_used === false}
+        name="discloses_species_used"
         required
       >
         No
@@ -70,8 +70,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="native-species-yes"
         value="true"
-        defaultChecked={values.useNativeSpecies === true}
-        name="useNativeSpecies"
+        defaultChecked={values.use_native_species === true}
+        name="use_native_species"
         required
       >
         Yes
@@ -79,8 +79,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="native-species-no"
         value="false"
-        defaultChecked={values.useNativeSpecies === false}
-        name="useNativeSpecies"
+        defaultChecked={values.use_native_species === false}
+        name="use_native_species"
         required
       >
         No
@@ -96,8 +96,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="exotic-species-yes"
         value="true"
-        defaultChecked={values.useExoticSpecies === true}
-        name="useExoticSpecies"
+        defaultChecked={values.use_exotic_species === true}
+        name="use_exotic_species"
         required
       >
         Yes
@@ -105,8 +105,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="exotic-species-no"
         value="false"
-        defaultChecked={values.useExoticSpecies === false}
-        name="useExoticSpecies"
+        defaultChecked={values.use_exotic_species === false}
+        name="use_exotic_species"
         required
       >
         No
@@ -122,8 +122,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="fire-prevention-yes"
         value="true"
-        defaultChecked={values.firePrevention === true}
-        name="firePrevention"
+        defaultChecked={values.fire_prevention === true}
+        name="fire_prevention"
         required
       >
         Yes
@@ -131,8 +131,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
       <Radio
         id="fire-prevention-no"
         value="false"
-        defaultChecked={values.firePrevention === false}
-        name="firePrevention"
+        defaultChecked={values.fire_prevention === false}
+        name="fire_prevention"
         required
       >
         No
@@ -150,8 +150,8 @@ export const EcologicalStep: FC<EcologicalStepProps> = ({ values }: EcologicalSt
           key={forestType}
           id={forestType}
           value={forestType}
-          defaultChecked={values.forestType?.includes(forestType)}
-          name="forestType"
+          defaultChecked={values.forest_type?.includes(forestType)}
+          name="forest_type"
         >{`${forestType.substring(0, 1).toUpperCase()}${forestType.substring(1)}`}</Checkbox>
       ))}
     </fieldset>

@@ -17,8 +17,8 @@ export const InstitutionalStep: FC<InstitutionalStepProps> = ({
           key={organizationType}
           id={organizationType}
           value={organizationType}
-          defaultChecked={values.organizationType?.includes(organizationType)}
-          name="organizationType"
+          defaultChecked={values.organization_type?.includes(organizationType)}
+          name="organization_type"
         >{`${organizationType.substring(0, 1).toUpperCase()}${organizationType.substring(
           1
         )}`}</Radio>
@@ -34,8 +34,8 @@ export const InstitutionalStep: FC<InstitutionalStepProps> = ({
       <Radio
         id="project-partners-yes"
         value="true"
-        defaultChecked={values.hasProjectPartners === true}
-        name="hasProjectPartners"
+        defaultChecked={values.has_project_partners === true}
+        name="has_project_partners"
         required
       >
         Yes
@@ -43,8 +43,8 @@ export const InstitutionalStep: FC<InstitutionalStepProps> = ({
       <Radio
         id="project-partners-no"
         value="false"
-        defaultChecked={values.hasProjectPartners === false}
-        name="hasProjectPartners"
+        defaultChecked={values.has_project_partners === false}
+        name="has_project_partners"
         required
       >
         No
@@ -56,10 +56,10 @@ export const InstitutionalStep: FC<InstitutionalStepProps> = ({
       </label>
       <Input
         id="partner-name"
-        name="partnerName"
+        name="partner_name"
         type="text"
         placeholder="Type your answer"
-        defaultValue={values.partnerName}
+        defaultValue={values.partner_name}
         className="mt-3"
       />
     </div>
@@ -73,8 +73,8 @@ export const InstitutionalStep: FC<InstitutionalStepProps> = ({
       <Radio
         id="scientific-research-yes"
         value="true"
-        defaultChecked={values.scientificResearchAssociatedWithProject === true}
-        name="scientificResearchAssociatedWithProject"
+        defaultChecked={values.scientific_research_associated_with_project === true}
+        name="scientific_research_associated_with_project"
         required
       >
         Yes
@@ -82,8 +82,8 @@ export const InstitutionalStep: FC<InstitutionalStepProps> = ({
       <Radio
         id="scientific-research-no"
         value="false"
-        defaultChecked={values.scientificResearchAssociatedWithProject === false}
-        name="scientificResearchAssociatedWithProject"
+        defaultChecked={values.scientific_research_associated_with_project === false}
+        name="scientific_research_associated_with_project"
         required
       >
         No

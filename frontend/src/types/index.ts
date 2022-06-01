@@ -10,10 +10,6 @@ export type PageComponent<PageProps = {}, LayoutProps = {}> = React.FC<PageProps
   layout?: LayoutStaticProp<PageProps, LayoutProps>;
 };
 
-export enum END_YEAR_SPECIAL_VALUES {
-  ONGOING = 'ongoing',
-}
-
 export enum COUNTRIES_SPECIAL_VALUES {
   ALL = 'All',
 }
@@ -139,55 +135,69 @@ export enum FinancialModelType {
 }
 
 export interface Project {
-  id: number;
-  projectName: string;
-  leadOrganization?: string;
-  organizationType?: OrganizationType;
-  whoIsInvolved?: InvolvedOrgType[];
-  projectOrgUrl: string;
-  relatedLinks: {
+  id: string;
+  project_name: string;
+  lead_organization?: string;
+  organization_type?: OrganizationType;
+  who_is_involved?: InvolvedOrgType[];
+  project_org_url: string;
+  project_links: {
     title?: string;
     description?: string;
     url: string;
   }[];
-  hasProjectPartners: boolean;
-  partnerName?: string;
-  startYear?: number;
-  endYear?: number | END_YEAR_SPECIAL_VALUES;
+  has_project_partners: boolean;
+  partner_name?: string;
+  start_year?: number;
+  end_year?: number;
   country?: string;
-  countryCode?: string;
-  sizeOfProjectHa?: number;
-  treesPlantedNumber?: number;
-  hasExplicitLocation: boolean;
-  forestType: ForestType[];
-  primaryObjectivePurpose?: PrimaryObjectivePurposeType[];
+  country_code?: string;
+  size_of_project_ha?: number;
+  trees_planted_number?: number;
+  has_explicit_location: boolean;
+  forest_type: ForestType[];
+  primary_objective_purpose?: PrimaryObjectivePurposeType[];
   approach?: ApproachType[];
-  identifyDeforestationDriver: boolean;
-  firePrevention: boolean;
-  hasJustificationForApproach: boolean;
-  addressesKnownThreats: boolean;
-  disclosesSpeciesUsed: boolean;
-  useNativeSpecies: boolean;
-  useExoticSpecies: boolean;
-  localSeedlingNurseries: boolean;
-  financialModel?: FinancialModelType[];
-  nameOrgDonor?: string;
-  hasPublicReports?: boolean;
-  followUpDisclosed: boolean;
-  typeOfFollowUp?: FollowUpType[];
-  hasCommunityInvolvement: boolean;
-  hasGenderComponent: boolean;
-  scientificResearchAssociatedWithProject: boolean;
-  newsArticlesAssociatedWithProject: boolean;
+  identify_deforestation_driver: boolean;
+  fire_prevention: boolean;
+  has_justification_for_approach: boolean;
+  addresses_known_threats: boolean;
+  discloses_species_used: boolean;
+  use_native_species: boolean;
+  use_exotic_species: boolean;
+  local_seedling_nurseries: boolean;
+  financial_model?: FinancialModelType[];
+  name_org_donor?: string;
+  has_public_reports?: boolean;
+  follow_up_disclosed: boolean;
+  type_of_follow_up?: FollowUpType[];
+  has_community_involvement: boolean;
+  has_gender_component: boolean;
+  scientific_research_associated_with_project: boolean;
+  news_articles_associated_with_project: boolean;
   comment?: string;
+  approved: boolean;
+  highlighted: boolean;
+  percentages: {
+    context: number;
+    ecological: number;
+    economic: number;
+    institutional: number;
+    social: number;
+  };
 }
 
-export type ProjectFormData = Omit<Project, 'id' | 'countryCode' | 'comment'> & {
+export type ProjectFormData = Omit<
+  Project,
+  'id' | 'countryCode' | 'comment' | 'approved' | 'highlighted' | 'percentages'
+> & {
   id?: Project['id'];
 } & {
-  name: string;
-  email?: string;
-  backgroundInfo?: string;
+  project_contacts_attributes: {
+    name: string;
+    email?: string;
+    company?: string;
+  }[];
 };
 
 export enum Categories {
@@ -214,7 +224,7 @@ export enum FilterTypes {
 }
 
 export interface Field {
-  id: string;
+  id: keyof Project;
   type: FilterTypes;
   mode: FilterModes;
   options?: { label: string; value: string }[];

@@ -16,10 +16,10 @@ export const InformationStep: FC<InformationStepProps> = ({ values }: Informatio
       </label>
       <Input
         id="name"
-        name="name"
+        name="project_contacts_attributes[0].name"
         type="text"
         placeholder="Type your answer"
-        defaultValue={values.name}
+        defaultValue={values.project_contacts_attributes?.[0]?.name}
         className="mt-3"
         required
       />
@@ -30,10 +30,10 @@ export const InformationStep: FC<InformationStepProps> = ({ values }: Informatio
       </label>
       <Input
         id="email"
-        name="email"
+        name="project_contacts_attributes[0].email"
         type="email"
         placeholder="Type your answer"
-        defaultValue={values.email}
+        defaultValue={values.project_contacts_attributes?.[0]?.email}
         className="mt-3"
       />
     </div>
@@ -43,9 +43,9 @@ export const InformationStep: FC<InformationStepProps> = ({ values }: Informatio
       </label>
       <Textarea
         id="background-info"
-        name="backgroundInfo"
+        name="project_contacts_attributes[0].company"
         placeholder="Type your answer"
-        defaultValue={values.backgroundInfo}
+        defaultValue={values.project_contacts_attributes?.[0]?.company}
         rows={4}
         className="mt-3"
       />

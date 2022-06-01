@@ -20,7 +20,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
           tooltip={tooltip}
         />
       </div>
-      <p className="flex-grow block mt-3">{project.projectName}</p>
+      <p className="flex-grow block mt-3">{project.project_name}</p>
       <Button
         theme="link"
         to={`/explore/project/${project.id}`}

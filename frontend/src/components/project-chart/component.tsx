@@ -4,10 +4,9 @@ import cx from 'classnames';
 
 import RadialChart from 'components/radial-chart';
 import Tooltip from 'components/tooltip';
-import { END_YEAR_SPECIAL_VALUES } from 'types';
 import { getProjectCategoriesPercentage } from 'utils/project';
 
-import { ProjectChartProps, ProjectChartSize } from './types';
+import { ProjectChartProps } from './types';
 
 export const ProjectChart: FC<ProjectChartProps> = ({
   project,
@@ -17,10 +16,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
 }: ProjectChartProps) => {
   const categoryPercentages = getProjectCategoriesPercentage(project);
 
-  const isFinalized =
-    project.endYear &&
-    project.endYear !== END_YEAR_SPECIAL_VALUES.ONGOING &&
-    project.endYear < new Date().getFullYear();
+  const isFinalized = project.end_year && project.end_year < new Date().getFullYear();
 
   return (
     <div className="max-w-[150px]">
