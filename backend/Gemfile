@@ -85,6 +85,7 @@ group :development do
 
   # Capistrano is a framework for building automated deployment scripts. [https://github.com/capistrano/capistrano]
   gem "capistrano", "~> 3.10", require: false
+  gem 'capistrano-bundler'
   gem "capistrano-rails", "~> 1.5", require: false
   gem 'capistrano-rvm'
   gem 'capistrano-passenger'

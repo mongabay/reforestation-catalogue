@@ -34,6 +34,9 @@ GEM
       capistrano (~> 3.1)
     capistrano-passenger (0.2.1)
       capistrano (~> 3.0)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capistrano-yarn (2.0.2)
       capistrano (~> 3.0)
     concurrent-ruby (1.1.10)
@@ -88,6 +91,7 @@ DEPENDENCIES
   capistrano
   capistrano-nvm
   capistrano-passenger
+  capistrano-rvm
   capistrano-yarn
   web-console
 

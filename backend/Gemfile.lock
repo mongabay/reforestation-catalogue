@@ -309,6 +309,7 @@ DEPENDENCIES
   bootsnap
   byebug
   capistrano (~> 3.10)
+  capistrano-bundler
   capistrano-db-tasks
   capistrano-passenger
   capistrano-rails (~> 1.5)
