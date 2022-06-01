@@ -35,10 +35,19 @@ export const getFormValues = (formRef: MutableRefObject<HTMLFormElement>) => {
   };
 
   return Array.from(formData.keys()).reduce((res, key) => {
-    const value =
-      formData.getAll(key).length > 1
-        ? formData.getAll(key).map((value) => correctType(key, value))
-        : correctType(key, formData.get(key));
+    let value;
+    if (formData.getAll(key).length > 1) {
+      value = formData.getAll(key).map((value) => correctType(key, value));
+    } else {
+      const input = inputs.find((i) => i.getAttribute('name') === key);
+      const isArray = input?.getAttribute('type') === 'checkbox';
+
+      if (isArray) {
+        value = [correctType(key, formData.get(key))];
+      } else {
+        value = correctType(key, formData.get(key));
+      }
+    }
 
     const hasNestedPath = /.+\[\d+\]\..+/.test(key);
     if (hasNestedPath) {
