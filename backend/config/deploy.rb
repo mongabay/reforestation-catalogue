@@ -19,6 +19,8 @@ set :db_remote_clean, true
 
 set :init_system, :systemd
 
+set :passenger_restart_with_sudo, true
+
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_type, :user
 set :rbenv_ruby, '3.0.0'
