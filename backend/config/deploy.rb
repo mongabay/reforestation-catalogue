@@ -14,12 +14,11 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 set :keep_releases, 3
 set :keep_assets, 3
 
-# set :rvm_type, :user
-set :rvm_ruby_version, '3.0.0'
-set :rvm_custom_path, '/usr/share/rvm'
-
 set :db_local_clean, true
 set :db_remote_clean, true
 
 set :init_system, :systemd
-set :passenger_restart_with_touch, true
+
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_type, :user
+set :rbenv_ruby, '3.0.0'
