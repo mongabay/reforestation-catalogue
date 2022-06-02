@@ -92,9 +92,9 @@ GEM
     capistrano-rails (1.6.2)
       capistrano (~> 3.1)
       capistrano-bundler (>= 1.1, < 3)
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
+    capistrano-rbenv (2.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
     capybara (3.37.1)
       addressable
       matrix
@@ -316,7 +316,7 @@ DEPENDENCIES
   capistrano-db-tasks
   capistrano-passenger
   capistrano-rails (~> 1.5)
-  capistrano-rvm
+  capistrano-rbenv
   capybara
   debug
   factory_bot_rails
