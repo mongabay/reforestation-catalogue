@@ -25,7 +25,7 @@ class Api::V1::ProjectsController < ApplicationController
     render json: ProjectSerializer.new(
       @projects,
       options 
-    ).serializable_hash
+    ).serializable_hash.to_json
   end
 
   def show
