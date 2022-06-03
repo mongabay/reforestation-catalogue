@@ -1,17 +1,53 @@
-import { useMutation, useQuery, UseQueryOptions } from 'react-query';
+import {
+  QueryFunctionContext,
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  useMutation,
+  useQuery,
+  UseQueryOptions,
+} from 'react-query';
 
-import { Categories, Filter, Project, ProjectFormData } from 'types';
+import Jsona from 'jsona';
 
-import { getCatalogData } from 'services/catalog';
+import { APIProjectMeta, Categories, Filter, Project, ProjectFormData } from 'types';
 
-export const fetchProjects = async (filters: Filter[], search: string, sort: Categories) => {
-  const projects = await getCatalogData();
-  return projects;
+type PromiseResult<T> = T extends Promise<infer R> ? R : never;
+
+const dataFormatter = new Jsona();
+
+export const fetchProjects = async (
+  filters: Filter[],
+  search: string,
+  sort: Categories,
+  options?: { page?: number; perPage?: number }
+) => {
+  const params = [
+    ...filters.map((filter) => ({ [filter.field]: filter.value })),
+    { search },
+    { sort_by: sort },
+    { order: 'desc' },
+    { page_number: options?.page ?? 1 },
+    { page_size: options?.perPage ?? 20 },
+  ];
+
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/v1/projects?${params.reduce(
+      (res, param, index) =>
+        `${res}${index > 0 ? '&' : ''}${Object.keys(param)[0]}=${Object.values(param)[0]}`,
+      ''
+    )}`
+  )
+    .then((res) => res.json())
+    .then((res) => ({
+      data: dataFormatter.deserialize(res) as Project[],
+      meta: res.meta as APIProjectMeta,
+    }));
 };
 
 export const fetchProject = async (id: Project['id']) => {
-  const projects = await getCatalogData();
-  return projects.find((project) => project.id == id);
+  return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/projects/${id}`)
+    .then((res) => res.json())
+    .then((res) => dataFormatter.deserialize(res) as Project);
 };
 
 export const createProject = async (values: ProjectFormData) =>
@@ -36,12 +72,19 @@ export const useProjects = (
   filters: Filter[],
   search: string,
   sort: Categories,
-  options?: UseQueryOptions<Project[], unknown>
+  options?: UseInfiniteQueryOptions<PromiseResult<ReturnType<typeof fetchProjects>>, unknown>
 ) =>
-  useQuery(
+  useInfiniteQuery(
     ['projects', filters, search, sort],
-    () => fetchProjects(filters, search, sort),
-    options
+    ({ pageParam }: QueryFunctionContext) =>
+      fetchProjects(filters, search, sort, { page: pageParam }),
+    {
+      getNextPageParam: (lastPage) =>
+        lastPage.meta.current_page < lastPage.meta.pages
+          ? lastPage.meta.current_page + 1
+          : undefined,
+      ...options,
+    }
   );
 
 export const useProject = (id: Project['id'], options?: UseQueryOptions<Project, unknown>) =>

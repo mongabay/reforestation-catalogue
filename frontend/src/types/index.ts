@@ -201,11 +201,11 @@ export type ProjectFormData = Omit<
 };
 
 export enum Categories {
-  Context = 'Context',
-  Ecological = 'Ecological',
-  Economic = 'Economic',
-  Social = 'Social',
-  Institutional = 'Institutional',
+  Context = 'context',
+  Ecological = 'ecological',
+  Economic = 'economic',
+  Social = 'social',
+  Institutional = 'institutional',
 }
 
 export enum FilterModes {
@@ -262,4 +262,13 @@ export interface CMSStaticPage {
   type: 'static_page';
   title: string;
   body: string;
+}
+
+export interface APIProjectMeta {
+  current_page: number;
+  from: number;
+  pages: number;
+  projects_matching_query: number;
+  projects_total: number;
+  to: number;
 }

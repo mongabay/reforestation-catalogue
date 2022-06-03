@@ -1,17 +1,14 @@
 import axios from 'axios';
 
-import { Category, FilterModes, FilterTypes, Project } from 'types';
+import { Categories, Category, FilterModes, FilterTypes, Project } from 'types';
 
 export const getCatalogData = (): Promise<Project[]> =>
-  fetch(`${process.env.NEXT_PUBLIC_MONGABAY_DATA_URL}/mongabay-data.json`).then((res) => res.json());
-export const CONTEXT_CATEGORY = 'Context';
-export const ECOLOGICAL_CATEGORY = 'Ecological';
-export const ECONOMIC_CATEGORY = 'Economic';
-export const SOCIAL_CATEGORY = 'Social';
-export const INSTITUTIONAL_CATEGORY = 'Institutional';
+  fetch(`${process.env.NEXT_PUBLIC_MONGABAY_DATA_URL}/mongabay-data.json`).then((res) =>
+    res.json()
+  );
 export const CATEGORIES: Category[] = [
   {
-    id: CONTEXT_CATEGORY,
+    id: Categories.Context,
     label: 'Context',
     description:
       'Does the project disclose basic information about its size, location, and duration?',
@@ -69,7 +66,7 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: ECOLOGICAL_CATEGORY,
+    id: Categories.Ecological,
     label: 'Ecological',
     description:
       'Does the project disclose what kinds of trees it will plant and address threats to a specified ecosystem?',
@@ -106,7 +103,7 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: ECONOMIC_CATEGORY,
+    id: Categories.Economic,
     label: 'Economic',
     description: 'How is the project funded and how does it support local communities?',
     fields: [
@@ -150,7 +147,7 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: INSTITUTIONAL_CATEGORY,
+    id: Categories.Institutional,
     label: 'Institutional',
     description:
       'What kind of organization is managing the project? Is there a research component?',
@@ -188,7 +185,7 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: SOCIAL_CATEGORY,
+    id: Categories.Social,
     label: 'Social',
     description: 'Who is participating and who is benefitting?',
     fields: [
@@ -218,14 +215,3 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const SORT_OPTIONS = CATEGORIES.map((c) => ({ label: c.label, value: c.id }));
-
-export const getCategoryByID = (id) => CATEGORIES.find((c) => c.id === id);
-export const getFieldByID = (id) => {
-  for (let i = 0; i < CATEGORIES.length; i++) {
-    const found = CATEGORIES[i].fields.find((f) => f.id === id);
-    if (found) {
-      return found;
-    }
-  }
-  return null;
-};

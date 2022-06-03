@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import RadialChart from 'components/radial-chart';
 import Tooltip from 'components/tooltip';
-import { getProjectCategoriesPercentage } from 'utils/project';
+import { Categories } from 'types';
 
 import { ProjectChartProps } from './types';
 
@@ -14,8 +14,6 @@ export const ProjectChart: FC<ProjectChartProps> = ({
   highlightedCategoryStroke = 2,
   tooltip = true,
 }: ProjectChartProps) => {
-  const categoryPercentages = getProjectCategoriesPercentage(project);
-
   const isFinalized = project.end_year && project.end_year < new Date().getFullYear();
 
   return (
@@ -26,7 +24,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
         interactive={false}
         content={
           <>
-            {Object.keys(categoryPercentages).map((key) => (
+            {Object.entries(Categories).map(([key, value]) => (
               <div
                 key={key}
                 className={cx({
@@ -35,7 +33,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
                 })}
               >
                 <span>{key}</span>
-                <span className="ml-12">{Math.round(categoryPercentages[key])}</span>
+                <span className="ml-12">{Math.round(project.percentages[value])}</span>
               </div>
             ))}
           </>
@@ -45,7 +43,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
           <RadialChart
             highlightedCategory={highlightedCategory}
             highlightedCategoryStroke={highlightedCategoryStroke}
-            categoriesPercentages={categoryPercentages}
+            categoriesPercentages={project.percentages}
             finalized={isFinalized}
           />
         </div>

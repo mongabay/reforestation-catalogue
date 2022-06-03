@@ -1,10 +1,4 @@
-import {
-  CONTEXT_CATEGORY,
-  ECOLOGICAL_CATEGORY,
-  ECONOMIC_CATEGORY,
-  INSTITUTIONAL_CATEGORY,
-  SOCIAL_CATEGORY,
-} from 'services/catalog';
+import { Categories } from 'types';
 
 import { StepByStepGuidanceStep } from './types';
 
@@ -14,7 +8,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     description:
       'Start your journey by defining the most important context for assessing the success of tree-planting projects.',
     image: '/images/explore-guidance-context.jpg',
-    category: CONTEXT_CATEGORY,
+    category: Categories.Context,
     steps: [
       {
         name: 'Approach',
@@ -47,7 +41,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     description:
       'These ecological criteria are important for understanding if the right trees are being planted in the right place.',
     image: '/images/explore-guidance-context.jpg',
-    category: ECOLOGICAL_CATEGORY,
+    category: Categories.Ecological,
     steps: [
       {
         name: 'Forest type',
@@ -80,7 +74,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     description:
       'Funding for reforestation projects can come from many different sources with diverse motivations. These economic criteria will help you identify who is benefiting and assess if a project is truly sustainable.',
     image: '/images/explore-guidance-context.jpg',
-    category: ECONOMIC_CATEGORY,
+    category: Categories.Economic,
     steps: [
       {
         name: 'Financial model',
@@ -113,7 +107,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     description:
       'This set of criteria has to do with the management and ownership of projects. These questions may seem basic, but it can be difficult to tell who is actually doing the work on the ground versus funding the project.',
     image: '/images/explore-guidance-context.jpg',
-    category: INSTITUTIONAL_CATEGORY,
+    category: Categories.Institutional,
     steps: [
       {
         name: 'Organization type',
@@ -145,7 +139,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     description:
       'When society, especially local communities, benefits from reforestation projects, forests are more likely to be protected over the long term.',
     image: '/images/explore-guidance-context.jpg',
-    category: SOCIAL_CATEGORY,
+    category: Categories.Social,
     steps: [
       {
         name: 'Community involvement',
