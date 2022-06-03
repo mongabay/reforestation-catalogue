@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       patch 'projects/:id' => 'projects#update'
       put 'projects/:id' => 'projects#update'
       get 'static_pages/:slug' => 'static_pages#show'
+      get 'enums' => 'enums#index'
     end
   end
 end

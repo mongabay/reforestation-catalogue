@@ -25,7 +25,7 @@ class Api::V1::ProjectsController < ApplicationController
     render json: ProjectSerializer.new(
       @projects,
       options 
-    ).serializable_hash
+    ).serializable_hash.to_json
   end
 
   def show
@@ -126,9 +126,10 @@ class Api::V1::ProjectsController < ApplicationController
     filters_to_apply = {}
     filters_slugs = Filter.all.pluck(:slug)
     # TODO: please, find a more elegant way to handle this
-    # highlighted is a filter that does not belong to any category
+    # highlighted and who_is_involved are a filter that does not belong to any category
     #
     filters_slugs.push('highlighted')
+    filters_slugs.push('who_is_involved')
     filters_slugs.each do |filter_slug|
       if params.include?(filter_slug)
         # filters_to_apply.push(Filter.where(slug: filter_slug).first)

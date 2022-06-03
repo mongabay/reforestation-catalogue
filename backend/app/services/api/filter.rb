@@ -50,8 +50,14 @@ module Api
       if @filters_to_apply['financial_model'].present?
         @projects = @projects.where("financial_model && ?", "{#{ @filters_to_apply['financial_model'] }}")
       end
+      if @filters_to_apply['who_is_involved'].present?
+        @projects = @projects.where("who_is_involved && ?", "{#{ @filters_to_apply['who_is_involved'] }}")
+      end
       if @filters_to_apply['organization_type'].present?
-        @projects = @projects.where(organization_type: @filters_to_apply['organization_type'])
+        @projects = @projects.where(organization_type: @filters_to_apply['organization_type'].to_i)
+      end
+      if @filters_to_apply['has_justification_for_approach'].present?
+        @projects = @projects.where(has_justification_for_approach: @filters_to_apply['has_justification_for_approach'])
       end
       if @filters_to_apply['highlighted'].present?
         @projects = @projects.where(highlighted: @filters_to_apply['highlighted'])
