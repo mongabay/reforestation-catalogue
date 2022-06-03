@@ -18,6 +18,7 @@ import ProjectLinksModal from 'components/project-links-modal';
 import Tabs, { TabItem } from 'components/tabs';
 import { StaticPageLayoutProps } from 'layouts/static-page';
 import { Categories, FilterTypes, PageComponent, Project } from 'types';
+import { toTitleCase } from 'utils/misc';
 
 import { CATEGORIES } from 'services/catalog';
 
@@ -258,7 +259,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
               selectedKey={activeCategory}
               onChange={(category) => setActiveCategory(category as Categories)}
             >
-              <TabItem key={Categories.Context} title={Categories.Context}>
+              <TabItem key={Categories.Context} title={toTitleCase(Categories.Context)}>
                 <div className="mt-8 md:mt-12">
                   <p>{getContextDynamicText(project)}</p>
                   <div className="mt-8">
@@ -271,7 +272,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Ecological} title={Categories.Ecological}>
+              <TabItem key={Categories.Ecological} title={toTitleCase(Categories.Ecological)}>
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Forest type:</span>{' '}
@@ -287,7 +288,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Economic} title={Categories.Economic}>
+              <TabItem key={Categories.Economic} title={toTitleCase(Categories.Economic)}>
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Name Org/Donor:</span>{' '}
@@ -309,7 +310,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Institutional} title={Categories.Institutional}>
+              <TabItem key={Categories.Institutional} title={toTitleCase(Categories.Institutional)}>
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Lead organization:</span>{' '}
@@ -337,7 +338,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Social} title={Categories.Social}>
+              <TabItem key={Categories.Social} title={toTitleCase(Categories.Social)}>
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Reported information:</span>
