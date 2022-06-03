@@ -15,9 +15,15 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
   const search = useAppSelector(searchSelectors.selectSearch);
   const sort = useAppSelector(sortSelectors.selectSort);
 
-  const { isLoading, isError, data } = useProjects(filters, search, sort, {
-    keepPreviousData: true,
-  });
+  const { isLoading, isError, data } = useProjects(
+    filters,
+    search,
+    sort,
+    {},
+    {
+      keepPreviousData: true,
+    }
+  );
 
   return (
     <div

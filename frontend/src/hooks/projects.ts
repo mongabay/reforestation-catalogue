@@ -19,7 +19,7 @@ export const fetchProjects = async (
   filters: Filter[],
   search: string,
   sort: Categories,
-  options?: { page?: number; perPage?: number }
+  options?: { page?: number; perPage?: number; highlighted?: boolean }
 ) => {
   const params = [
     ...filters.map((filter) => ({ [filter.field]: filter.value })),
@@ -28,6 +28,7 @@ export const fetchProjects = async (
     { order: 'desc' },
     { page_number: options?.page ?? 1 },
     { page_size: options?.perPage ?? 20 },
+    { highlighted: options?.highlighted ?? false },
   ];
 
   return await fetch(
@@ -72,12 +73,13 @@ export const useProjects = (
   filters: Filter[],
   search: string,
   sort: Categories,
+  queryOptions?: Omit<Parameters<typeof fetchProjects>[3], 'page'>,
   options?: UseInfiniteQueryOptions<PromiseResult<ReturnType<typeof fetchProjects>>, unknown>
 ) =>
   useInfiniteQuery(
     ['projects', filters, search, sort],
     ({ pageParam }: QueryFunctionContext) =>
-      fetchProjects(filters, search, sort, { page: pageParam }),
+      fetchProjects(filters, search, sort, { ...(queryOptions ?? {}), page: pageParam }),
     {
       getNextPageParam: (lastPage) =>
         lastPage.meta.current_page < lastPage.meta.pages

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Image from 'next/image';
 
@@ -22,7 +22,10 @@ import 'swiper/css/pagination';
 
 export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
   // TODO: only fetch the highlighted projects
-  const { isLoading, isError, data } = useProjects([], '', Categories.Context);
+  const { isLoading, isError, data } = useProjects([], '', Categories.Context, {
+    highlighted: true,
+    perPage: 12,
+  });
 
   // 768px corresponds to the Tailwind's sm breakpoint
   const isMdViewport = useMediaMatch('(min-width: 768px)');
@@ -191,7 +194,7 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
           </div>
         </div>
       </LayoutContainer>
-      {!isLoading && !isError && (
+      {!isLoading && !isError && data.pages?.[0].data.length > 0 && (
         <div className="py-12 md:py-40 bg-green">
           <LayoutContainer>
             <h2 className="font-serif text-white text-3xl md:text-[40px] md:leading-[56px] max-w-xl font-bold mx-auto text-center">
@@ -215,10 +218,14 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
               pagination
               modules={[EffectCoverflow, Navigation, Pagination]}
             >
-              {data.slice(0, 10).map((project) => (
-                <SwiperSlide key={project.id}>
-                  <ProjectCard key={project.id} project={project} tooltip={false} />
-                </SwiperSlide>
+              {data.pages.map((page) => (
+                <Fragment key={page.meta.current_page}>
+                  {page.data.map((project) => (
+                    <SwiperSlide key={project.id}>
+                      <ProjectCard key={project.id} project={project} tooltip={false} />
+                    </SwiperSlide>
+                  ))}
+                </Fragment>
               ))}
             </Swiper>
           </LayoutContainer>
