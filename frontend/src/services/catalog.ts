@@ -215,3 +215,14 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const SORT_OPTIONS = CATEGORIES.map((c) => ({ label: c.label, value: c.id }));
+
+export const getCategoryByID = (id) => CATEGORIES.find((c) => c.id === id);
+export const getFieldByID = (id) => {
+  for (let i = 0; i < CATEGORIES.length; i++) {
+    const found = CATEGORIES[i].fields.find((f) => f.id === id);
+    if (found) {
+      return found;
+    }
+  }
+  return null;
+};
