@@ -26,6 +26,10 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
     }
   );
 
+  const matching = data?.pages?.[0]?.meta.projects_matching_query ?? 0;
+  const total = data?.pages?.[0]?.meta.projects_total ?? 0;
+  const percentage = total !== 0 ? Math.round((matching / total) * 100) : 0;
+
   return (
     <div
       className={cx({
@@ -42,10 +46,10 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
           <progress
             id="results-progress"
             className="h-1 mt-3 rounded-full bg-orange/20 progress-bar:bg-orange/20 progress-value:bg-orange progress-value:rounded-full"
-            max="100"
-            value="13"
+            max={total}
+            value={matching}
           >
-            13%
+            {percentage}%
           </progress>
         </div>
       )}
