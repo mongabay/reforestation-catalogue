@@ -33,7 +33,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
                 })}
               >
                 <span>{key}</span>
-                <span className="ml-12">{Math.round(project.percentages[value])}</span>
+                <span className="ml-12">{Math.ceil(project.percentages[value])}</span>
               </div>
             ))}
           </>

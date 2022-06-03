@@ -227,7 +227,6 @@ export interface Field {
   id: keyof Project;
   type: FilterTypes;
   mode: FilterModes;
-  options?: { label: string; value: string }[];
   label: string;
   hidden: boolean;
 }
@@ -271,4 +270,10 @@ export interface APIProjectMeta {
   projects_matching_query: number;
   projects_total: number;
   to: number;
+}
+
+export interface Enum {
+  type: 'enum';
+  name: Field['id'];
+  data: Record<string, number>;
 }

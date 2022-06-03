@@ -28,7 +28,7 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
 
   const matching = data?.pages?.[0]?.meta.projects_matching_query ?? 0;
   const total = data?.pages?.[0]?.meta.projects_total ?? 0;
-  const percentage = total !== 0 ? Math.round((matching / total) * 100) : 0;
+  const percentage = total !== 0 ? Math.ceil((matching / total) * 100) : 0;
 
   return (
     <div
