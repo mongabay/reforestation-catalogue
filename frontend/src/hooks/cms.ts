@@ -17,7 +17,7 @@ export const fetchAboutPageContent = async () => {
   let projectsCount = '−';
   try {
     const projects = await fetchProjects([], '', Categories.Context);
-    projectsCount = `${projects.length}`;
+    projectsCount = `${projects.data.length}`;
   } catch (e) {
     console.error(e);
   }
