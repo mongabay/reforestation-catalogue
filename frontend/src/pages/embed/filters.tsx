@@ -6,6 +6,7 @@ import Button from 'components/button';
 import CatalogFilters from 'components/catalog-filters';
 import Head from 'components/head';
 import LayoutContainer from 'components/layout-container';
+import MatchingResultsSentence from 'components/matching-results-sentence';
 import NakedPageLayout, { NakedPageLayoutProps } from 'layouts/naked';
 import wrapper from 'lib/store';
 import { globalActions, globalSelectors } from 'modules';
@@ -31,9 +32,8 @@ export const EmbedFiltersPage: PageComponent<{}, NakedPageLayoutProps> = () => {
             Use these filters to locate reforestation projects that align with your interests and
             priorities.
           </p>
-          {/* TODO: implement the dynamic sentence */}
           <p className="mt-8 font-semibold font-sm">
-            46 projects (13%) out of 240 meet your filtering criteria
+            <MatchingResultsSentence />
           </p>
           <div className="mt-8">
             <CatalogFilters />

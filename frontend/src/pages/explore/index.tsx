@@ -12,6 +12,7 @@ import GlossaryModal from 'components/glossary-modal';
 import Head from 'components/head';
 import Icon from 'components/icon';
 import LayoutContainer from 'components/layout-container';
+import MatchingResultsSentence from 'components/matching-results-sentence';
 import NewsletterSignup from 'components/newsletter-signup';
 import ProjectCatalog from 'components/project-catalog';
 import ProjectSearch from 'components/project-search';
@@ -183,9 +184,8 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
         </div>
         <div className="flex flex-col w-full">
           <div className="px-5 md:ml-6 md:pr-12 md:px-0">
-            {/* TODO: implement the dynamic sentence */}
             <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
-              46 projects (13%) out of 240 meet your filtering criteria
+              <MatchingResultsSentence />
             </p>
             <div className="flex-shrink-0 mt-2">
               <ProjectSearch />

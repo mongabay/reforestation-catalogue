@@ -6,6 +6,7 @@ import { useProjects } from 'hooks/projects';
 import { useAppSelector } from 'hooks/redux';
 
 import Button from 'components/button';
+import MatchingResultsSentence from 'components/matching-results-sentence';
 import { filtersSelectors, searchSelectors, sortSelectors } from 'modules';
 
 import { ResultsCountProps } from './types';
@@ -35,9 +36,8 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
       {(isLoading || isError) && <div />}
       {!isLoading && !isError && (
         <div className="flex flex-col items-stretch">
-          {/* TODO: implement the dynamic sentence and progress bar */}
           <label htmlFor="results-progress" className="text-orange">
-            46 projects (13%) out of 240 meet your filtering criteria
+            <MatchingResultsSentence />
           </label>
           <progress
             id="results-progress"
