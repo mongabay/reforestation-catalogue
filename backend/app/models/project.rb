@@ -34,7 +34,8 @@ class Project < ApplicationRecord
     'Social Enterprise' => 16,
     'Socially beneficial business' => 17,
     'University / Academic institution' => 18,
-    'Intiative and Foundation' => 19
+    'Intiative and Foundation' => 19,
+    'Government' => 20
   }
 
   array_enum who_is_involved: {
@@ -219,6 +220,7 @@ class Project < ApplicationRecord
   }
 
   PROJECT_ENUMS = [
+    'organization_type',
     'who_is_involved',
     'forest_type',
     'primary_objective_purpose',
