@@ -21,7 +21,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
-  // TODO: only fetch the highlighted projects
   const { isLoading, isError, data } = useProjects([], '', Categories.Context, {
     highlighted: true,
     perPage: 12,

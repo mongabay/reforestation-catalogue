@@ -20,6 +20,7 @@ import { FilterPillProps } from './types';
 export const FilterPill: FC<FilterPillProps> = ({
   filter,
   link = false,
+  naked = false,
   onRemove,
 }: FilterPillProps) => {
   const field = getFieldByID(filter.field);
@@ -61,9 +62,10 @@ export const FilterPill: FC<FilterPillProps> = ({
   return (
     <div
       className={cx({
-        'inline-flex items-center py-1.5 text-sm rounded-full bg-grey': true,
-        'px-5': !onRemove,
-        'pl-5 pr-3': !!onRemove,
+        'inline-flex items-center': true,
+        'py-1.5 rounded-full bg-grey text-sm': !naked,
+        'px-5': !naked && !onRemove,
+        'pl-5 pr-3': !naked && !!onRemove,
       })}
     >
       {link && (
@@ -77,11 +79,15 @@ export const FilterPill: FC<FilterPillProps> = ({
       )}
       {!link && (
         <>
-          <span className="font-semibold">{field.label}:</span>&nbsp;{formattedValue}
-          <Button theme="transparent" className="pl-2 pr-2 ml-1" onClick={() => onRemove()}>
-            <span className="sr-only">Remove</span>
-            <Image src="/icons/cross.svg" width="10" height="10" alt="Cross" aria-hidden />
-          </Button>
+          <div>
+            <span className="font-semibold">{field.label}:</span>&nbsp;{formattedValue}
+          </div>
+          {onRemove && (
+            <Button theme="transparent" className="pl-2 pr-2 ml-1" onClick={() => onRemove()}>
+              <span className="sr-only">Remove</span>
+              <Image src="/icons/cross.svg" width="10" height="10" alt="Cross" aria-hidden />
+            </Button>
+          )}
         </>
       )}
     </div>

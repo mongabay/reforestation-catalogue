@@ -9,7 +9,7 @@ import FilterPill from 'components/filter-pill';
 import Modal from 'components/modal';
 import { filtersActions, filtersSelectors } from 'modules';
 
-import { CATEGORIES, getFieldByID } from 'services/catalog';
+import { CATEGORIES } from 'services/catalog';
 
 import { FiltersListProps } from './types';
 
@@ -61,13 +61,7 @@ export const FiltersList: FC<FiltersListProps> = ({ className }) => {
           <span className="font-semibold uppercase">Selected filters:</span>{' '}
           {filters.length === 0 && 'None'}
           {filters.length > 0 &&
-            filters.map((filter, index) => (
-              <Fragment key={filter.field}>
-                <span className="font-semibold">{getFieldByID(filter.field)?.label}:</span>{' '}
-                {filter.value.toString()}
-                {index + 1 < filters.length ? '; ' : ''}
-              </Fragment>
-            ))}
+            filters.map((filter) => <FilterPill key={filter.field} filter={filter} naked />)}
         </div>
         {filters.length > 0 && (
           <Button
