@@ -43,7 +43,11 @@ export const ProjectCatalog: FC<ProjectCatalogProps> = ({
   }
 
   if (isError) {
-    return <p className="font-semibold text-center">Unable to load the catalog</p>;
+    return <p className="py-16 font-semibold text-center">Unable to load the catalog</p>;
+  }
+
+  if (data.pages.length === 1 && data.pages[0].data.length === 0) {
+    return <p className="py-16 font-semibold text-center">No result</p>;
   }
 
   return (
