@@ -229,7 +229,7 @@ class Project < ApplicationRecord
   ].freeze
 
   END_YEAR_SPECIAL_VALUES = {
-    'ongoing' => nil
+    'ongoing' => 0
   }
 
   COUNTRIES_SPECIAL_VALUES = {

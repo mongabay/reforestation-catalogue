@@ -6,9 +6,7 @@ class ProjectSerializer
   :who_is_involved,                                            
   :project_org_url,                                            
   :has_project_partners,                                       
-  :partner_name,                                               
-  :start_year,                                                 
-  :end_year,                                                   
+  :partner_name,                                                    
   :country,                                                    
   :country_code,                                               
   :size_of_project_ha,                                         
@@ -35,7 +33,16 @@ class ProjectSerializer
   :comment,
   :approved,
   :highlighted,
-  :project_links
+  :project_links,                                              
+  :start_year                                             
+
+  attribute :end_year do |object|
+    if object.end_year == Project::END_YEAR_SPECIAL_VALUES['ongoing']
+      'ongoing'
+    else
+      object.end_year
+    end
+  end
 
   attribute :percentages do |object|
     object.get_project_categories_percentage
