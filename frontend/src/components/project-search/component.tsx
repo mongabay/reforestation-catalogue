@@ -22,7 +22,7 @@ export const ProjectSearch: FC<ProjectSearchProps> = () => {
   const storedSort = useAppSelector(sortSelectors.selectSort);
 
   const onSearchDebounced = useMemo(
-    () => debounce((search) => dispatch(searchActions.replaceSearch(search as string)), 2000),
+    () => debounce((search) => dispatch(searchActions.replaceSearch(search as string)), 1000),
     [dispatch]
   );
 
