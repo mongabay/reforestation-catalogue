@@ -52,8 +52,12 @@ export const fetchProject = async (id: Project['id']) => {
 };
 
 export const createProject = async (values: ProjectFormData) =>
-  fetch(`${process.env.NEXT_PUBLIC_API_URL}/project`, {
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/projects`, {
     method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(values),
   }).then((res) => res.json());
 
@@ -64,8 +68,12 @@ export const updateProject = async ({
   id: Project['id'];
   values: ProjectFormData;
 }) =>
-  fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/${id}`, {
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/projects/${id}`, {
     method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(values),
   }).then((res) => res.json());
 
