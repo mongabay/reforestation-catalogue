@@ -32,3 +32,5 @@ namespace :yarn do
     end
   end
 end
+
+after 'deploy:cleanup', 'passenger:restart'
