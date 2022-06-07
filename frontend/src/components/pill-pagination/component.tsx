@@ -10,7 +10,7 @@ export const PillPagination: FC<PillPaginationProps> = ({
   onClickStep,
 }: PillPaginationProps) => (
   <nav role="navigation">
-    <ol className="flex items-center w-full gap-3 overflow-x-scroll">
+    <ol className="flex items-center w-full gap-3 overflow-x-auto">
       {steps.map((step, index) => (
         <li key={step.name} aria-current={index === currentStep ? 'page' : undefined}>
           {index === currentStep && (

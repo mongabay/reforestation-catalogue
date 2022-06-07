@@ -227,7 +227,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
           </Button>
         </div>
         <div className="flex flex-col-reverse md:flex-row">
-          <div className="flex justify-center flex-shrink-0 mt-12 md:block">
+          <div className="flex justify-center flex-shrink-0 mt-12 md:block md:max-w-[150px] md:w-full">
             <ProjectChart
               project={project}
               highlightedCategory={activeCategory}

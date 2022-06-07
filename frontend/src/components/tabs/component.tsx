@@ -46,7 +46,7 @@ export const Tabs = ({
         {...tabListProps}
         ref={ref}
         className={cx(
-          'relative after:empty-content after:block after:h-0.5 after:w-full after:absolute after:bottom-0 after:left-0 after:bg-grey-darker/20 w-full overflow-x-scroll py-1',
+          'relative after:empty-content after:block after:h-0.5 after:w-full after:absolute after:bottom-0 after:left-0 after:bg-grey-darker/20 w-full overflow-x-auto py-1',
           className,
           {
             'flex justify-between': expanded,

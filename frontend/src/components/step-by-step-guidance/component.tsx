@@ -44,7 +44,7 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
         open={showNewsletterSignup}
         onDismiss={() => setShowNewsletterSignup(false)}
       />
-      <div className="flex-grow overflow-y-scroll lg:relative">
+      <div className="flex-grow overflow-y-auto lg:relative">
         <LayoutContainer className="lg:w-[calc(1024px_-_25%)] xl:w-[calc(1280px_-_25%)] 2xl:w-[calc(1536px_-_25%)] lg:mr-[25%] py-12 md:py-20">
           <div className="lg:pr-24">
             <div className="max-w-lg">

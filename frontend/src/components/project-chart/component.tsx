@@ -17,7 +17,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
   const isFinalized = project.end_year && project.end_year < new Date().getFullYear();
 
   return (
-    <div className="max-w-[150px]">
+    <div className="max-w-[150px] aspect-square w-full">
       <Tooltip
         disabled={!tooltip}
         placement="bottom"

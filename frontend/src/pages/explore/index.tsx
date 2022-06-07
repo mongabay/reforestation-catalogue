@@ -115,7 +115,7 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
         onDismiss={() => setShowNewsletterSignup(false)}
       />
       <aside className="bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
-        <div className="p-1 md:h-full md:overflow-y-scroll">
+        <div className="p-1 md:h-full md:overflow-y-auto">
           <Button className="w-full md:w-auto" onClick={onNavigateToGuidance}>
             <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
             Step-by-step Guidance
@@ -193,7 +193,7 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
           </div>
           <div
             ref={catalogRef}
-            className="pt-8 mt-2 md:overflow-y-scroll focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+            className="pt-8 mt-2 md:overflow-y-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
           >
             <div className="px-5 pb-8 md:pr-12 md:px-0">
               <ProjectCatalog hightlightSortingCategory />
