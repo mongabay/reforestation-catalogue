@@ -1,37 +1,18 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 
-import { useEnums } from 'hooks/enums';
+import { useEnumOptions } from 'hooks/enums';
 import { useAppDispatch } from 'hooks/redux';
 
 import Select from 'components/forms/select';
 import LoadingSpinner from 'components/loading-spinner';
 import { filtersActions } from 'modules';
-import { toTitleCase } from 'utils/misc';
 
 import { StringFilterProps } from './types';
 
 export const StringFilter: FC<StringFilterProps> = ({ field, filterValue }: StringFilterProps) => {
   const dispatch = useAppDispatch();
 
-  const { isLoading, isError, data } = useEnums();
-
-  const options = useMemo(() => {
-    if (isLoading || isError) {
-      return [];
-    }
-
-    const match = data.find((e) => e.name === field.id);
-    if (!match) {
-      return [];
-    }
-
-    return Object.entries(match.data)
-      .map(([key, value]) => ({
-        label: toTitleCase(key),
-        value: `${value}`,
-      }))
-      .sort((optionA, optionB) => optionA.label.localeCompare(optionB.label));
-  }, [field, isLoading, isError, data]);
+  const { isLoading, isError, data } = useEnumOptions(field.id);
 
   return (
     <div>
@@ -45,7 +26,7 @@ export const StringFilter: FC<StringFilterProps> = ({ field, filterValue }: Stri
       </label>
       <Select
         id={field.id}
-        options={options}
+        options={data.map((option) => ({ ...option, value: `${option.value}` }))}
         placeholder="Choose one item"
         value={filterValue}
         onChange={({ value }) => {

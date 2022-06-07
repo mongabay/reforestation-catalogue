@@ -16,6 +16,9 @@ export const getFormValues = (formRef: MutableRefObject<HTMLFormElement>) => {
       input.getAttribute('type') === 'radio' && (value === 'false' || value === 'true');
     const isUrl =
       input.getAttribute('type') === 'text' && input.getAttribute('data-type') === 'url';
+    const isEnum =
+      (input.getAttribute('type') === 'radio' && /\d+/.test(value)) ||
+      (input.getAttribute('type') === 'checkbox' && /\d+/.test(value));
 
     if (isNumber) {
       return value.length > 0 ? +value : undefined;
@@ -29,6 +32,10 @@ export const getFormValues = (formRef: MutableRefObject<HTMLFormElement>) => {
       return value.startsWith('http://') || value.startsWith('https://')
         ? value
         : `https://${value}`;
+    }
+
+    if (isEnum) {
+      return +value;
     }
 
     return value;

@@ -1,6 +1,6 @@
 import ContextStep from './context-step';
 import EcologicalStep from './ecological-step';
-import economicStep from './economic-step';
+import EconomicStep from './economic-step';
 import InformationStep from './information-step';
 import InstitutionalStep from './institutional-step';
 import SocialStep from './social-step';
@@ -23,7 +23,7 @@ export const PROJECT_FORM_STEPS: ProjectFormStep[] = [
     name: 'Economic indicators',
     description:
       'Funding for reforestation projects can come from many different sources with diverse motivations. These economic criteria will help you identify who is benefiting and assess if a project is truly sustainable.',
-    Component: economicStep,
+    Component: EconomicStep,
   },
   {
     name: 'Ecological indicators',

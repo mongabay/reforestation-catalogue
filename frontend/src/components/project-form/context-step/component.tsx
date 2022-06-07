@@ -2,13 +2,15 @@ import { FC, useState } from 'react';
 
 import cx from 'classnames';
 
+import { useEnumOptions } from 'hooks/enums';
+
 import Button from 'components/button';
 import Checkbox from 'components/forms/checkbox';
 import Input from 'components/forms/input';
 import Radio from 'components/forms/radio';
 import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
-import { ApproachType, InvolvedOrgType, PrimaryObjectivePurposeType, Project } from 'types';
+import { Project } from 'types';
 
 import PlusIcon from 'svgs/plus.svg';
 import TrashIcon from 'svgs/trash.svg';
@@ -19,6 +21,10 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
   const [relatedLinks, setRelatedLinks] = useState<Project['project_links']>(
     values.project_links ?? []
   );
+
+  const { data: whoIsInvolvedOptions } = useEnumOptions('who_is_involved');
+  const { data: primaryObjectivePurposeOptions } = useEnumOptions('primary_objective_purpose');
+  const { data: approachOptions } = useEnumOptions('approach');
 
   return (
     <>
@@ -54,14 +60,16 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
       </div>
       <fieldset className="mt-7">
         <legend className="mb-3 font-semibold">{"Who's involved?"}</legend>
-        {Object.values(InvolvedOrgType).map((orgType) => (
+        {whoIsInvolvedOptions.map((option) => (
           <Checkbox
-            key={orgType}
-            id={orgType}
-            value={orgType}
-            defaultChecked={values.who_is_involved?.includes(orgType)}
+            key={option.value}
+            id={`who_is_involved_${option.value}`}
+            value={`${option.value}`}
+            defaultChecked={values.who_is_involved?.includes(option.value)}
             name="who_is_involved"
-          >{`${orgType.substring(0, 1).toUpperCase()}${orgType.substring(1)}`}</Checkbox>
+          >
+            {option.label}
+          </Checkbox>
         ))}
       </fieldset>
       <div className="flex flex-col sm:flex-row mt-7 gap-7 sm:gap-11">
@@ -234,27 +242,31 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
       <fieldset className="mt-7">
         <legend className="mb-3 font-semibold">Primary objective/purpose</legend>
         <div className="sm:columns-2 sm:gap-11">
-          {Object.values(PrimaryObjectivePurposeType).map((purposeType) => (
+          {primaryObjectivePurposeOptions.map((option) => (
             <Checkbox
-              key={purposeType}
-              id={purposeType}
-              value={purposeType}
-              defaultChecked={values.primary_objective_purpose?.includes(purposeType)}
+              key={option.value}
+              id={`primary_objective_purpose_${option.value}`}
+              value={`${option.value}`}
+              defaultChecked={values.primary_objective_purpose?.includes(option.value)}
               name="primary_objective_purpose"
-            >{`${purposeType.substring(0, 1).toUpperCase()}${purposeType.substring(1)}`}</Checkbox>
+            >
+              {option.label}
+            </Checkbox>
           ))}
         </div>
       </fieldset>
       <fieldset className="mt-7">
         <legend className="mb-3 font-semibold">Project approach</legend>
-        {Object.values(ApproachType).map((approachType) => (
+        {approachOptions.map((option) => (
           <Checkbox
-            key={approachType}
-            id={approachType}
-            value={approachType}
-            defaultChecked={values.approach?.includes(approachType)}
+            key={option.value}
+            id={`approach_${option.value}`}
+            value={`${option.value}`}
+            defaultChecked={values.approach?.includes(option.value)}
             name="approach"
-          >{`${approachType.substring(0, 1).toUpperCase()}${approachType.substring(1)}`}</Checkbox>
+          >
+            {option.label}
+          </Checkbox>
         ))}
       </fieldset>
       <fieldset className="mt-7">
