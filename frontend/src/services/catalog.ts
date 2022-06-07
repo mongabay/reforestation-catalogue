@@ -62,6 +62,27 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.GreaterOrEqualThan,
         hidden: false,
       },
+      {
+        id: 'primary_objective_purpose',
+        label: 'Primary objectives/purposes',
+        type: FilterTypes.String,
+        mode: FilterModes.Exact,
+        hidden: true,
+      },
+      {
+        id: 'approach',
+        label: 'Approach',
+        type: FilterTypes.String,
+        mode: FilterModes.Exact,
+        hidden: true,
+      },
+      {
+        id: 'type_of_follow_up',
+        label: 'Type of follow up',
+        type: FilterTypes.String,
+        mode: FilterModes.Exact,
+        hidden: true,
+      },
     ],
   },
   {
@@ -105,13 +126,6 @@ export const CATEGORIES: Category[] = [
     label: 'Economic',
     description: 'How is the project funded and how does it support local communities?',
     fields: [
-      {
-        id: 'name_org_donor',
-        label: 'Name Org/Donor',
-        type: FilterTypes.String,
-        mode: FilterModes.Exact,
-        hidden: true,
-      },
       {
         id: 'identify_deforestation_driver',
         label: 'Identifies deforestation driver',

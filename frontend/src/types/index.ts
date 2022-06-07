@@ -134,12 +134,14 @@ export enum FinancialModelType {
   Volunteer = 'Volunteer',
 }
 
+type EnumValue = number;
+
 export interface Project {
   id: string;
   project_name: string;
   lead_organization?: string;
-  organization_type?: OrganizationType;
-  who_is_involved?: InvolvedOrgType[];
+  organization_type?: EnumValue;
+  who_is_involved?: EnumValue[];
   project_org_url: string;
   project_links: {
     title?: string;
@@ -155,9 +157,9 @@ export interface Project {
   size_of_project_ha?: number;
   trees_planted_number?: number;
   has_explicit_location: boolean;
-  forest_type: ForestType[];
-  primary_objective_purpose?: PrimaryObjectivePurposeType[];
-  approach?: ApproachType[];
+  forest_type: EnumValue[];
+  primary_objective_purpose?: EnumValue[];
+  approach?: EnumValue[];
   identify_deforestation_driver: boolean;
   fire_prevention: boolean;
   has_justification_for_approach: boolean;
@@ -166,11 +168,11 @@ export interface Project {
   use_native_species: boolean;
   use_exotic_species: boolean;
   local_seedling_nurseries: boolean;
-  financial_model?: FinancialModelType[];
+  financial_model?: EnumValue[];
   name_org_donor?: string;
   has_public_reports?: boolean;
   follow_up_disclosed: boolean;
-  type_of_follow_up?: FollowUpType[];
+  type_of_follow_up?: EnumValue[];
   has_community_involvement: boolean;
   has_gender_component: boolean;
   scientific_research_associated_with_project: boolean;

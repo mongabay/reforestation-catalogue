@@ -1,19 +1,14 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 
 import cx from 'classnames';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useEnums } from 'hooks/enums';
+import { useField, useFormatFieldValue } from 'hooks/fields';
 
 import Button from 'components/button';
-import LoadingSpinner from 'components/loading-spinner';
-import { FilterTypes } from 'types';
-import { toTitleCase } from 'utils/misc';
 import { serialize } from 'utils/routing';
-
-import { getFieldByID } from 'services/catalog';
 
 import { FilterPillProps } from './types';
 
@@ -23,41 +18,8 @@ export const FilterPill: FC<FilterPillProps> = ({
   naked = false,
   onRemove,
 }: FilterPillProps) => {
-  const field = getFieldByID(filter.field);
-
-  const { isLoading, isError, data } = useEnums();
-
-  const formattedValue = useMemo(() => {
-    if (field.type === FilterTypes.String) {
-      if (isError) {
-        return '−';
-      }
-
-      if (isLoading) {
-        return (
-          <div className="inline-block">
-            <LoadingSpinner inline mini transparent />
-          </div>
-        );
-      }
-
-      const match = data.find((e) => e.name === field.id);
-      if (!match) {
-        return '−';
-      }
-
-      const name = Object.entries(match.data).find(
-        ([, value]) => `${value}` === `${filter.value}`
-      )?.[0];
-      if (!name) {
-        return '−';
-      }
-
-      return toTitleCase(name);
-    }
-
-    return filter.value.toString();
-  }, [filter, field, isLoading, isError, data]);
+  const field = useField(filter.field);
+  const value = useFormatFieldValue(field, filter.value);
 
   return (
     <div
@@ -80,7 +42,7 @@ export const FilterPill: FC<FilterPillProps> = ({
       {!link && (
         <>
           <div>
-            <span className="font-semibold">{field.label}:</span>&nbsp;{formattedValue}
+            <span className="font-semibold">{field.label}:</span>&nbsp;{value}
           </div>
           {onRemove && (
             <Button theme="transparent" className="pl-2 pr-2 ml-1" onClick={() => onRemove()}>

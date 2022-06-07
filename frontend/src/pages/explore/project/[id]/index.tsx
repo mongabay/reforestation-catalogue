@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import Link from 'next/link';
 
 import * as d3 from 'd3';
 import { GetServerSideProps } from 'next';
 
+import { useField, useFormatFieldValue } from 'hooks/fields';
 import { fetchProject } from 'hooks/projects';
 
 import Breadcrumbs from 'components/breadcrumbs';
@@ -13,11 +14,11 @@ import Pill from 'components/filter-pill';
 import GlossaryModal from 'components/glossary-modal';
 import Head from 'components/head';
 import LayoutContainer from 'components/layout-container';
-import ProjectChart, { ProjectChartSize } from 'components/project-chart';
+import ProjectChart from 'components/project-chart';
 import ProjectLinksModal from 'components/project-links-modal';
 import Tabs, { TabItem } from 'components/tabs';
 import { StaticPageLayoutProps } from 'layouts/static-page';
-import { Categories, FilterTypes, PageComponent, Project } from 'types';
+import { Categories, Field, FilterTypes, PageComponent, Project } from 'types';
 import { toTitleCase } from 'utils/misc';
 
 import { CATEGORIES } from 'services/catalog';
@@ -35,7 +36,57 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const getContextDynamicText = (project: Project) => {
+interface ReportedCategoryFieldProps {
+  category: Categories;
+  reported: boolean;
+  project: Project;
+}
+
+const ReportedCategoryField: FC<ReportedCategoryFieldProps> = ({ category, reported, project }) => {
+  const booleanFields = CATEGORIES.find((c) => c.id === category).fields.filter(
+    (field) =>
+      field.type === FilterTypes.Boolean && (reported ? project[field.id] : !project[field.id])
+  );
+
+  if (booleanFields.length === 0) {
+    return <>None</>;
+  }
+
+  return (
+    <div className="flex flex-wrap gap-4 mt-3 md:gap-5">
+      {booleanFields.map((field) => (
+        <Pill key={field.id} filter={{ field: field.id, value: reported }} link />
+      ))}
+    </div>
+  );
+};
+
+interface FieldValueProps {
+  fieldId: Field['id'];
+  value: string | number | boolean | number[];
+}
+
+const FieldValue: FC<FieldValueProps> = ({ fieldId, value }) => {
+  const field = useField(fieldId);
+  const formattedValue = useFormatFieldValue(field, value);
+
+  if (value === null || value === undefined) {
+    return <>Unreported</>;
+  }
+
+  if (!field) {
+    console.log(fieldId);
+    return <>{value.toString()}</>;
+  }
+
+  return <>{formattedValue}</>;
+};
+
+interface DynamicTextProps {
+  project: Project;
+}
+
+const DynamicText: FC<DynamicTextProps> = ({ project }) => {
   const projectArea = project.size_of_project_ha && d3.format('.4s')(project.size_of_project_ha);
   const treesPlanted =
     project.trees_planted_number && d3.format('.4s')(project.trees_planted_number);
@@ -45,103 +96,107 @@ const getContextDynamicText = (project: Project) => {
 
   return (
     <>
-      <span>
+      <>
         {/* NUMBER OF TREES AND SIZE */}
         {treesPlanted && projectArea && (
-          <span>
-            {`A total of `}
-            <span className="font-bold">{treesPlanted}</span>
-            {` trees have been planted as part of the project, spanning an area of `}
-            <span className="font-bold">{projectArea}</span>
-            {` hectares. `}
-          </span>
+          <>
+            A total of <span className="font-bold">{treesPlanted}</span> trees have been planted as
+            part of the project, spanning an area of{' '}
+            <span className="font-bold">{projectArea}</span> hectares.{' '}
+          </>
         )}
         {treesPlanted && !projectArea && (
-          <span>
-            {`While there is no reported information on the size of the reforestation, a total of `}
-            <span className="font-bold">{treesPlanted}</span>
-            {` trees have been planted as part of the project. `}
-          </span>
+          <>
+            While there is no reported information on the size of the reforestation, a total of{' '}
+            <span className="font-bold">{treesPlanted}</span> trees have been planted as part of the
+            project.{' '}
+          </>
         )}
         {!treesPlanted && projectArea && (
-          <span>
-            {`The project covers an area of `}
-            <span className="font-bold">{projectArea}</span>
-            {` hectares, but does not report the total number of trees planted. `}
-          </span>
+          <>
+            The project covers an area of <span className="font-bold">{projectArea}</span> hectares,
+            but does not report the total number of trees planted.{' '}
+          </>
         )}
         {!treesPlanted && !projectArea && (
-          <span>{`The project doest not report the total area nor the number of trees planted. `}</span>
+          <>The project doest not report the total area nor the number of trees planted. </>
         )}
-      </span>
-      <span>
+      </>
+      <>
         {/* PRIMARY OBJECTIVE/PURPOSE */}
         {primaryObjectivePurpose?.length === 1 && (
-          <span>
-            {`The primary objective/purpose of the project is: `}
-            <span className="font-bold">{primaryObjectivePurpose[0]}</span>
-            {` .`}
-          </span>
+          <>
+            The primary objective/purpose of the project is:{' '}
+            <div className="inline font-bold">
+              <FieldValue fieldId="primary_objective_purpose" value={primaryObjectivePurpose} />
+            </div>
+            .{' '}
+          </>
         )}
         {primaryObjectivePurpose?.length > 1 && (
-          <span>
-            {`The primary objectives/purposes of the project are: `}
-            <span className="font-bold">
-              {primaryObjectivePurpose.join(', ')}
-              {`. `}
-            </span>
-          </span>
+          <>
+            The primary objectives/purposes of the project are:{' '}
+            <div className="inline font-bold">
+              <FieldValue fieldId="primary_objective_purpose" value={primaryObjectivePurpose} />
+            </div>
+            .{' '}
+          </>
         )}
         {!primaryObjectivePurpose?.length && approach?.length > 0 && (
-          <span>{`The primary objective/purpose of the project hasn't been reported. `}</span>
+          <>The primary objective/purpose of the project {"hasn't"} been reported. </>
         )}
-      </span>
+      </>
       <span>
         {/* APPROACH */}
         {approach?.length === 1 && (
-          <span>
-            {`This project follows a`}
-            {approach[0].startsWith('a') ? 'n ' : ' '}
-            <span className="font-bold">{approach[0]}</span>
-            {` approach. `}
-          </span>
+          <>
+            This project follows a{' '}
+            <div className="inline font-bold">
+              <FieldValue fieldId="approach" value={approach} />
+            </div>{' '}
+            approach.{' '}
+          </>
         )}
         {approach?.length > 1 && (
-          <span>
-            {`This project follows the following approaches: `}
-            <span className="font-bold">
-              {approach.join(', ')}
-              {`. `}
-            </span>
-          </span>
+          <>
+            This project follows the following approaches:{' '}
+            <div className="inline font-bold">
+              <FieldValue fieldId="approach" value={approach} />
+            </div>
+            .{' '}
+          </>
         )}
         {!approach?.length && !!primaryObjectivePurpose?.length && (
-          <span>{`The approach for this project hasn't been reported. `}</span>
+          <>The approach for this project {"hasn't"} been reported. </>
         )}
       </span>
       {!primaryObjectivePurpose?.length && !approach?.length && (
-        <span>{`This project doest not report its approach nor its primary objective/purpose. `}</span>
+        <>This project doest not report its approach nor its primary objective/purpose. </>
       )}
       {/* Type of follow up */}
-      <span>
+      <>
         {typeOfFollowUp?.length > 0 && !(approach?.length > 1) && (
-          <span>
-            {`This project has the following follow up type: `}
-            <span className="font-bold">{typeOfFollowUp.join(', ')}</span>
-            {`.`}
-          </span>
+          <>
+            This project has the following follow up type:{' '}
+            <div className="inline font-bold">
+              <FieldValue fieldId="type_of_follow_up" value={typeOfFollowUp} />
+            </div>
+            .
+          </>
         )}
         {typeOfFollowUp?.length > 0 && approach?.length > 1 && (
-          <span>
-            {`This project has the following follow up types associated to it: `}
-            <span className="font-bold">{typeOfFollowUp.join(', ')}</span>
-            {`.`}
-          </span>
+          <>
+            This project has the following follow up types associated to it:{' '}
+            <div className="inline font-bold">
+              <FieldValue fieldId="type_of_follow_up" value={typeOfFollowUp} />
+            </div>
+            .
+          </>
         )}
         {!typeOfFollowUp?.length && (
-          <span>{`There isn't any type of follow up reported for this project. `}</span>
+          <>There {"isn't"} any type of follow up reported for this project. </>
         )}
-      </span>
+      </>
     </>
   );
 };
@@ -152,25 +207,6 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
   const [showProjectLinksModal, setShowProjectLinksModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState<Categories>(Categories.Context);
-
-  const getReportedFieldsForCategory = (category: Categories, reported: boolean) => {
-    const fields = CATEGORIES.find((c) => c.id === category).fields.filter(
-      (field) =>
-        field.type === FilterTypes.Boolean && (reported ? project[field.id] : !project[field.id])
-    );
-
-    if (fields.length === 0) {
-      return <>&nbsp;None</>;
-    }
-
-    return (
-      <div className="flex flex-wrap gap-4 mt-3 md:gap-5">
-        {fields.map((field) => (
-          <Pill key={field.id} filter={{ field: field.id, value: reported }} link />
-        ))}
-      </div>
-    );
-  };
 
   return (
     <div className="relative pt-5 pb-12">
@@ -261,14 +297,22 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
             >
               <TabItem key={Categories.Context} title={toTitleCase(Categories.Context)}>
                 <div className="mt-8 md:mt-12">
-                  <p>{getContextDynamicText(project)}</p>
+                  <DynamicText project={project} />
                   <div className="mt-8">
-                    <span className="font-semibold">Reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Context, true)}
+                    <span className="font-semibold">Reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Context}
+                      reported={true}
+                      project={project}
+                    />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Non-reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Context, false)}
+                    <span className="font-semibold">Non-reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Context}
+                      reported={false}
+                      project={project}
+                    />
                   </div>
                 </div>
               </TabItem>
@@ -276,15 +320,23 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Forest type:</span>{' '}
-                    {project.forest_type ? project.forest_type.join(', ') : 'Unreported'}
+                    <FieldValue fieldId="forest_type" value={project.forest_type} />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Ecological, true)}
+                    <span className="font-semibold">Reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Ecological}
+                      reported={true}
+                      project={project}
+                    />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Non-reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Ecological, false)}
+                    <span className="font-semibold">Non-reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Ecological}
+                      reported={false}
+                      project={project}
+                    />
                   </div>
                 </div>
               </TabItem>
@@ -292,21 +344,27 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Name Org/Donor:</span>{' '}
-                    {project.name_org_donor ? project.name_org_donor : 'Unreported'}
+                    <FieldValue fieldId="name_org_donor" value={project.name_org_donor} />
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Financial model:</span>{' '}
-                    {project.financial_model?.length > 0
-                      ? project.financial_model.join(', ')
-                      : 'Unreported'}
+                    <FieldValue fieldId="financial_model" value={project.financial_model} />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Economic, true)}
+                    <span className="font-semibold">Reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Economic}
+                      reported={true}
+                      project={project}
+                    />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Non-reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Economic, false)}
+                    <span className="font-semibold">Non-reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Economic}
+                      reported={false}
+                      project={project}
+                    />
                   </div>
                 </div>
               </TabItem>
@@ -314,39 +372,55 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Lead organization:</span>{' '}
-                    {project.lead_organization ? project.lead_organization : 'Unreported'}
+                    <FieldValue fieldId="lead_organization" value={project.lead_organization} />
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Organization type:</span>{' '}
-                    {project.organization_type ? project.organization_type : 'Unreported'}
+                    <FieldValue fieldId="organization_type" value={project.organization_type} />
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">{`Who's involved:`}</span>{' '}
-                    {project.who_is_involved ? project.who_is_involved.join(', ') : 'Unreported'}
+                    <FieldValue fieldId="who_is_involved" value={project.who_is_involved} />
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Partner name:</span>{' '}
-                    {project.partner_name ? project.partner_name : 'Unreported'}
+                    <FieldValue fieldId="partner_name" value={project.partner_name} />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Institutional, true)}
+                    <span className="font-semibold">Reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Institutional}
+                      reported={true}
+                      project={project}
+                    />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Non-reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Institutional, false)}
+                    <span className="font-semibold">Non-reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Institutional}
+                      reported={false}
+                      project={project}
+                    />
                   </div>
                 </div>
               </TabItem>
               <TabItem key={Categories.Social} title={toTitleCase(Categories.Social)}>
                 <div className="mt-8 md:mt-12">
                   <div>
-                    <span className="font-semibold">Reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Social, true)}
+                    <span className="font-semibold">Reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Social}
+                      reported={true}
+                      project={project}
+                    />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Non-reported information:</span>
-                    {getReportedFieldsForCategory(Categories.Social, false)}
+                    <span className="font-semibold">Non-reported information:</span>{' '}
+                    <ReportedCategoryField
+                      category={Categories.Social}
+                      reported={false}
+                      project={project}
+                    />
                   </div>
                 </div>
               </TabItem>
