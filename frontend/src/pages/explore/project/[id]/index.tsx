@@ -87,9 +87,9 @@ interface DynamicTextProps {
 }
 
 const DynamicText: FC<DynamicTextProps> = ({ project }) => {
-  const projectArea = project.size_of_project_ha && d3.format('.4s')(project.size_of_project_ha);
+  const projectArea = project.size_of_project_ha && d3.format('~s')(project.size_of_project_ha);
   const treesPlanted =
-    project.trees_planted_number && d3.format('.4s')(project.trees_planted_number);
+    project.trees_planted_number && d3.format('~s')(project.trees_planted_number);
   const approach = project.approach;
   const primaryObjectivePurpose = project.primary_objective_purpose;
   const typeOfFollowUp = project.type_of_follow_up;
