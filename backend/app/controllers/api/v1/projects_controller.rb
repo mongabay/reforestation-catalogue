@@ -57,7 +57,10 @@ class Api::V1::ProjectsController < ApplicationController
   def update
     # Fetch object before update
     @project = Project.find(params['id'])
-    if @project.update(project_params)
+    if @project.update(parsed_project_params)
+      @project.approved = false
+      @project.save
+
       render json: ProjectSerializer.new(
         @project
         # links
