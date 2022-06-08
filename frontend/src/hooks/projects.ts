@@ -28,7 +28,7 @@ export const fetchProjects = async (
     { order: 'desc' },
     { page_number: options?.page ?? 1 },
     { page_size: options?.perPage ?? 20 },
-    { highlighted: options?.highlighted ?? false },
+    ...(options?.highlighted !== undefined ? [{ highlighted: options?.highlighted }] : []),
   ];
 
   return await fetch(
