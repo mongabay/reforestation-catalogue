@@ -13,6 +13,7 @@ import Button from 'components/button';
 import Pill from 'components/filter-pill';
 import GlossaryModal from 'components/glossary-modal';
 import Head from 'components/head';
+import InfoTooltip from 'components/info-tooltip';
 import LayoutContainer from 'components/layout-container';
 import ProjectChart from 'components/project-chart';
 import ProjectLinksModal from 'components/project-links-modal';
@@ -87,9 +88,9 @@ interface DynamicTextProps {
 }
 
 const DynamicText: FC<DynamicTextProps> = ({ project }) => {
-  const projectArea = project.size_of_project_ha && d3.format('~s')(project.size_of_project_ha);
+  const projectArea = project.size_of_project_ha && d3.format('.2s')(project.size_of_project_ha);
   const treesPlanted =
-    project.trees_planted_number && d3.format('~s')(project.trees_planted_number);
+    project.trees_planted_number && d3.format('.2s')(project.trees_planted_number);
   const approach = project.approach;
   const primaryObjectivePurpose = project.primary_objective_purpose;
   const typeOfFollowUp = project.type_of_follow_up;
@@ -259,7 +260,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="block mt-4 text-blue hover:underline"
+                    className="block inline-block mt-4 text-blue hover:underline focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-blue"
                   >
                     {project.project_org_url.replace(/^https?:\/\//, '').split('/')[0]}
                   </a>
@@ -271,7 +272,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 {project.project_links.length > 0 && (
                   <Button
                     theme="secondary-green"
-                    className="justify-center md:justify-start"
+                    className="justify-center min-w-[168px]"
                     onClick={() => setShowProjectLinksModal(true)}
                   >
                     Project Links
@@ -279,7 +280,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 )}
                 <Button
                   to={`/explore/project/${project.id}/edit`}
-                  className="justify-center md:justify-start"
+                  className="justify-center min-w-[168px]"
                 >
                   Suggest Page Edits
                 </Button>
@@ -295,7 +296,23 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
               selectedKey={activeCategory}
               onChange={(category) => setActiveCategory(category as Categories)}
             >
-              <TabItem key={Categories.Context} title={toTitleCase(Categories.Context)}>
+              <TabItem
+                key={Categories.Context}
+                title={
+                  <span className="whitespace-nowrap">
+                    {toTitleCase(Categories.Context)}
+                    <InfoTooltip
+                      text={
+                        CATEGORIES.find((category) => category.id === Categories.Context)
+                          ?.description
+                      }
+                      className="ml-1.5"
+                      iconClassName="w-3.5 h-3.5"
+                    />
+                  </span>
+                }
+                textValue={toTitleCase(Categories.Context)}
+              >
                 <div className="mt-8 md:mt-12">
                   <DynamicText project={project} />
                   <div className="mt-8">
@@ -316,7 +333,23 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Ecological} title={toTitleCase(Categories.Ecological)}>
+              <TabItem
+                key={Categories.Ecological}
+                title={
+                  <span className="whitespace-nowrap">
+                    {toTitleCase(Categories.Ecological)}
+                    <InfoTooltip
+                      text={
+                        CATEGORIES.find((category) => category.id === Categories.Ecological)
+                          ?.description
+                      }
+                      className="ml-1.5"
+                      iconClassName="w-3.5 h-3.5"
+                    />
+                  </span>
+                }
+                textValue={toTitleCase(Categories.Ecological)}
+              >
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Forest type:</span>{' '}
@@ -340,7 +373,23 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Economic} title={toTitleCase(Categories.Economic)}>
+              <TabItem
+                key={Categories.Economic}
+                title={
+                  <span className="whitespace-nowrap">
+                    {toTitleCase(Categories.Economic)}
+                    <InfoTooltip
+                      text={
+                        CATEGORIES.find((category) => category.id === Categories.Economic)
+                          ?.description
+                      }
+                      className="ml-1.5"
+                      iconClassName="w-3.5 h-3.5"
+                    />
+                  </span>
+                }
+                textValue={toTitleCase(Categories.Economic)}
+              >
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Name Org/Donor:</span>{' '}
@@ -368,7 +417,23 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Institutional} title={toTitleCase(Categories.Institutional)}>
+              <TabItem
+                key={Categories.Institutional}
+                title={
+                  <span className="whitespace-nowrap">
+                    {toTitleCase(Categories.Institutional)}
+                    <InfoTooltip
+                      text={
+                        CATEGORIES.find((category) => category.id === Categories.Institutional)
+                          ?.description
+                      }
+                      className="ml-1.5"
+                      iconClassName="w-3.5 h-3.5"
+                    />
+                  </span>
+                }
+                textValue={toTitleCase(Categories.Institutional)}
+              >
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Lead organization:</span>{' '}
@@ -404,7 +469,23 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                   </div>
                 </div>
               </TabItem>
-              <TabItem key={Categories.Social} title={toTitleCase(Categories.Social)}>
+              <TabItem
+                key={Categories.Social}
+                title={
+                  <span className="whitespace-nowrap">
+                    {toTitleCase(Categories.Social)}
+                    <InfoTooltip
+                      text={
+                        CATEGORIES.find((category) => category.id === Categories.Social)
+                          ?.description
+                      }
+                      className="ml-1.5"
+                      iconClassName="w-3.5 h-3.5"
+                    />
+                  </span>
+                }
+                textValue={toTitleCase(Categories.Social)}
+              >
                 <div className="mt-8 md:mt-12">
                   <div>
                     <span className="font-semibold">Reported information:</span>{' '}

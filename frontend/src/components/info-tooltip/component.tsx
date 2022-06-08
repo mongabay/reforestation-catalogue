@@ -2,13 +2,18 @@ import React from 'react';
 
 import cx from 'classnames';
 
-import Image from 'next/image';
-
+import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
+
+import InfoIcon from 'svgs/info.svg';
 
 import { InfoTooltipProps } from './types';
 
-export const InfoTooltip: React.FC<InfoTooltipProps> = ({ text, className }: InfoTooltipProps) => {
+export const InfoTooltip: React.FC<InfoTooltipProps> = ({
+  text,
+  className,
+  iconClassName = 'w-4 h-4',
+}: InfoTooltipProps) => {
   return (
     <Tooltip content={text} className="max-w-full md:max-w-xs">
       <button
@@ -18,7 +23,8 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({ text, className }: Inf
           className
         )}
       >
-        <Image className="info-icon" src="/icons/info.svg" width="16" height="16" alt="Info" />
+        <span className="sr-only">Info</span>
+        <Icon icon={InfoIcon} className={iconClassName} />
       </button>
     </Tooltip>
   );

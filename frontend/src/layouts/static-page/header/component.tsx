@@ -64,12 +64,20 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
               </a>
             </ActiveLink>
             <div className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5">
-              <Button to="/explore/project/new" theme="secondary-white">
+              <Button
+                to="/explore/project/new"
+                theme="secondary-white"
+                className="justify-center min-w-[142px]"
+              >
                 <span className="inline">Submit Project</span>
               </Button>
             </div>
             <div className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5 2xl:ml-10">
-              <Button theme="primary-orange" onClick={() => setShowNewsletterSignup(true)}>
+              <Button
+                theme="primary-orange"
+                className="justify-center min-w-[142px]"
+                onClick={() => setShowNewsletterSignup(true)}
+              >
                 <span className="inline">Subscribe</span>
               </Button>
             </div>

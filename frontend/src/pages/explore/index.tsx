@@ -82,10 +82,19 @@ const WelcomeScreen: FC<{
           <h2 className="font-serif text-3xl font-bold text-center mt-11 text-grey-dark lg:text-left">
             Discover projects of interest
           </h2>
+          <p className="mt-1.5 max-w-lg text-center lg:text-left">
+            Start with an initial step-by-step guidance or go directly to the projects database.
+          </p>
           <div className="flex flex-col justify-center gap-4 mt-8 md:flex-row lg:justify-start">
-            <Button onClick={onNavigateToGuidance}>Start with step-by-step guidance</Button>
-            <Button theme="secondary-green" onClick={onNavigateToCatalog}>
-              Explore all the projects
+            <Button onClick={onNavigateToGuidance} className="min-w-[227px] justify-center">
+              Start step-by-step guidance
+            </Button>
+            <Button
+              theme="secondary-green"
+              onClick={onNavigateToCatalog}
+              className="min-w-[227px] justify-center"
+            >
+              Go to Project Catalog
             </Button>
           </div>
         </div>
@@ -114,8 +123,8 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
         open={showNewsletterSignup}
         onDismiss={() => setShowNewsletterSignup(false)}
       />
-      <aside className="bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 px-5 md:px-10">
-        <div className="p-1 md:h-full md:overflow-y-auto">
+      <aside className="bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 pl-5 md:pl-10">
+        <div className="p-1 pr-6 md:pr-11 md:h-full md:overflow-y-auto">
           <Button className="w-full md:w-auto" onClick={onNavigateToGuidance}>
             <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
             Step-by-step Guidance

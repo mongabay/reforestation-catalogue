@@ -29,7 +29,7 @@ export const ProjectChart: FC<ProjectChartProps> = ({
                 key={key}
                 className={cx({
                   'flex items-center justify-between text-sm leading-7': true,
-                  'font-semibold': key === highlightedCategory,
+                  'font-semibold': value === highlightedCategory,
                 })}
               >
                 <span>{key}</span>

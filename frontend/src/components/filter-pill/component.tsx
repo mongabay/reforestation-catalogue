@@ -36,7 +36,9 @@ export const FilterPill: FC<FilterPillProps> = ({
             serialize({ filters: [{ field: filter.field, value: filter.value }] }).filters
           }`}
         >
-          <a className="underline">{field.label}</a>
+          <a className="underline focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-green">
+            {field.label}
+          </a>
         </Link>
       )}
       {!link && (

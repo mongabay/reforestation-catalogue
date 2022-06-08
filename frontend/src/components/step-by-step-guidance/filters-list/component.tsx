@@ -59,7 +59,7 @@ export const FiltersList: FC<FiltersListProps> = ({ className }) => {
       >
         <div className="text-xs text-grey-dark line-clamp-2 sm:line-clamp-1 text-ellipsis">
           <span className="font-semibold uppercase">Selected filters:</span>{' '}
-          {filters.length === 0 && 'None'}
+          {filters.length === 0 && <span className="font-semibold">No filters selected</span>}
           {filters.length > 0 &&
             filters.map((filter) => <FilterPill key={filter.field} filter={filter} naked />)}
         </div>

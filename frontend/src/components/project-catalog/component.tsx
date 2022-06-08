@@ -47,7 +47,9 @@ export const ProjectCatalog: FC<ProjectCatalogProps> = ({
   }
 
   if (data.pages.length === 1 && data.pages[0].data.length === 0) {
-    return <p className="py-16 font-semibold text-center">No result</p>;
+    return (
+      <p className="py-16 font-semibold text-center">No projects meet your filtering criteria</p>
+    );
   }
 
   return (

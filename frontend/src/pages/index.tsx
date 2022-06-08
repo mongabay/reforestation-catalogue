@@ -50,10 +50,18 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
             institutional.
           </p>
           <div className="flex flex-col gap-4 mt-10 md:inline-flex md:mt-24 md:flex-row">
-            <Button theme="secondary-white" to="/about" className="justify-center md:px-12">
+            <Button
+              theme="secondary-white"
+              to="/about"
+              className="justify-center md:px-12 min-w-[230px]"
+            >
               Learn More
             </Button>
-            <Button theme="primary-white" to="/explore" className="justify-center md:px-12">
+            <Button
+              theme="primary-white"
+              to="/explore"
+              className="justify-center md:px-12 min-w-[230px]"
+            >
               Explore the Catalog
             </Button>
           </div>

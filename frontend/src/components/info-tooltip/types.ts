@@ -3,4 +3,6 @@ export interface InfoTooltipProps {
   text: string;
   /** Class to apply to the info button */
   className?: string;
+  /** Class to apply to the icon */
+  iconClassName?: string;
 }

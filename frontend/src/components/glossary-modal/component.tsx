@@ -15,7 +15,7 @@ export const GlossaryModal: FC<GlossaryModalProps> = ({ open, onDismiss }: Gloss
     <Modal title="Glossary" open={open} onDismiss={onDismiss} scrollable={false}>
       <div className="flex flex-col h-full overflow-hidden md:px-20">
         <h1 className="flex-shrink-0 font-serif text-3xl font-bold text-green">Glossary</h1>
-        <div className="flex flex-shrink-0 gap-3 mt-4 overflow-x-auto sm:flex-wrap sm:mt-11">
+        <div className="flex flex-shrink-0 gap-3 p-1 mt-4 overflow-x-auto sm:flex-wrap sm:mt-11">
           {'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => (
             <Button
               key={letter}

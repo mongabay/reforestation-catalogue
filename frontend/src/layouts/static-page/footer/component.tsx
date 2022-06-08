@@ -51,7 +51,12 @@ const Footer: React.FC<FooterProps> = (props: FooterProps) => (
           <p className="text-sm font-bold">Follow us on:</p>
           <div className="flex gap-2 mt-3">
             <Link href="https://www.linkedin.com/company/mongabay/">
-              <a title="LinkedIn" rel="noopener noreferrer" target="_blank">
+              <a
+                title="LinkedIn"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-white"
+              >
                 <Icon icon={LinkedInIcon} className="w-6 h-6" />
               </a>
             </Link>

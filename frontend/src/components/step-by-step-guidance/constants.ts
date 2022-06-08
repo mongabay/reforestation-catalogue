@@ -40,7 +40,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     name: 'Ecological',
     description:
       'These ecological criteria are important for understanding if the right trees are being planted in the right place.',
-    image: '/images/explore-guidance-context.jpg',
+    image: '/images/explore-guidance-ecological.jpg',
     category: Categories.Ecological,
     steps: [
       {
@@ -73,7 +73,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     name: 'Economic',
     description:
       'Funding for reforestation projects can come from many different sources with diverse motivations. These economic criteria will help you identify who is benefiting and assess if a project is truly sustainable.',
-    image: '/images/explore-guidance-context.jpg',
+    image: '/images/explore-guidance-economic.jpg',
     category: Categories.Economic,
     steps: [
       {
@@ -106,7 +106,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     name: 'Institutional',
     description:
       'This set of criteria has to do with the management and ownership of projects. These questions may seem basic, but it can be difficult to tell who is actually doing the work on the ground versus funding the project.',
-    image: '/images/explore-guidance-context.jpg',
+    image: '/images/explore-guidance-institutional.jpg',
     category: Categories.Institutional,
     steps: [
       {
@@ -138,7 +138,7 @@ export const STEPS: StepByStepGuidanceStep[] = [
     name: 'Social',
     description:
       'When society, especially local communities, benefits from reforestation projects, forests are more likely to be protected over the long term.',
-    image: '/images/explore-guidance-context.jpg',
+    image: '/images/explore-guidance-social.jpg',
     category: Categories.Social,
     steps: [
       {

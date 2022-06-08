@@ -55,7 +55,7 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
               />
               <p className="mt-8 text-lg font-semibold text-green">{step.description}</p>
             </div>
-            <div className="mt-8">
+            <div className="mt-14">
               <SubSteps
                 // The `key` forces the unmounting/mounting of the component when the category changes
                 // This is to avoid issues where an animation is made when changing category and a
@@ -69,7 +69,11 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
             <ResultsCount className="mt-11" onNavigateToCatalog={onNavigateToCatalog} />
             <div className="relative flex flex-col justify-between max-w-4xl gap-4 mx-auto mt-9 sm:flex-row sm:gap-14">
               {stepIndex > 0 ? (
-                <Button theme="light-green" onClick={onPrevious} className="items-center pt-1 pb-1">
+                <Button
+                  theme="light-green"
+                  onClick={onPrevious}
+                  className="items-center pt-1 pb-1 min-w-[185px]"
+                >
                   <Icon icon={LeftArrowIcon} aria-hidden className="w-3 mr-2" />
                   <span className="mr-5 text-2xl font-semibold">{stepIndex}</span>
                   <span className="sr-only">Go to </span>
@@ -82,7 +86,7 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
                 <Button
                   theme="light-green"
                   onClick={onNext}
-                  className="items-center justify-end pt-1 pb-1"
+                  className="items-center justify-end pt-1 pb-1 min-w-[185px]"
                 >
                   <span className="sr-only">Go to </span>
                   {STEPS[stepIndex + 1].name}

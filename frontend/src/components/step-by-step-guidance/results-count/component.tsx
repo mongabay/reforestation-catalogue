@@ -33,13 +33,13 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
   return (
     <div
       className={cx({
-        'flex flex-col justify-between gap-4 sm:flex-row sm:items-center sm:gap-14': true,
+        'flex flex-col justify-between gap-4 sm:flex-row sm:items-center sm:gap-14 xl:gap-24': true,
         [className]: !!className,
       })}
     >
       {(isLoading || isError) && <div />}
       {!isLoading && !isError && (
-        <div className="flex flex-col items-stretch">
+        <div className="flex flex-col items-stretch flex-grow">
           <label htmlFor="results-progress" className="text-orange">
             <MatchingResultsSentence />
           </label>
@@ -56,9 +56,11 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
       <Button
         theme="secondary-orange"
         onClick={onNavigateToCatalog}
-        className="items-center justify-center flex-shrink-0"
+        className="items-center justify-center flex-shrink-0 min-w-[185px]"
       >
-        See Projects Results
+        {(filters.length === 0 && search.length === 0) || matching === 0
+          ? 'Go to Project Catalog'
+          : 'See Projects Results'}
       </Button>
     </div>
   );
