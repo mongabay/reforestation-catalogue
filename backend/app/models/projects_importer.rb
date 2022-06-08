@@ -13,6 +13,9 @@ class ProjectsImporter
         sanitized_key = key.to_s.underscore
         next if sanitized_key == 'id'
 
+        if sanitized_key == 'end_year'
+          value = Project::END_YEAR_SPECIAL_VALUES[value] if Project::END_YEAR_SPECIAL_VALUES.keys.include?(value)
+        end
         new_project.send("#{sanitized_key}=", value)
       end
       new_project.approved = true

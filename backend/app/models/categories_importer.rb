@@ -2,6 +2,10 @@ class CategoriesImporter
   
   # @param file_path [String] absolute or relative to root
   def import_from_json(file_path)
+    Filter.delete_all
+    Category.delete_all
+    ProjectCategory.delete_all
+
     file = File.read(file_path)
     data_hash = JSON.parse!(file)
 

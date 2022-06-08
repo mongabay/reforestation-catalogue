@@ -34,8 +34,7 @@ class Project < ApplicationRecord
     'Social Enterprise' => 16,
     'Socially beneficial business' => 17,
     'University / Academic institution' => 18,
-    'Intiative and Foundation' => 19,
-    'Government' => 20
+    'Intiative and Foundation' => 19
   }
 
   array_enum who_is_involved: {
@@ -230,7 +229,7 @@ class Project < ApplicationRecord
   ].freeze
 
   END_YEAR_SPECIAL_VALUES = {
-    'ongoing' => nil
+    'ongoing' => 0
   }
 
   COUNTRIES_SPECIAL_VALUES = {

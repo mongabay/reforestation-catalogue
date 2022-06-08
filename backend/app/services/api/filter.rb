@@ -11,8 +11,15 @@ module Api
       if @filters_to_apply['start_year'].present? and @filters_to_apply['start_year'].to_i > 1980
         @projects = @projects.where('start_year >= ?', @filters_to_apply['start_year'].to_i)
       end
-      if @filters_to_apply['end_year'].present? and @filters_to_apply['end_year'].to_i <= 2022
-        @projects = @projects.where('end_year <= ?', @filters_to_apply['end_year'].to_i)
+      if @filters_to_apply['end_year'].present?
+        if  @filters_to_apply['end_year'] == nil || @filters_to_apply['end_year'] == 'nil'
+          @projects = @projects.where(end_year: nil)
+        else
+          @filters_to_apply['end_year'] = Project::END_YEAR_SPECIAL_VALUES['ongoing'] if @filters_to_apply['end_year'] == 'ongoing'
+          if @filters_to_apply['end_year'].to_i <= Date.current.year
+            @projects = @projects.where('end_year <= ?', @filters_to_apply['end_year'].to_i)
+          end
+        end
       end
       if @filters_to_apply['size_of_project_ha'].present? and @filters_to_apply['size_of_project_ha'].to_i >= 0
         @projects = @projects.where('size_of_project_ha >= ?', @filters_to_apply['size_of_project_ha'].to_i)
