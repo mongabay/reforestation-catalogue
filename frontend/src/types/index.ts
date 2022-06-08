@@ -71,7 +71,7 @@ export type ProjectFormData = Omit<
 > & {
   id?: Project['id'];
 } & {
-  project_contacts_attributes: {
+  project_contacts: {
     name: string;
     email?: string;
     company?: string;
