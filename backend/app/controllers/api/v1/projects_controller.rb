@@ -7,6 +7,7 @@ class Api::V1::ProjectsController < ApplicationController
     
     search = params['search']
     @projects = Api::Searcher.new(@projects, search).call if (search.present? and search.class == String)
+    projects_matching_query = @projects
       
     @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
 
@@ -14,7 +15,7 @@ class Api::V1::ProjectsController < ApplicationController
     # TODO
     # options[:links]
     options[:meta] = {
-      projects_total: Project.all.count,
+      projects_total: projects_matching_query.count,
       projects_matching_query: @pagy.count,
       from: @pagy.from,
       to: @pagy.to,

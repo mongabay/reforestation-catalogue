@@ -21,7 +21,7 @@ module Api
         @category = Category.where(slug: "context").first
         
         return @projects = @category.projects_desc.where(approved: true) if @category.present?
-        @projects = Project.where(approved: true)
+        @projects = Project.approved
       end
     end
   end
