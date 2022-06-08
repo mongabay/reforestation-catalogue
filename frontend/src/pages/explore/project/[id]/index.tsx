@@ -76,7 +76,6 @@ const FieldValue: FC<FieldValueProps> = ({ fieldId, value }) => {
   }
 
   if (!field) {
-    console.log(fieldId);
     return <>{value.toString()}</>;
   }
 
