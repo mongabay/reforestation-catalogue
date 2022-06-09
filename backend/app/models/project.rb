@@ -253,10 +253,16 @@ class Project < ApplicationRecord
 
     context_fields.each do |field|
       value = self[field.slug]
-      if (field.data_type_string? or field.data_type_number?) and value.present?
-        fields_with_data += 1
+      if field.data_type_string? 
+        fields_with_data += 1 if value.present? and value.length > 0
       end
-      if field.data_type_boolean?
+      if field.data_type_number?
+        fields_with_data += 1 if value.present? and value != 0
+      end
+      if  field.data_type_not_empty?
+        fields_with_data += 1 if value.present? and value.length > 0
+      end
+      if field.data_type_boolean? and value == true
         fields_with_data += 1
       end
     end
