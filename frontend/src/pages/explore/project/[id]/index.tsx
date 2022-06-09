@@ -247,9 +247,11 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
               </h1>
               <div className="mt-4">
                 {!!project.lead_organization && <div>{project.lead_organization}</div>}
-                {(!!project.start_year || !!project.end_year) && (
+                {(!!project.start_year ||
+                  (project.end_year !== null && project.end_year !== undefined)) && (
                   <div>
-                    {project.start_year ?? '−'} - {project.end_year ?? '−'}
+                    {project.start_year ?? '−'} -{' '}
+                    {project.end_year === 0 ? 'ongoing' : project.end_year ?? '−'}
                   </div>
                 )}
                 {!!project.country && <div>{project.country}</div>}

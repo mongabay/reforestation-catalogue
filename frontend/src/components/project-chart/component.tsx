@@ -14,7 +14,11 @@ export const ProjectChart: FC<ProjectChartProps> = ({
   highlightedCategoryStroke = 2,
   tooltip = true,
 }: ProjectChartProps) => {
-  const isFinalized = project.end_year && project.end_year < new Date().getFullYear();
+  const isFinalized =
+    project.end_year !== null &&
+    project.end_year !== undefined &&
+    project.end_year !== 0 &&
+    project.end_year < new Date().getFullYear();
 
   return (
     <div className="max-w-[150px] aspect-square w-full">

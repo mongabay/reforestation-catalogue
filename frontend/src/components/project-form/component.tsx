@@ -44,6 +44,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({ project }: ProjectFormProps)
 
   const onPrevious = useCallback(() => {
     const values = getFormValues(formRef);
+    console.log(values);
 
     if (stepIndex > 0) {
       setValues((v) => ({ ...v, ...values }));
@@ -59,6 +60,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({ project }: ProjectFormProps)
 
       const newValues = getFormValues(formRef);
       const data = { ...values, ...newValues };
+      console.log(data);
       setValues(data);
 
       if (stepIndex < PROJECT_FORM_STEPS.length - 1) {

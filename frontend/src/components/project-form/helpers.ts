@@ -11,14 +11,15 @@ export const getFormValues = (formRef: MutableRefObject<HTMLFormElement>) => {
       return value;
     }
 
-    const isNumber = input.getAttribute('type') === 'number';
+    const isNumber = input.getAttribute('type') === 'number' || key === 'end_year';
     const isBoolean =
       input.getAttribute('type') === 'radio' && (value === 'false' || value === 'true');
     const isUrl =
       input.getAttribute('type') === 'text' && input.getAttribute('data-type') === 'url';
     const isEnum =
-      (input.getAttribute('type') === 'radio' && /\d+/.test(value)) ||
-      (input.getAttribute('type') === 'checkbox' && /\d+/.test(value));
+      ((input.getAttribute('type') === 'radio' && /\d+/.test(value)) ||
+        (input.getAttribute('type') === 'checkbox' && /\d+/.test(value))) &&
+      key !== 'end_year';
 
     if (isNumber) {
       return value.length > 0 ? +value : undefined;
@@ -47,7 +48,7 @@ export const getFormValues = (formRef: MutableRefObject<HTMLFormElement>) => {
       value = formData.getAll(key).map((value) => correctType(key, value));
     } else {
       const input = inputs.find((i) => i.getAttribute('name') === key);
-      const isArray = input?.getAttribute('type') === 'checkbox';
+      const isArray = input?.getAttribute('type') === 'checkbox' && key !== 'end_year';
 
       if (isArray) {
         value = [correctType(key, formData.get(key))];

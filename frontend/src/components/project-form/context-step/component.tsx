@@ -22,6 +22,9 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
     values.project_links ?? []
   );
 
+  const [ongoing, setOngoing] = useState(values.end_year === 0);
+  const [endYear, setEndYear] = useState(values.end_year);
+
   const { data: whoIsInvolvedOptions } = useEnumOptions('who_is_involved');
   const { data: primaryObjectivePurposeOptions } = useEnumOptions('primary_objective_purpose');
   const { data: approachOptions } = useEnumOptions('approach');
@@ -93,13 +96,31 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
           </label>
           <Input
             id="end-year"
-            name="end_year"
+            name={ongoing ? '' : 'end_year'}
             type="number"
             step={1}
             placeholder="Type your answer"
-            defaultValue={values.end_year}
+            value={ongoing ? '' : endYear ?? ''}
+            onChange={(value) => setEndYear(+value)}
             className="mt-3"
+            disabled={ongoing}
           />
+          <div className="mt-2">
+            <Checkbox
+              id="end_year_ongoing"
+              value="0"
+              defaultChecked={ongoing}
+              name={!ongoing ? '' : 'end_year'}
+              onChange={(value) => {
+                setOngoing(value);
+                if (!value && endYear === 0) {
+                  setEndYear(null);
+                }
+              }}
+            >
+              Ongoing
+            </Checkbox>
+          </div>
         </div>
       </div>
       <div className="mt-7">
