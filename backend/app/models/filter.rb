@@ -4,7 +4,8 @@ class Filter < ApplicationRecord
     year: 0,
     number: 1,
     string: 2,
-    boolean: 3
+    boolean: 3,
+    not_empty: 4
   }, _prefix: true
   enum query_mode: {
     exact: 0,
