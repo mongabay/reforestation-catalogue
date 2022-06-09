@@ -7,6 +7,7 @@ class Api::V1::ProjectsController < ApplicationController
     
     search = params['search']
     @projects = Api::Searcher.new(@projects, search).call if (search.present? and search.class == String)
+    projects_matching_query = @projects
       
     @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
 
@@ -14,7 +15,7 @@ class Api::V1::ProjectsController < ApplicationController
     # TODO
     # options[:links]
     options[:meta] = {
-      projects_total: Project.all.count,
+      projects_total: projects_matching_query.count,
       projects_matching_query: @pagy.count,
       from: @pagy.from,
       to: @pagy.to,
@@ -41,7 +42,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(parsed_project_params)
     
     if @project.save
       render json: ProjectSerializer.new(
@@ -57,7 +58,10 @@ class Api::V1::ProjectsController < ApplicationController
   def update
     # Fetch object before update
     @project = Project.find(params['id'])
-    if @project.update(project_params)
+    if @project.update(parsed_project_params)
+      @project.approved = false
+      @project.save
+
       render json: ProjectSerializer.new(
         @project
         # links
@@ -72,8 +76,7 @@ class Api::V1::ProjectsController < ApplicationController
     params.require(:project).permit(
       :project_name,                                                                                     
       :lead_organization,                                                                                
-      :organization_type,                                                                                
-      :who_is_involved,                                                                                  
+      :organization_type,                                                                                  
       :project_org_url,                                                                                  
       :has_project_partners,                                                                             
       :partner_name,                                                                                     
@@ -84,9 +87,6 @@ class Api::V1::ProjectsController < ApplicationController
       :size_of_project_ha,                                                                               
       :trees_planted_number,                                                                             
       :has_explicit_location,
-      :forest_type,
-      :primary_objective_purpose,
-      :approach,
       :identify_deforestation_driver,
       :fire_prevention,
       :has_justification_for_approach,
@@ -95,18 +95,44 @@ class Api::V1::ProjectsController < ApplicationController
       :use_native_species,
       :use_exotic_species,
       :local_seedling_nurseries,
-      :financial_model,
       :name_org_donor,
       :has_public_reports,
       :follow_up_disclosed,
-      :type_of_follow_up,
       :has_community_involvement,
       :has_gender_component,
       :scientific_research_associated_with_project,
       :news_articles_associated_with_project,
       :comment,
+      :forest_type => [],
+      :primary_objective_purpose => [],
+      :approach => [],
+      :financial_model => [],
+      :type_of_follow_up => [],                                                         
+      :who_is_involved => [],
       :project_contacts_attributes => [:email, :name, :company],
       :project_links_attributes => [:url, :title, :description])
+  end
+
+  # This method takes from project_params all
+  # array of integers and translate each into the string in the enum
+  # then it returns params with enum_arrays
+  # TODO: Figure out why for god sake I can create a project using arrays of integers
+  # Project.create(forest_type: [0,1,2]) will not work
+  #
+  def parsed_project_params
+    parsed_params = project_params
+
+    parsed_params.each do |key, value|
+      if value.class == Array
+        if Project::PROJECT_ENUMS.include?(key)
+          new_value = []
+          value.each do |array_item|
+            new_value.push(Project.send(key.pluralize).map { |k, v| k if v == array_item}.compact.first)
+          end
+        end
+        parsed_params[key] = new_value
+      end
+    end
   end
 
   def current_page

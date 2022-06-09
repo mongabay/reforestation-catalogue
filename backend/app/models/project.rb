@@ -267,6 +267,7 @@ class Project < ApplicationRecord
   def set_percentage_for_all_categories
     self.get_project_categories_percentage.each do |k,v|
       category = Category.where(slug: k).first
+      ProjectCategory.where(project: self, category: category).delete_all
       ProjectCategory.create(project: self, category: category, percentage: v)
     end
   end

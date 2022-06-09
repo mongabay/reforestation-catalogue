@@ -34,15 +34,16 @@ class ProjectSerializer
   :approved,
   :highlighted,
   :project_links,                                              
-  :start_year                                             
+  :start_year ,
+  :end_year                                            
 
-  attribute :end_year do |object|
-    if object.end_year == Project::END_YEAR_SPECIAL_VALUES['ongoing']
-      'ongoing'
-    else
-      object.end_year
-    end
-  end
+  # attribute :end_year do |object|
+  #   if object.end_year == Project::END_YEAR_SPECIAL_VALUES['ongoing']
+  #     'ongoing'
+  #   else
+  #     object.end_year
+  #   end
+  # end
 
   attribute :percentages do |object|
     object.get_project_categories_percentage

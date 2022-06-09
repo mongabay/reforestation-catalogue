@@ -13,15 +13,15 @@ module Api
         exit unless @category.present?
   
         if @order&.downcase =='asc'
-          @projects = @category.projects_asc.where(approved: true)
+          return @projects = @category.projects_asc.where(approved: true)
         else
-          @projects = @category.projects_desc.where(approved: true)
+          return @projects = @category.projects_desc.where(approved: true)
         end
       else
         @category = Category.where(slug: "context").first
         
         return @projects = @category.projects_desc.where(approved: true) if @category.present?
-        @projects = Project.where(approved: true)
+        @projects = Project.approved
       end
     end
   end
