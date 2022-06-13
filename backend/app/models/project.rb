@@ -6,10 +6,14 @@ class Project < ApplicationRecord
   has_many :project_categories
   has_many :categories, :through => :project_categories
 
+  # TO DO: rename it to previous_version
+  belongs_to :project, optional: true
+
   accepts_nested_attributes_for :project_contacts
   accepts_nested_attributes_for :project_links
 
   after_save :set_percentage_for_all_categories
+  after_update :delete_previous_project_if_needed
 
   scope :approved, -> { where(approved: true) }
   scope :highlighted, -> { where(highlighted: true) }
@@ -275,6 +279,33 @@ class Project < ApplicationRecord
       category = Category.where(slug: k).first
       ProjectCategory.where(project: self, category: category).delete_all
       ProjectCategory.create(project: self, category: category, percentage: v)
+    end
+  end
+
+  def previous_project(project_object)
+    self.project = project_object
+  end
+
+  def delete_previous_project_if_needed
+    if self.approved?
+      previous_project = self.project
+      return if previous_project == nil
+      # updating previous project id without triggering callbacks
+      # cause we do not want to fall in an eternal loop, right?
+      #
+      self.update_columns(project_id: nil)
+      # now I need to update all the projects that were linked to the one
+      # that is going to be destroyed
+      # and link them to the one that now is approved
+      # looks like the perfect recipe for a huge mess
+      #
+      Project.where(project_id: previous_project.id).each do |pending_project|
+        pending_project.update_columns(project_id: self.id)
+      end
+      # and now we destroy de previous_project
+      # because the changes are approved
+      #
+      previous_project.destroy
     end
   end
 end

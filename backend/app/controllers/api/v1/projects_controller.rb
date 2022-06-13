@@ -58,12 +58,22 @@ class Api::V1::ProjectsController < ApplicationController
   def update
     # Fetch object before update
     @project = Project.find(params['id'])
-    if @project.update(parsed_project_params)
-      @project.approved = false
-      @project.save
+
+    # It was unexpected, but we need to keep
+    # the current version approved
+    # and have a duplicate pending
+    #
+    @new_project = @project.dup
+    # Here we link the dup with current version
+    #
+    @new_project.previous_project(@project)
+    
+    if @new_project.update(parsed_project_params)
+      @new_project.approved = false
+      @new_project.save
 
       render json: ProjectSerializer.new(
-        @project
+        @new_project
         # links
         # meta
       ).serializable_hash
