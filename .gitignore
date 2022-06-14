@@ -53,8 +53,10 @@ yarn-error.log*
 !/backend/tmp/storage/.keep
 
 /backend/public/assets
+/backend/public/admin
 
 # Ignore master key for decrypting credentials and more.
 /backend/config/master.key
 
 /frontend/log/*
+/frontend/.env.local
