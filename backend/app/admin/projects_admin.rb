@@ -13,6 +13,17 @@ Trestle.resource(:projects) do
 
     instance.assign_attributes(attrs)
   end
+  build_instance do |attrs|
+    Project::PROJECT_ENUMS.each do |project_enum|
+      next if project_enum == 'organization_type'
+      next unless attrs.keys.include?(project_enum)
+
+      attrs[project_enum.to_sym] = Array(attrs[project_enum.to_sym]).reject(&:blank?)
+    end
+
+    instance = Project.new(attrs)
+    instance
+  end
 
   menu do
     item :projects, icon: "fa fa-star"
