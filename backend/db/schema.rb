@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_22_101536) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_113730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -111,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_101536) do
     t.datetime "updated_at", null: false
     t.boolean "highlighted", default: false
     t.boolean "approved", default: false
+    t.bigint "project_id"
     t.integer "organization_type"
     t.integer "who_is_involved", default: [], array: true
     t.integer "forest_type", default: [], array: true
@@ -118,6 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_101536) do
     t.integer "approach", default: [], array: true
     t.integer "financial_model", default: [], array: true
     t.integer "type_of_follow_up", default: [], array: true
+    t.index ["project_id"], name: "index_projects_on_project_id"
   end
 
   create_table "static_pages", force: :cascade do |t|
