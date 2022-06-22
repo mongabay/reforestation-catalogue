@@ -25,11 +25,11 @@ const RadialChart: React.FC<RadialChartProps> = ({
       'fill-transparent': true,
       'stroke-orange': !!highlightedCategory && highlightedCategory === category,
       'stroke-grey-medium':
-        (!!highlightedCategory && highlightedCategory !== category && !finalized) ||
-        (!highlightedCategory && !finalized),
-      'stroke-grey-darker':
         (!!highlightedCategory && highlightedCategory !== category && finalized) ||
         (!highlightedCategory && finalized),
+      'stroke-grey-darker':
+        (!!highlightedCategory && highlightedCategory !== category && !finalized) ||
+        (!highlightedCategory && !finalized),
     });
 
   return (
