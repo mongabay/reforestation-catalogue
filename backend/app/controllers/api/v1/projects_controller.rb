@@ -58,35 +58,36 @@ class Api::V1::ProjectsController < ApplicationController
 
   def update
     # Fetch object before update
-    @project = Project.find(params['id'])
-    if @project.update(parsed_project_params)
-      @project.approved = false
-      @project.save
+    @project = Project.find(params['id']) # this is an approved project
 
+    # It was unexpected, but we need to keep the current version approved and have a duplicate pending
+    @new_project = @project.dup
+    @new_project.assign_attributes(parsed_project_params.merge(approved: false, previous_version_id: @project.id))
+    if @new_project.save
       render json: ProjectSerializer.new(
-        @project
+        @new_project
         # links
         # meta
       ).serializable_hash
     else
-      render json: @project.errors, status: :unprocessable_entity
+      render json: @new_project.errors, status: :unprocessable_entity
     end
   end
 
   def project_params
     params.require(:project).permit(
-      :project_name,                                                                                     
-      :lead_organization,                                                                                
-      :organization_type,                                                                                  
-      :project_org_url,                                                                                  
-      :has_project_partners,                                                                             
-      :partner_name,                                                                                     
-      :start_year,                                                                                       
-      :end_year,                                                                                         
-      :country,                                                                                          
-      :country_code,                                                                                     
-      :size_of_project_ha,                                                                               
-      :trees_planted_number,                                                                             
+      :project_name,
+      :lead_organization,
+      :organization_type,
+      :project_org_url,
+      :has_project_partners,
+      :partner_name,
+      :start_year,
+      :end_year,
+      :country,
+      :country_code,
+      :size_of_project_ha,
+      :trees_planted_number,
       :has_explicit_location,
       :identify_deforestation_driver,
       :fire_prevention,
@@ -108,7 +109,7 @@ class Api::V1::ProjectsController < ApplicationController
       :primary_objective_purpose => [],
       :approach => [],
       :financial_model => [],
-      :type_of_follow_up => [],                                                         
+      :type_of_follow_up => [],
       :who_is_involved => [],
       :project_contacts_attributes => [:email, :name, :company],
       :project_links_attributes => [:url, :title, :description])

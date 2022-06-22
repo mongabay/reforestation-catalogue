@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   has_many :project_links
   has_many :project_categories
   has_many :categories, :through => :project_categories
+  belongs_to :previous_version, optional: true, class_name: 'Project'
 
   accepts_nested_attributes_for :project_contacts
   accepts_nested_attributes_for :project_links
@@ -242,7 +243,7 @@ class Project < ApplicationRecord
     end
 
     return project_categories_percentage
-  end  
+  end
 
   def get_percentage_for_category(category)
     fields_with_data = 0
@@ -253,13 +254,13 @@ class Project < ApplicationRecord
 
     context_fields.each do |field|
       value = self[field.slug]
-      if field.data_type_string? 
+      if field.data_type_string?
         fields_with_data += 1 if value.present? and value.length > 0
       end
       if field.data_type_number?
         fields_with_data += 1 if value.present? and value != 0
       end
-      if  field.data_type_not_empty?
+      if field.data_type_not_empty?
         fields_with_data += 1 if value.present? and value.length > 0
       end
       if field.data_type_boolean? and value == true
