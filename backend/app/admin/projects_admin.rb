@@ -90,9 +90,6 @@ Trestle.resource(:projects) do
     resource_financial_models = Project.financial_models.keys.map { |financial_model| [financial_model.humanize, financial_model] }
     select :financial_model, resource_financial_models, { label: "Financial models" }, multiple: true
 
-    resource_financial_models = Project.financial_models.keys.map { |financial_model| [financial_model.humanize, financial_model] }
-    select :financial_model, resource_financial_models, { label: "Financial models" }, multiple: true
-
     resource_type_of_follow_ups = Project.type_of_follow_ups.keys.map { |type_of_follow_up| [type_of_follow_up.humanize, type_of_follow_up] }
     select :type_of_follow_up, resource_type_of_follow_ups, { label: "Type of follow up" }, multiple: true
 
