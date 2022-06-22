@@ -20,14 +20,15 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: "postgres"
 
 development:
   <<: *default
-  database: backend_development
+  database: mongabay_development
 
 test:
   <<: *default
-  database: backend_test
+  database: mongabay_test
 
 staging:
   <<: *default
