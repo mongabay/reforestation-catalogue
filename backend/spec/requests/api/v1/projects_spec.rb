@@ -96,14 +96,36 @@ RSpec.describe "Api::V1::Projects", type: :request do
         ]
 
         expect(parsed_body['meta'].keys).to match_array(expected_fields)
-      end        
+      end
+
+      context 'project counts' do
+        before(:each) do
+          category = FactoryBot.create(:category, slug: 'context')
+          filter = FactoryBot.create(:filter, category: category, slug: 'has_explicit_location')
+          projects.each { |p| p.update(approved: true, has_explicit_location: true) }
+          projects.first.update_attribute(:approved, false)
+          projects.last.update_attribute(:has_explicit_location, false)
+        end
+
+        it 'returns correct projects_matching_query' do
+          header 'Content-Type', 'application/json'
+          get "/api/v1/projects?has_explicit_location=true"
+          expect(parsed_body['meta']['projects_matching_query']).to eq(40)
+        end
+
+        it 'returns correct projects_total' do
+          header 'Content-Type', 'application/json'
+          get "/api/v1/projects?has_explicit_location=true"
+          expect(parsed_body['meta']['projects_total']).to eq(41)
+        end
+      end
     end
     context 'pagination' do
       it 'accepts number of elements per page' do
         header 'Content-Type', 'application/json'
         get "/api/v1/projects?page_size=3"
 
-        expect(parsed_body['data'].count).to eq(3)  
+        expect(parsed_body['data'].count).to eq(3)
       end
       it 'accepts page number' do
         header 'Content-Type', 'application/json'

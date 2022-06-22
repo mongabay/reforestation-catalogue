@@ -3,19 +3,20 @@ class Api::V1::ProjectsController < ApplicationController
     # TODO:
     # exception if category does not exist
     @projects = Api::Sorter.new(params['sort_by'], params['order']).call
+    # TODO: sorter service applies the 'approved' scope
+    # this should be refactored because that is not the sorter's responsibility
+    projects_total = @projects.count
     @projects = Api::Filter.new(@projects, filters_to_apply).call if filters_to_apply.any?
-    
     search = params['search']
     @projects = Api::Searcher.new(@projects, search).call if (search.present? and search.class == String)
     projects_matching_query = @projects
-      
     @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
 
     options = {}
     # TODO
     # options[:links]
     options[:meta] = {
-      projects_total: projects_matching_query.count,
+      projects_total: projects_total,
       projects_matching_query: @pagy.count,
       from: @pagy.from,
       to: @pagy.to,
@@ -25,7 +26,7 @@ class Api::V1::ProjectsController < ApplicationController
     
     render json: ProjectSerializer.new(
       @projects,
-      options 
+      options
     ).serializable_hash.to_json
   end
 
