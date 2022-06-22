@@ -50,7 +50,7 @@ Trestle.resource(:projects) do
     text_field :project_org_url
     text_field :partner_name
     text_field :start_year
-    text_field :end_year
+    text_field :end_year, { label: "End year (Ongoing projects have a value of 0)" }
     text_field :country
     text_field :country_code
     text_field :size_of_project_ha

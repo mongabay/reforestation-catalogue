@@ -197,6 +197,44 @@ RSpec.describe "Api::V1::Projects", type: :request do
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_second.id])
       end
+      it 'returns a list of projects filtered by end year without ongoing projects' do
+        category = FactoryBot.create(:category, slug: 'context')
+        filter = FactoryBot.create(:filter, category: category, slug: 'end_year')
+        project_first = Project.first
+        project_first.end_year = 0
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.end_year = 2013
+        project_second.save!
+        project_last = Project.last
+        project_last.end_year = 2017
+        project_last.save!
+ 
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?end_year=2022"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_second.id, project_last.id])
+      end
+      it 'returns a list of projects ongoing projects' do
+        category = FactoryBot.create(:category, slug: 'context')
+        filter = FactoryBot.create(:filter, category: category, slug: 'end_year')
+        project_first = Project.first
+        project_first.end_year = 2020
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.end_year = 0
+        project_second.save!
+        project_last = Project.last
+        project_last.end_year = 0
+        project_last.save!
+ 
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?end_year=ongoing"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_second.id, project_last.id])
+      end
       it 'returns a list of projects filtered by size_of_project_ha greater or equal' do
         category = FactoryBot.create(:category, slug: 'context')
         filter = FactoryBot.create(:filter, category: category, slug: 'size_of_project_ha')
@@ -424,6 +462,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         filter = FactoryBot.create(:filter, category: category, slug: 'forest_type')
         project_first = Project.first
         project_first.forest_type = ['boreal_mountain_system']
+        
         project_first.save!
         project_second = Project.all[1]
         project_second.forest_type = ['subtropical_dry_forest']
@@ -437,7 +476,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?forest_type=boreal_mountain_system"
+        get "/api/v1/projects?forest_type=0"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
