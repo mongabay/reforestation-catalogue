@@ -130,8 +130,8 @@ class Api::V1::ProjectsController < ApplicationController
           value.each do |array_item|
             new_value.push(Project.send(key.pluralize).map { |k, v| k if v == array_item}.compact.first)
           end
+          parsed_params[key] = new_value
         end
-        parsed_params[key] = new_value
       end
     end
   end
