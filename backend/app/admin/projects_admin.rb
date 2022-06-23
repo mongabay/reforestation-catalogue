@@ -70,24 +70,24 @@ Trestle.resource(:projects) do
     text_field :comment
 
 
-    check_box :has_project_partners
-    check_box :has_explicit_location
-    check_box :identify_deforestation_driver
-    check_box :fire_prevention
-    check_box :has_justification_for_approach
-    check_box :addresses_known_threats
-    check_box :discloses_species_used
-    check_box :use_native_species
-    check_box :use_exotic_species
-    check_box :local_seedling_nurseries
-    check_box :has_public_reports
-    check_box :follow_up_disclosed
-    check_box :has_community_involvement
-    check_box :has_gender_component
-    check_box :scientific_research_associated_with_project
-    check_box :news_articles_associated_with_project
-    check_box :highlighted
+    three_state_input = [['Yes', true], ['No', false], ['n/a', nil]]
 
+    select :has_project_partners, three_state_input
+    select :has_explicit_location, three_state_input
+    select :identify_deforestation_driver, three_state_input
+    select :fire_prevention, three_state_input
+    select :has_justification_for_approach, three_state_input
+    select :addresses_known_threats, three_state_input
+    select :discloses_species_used, three_state_input
+    select :use_native_species, three_state_input
+    select :use_exotic_species, three_state_input
+    select :local_seedling_nurseries, three_state_input
+    select :has_public_reports, three_state_input
+    select :follow_up_disclosed, three_state_input
+    select :has_community_involvement, three_state_input
+    select :has_gender_component, three_state_input
+    select :scientific_research_associated_with_project, three_state_input
+    select :news_articles_associated_with_project, three_state_input
 
     resource_forest_types = Project.forest_types.keys.map { |forest_type| [forest_type.humanize, forest_type] }
     select :forest_type, resource_forest_types, { label: "Forest types" }, multiple: true
@@ -108,6 +108,8 @@ Trestle.resource(:projects) do
     select :type_of_follow_up, resource_type_of_follow_ups, { label: "Type of follow up" }, multiple: true
 
 
+    
+    check_box :highlighted
     check_box :approved
   end
 
