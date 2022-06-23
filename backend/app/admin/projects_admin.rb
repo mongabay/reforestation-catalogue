@@ -61,7 +61,7 @@ Trestle.resource(:projects) do
     text_field :project_org_url
     text_field :partner_name
     text_field :start_year
-    text_field :end_year
+    text_field :end_year, { label: "End year (Ongoing projects have a value of 0)" }
     text_field :country
     text_field :country_code
     text_field :size_of_project_ha
@@ -97,9 +97,6 @@ Trestle.resource(:projects) do
 
     resource_primary_objective_purposes = Project.primary_objective_purposes.keys.map { |primary_objective_purpose| [primary_objective_purpose.humanize, primary_objective_purpose] }
     select :primary_objective_purpose, resource_primary_objective_purposes, { label: "Primary objective purposes" }, multiple: true
-
-    resource_financial_models = Project.financial_models.keys.map { |financial_model| [financial_model.humanize, financial_model] }
-    select :financial_model, resource_financial_models, { label: "Financial models" }, multiple: true
 
     resource_financial_models = Project.financial_models.keys.map { |financial_model| [financial_model.humanize, financial_model] }
     select :financial_model, resource_financial_models, { label: "Financial models" }, multiple: true
