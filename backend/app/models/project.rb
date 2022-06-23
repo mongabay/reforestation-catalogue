@@ -1,9 +1,9 @@
 class Project < ApplicationRecord
   extend ArrayEnum
 
-  has_many :project_contacts
-  has_many :project_links
-  has_many :project_categories
+  has_many :project_contacts, dependent: :destroy
+  has_many :project_links, dependent: :destroy
+  has_many :project_categories, dependent: :destroy
   has_many :categories, :through => :project_categories
   belongs_to :previous_version, optional: true, class_name: 'Project'
 
@@ -11,6 +11,7 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :project_links
 
   after_save :set_percentage_for_all_categories
+  after_update :delete_previous_version_if_approved
 
   scope :approved, -> { where(approved: true) }
   scope :highlighted, -> { where(highlighted: true) }
@@ -277,5 +278,25 @@ class Project < ApplicationRecord
       ProjectCategory.where(project: self, category: category).delete_all
       ProjectCategory.create(project: self, category: category, percentage: v)
     end
+  end
+
+  def delete_previous_version_if_approved
+    return unless self.approved?
+
+    previous_version = self.previous_version
+    return if previous_version == nil
+
+    # updating previous version id without triggering callbacks
+    # cause we do not want to fall in an eternal loop, right?
+    self.update_columns(previous_version_id: nil)
+    # now I need to update all the projects that were linked to the one
+    # that is going to be destroyed
+    # and link them to the one that now is approved
+    # looks like the perfect recipe for a huge mess
+    Project.where(previous_version_id: previous_version.id).update_all(previous_version_id: self.id)
+
+    # and now we destroy de previous_version
+    # because the changes are approved
+    previous_version.destroy
   end
 end
