@@ -483,14 +483,14 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'forest_type')
         project_first = Project.first
-        project_first.forest_type = ['boreal_mountain_system']
+        project_first.forest_type = ['Boreal mountain system']
         
         project_first.save!
         project_second = Project.all[1]
-        project_second.forest_type = ['subtropical_dry_forest']
+        project_second.forest_type = ['Subtropical dry forest']
         project_second.save!
         project_last = Project.last
-        project_last.forest_type = ['boreal_mountain_system']
+        project_last.forest_type = ['Boreal mountain system']
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -507,13 +507,13 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'financial_model')
         project_first = Project.first
-        project_first.financial_model = ['business_partners']
+        project_first.financial_model = ['Business partners']
         project_first.save!
         project_second = Project.all[1]
-        project_second.financial_model = ['charity_organization']
+        project_second.financial_model = ['Charity organization']
         project_second.save!
         project_last = Project.last
-        project_last.financial_model = ['business_partners']
+        project_last.financial_model = ['Business partners']
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -521,7 +521,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?financial_model=business_partners"
+        get "/api/v1/projects?financial_model=0"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
@@ -530,13 +530,13 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'economic')
         filter = FactoryBot.create(:filter, category: category, slug: 'organization_type')
         project_first = Project.first
-        project_first.organization_type = 'company'
+        project_first.organization_type = 2
         project_first.save!
         project_second = Project.all[1]
-        project_second.organization_type = 'charity_organization'
+        project_second.organization_type = 0
         project_second.save!
         project_last = Project.last
-        project_last.organization_type = 'company'
+        project_last.organization_type = 2
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -544,7 +544,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?organization_type=company"
+        get "/api/v1/projects?organization_type=2"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])

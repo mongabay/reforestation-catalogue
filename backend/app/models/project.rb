@@ -1,8 +1,8 @@
 class Project < ApplicationRecord
   extend ArrayEnum
 
-  has_many :project_contacts, dependent: :destroy
-  has_many :project_links, dependent: :destroy
+  has_many :project_contacts
+  has_many :project_links
   has_many :project_categories, dependent: :destroy
   has_many :categories, :through => :project_categories
   belongs_to :previous_version, optional: true, class_name: 'Project'
@@ -294,6 +294,9 @@ class Project < ApplicationRecord
     # and link them to the one that now is approved
     # looks like the perfect recipe for a huge mess
     Project.where(previous_version_id: previous_version.id).update_all(previous_version_id: self.id)
+    # and now we are going to reassing all links and contacts to the current project
+    previous_version.project_links.update_all(project_id: self.id)
+    previous_version.project_contacts.update_all(project_id: self.id)
 
     # and now we destroy de previous_version
     # because the changes are approved
