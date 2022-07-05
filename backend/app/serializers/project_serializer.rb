@@ -32,8 +32,7 @@ class ProjectSerializer
   :news_articles_associated_with_project,
   :comment,
   :approved,
-  :highlighted,
-  :project_links,                                              
+  :highlighted,                                              
   :start_year ,
   :end_year                                            
 
@@ -45,6 +44,9 @@ class ProjectSerializer
   #   end
   # end
 
+  attribute :project_links_attributes do |object|
+    object.project_links
+  end
   attribute :percentages do |object|
     object.get_project_categories_percentage
   end
