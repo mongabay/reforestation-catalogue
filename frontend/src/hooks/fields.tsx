@@ -55,5 +55,9 @@ export const useFormatFieldValue = (field: Field, value: string | number | boole
     return names.map((name) => toTitleCase(name)).join(', ');
   }
 
+  if (field.type === FilterTypes.Year && value === 0) {
+    return 'ongoing';
+  }
+
   return value.toString();
 };
