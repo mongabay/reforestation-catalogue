@@ -44,19 +44,69 @@ interface ReportedCategoryFieldProps {
 }
 
 const ReportedCategoryField: FC<ReportedCategoryFieldProps> = ({ category, reported, project }) => {
-  const booleanFields = CATEGORIES.find((c) => c.id === category).fields.filter(
-    (field) =>
-      field.type === FilterTypes.Boolean && (reported ? project[field.id] : !project[field.id])
-  );
+  const fields = CATEGORIES.find((c) => c.id === category)
+    .fields.filter((field) => field.impactScore)
+    .filter((field) => {
+      switch (field.type) {
+        case FilterTypes.Year: {
+          const hasValue = project[field.id] !== null && project[field.id] !== undefined;
+          return !(reported !== hasValue); // XNOR gate
+        }
 
-  if (booleanFields.length === 0) {
+        case FilterTypes.Boolean: {
+          const hasValue = project[field.id] === true || project[field.id] === false;
+          return !(reported !== hasValue); // XNOR gate
+        }
+
+        case FilterTypes.String: {
+          const hasValue =
+            project[field.id] !== null &&
+            project[field.id] !== undefined &&
+            (Array.isArray(project[field.id])
+              ? (project[field.id] as unknown[]).length > 0
+              : project[field.id] !== '');
+
+          // The “Partner name” field is not shown in the “Non-reported information” section if the
+          // project doesn't have partners
+          if (
+            field.id === 'partner_name' &&
+            !reported &&
+            project['has_project_partners'] === false
+          ) {
+            return false;
+          }
+
+          return !(reported !== hasValue); // XNOR gate
+        }
+
+        case FilterTypes.Number: {
+          const hasValue = project[field.id] === true || project[field.id] === false;
+          const t = project[field.id];
+          return !(reported !== hasValue); // XNOR gate
+        }
+
+        default:
+          return false;
+      }
+    });
+
+  if (fields.length === 0) {
     return <>None</>;
   }
 
   return (
     <div className="flex flex-wrap gap-4 mt-3 md:gap-5">
-      {booleanFields.map((field) => (
-        <Pill key={field.id} filter={{ field: field.id, value: reported }} link />
+      {fields.map((field) => (
+        <Pill
+          key={field.id}
+          filter={{
+            field: field.id,
+            value: reported
+              ? project[field.id as keyof Omit<Project, 'project_links' | 'percentages'>] ?? ''
+              : '',
+          }}
+          showValue={reported}
+        />
       ))}
     </div>
   );
@@ -353,10 +403,6 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
               >
                 <div className="mt-8 md:mt-12">
                   <div>
-                    <span className="font-semibold">Forest type:</span>{' '}
-                    <FieldValue fieldId="forest_type" value={project.forest_type} />
-                  </div>
-                  <div className="mt-8">
                     <span className="font-semibold">Reported information:</span>{' '}
                     <ReportedCategoryField
                       category={Categories.Ecological}
@@ -393,14 +439,6 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
               >
                 <div className="mt-8 md:mt-12">
                   <div>
-                    <span className="font-semibold">Name Org/Donor:</span>{' '}
-                    <FieldValue fieldId="name_org_donor" value={project.name_org_donor} />
-                  </div>
-                  <div className="mt-8">
-                    <span className="font-semibold">Financial model:</span>{' '}
-                    <FieldValue fieldId="financial_model" value={project.financial_model} />
-                  </div>
-                  <div className="mt-8">
                     <span className="font-semibold">Reported information:</span>{' '}
                     <ReportedCategoryField
                       category={Categories.Economic}
@@ -441,16 +479,8 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                     <FieldValue fieldId="lead_organization" value={project.lead_organization} />
                   </div>
                   <div className="mt-8">
-                    <span className="font-semibold">Organization type:</span>{' '}
-                    <FieldValue fieldId="organization_type" value={project.organization_type} />
-                  </div>
-                  <div className="mt-8">
                     <span className="font-semibold">{`Who's involved:`}</span>{' '}
                     <FieldValue fieldId="who_is_involved" value={project.who_is_involved} />
-                  </div>
-                  <div className="mt-8">
-                    <span className="font-semibold">Partner name:</span>{' '}
-                    <FieldValue fieldId="partner_name" value={project.partner_name} />
                   </div>
                   <div className="mt-8">
                     <span className="font-semibold">Reported information:</span>{' '}

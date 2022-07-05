@@ -107,6 +107,7 @@ export interface Field {
   mode: FilterModes;
   label: string;
   hidden: boolean;
+  impactScore: boolean;
 }
 
 export interface Category {
