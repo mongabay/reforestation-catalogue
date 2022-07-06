@@ -13,7 +13,7 @@ export const ProjectLinksModal: FC<ProjectLinksModalProps> = ({
   <Modal title="Project links" open={open} onDismiss={onDismiss}>
     <div className="mb-2 md:px-20">
       <h1 className="font-serif text-3xl font-bold text-green">Project Links</h1>
-      {project.project_links.map((link) => (
+      {project.project_links_attributes.map((link) => (
         <div key={link.url} className="mt-6">
           {link.title && <h2 className="mb-1 font-serif text-3xl">{link.title}</h2>}
           {link.description && <p className="mb-3">{link.description}</p>}

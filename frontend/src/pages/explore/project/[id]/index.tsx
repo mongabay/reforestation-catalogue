@@ -102,7 +102,9 @@ const ReportedCategoryField: FC<ReportedCategoryFieldProps> = ({ category, repor
           filter={{
             field: field.id,
             value: reported
-              ? project[field.id as keyof Omit<Project, 'project_links' | 'percentages'>] ?? ''
+              ? project[
+                  field.id as keyof Omit<Project, 'project_links_attributes' | 'percentages'>
+                ] ?? ''
               : '',
           }}
           showValue={reported}
@@ -320,7 +322,7 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
             </div>
             <div className="mt-7">
               <div className="flex flex-col gap-4 md:flex-row md:gap-11">
-                {project.project_links.length > 0 && (
+                {project.project_links_attributes.length > 0 && (
                   <Button
                     theme="secondary-green"
                     className="justify-center min-w-[168px]"
