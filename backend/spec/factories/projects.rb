@@ -2,9 +2,9 @@ require 'faker'
 
 FactoryBot.define do
 	factory :project do
-		start_year { 1980 }
-		end_year { 2022 }
-		size_of_project_ha { 1 }
+		start_year { }
+		end_year { }
+		size_of_project_ha { }
 		has_explicit_location { }
 		fire_prevention { }
 		addresses_known_threats { }

@@ -77,7 +77,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
           "percentages",
           "approved",
           "highlighted",
-          "project_links"
+          "project_links_attributes"
         ]
         expect(parsed_body['data'].first.keys).to match_array(expected_fields)
         expect(parsed_body['data'].first['attributes'].keys).to match_array(expected_attributes)

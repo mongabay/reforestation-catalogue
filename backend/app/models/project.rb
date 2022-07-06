@@ -255,6 +255,10 @@ class Project < ApplicationRecord
 
     context_fields.each do |field|
       value = self[field.slug]
+      if field.data_type_year? and value.present?
+        fields_with_data += 1 if  field.slug == 'start_year' and value > 0
+        fields_with_data += 1 if  field.slug == 'end_year' and value >= 0
+      end
       if field.data_type_string?
         fields_with_data += 1 if value.present? and value.length > 0
       end
@@ -264,8 +268,8 @@ class Project < ApplicationRecord
       if field.data_type_not_empty?
         fields_with_data += 1 if value.present? and value.length > 0
       end
-      if field.data_type_boolean? and value == true
-        fields_with_data += 1
+      if field.data_type_boolean?
+        fields_with_data += 1 unless value.nil?
       end
     end
 
