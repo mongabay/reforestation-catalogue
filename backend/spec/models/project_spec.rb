@@ -305,6 +305,11 @@ RSpec.describe Project, type: :model do
       @new_project.has_project_partners = true
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
     end
+    it '+1 point when partner_name not empty' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      @new_project.partner_name = 'Partner test 1'
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
+    end
     it '+1 point when has_project_partners is false' do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       @new_project.has_project_partners = false
@@ -314,6 +319,60 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       @new_project.has_project_partners = nil
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(0)
+    end
+    # Boolean + String combo
+    # Here is the logic: https://vizzuality.atlassian.net/browse/MP-100
+    #
+
+    it '+2 points when has_project_partners is false and partner_name empty' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      @new_project.partner_name = nil
+      @new_project.has_project_partners = false
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
+    end
+    it '+2 points when has_project_partners is false and partner_name not empty' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      @new_project.partner_name = 'Partner test 1'
+      @new_project.has_project_partners = false
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
+    end
+    it '+3 points when organization_type is not empty,has_project_partners is true and partner_name not empty' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
+      @new_project.organization_type = 'Company'
+      @new_project.partner_name = 'Partner test 1'
+      @new_project.has_project_partners = true
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
+    end
+    it '+3 points when organization_type is not empty,has_project_partners is false and partner_name empty' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
+      @new_project.organization_type = 'Company'
+      @new_project.partner_name = nil
+      @new_project.has_project_partners = false
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
+    end
+    it '+3 points when organization_type is not empty,has_project_partners is false and partner_name not empty' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
+      @new_project.organization_type = 'Company'
+      @new_project.partner_name = 'Partner test 1'
+      @new_project.has_project_partners = false
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
+    end
+    it '+2 points when organization_type is not empty,has_project_partners is true and partner_name empty' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
+      @new_project.organization_type = 'Company'
+      @new_project.partner_name = nil
+      @new_project.has_project_partners = true
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(66)
     end
     # Social
     #

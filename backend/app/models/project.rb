@@ -260,7 +260,15 @@ class Project < ApplicationRecord
         fields_with_data += 1 if  field.slug == 'end_year' and value >= 0
       end
       if field.data_type_string?
-        fields_with_data += 1 if value.present? and value.length > 0
+        if value.present? and value.length > 0
+          fields_with_data += 1 
+        else
+          # partner_name is evaluated based on has_project_partners
+          # even if value is empty
+          if field.slug == 'partner_name' and self['has_project_partners'] == false
+            fields_with_data += 1
+          end
+        end
       end
       if field.data_type_number?
         fields_with_data += 1 if value.present? and value != 0
