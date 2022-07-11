@@ -82,8 +82,8 @@ export enum Categories {
   Context = 'context',
   Ecological = 'ecological',
   Economic = 'economic',
-  Social = 'social',
   Institutional = 'institutional',
+  Social = 'social',
 }
 
 export enum FilterModes {
