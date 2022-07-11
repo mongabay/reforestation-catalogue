@@ -10,7 +10,7 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :project_contacts
   accepts_nested_attributes_for :project_links
 
-  after_save :set_percentage_for_all_categories
+  after_save :update_percentage_for_all_categories
   after_update :delete_previous_version_if_approved
 
   scope :approved, -> { where(approved: true) }
@@ -237,6 +237,7 @@ class Project < ApplicationRecord
   COUNTRIES_SPECIAL_VALUES = {
     'all' => 'All'
   }
+  # Returns a hash with a percentage for each category 
   def get_project_categories_percentage
     project_categories_percentage = {}
     Category.all.each do |category|
@@ -246,6 +247,8 @@ class Project < ApplicationRecord
     return project_categories_percentage
   end
 
+  # Returns a percentage for a given Category object
+  # based on the project attributes and the category filters
   def get_percentage_for_category(category)
     fields_with_data = 0
     context_fields = category.filters
@@ -255,8 +258,20 @@ class Project < ApplicationRecord
 
     context_fields.each do |field|
       value = self[field.slug]
+      if field.data_type_year? and value.present?
+        fields_with_data += 1 if  field.slug == 'start_year' and value > 0
+        fields_with_data += 1 if  field.slug == 'end_year' and value >= 0
+      end
       if field.data_type_string?
-        fields_with_data += 1 if value.present? and value.length > 0
+        if value.present? and value.length > 0
+          fields_with_data += 1 
+        else
+          # partner_name is evaluated based on has_project_partners
+          # even if value is empty
+          if field.slug == 'partner_name' and self['has_project_partners'] == false
+            fields_with_data += 1
+          end
+        end
       end
       if field.data_type_number?
         fields_with_data += 1 if value.present? and value != 0
@@ -264,15 +279,18 @@ class Project < ApplicationRecord
       if field.data_type_not_empty?
         fields_with_data += 1 if value.present? and value.length > 0
       end
-      if field.data_type_boolean? and value == true
-        fields_with_data += 1
+      if field.data_type_boolean?
+        fields_with_data += 1 unless value.nil?
       end
     end
 
     return (fields_with_data * 100) / number_of_fields
   end
 
-  def set_percentage_for_all_categories
+  # Deletes previous project's ProjectCategories
+  # Creates new project's ProjectCategories with updated percentages
+  # for each category
+  def update_percentage_for_all_categories
     self.get_project_categories_percentage.each do |k,v|
       category = Category.where(slug: k).first
       ProjectCategory.where(project: self, category: category).delete_all
