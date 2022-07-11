@@ -147,6 +147,25 @@ RSpec.describe Project, type: :model do
       @new_project.size_of_project_ha = nil
       expect(@new_project.get_percentage_for_category(@context_cat)).to eq(0)
     end
+    # All fields
+    it 'context scores 100 when all fields are ok' do
+      FactoryBot.create(:filter, category:@context_cat, slug: 'start_year', label: 'Start year', data_type: 'year')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'end_year', label: 'End year', data_type: 'year')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'has_explicit_location', label: 'Has explicit location', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'has_public_reports', label: 'Has public reports', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'has_justification_for_approach', label: 'Has justification for approach', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'country', label: 'Country', data_type: 'string')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'size_of_project_ha', label: 'Size of project in ha', data_type: 'number')
+      @new_project.start_year = 2022
+      @new_project.end_year = 2020
+      @new_project.has_explicit_location = true
+      @new_project.has_public_reports = true
+      @new_project.has_justification_for_approach = true
+      @new_project.country = 'Korea'
+      @new_project.size_of_project_ha = 1000
+
+      expect(@new_project.get_percentage_for_category(@context_cat)).to eq(100)
+    end
     #Ecological
     #
     #Array of Enums
@@ -211,12 +230,25 @@ RSpec.describe Project, type: :model do
       @new_project.discloses_species_used = nil
       expect(@new_project.get_percentage_for_category(@ecological_cat)).to eq(0)
     end
+    # All fields
+    it 'ecological scores 100 when all fields are ok' do
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'forest_type', label: 'Forest type', data_type: 'string')
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'fire_prevention', label: 'Fire prevention', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'addresses_known_threats', label: 'Addresses known threats', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'discloses_species_used', label: 'Discloses species used', data_type: 'boolean')
+      @new_project.forest_type = ['Boreal mountain system']
+      @new_project.fire_prevention = true
+      @new_project.addresses_known_threats = true
+      @new_project.discloses_species_used = true
+
+      expect(@new_project.get_percentage_for_category(@ecological_cat)).to eq(100)
+    end
     # Economical
     #
     # String
     it '+1 point when name_org_donor is not empty' do
       FactoryBot.create(:filter, category:@economic_cat, slug: 'name_org_donor', label: 'Name Org/Donor', data_type: 'string')
-      @new_project.name_org_donor = 'Korea'
+      @new_project.name_org_donor = 'Microsoft'
       expect(@new_project.get_percentage_for_category(@economic_cat)).to eq(100)
     end
     it '+0 points when name_org_donor is nil' do
@@ -285,6 +317,21 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@economic_cat, slug: 'financial_model', label: 'Financial model', data_type: 'string')
       @new_project.financial_model = nil
       expect(@new_project.get_percentage_for_category(@economic_cat)).to eq(0)
+    end
+    # All fields
+    it 'economical socres 100 when all fields are ok' do
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'name_org_donor', label: 'Name Org/Donor', data_type: 'string')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'identify_deforestation_driver', label: 'Identifies deforestation driver', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'local_seedling_nurseries', label: 'Local seedling nurseries', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'follow_up_disclosed', label: 'Follow up disclosed', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'financial_model', label: 'Financial model', data_type: 'string')
+      @new_project.name_org_donor = 'Microsoft'
+      @new_project.identify_deforestation_driver = true
+      @new_project.local_seedling_nurseries = true
+      @new_project.follow_up_disclosed = true
+      @new_project.financial_model = ['Business partners']
+      
+      expect(@new_project.get_percentage_for_category(@economic_cat)).to eq(100)
     end
     # Institutional
     #
@@ -374,6 +421,16 @@ RSpec.describe Project, type: :model do
       @new_project.has_project_partners = true
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(66)
     end
+    # All fields
+    it 'institutional scores 100 when allfields are ok' do
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      @new_project.organization_type = 'Company'
+      @new_project.has_project_partners = true
+      @new_project.partner_name = 'Partner test 1'
+      expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
+    end
     # Social
     #
     # Boolean
@@ -421,6 +478,84 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@social_cat, slug: 'news_articles_associated_with_project', label: 'Has news articles associated with project', data_type: 'boolean')
       @new_project.news_articles_associated_with_project = nil
       expect(@new_project.get_percentage_for_category(@social_cat)).to eq(0)
-    end 
+    end
+    # All fields
+    it 'social scores 100 when all fields are ok' do
+      FactoryBot.create(:filter, category:@social_cat, slug: 'has_community_involvement', label: 'Has community involvement', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@social_cat, slug: 'has_gender_component', label: 'Has gender component', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@social_cat, slug: 'news_articles_associated_with_project', label: 'Has news articles associated with project', data_type: 'boolean')
+      @new_project.has_community_involvement = true
+      @new_project.has_gender_component = true
+      @new_project.news_articles_associated_with_project = true
+
+      expect(@new_project.get_percentage_for_category(@social_cat)).to eq(100)
+    end
+  end
+  context 'get_project_categories_percentage' do
+    before(:each) do
+      @new_project = FactoryBot.build(:project, approved: true)
+      @context_cat = FactoryBot.create(:category, slug: 'context', label: 'Context')
+      @ecological_cat = FactoryBot.create(:category, slug: 'ecological', label: 'Ecological')
+      @economic_cat = FactoryBot.create(:category, slug: 'economic', label: 'Economic')
+      @institutional_cat = FactoryBot.create(:category, slug: 'institutional', label: 'Institutional')
+      @social_cat = FactoryBot.create(:category, slug: 'social', label: 'Social')
+    end
+
+    it 'returns a hash with an element for each category' do
+      all_categories = Category.all
+      expected_number_of_elements = all_categories.count
+      expected_keys = all_categories.pluck(:slug)
+      expect(@new_project.get_project_categories_percentage.count).to eq(expected_number_of_elements)
+      expect(@new_project.get_project_categories_percentage.keys).to eq(expected_keys)
+    end
+    it 'returns 100 for all categories if all fields are ok' do
+      FactoryBot.create(:filter, category:@social_cat, slug: 'has_community_involvement', label: 'Has community involvement', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@social_cat, slug: 'has_gender_component', label: 'Has gender component', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@social_cat, slug: 'news_articles_associated_with_project', label: 'Has news articles associated with project', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'string')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'name_org_donor', label: 'Name Org/Donor', data_type: 'string')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'identify_deforestation_driver', label: 'Identifies deforestation driver', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'local_seedling_nurseries', label: 'Local seedling nurseries', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'follow_up_disclosed', label: 'Follow up disclosed', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@economic_cat, slug: 'financial_model', label: 'Financial model', data_type: 'string')
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'forest_type', label: 'Forest type', data_type: 'string')
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'fire_prevention', label: 'Fire prevention', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'addresses_known_threats', label: 'Addresses known threats', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@ecological_cat, slug: 'discloses_species_used', label: 'Discloses species used', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'start_year', label: 'Start year', data_type: 'year')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'end_year', label: 'End year', data_type: 'year')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'has_explicit_location', label: 'Has explicit location', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'has_public_reports', label: 'Has public reports', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'has_justification_for_approach', label: 'Has justification for approach', data_type: 'boolean')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'country', label: 'Country', data_type: 'string')
+      FactoryBot.create(:filter, category:@context_cat, slug: 'size_of_project_ha', label: 'Size of project in ha', data_type: 'number')
+      
+      @new_project.has_community_involvement = true
+      @new_project.has_gender_component = true
+      @new_project.news_articles_associated_with_project = true
+      @new_project.organization_type = 'Company'
+      @new_project.has_project_partners = true
+      @new_project.partner_name = 'Partner test 1'
+      @new_project.name_org_donor = 'Microsoft'
+      @new_project.identify_deforestation_driver = true
+      @new_project.local_seedling_nurseries = true
+      @new_project.follow_up_disclosed = true
+      @new_project.financial_model = ['Business partners']
+      @new_project.forest_type = ['Boreal mountain system']
+      @new_project.fire_prevention = true
+      @new_project.addresses_known_threats = true
+      @new_project.discloses_species_used = true
+      @new_project.start_year = 2022
+      @new_project.end_year = 2020
+      @new_project.has_explicit_location = true
+      @new_project.has_public_reports = true
+      @new_project.has_justification_for_approach = true
+      @new_project.country = 'Korea'
+      @new_project.size_of_project_ha = 1000
+
+      expect(@new_project.get_project_categories_percentage.values.uniq).to eq([100])
+    end
   end
 end

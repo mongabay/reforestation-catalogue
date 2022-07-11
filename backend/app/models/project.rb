@@ -10,7 +10,7 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :project_contacts
   accepts_nested_attributes_for :project_links
 
-  after_save :set_percentage_for_all_categories
+  after_save :update_percentage_for_all_categories
   after_update :delete_previous_version_if_approved
 
   scope :approved, -> { where(approved: true) }
@@ -237,6 +237,7 @@ class Project < ApplicationRecord
   COUNTRIES_SPECIAL_VALUES = {
     'all' => 'All'
   }
+  # Returns a hash with a percentage for each category 
   def get_project_categories_percentage
     project_categories_percentage = {}
     Category.all.each do |category|
@@ -246,6 +247,8 @@ class Project < ApplicationRecord
     return project_categories_percentage
   end
 
+  # Returns a percentage for a given Category object
+  # based on the project attributes and the category filters
   def get_percentage_for_category(category)
     fields_with_data = 0
     context_fields = category.filters
@@ -284,7 +287,10 @@ class Project < ApplicationRecord
     return (fields_with_data * 100) / number_of_fields
   end
 
-  def set_percentage_for_all_categories
+  # Deletes previous project's ProjectCategories
+  # Creates new project's ProjectCategories with updated percentages
+  # for each category
+  def update_percentage_for_all_categories
     self.get_project_categories_percentage.each do |k,v|
       category = Category.where(slug: k).first
       ProjectCategory.where(project: self, category: category).delete_all
