@@ -77,7 +77,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
           "percentages",
           "approved",
           "highlighted",
-          "project_links"
+          "project_links_attributes"
         ]
         expect(parsed_body['data'].first.keys).to match_array(expected_fields)
         expect(parsed_body['data'].first['attributes'].keys).to match_array(expected_attributes)
@@ -96,14 +96,36 @@ RSpec.describe "Api::V1::Projects", type: :request do
         ]
 
         expect(parsed_body['meta'].keys).to match_array(expected_fields)
-      end        
+      end
+
+      context 'project counts' do
+        before(:each) do
+          category = FactoryBot.create(:category, slug: 'context')
+          filter = FactoryBot.create(:filter, category: category, slug: 'has_explicit_location')
+          projects.each { |p| p.update(approved: true, has_explicit_location: true) }
+          projects.first.update_attribute(:approved, false)
+          projects.last.update_attribute(:has_explicit_location, false)
+        end
+
+        it 'returns correct projects_matching_query' do
+          header 'Content-Type', 'application/json'
+          get "/api/v1/projects?has_explicit_location=true"
+          expect(parsed_body['meta']['projects_matching_query']).to eq(40)
+        end
+
+        it 'returns correct projects_total' do
+          header 'Content-Type', 'application/json'
+          get "/api/v1/projects?has_explicit_location=true"
+          expect(parsed_body['meta']['projects_total']).to eq(41)
+        end
+      end
     end
     context 'pagination' do
       it 'accepts number of elements per page' do
         header 'Content-Type', 'application/json'
         get "/api/v1/projects?page_size=3"
 
-        expect(parsed_body['data'].count).to eq(3)  
+        expect(parsed_body['data'].count).to eq(3)
       end
       it 'accepts page number' do
         header 'Content-Type', 'application/json'
@@ -196,6 +218,44 @@ RSpec.describe "Api::V1::Projects", type: :request do
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_second.id])
+      end
+      it 'returns a list of projects filtered by end year without ongoing projects' do
+        category = FactoryBot.create(:category, slug: 'context')
+        filter = FactoryBot.create(:filter, category: category, slug: 'end_year')
+        project_first = Project.first
+        project_first.end_year = 0
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.end_year = 2013
+        project_second.save!
+        project_last = Project.last
+        project_last.end_year = 2017
+        project_last.save!
+ 
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?end_year=2022"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_second.id, project_last.id])
+      end
+      it 'returns a list of projects ongoing projects' do
+        category = FactoryBot.create(:category, slug: 'context')
+        filter = FactoryBot.create(:filter, category: category, slug: 'end_year')
+        project_first = Project.first
+        project_first.end_year = 2020
+        project_first.save!
+        project_second = Project.all[1]
+        project_second.end_year = 0
+        project_second.save!
+        project_last = Project.last
+        project_last.end_year = 0
+        project_last.save!
+ 
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects?end_year=ongoing"
+
+        expect(parsed_body['data'].count).to eq(2)
+        expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_second.id, project_last.id])
       end
       it 'returns a list of projects filtered by size_of_project_ha greater or equal' do
         category = FactoryBot.create(:category, slug: 'context')
@@ -423,13 +483,14 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'forest_type')
         project_first = Project.first
-        project_first.forest_type = ['boreal_mountain_system']
+        project_first.forest_type = ['Boreal mountain system']
+        
         project_first.save!
         project_second = Project.all[1]
-        project_second.forest_type = ['subtropical_dry_forest']
+        project_second.forest_type = ['Subtropical dry forest']
         project_second.save!
         project_last = Project.last
-        project_last.forest_type = ['boreal_mountain_system']
+        project_last.forest_type = ['Boreal mountain system']
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -437,7 +498,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?forest_type=boreal_mountain_system"
+        get "/api/v1/projects?forest_type=0"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
@@ -446,13 +507,13 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'financial_model')
         project_first = Project.first
-        project_first.financial_model = ['business_partners']
+        project_first.financial_model = ['Business partners']
         project_first.save!
         project_second = Project.all[1]
-        project_second.financial_model = ['charity_organization']
+        project_second.financial_model = ['Charity organization']
         project_second.save!
         project_last = Project.last
-        project_last.financial_model = ['business_partners']
+        project_last.financial_model = ['Business partners']
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -460,7 +521,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?financial_model=business_partners"
+        get "/api/v1/projects?financial_model=0"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
@@ -469,13 +530,13 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'economic')
         filter = FactoryBot.create(:filter, category: category, slug: 'organization_type')
         project_first = Project.first
-        project_first.organization_type = 'company'
+        project_first.organization_type = 2
         project_first.save!
         project_second = Project.all[1]
-        project_second.organization_type = 'charity_organization'
+        project_second.organization_type = 0
         project_second.save!
         project_last = Project.last
-        project_last.organization_type = 'company'
+        project_last.organization_type = 2
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -483,7 +544,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?organization_type=company"
+        get "/api/v1/projects?organization_type=2"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])

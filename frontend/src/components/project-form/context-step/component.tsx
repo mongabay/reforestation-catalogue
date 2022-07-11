@@ -18,8 +18,8 @@ import TrashIcon from 'svgs/trash.svg';
 import { ContextStepProps } from './types';
 
 export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) => {
-  const [relatedLinks, setRelatedLinks] = useState<Project['project_links']>(
-    values.project_links ?? []
+  const [relatedLinks, setRelatedLinks] = useState<Project['project_links_attributes']>(
+    values.project_links_attributes ?? []
   );
 
   const [ongoing, setOngoing] = useState(values.end_year === 0);
@@ -167,7 +167,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
       </div>
       <fieldset className="mt-7">
         <legend className="mb-3 font-semibold">Other project related links</legend>
-        {!values.project_links?.length && relatedLinks.length === 0 && (
+        {!values.project_links_attributes?.length && relatedLinks.length === 0 && (
           <div className="py-4 border px-7 border-grey-dark/20 rounded-2xl">None</div>
         )}
         {relatedLinks.map((link, index) => (
@@ -191,7 +191,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
             </label>
             <Input
               id={`link-title-${index}`}
-              name={`project_links[${index}].title`}
+              name={`project_links_attributes[${index}].title`}
               type="text"
               placeholder="Type your answer"
               value={link.title}
@@ -207,7 +207,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
             </label>
             <Input
               id={`link-description-${index}`}
-              name={`project_links[${index}].description`}
+              name={`project_links_attributes[${index}].description`}
               type="text"
               placeholder="Type your answer"
               value={link.description}
@@ -226,7 +226,7 @@ export const ContextStep: FC<ContextStepProps> = ({ values }: ContextStepProps) 
             </label>
             <Input
               id={`link-url-${index}`}
-              name={`project_links[${index}].url`}
+              name={`project_links_attributes[${index}].url`}
               // The reason we use a type text here and then a pattern is that if we were to use a type
               // url, the validation would require the user to enter the full URL including http(s) at the
               // beginning. This is not what the user is expecting so we're providing a custom validation

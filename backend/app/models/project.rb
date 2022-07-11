@@ -3,13 +3,15 @@ class Project < ApplicationRecord
 
   has_many :project_contacts
   has_many :project_links
-  has_many :project_categories
+  has_many :project_categories, dependent: :destroy
   has_many :categories, :through => :project_categories
+  belongs_to :previous_version, optional: true, class_name: 'Project'
 
   accepts_nested_attributes_for :project_contacts
   accepts_nested_attributes_for :project_links
 
-  after_save :set_percentage_for_all_categories
+  after_save :update_percentage_for_all_categories
+  after_update :delete_previous_version_if_approved
 
   scope :approved, -> { where(approved: true) }
   scope :highlighted, -> { where(highlighted: true) }
@@ -235,6 +237,7 @@ class Project < ApplicationRecord
   COUNTRIES_SPECIAL_VALUES = {
     'all' => 'All'
   }
+  # Returns a hash with a percentage for each category 
   def get_project_categories_percentage
     project_categories_percentage = {}
     Category.all.each do |category|
@@ -242,8 +245,10 @@ class Project < ApplicationRecord
     end
 
     return project_categories_percentage
-  end  
+  end
 
+  # Returns a percentage for a given Category object
+  # based on the project attributes and the category filters
   def get_percentage_for_category(category)
     fields_with_data = 0
     context_fields = category.filters
@@ -253,28 +258,66 @@ class Project < ApplicationRecord
 
     context_fields.each do |field|
       value = self[field.slug]
-      if field.data_type_string? 
-        fields_with_data += 1 if value.present? and value.length > 0
+      if field.data_type_year? and value.present?
+        fields_with_data += 1 if  field.slug == 'start_year' and value > 0
+        fields_with_data += 1 if  field.slug == 'end_year' and value >= 0
+      end
+      if field.data_type_string?
+        if value.present? and value.length > 0
+          fields_with_data += 1 
+        else
+          # partner_name is evaluated based on has_project_partners
+          # even if value is empty
+          if field.slug == 'partner_name' and self['has_project_partners'] == false
+            fields_with_data += 1
+          end
+        end
       end
       if field.data_type_number?
         fields_with_data += 1 if value.present? and value != 0
       end
-      if  field.data_type_not_empty?
+      if field.data_type_not_empty?
         fields_with_data += 1 if value.present? and value.length > 0
       end
-      if field.data_type_boolean? and value == true
-        fields_with_data += 1
+      if field.data_type_boolean?
+        fields_with_data += 1 unless value.nil?
       end
     end
 
     return (fields_with_data * 100) / number_of_fields
   end
 
-  def set_percentage_for_all_categories
+  # Deletes previous project's ProjectCategories
+  # Creates new project's ProjectCategories with updated percentages
+  # for each category
+  def update_percentage_for_all_categories
     self.get_project_categories_percentage.each do |k,v|
       category = Category.where(slug: k).first
       ProjectCategory.where(project: self, category: category).delete_all
       ProjectCategory.create(project: self, category: category, percentage: v)
     end
+  end
+
+  def delete_previous_version_if_approved
+    return unless self.approved?
+
+    previous_version = self.previous_version
+    return if previous_version == nil
+
+    # updating previous version id without triggering callbacks
+    # cause we do not want to fall in an eternal loop, right?
+    self.update_columns(previous_version_id: nil)
+    # now I need to update all the projects that were linked to the one
+    # that is going to be destroyed
+    # and link them to the one that now is approved
+    # looks like the perfect recipe for a huge mess
+    Project.where(previous_version_id: previous_version.id).update_all(previous_version_id: self.id)
+    # and now we are going to reassing all links and contacts to the current project
+    previous_version.project_links.update_all(project_id: self.id)
+    previous_version.project_contacts.update_all(project_id: self.id)
+
+    # and now we destroy de previous_version
+    # because the changes are approved
+    previous_version.destroy
   end
 end

@@ -8,14 +8,15 @@ Trestle.resource(:project_links) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |project|
-  #   text_field :name
-  #
-  #   row do
-  #     col { datetime_field :updated_at }
-  #     col { datetime_field :created_at }
-  #   end
-  # end
+  form do |project_link|
+    projects = Project.all
+    select :project, projects
+    text_field :title
+    text_field :description
+    text_field :url
+
+    concat admin_link_to('Back to project', admin: :projects, action: :edit, params: { id: project_link.project }, class: 'btn btn-success')
+  end
 
   # By default, all parameters passed to the update and create actions will be
   # permitted. If you do not have full trust in your users, you should explicitly

@@ -3,19 +3,20 @@ class Api::V1::ProjectsController < ApplicationController
     # TODO:
     # exception if category does not exist
     @projects = Api::Sorter.new(params['sort_by'], params['order']).call
+    # TODO: sorter service applies the 'approved' scope
+    # this should be refactored because that is not the sorter's responsibility
+    projects_total = @projects.count
     @projects = Api::Filter.new(@projects, filters_to_apply).call if filters_to_apply.any?
-    
     search = params['search']
     @projects = Api::Searcher.new(@projects, search).call if (search.present? and search.class == String)
     projects_matching_query = @projects
-      
     @pagy, @projects = pagy(@projects, page: current_page, items: per_page)
 
     options = {}
     # TODO
     # options[:links]
     options[:meta] = {
-      projects_total: projects_matching_query.count,
+      projects_total: projects_total,
       projects_matching_query: @pagy.count,
       from: @pagy.from,
       to: @pagy.to,
@@ -25,7 +26,7 @@ class Api::V1::ProjectsController < ApplicationController
     
     render json: ProjectSerializer.new(
       @projects,
-      options 
+      options
     ).serializable_hash.to_json
   end
 
@@ -57,35 +58,36 @@ class Api::V1::ProjectsController < ApplicationController
 
   def update
     # Fetch object before update
-    @project = Project.find(params['id'])
-    if @project.update(parsed_project_params)
-      @project.approved = false
-      @project.save
+    @project = Project.find(params['id']) # this is an approved project
 
+    # It was unexpected, but we need to keep the current version approved and have a duplicate pending
+    @new_project = @project.dup
+    @new_project.assign_attributes(parsed_project_params.merge(approved: false, previous_version_id: @project.id))
+    if @new_project.save
       render json: ProjectSerializer.new(
-        @project
+        @new_project
         # links
         # meta
       ).serializable_hash
     else
-      render json: @project.errors, status: :unprocessable_entity
+      render json: @new_project.errors, status: :unprocessable_entity
     end
   end
 
   def project_params
     params.require(:project).permit(
-      :project_name,                                                                                     
-      :lead_organization,                                                                                
-      :organization_type,                                                                                  
-      :project_org_url,                                                                                  
-      :has_project_partners,                                                                             
-      :partner_name,                                                                                     
-      :start_year,                                                                                       
-      :end_year,                                                                                         
-      :country,                                                                                          
-      :country_code,                                                                                     
-      :size_of_project_ha,                                                                               
-      :trees_planted_number,                                                                             
+      :project_name,
+      :lead_organization,
+      :organization_type,
+      :project_org_url,
+      :has_project_partners,
+      :partner_name,
+      :start_year,
+      :end_year,
+      :country,
+      :country_code,
+      :size_of_project_ha,
+      :trees_planted_number,
       :has_explicit_location,
       :identify_deforestation_driver,
       :fire_prevention,
@@ -107,7 +109,7 @@ class Api::V1::ProjectsController < ApplicationController
       :primary_objective_purpose => [],
       :approach => [],
       :financial_model => [],
-      :type_of_follow_up => [],                                                         
+      :type_of_follow_up => [],
       :who_is_involved => [],
       :project_contacts_attributes => [:email, :name, :company],
       :project_links_attributes => [:url, :title, :description])
@@ -129,8 +131,8 @@ class Api::V1::ProjectsController < ApplicationController
           value.each do |array_item|
             new_value.push(Project.send(key.pluralize).map { |k, v| k if v == array_item}.compact.first)
           end
+          parsed_params[key] = new_value
         end
-        parsed_params[key] = new_value
       end
     end
   end

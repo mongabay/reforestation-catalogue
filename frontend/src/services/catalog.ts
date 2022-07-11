@@ -19,6 +19,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Year,
         mode: FilterModes.GreaterOrEqualThan,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'end_year',
@@ -26,6 +27,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Year,
         mode: FilterModes.LessOrEqualThan,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'has_explicit_location',
@@ -33,6 +35,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'has_public_reports',
@@ -40,6 +43,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: true,
+        impactScore: true,
       },
       {
         id: 'has_justification_for_approach',
@@ -47,6 +51,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'country',
@@ -54,6 +59,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Exact,
         hidden: true,
+        impactScore: true,
       },
       {
         id: 'size_of_project_ha',
@@ -61,6 +67,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Number,
         mode: FilterModes.GreaterOrEqualThan,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'primary_objective_purpose',
@@ -68,6 +75,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Exact,
         hidden: true,
+        impactScore: false,
       },
       {
         id: 'approach',
@@ -75,6 +83,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Exact,
         hidden: true,
+        impactScore: false,
       },
       {
         id: 'type_of_follow_up',
@@ -82,6 +91,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Exact,
         hidden: true,
+        impactScore: false,
       },
     ],
   },
@@ -97,6 +107,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'fire_prevention',
@@ -104,6 +115,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'addresses_known_threats',
@@ -111,6 +123,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'discloses_species_used',
@@ -118,6 +131,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
     ],
   },
@@ -127,11 +141,20 @@ export const CATEGORIES: Category[] = [
     description: 'How is the project funded and how does it support local communities?',
     fields: [
       {
+        id: 'name_org_donor',
+        label: 'Name Org/Donor',
+        type: FilterTypes.String,
+        mode: FilterModes.Exact,
+        hidden: true,
+        impactScore: true,
+      },
+      {
         id: 'identify_deforestation_driver',
         label: 'Identifies deforestation driver',
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'local_seedling_nurseries',
@@ -139,6 +162,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'financial_model',
@@ -146,6 +170,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Includes,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'follow_up_disclosed',
@@ -153,6 +178,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
     ],
   },
@@ -168,6 +194,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Includes,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'scientific_research_associated_with_project',
@@ -175,6 +202,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'has_project_partners',
@@ -182,6 +210,15 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: true,
+        impactScore: true,
+      },
+      {
+        id: 'partner_name',
+        label: 'Partner name',
+        type: FilterTypes.String,
+        mode: FilterModes.Exact,
+        hidden: true,
+        impactScore: true,
       },
       {
         id: 'who_is_involved',
@@ -189,6 +226,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.String,
         mode: FilterModes.Includes,
         hidden: false,
+        impactScore: false,
       },
     ],
   },
@@ -203,6 +241,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'has_gender_component',
@@ -210,6 +249,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: false,
+        impactScore: true,
       },
       {
         id: 'news_articles_associated_with_project',
@@ -217,6 +257,7 @@ export const CATEGORIES: Category[] = [
         type: FilterTypes.Boolean,
         mode: FilterModes.Exact,
         hidden: true,
+        impactScore: true,
       },
     ],
   },

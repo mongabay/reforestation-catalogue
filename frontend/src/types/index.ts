@@ -19,7 +19,7 @@ export interface Project {
   organization_type?: EnumValue;
   who_is_involved?: EnumValue[];
   project_org_url: string;
-  project_links: {
+  project_links_attributes: {
     title?: string;
     description?: string;
     url: string;
@@ -71,7 +71,7 @@ export type ProjectFormData = Omit<
 > & {
   id?: Project['id'];
 } & {
-  project_contacts: {
+  project_contacts_attributes: {
     name: string;
     email?: string;
     company?: string;
@@ -107,6 +107,7 @@ export interface Field {
   mode: FilterModes;
   label: string;
   hidden: boolean;
+  impactScore: boolean;
 }
 
 export interface Category {

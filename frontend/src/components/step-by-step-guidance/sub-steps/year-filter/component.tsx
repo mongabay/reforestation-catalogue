@@ -20,7 +20,7 @@ export const YearFilter: FC<YearFilterProps> = ({ field, filterValue }: YearFilt
         name={field.id}
         type="number"
         pattern="\d{4}"
-        value={filterValue ?? ''}
+        defaultValue={filterValue ?? ''}
         onChange={(year) => {
           const isValid = year.length === 0 || (year > 2000 && year < new Date().getFullYear());
 

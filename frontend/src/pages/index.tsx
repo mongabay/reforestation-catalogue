@@ -102,7 +102,7 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
           <div className="flex flex-col mt-10 md:flex-row gap-7 md:mt-28">
             <div>
               <div className="flex items-center justify-center w-40 h-40 mx-auto rounded-full bg-green">
-                <Image src="/icons/analysis.svg" width={67} height={68} alt="" />
+                <Image src="/icons/standards.svg" width={59} height={72} alt="" />
               </div>
               <h3 className="mt-5 md:mt-12 text-xl text-center md:leading-[56px] font-bold text-green font-serif">
                 High standards
