@@ -251,40 +251,40 @@ class Project < ApplicationRecord
   # based on the project attributes and the category filters
   def get_percentage_for_category(category)
     fields_with_data = 0
-    context_fields = category.filters
-    number_of_fields = context_fields.count
+    category_filters = category.filters
+    number_of_filters = category_filters.count
     
-    return number_of_fields if number_of_fields <= 0
+    return number_of_filters if number_of_filters <= 0
 
-    context_fields.each do |field|
-      value = self[field.slug]
-      if field.data_type_year? and value.present?
-        fields_with_data += 1 if  field.slug == 'start_year' and value > 0
-        fields_with_data += 1 if  field.slug == 'end_year' and value >= 0
+    category_filters.each do |filter|
+      value = self[filter.slug]
+      if filter.data_type_year? and value.present?
+        fields_with_data += 1 if  filter.slug == 'start_year' and value > 0
+        fields_with_data += 1 if  filter.slug == 'end_year' and value >= 0
       end
-      if field.data_type_string?
+      if filter.data_type_string?
+        fields_with_data += 1  if value.present? and value.length > 0
+      end
+      if filter.data_type_number?
+        fields_with_data += 1 if value.present? and value != 0
+      end
+      if filter.data_type_not_empty?
         if value.present? and value.length > 0
-          fields_with_data += 1 
+          fields_with_data += 1
         else
           # partner_name is evaluated based on has_project_partners
           # even if value is empty
-          if field.slug == 'partner_name' and self['has_project_partners'] == false
+          if filter.slug == 'partner_name' and self['has_project_partners'] == false
             fields_with_data += 1
           end
         end
       end
-      if field.data_type_number?
-        fields_with_data += 1 if value.present? and value != 0
-      end
-      if field.data_type_not_empty?
-        fields_with_data += 1 if value.present? and value.length > 0
-      end
-      if field.data_type_boolean?
+      if filter.data_type_boolean?
         fields_with_data += 1 unless value.nil?
       end
     end
 
-    return (fields_with_data * 100) / number_of_fields
+    return (fields_with_data * 100) / number_of_filters
   end
 
   # Deletes previous project's ProjectCategories
