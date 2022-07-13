@@ -80,8 +80,7 @@ const ReportedCategoryField: FC<ReportedCategoryFieldProps> = ({ category, repor
         }
 
         case FilterTypes.Number: {
-          const hasValue = project[field.id] === true || project[field.id] === false;
-          const t = project[field.id];
+          const hasValue = project[field.id] !== null && project[field.id] !== undefined;
           return !(reported !== hasValue); // XNOR gate
         }
 
