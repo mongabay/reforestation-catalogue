@@ -60,6 +60,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Exact,
         hidden: true,
         impactScore: true,
+        enum: false,
       },
       {
         id: 'size_of_project_ha',
@@ -76,6 +77,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Exact,
         hidden: true,
         impactScore: false,
+        enum: true,
       },
       {
         id: 'approach',
@@ -84,6 +86,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Exact,
         hidden: true,
         impactScore: false,
+        enum: true,
       },
       {
         id: 'type_of_follow_up',
@@ -92,6 +95,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Exact,
         hidden: true,
         impactScore: false,
+        enum: true,
       },
     ],
   },
@@ -108,6 +112,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Exact,
         hidden: false,
         impactScore: true,
+        enum: true,
       },
       {
         id: 'fire_prevention',
@@ -147,6 +152,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Exact,
         hidden: true,
         impactScore: true,
+        enum: false,
       },
       {
         id: 'identify_deforestation_driver',
@@ -171,6 +177,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Includes,
         hidden: false,
         impactScore: true,
+        enum: true,
       },
       {
         id: 'follow_up_disclosed',
@@ -195,6 +202,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Includes,
         hidden: false,
         impactScore: true,
+        enum: true,
       },
       {
         id: 'scientific_research_associated_with_project',
@@ -219,6 +227,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Exact,
         hidden: true,
         impactScore: true,
+        enum: false,
       },
       {
         id: 'who_is_involved',
@@ -227,6 +236,7 @@ export const CATEGORIES: Category[] = [
         mode: FilterModes.Includes,
         hidden: false,
         impactScore: false,
+        enum: true,
       },
     ],
   },

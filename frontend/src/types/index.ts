@@ -108,6 +108,7 @@ export interface Field {
   label: string;
   hidden: boolean;
   impactScore: boolean;
+  enum?: boolean;
 }
 
 export interface Category {

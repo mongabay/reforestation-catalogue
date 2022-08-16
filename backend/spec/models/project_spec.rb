@@ -305,7 +305,7 @@ RSpec.describe Project, type: :model do
     #Array of Enums
     it '+1 point when financial_model is not empty' do
       FactoryBot.create(:filter, category:@economic_cat, slug: 'financial_model', label: 'Financial model', data_type: 'string')
-      @new_project.financial_model = ['Business partners']
+      @new_project.financial_model = ['Private sector financing']
       expect(@new_project.get_percentage_for_category(@economic_cat)).to eq(100)
     end
     it '+0 points when financial_model is empty' do
@@ -329,7 +329,7 @@ RSpec.describe Project, type: :model do
       @new_project.identify_deforestation_driver = true
       @new_project.local_seedling_nurseries = true
       @new_project.follow_up_disclosed = true
-      @new_project.financial_model = ['Business partners']
+      @new_project.financial_model = ['Private sector financing']
       
       expect(@new_project.get_percentage_for_category(@economic_cat)).to eq(100)
     end
@@ -338,7 +338,7 @@ RSpec.describe Project, type: :model do
     # String
     it '+1 point when organization_type is not empty' do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
-      @new_project.organization_type = 'Company'
+      @new_project.organization_type = 'Private Sector'
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
     end
     it '+0 points when organization_type is nil' do
@@ -389,7 +389,7 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'not_empty')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
-      @new_project.organization_type = 'Company'
+      @new_project.organization_type = 'Private Sector'
       @new_project.partner_name = 'Partner test 1'
       @new_project.has_project_partners = true
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
@@ -398,7 +398,7 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'not_empty')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
-      @new_project.organization_type = 'Company'
+      @new_project.organization_type = 'Private Sector'
       @new_project.partner_name = nil
       @new_project.has_project_partners = false
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
@@ -407,7 +407,7 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'not_empty')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
-      @new_project.organization_type = 'Company'
+      @new_project.organization_type = 'Private Sector'
       @new_project.partner_name = 'Partner test 1'
       @new_project.has_project_partners = false
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(100)
@@ -416,7 +416,7 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'not_empty')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'organization_type', label: 'Organization type', data_type: 'string')
-      @new_project.organization_type = 'Company'
+      @new_project.organization_type = 'Private Sector'
       @new_project.partner_name = nil
       @new_project.has_project_partners = true
       expect(@new_project.get_percentage_for_category(@institutional_cat)).to eq(66)
@@ -427,7 +427,7 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'scientific_research_associated_with_project', label: 'Scientific research associated with project', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'not_empty')
-      @new_project.organization_type = 'Company'
+      @new_project.organization_type = 'Private Sector'
       @new_project.has_project_partners = true
       @new_project.scientific_research_associated_with_project = true
       @new_project.partner_name = 'Partner test 1'
@@ -438,7 +438,7 @@ RSpec.describe Project, type: :model do
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'has_project_partners', label: 'Has project partners', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'scientific_research_associated_with_project', label: 'Scientific research associated with project', data_type: 'boolean')
       FactoryBot.create(:filter, category:@institutional_cat, slug: 'partner_name', label: 'Partner name', data_type: 'not_empty')
-      @new_project.organization_type = 'NGO / Nonprofit Organization'
+      @new_project.organization_type = 'Nongovernmental organization (NGO)'
       @new_project.has_project_partners = false
       @new_project.scientific_research_associated_with_project = false
       @new_project.partner_name = nil
@@ -548,14 +548,14 @@ RSpec.describe Project, type: :model do
       @new_project.has_community_involvement = true
       @new_project.has_gender_component = true
       @new_project.news_articles_associated_with_project = true
-      @new_project.organization_type = 'Company'
+      @new_project.organization_type = 'Private Sector'
       @new_project.has_project_partners = true
       @new_project.partner_name = 'Partner test 1'
       @new_project.name_org_donor = 'Microsoft'
       @new_project.identify_deforestation_driver = true
       @new_project.local_seedling_nurseries = true
       @new_project.follow_up_disclosed = true
-      @new_project.financial_model = ['Business partners']
+      @new_project.financial_model = ['Private sector financing']
       @new_project.forest_type = ['Boreal mountain system']
       @new_project.fire_prevention = true
       @new_project.addresses_known_threats = true

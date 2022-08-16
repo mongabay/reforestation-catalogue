@@ -507,13 +507,13 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'ecological')
         filter = FactoryBot.create(:filter, category: category, slug: 'financial_model')
         project_first = Project.first
-        project_first.financial_model = ['Business partners']
+        project_first.financial_model = ['Private sector financing']
         project_first.save!
         project_second = Project.all[1]
-        project_second.financial_model = ['Charity organization']
+        project_second.financial_model = ['Individual donations']
         project_second.save!
         project_last = Project.last
-        project_last.financial_model = ['Business partners']
+        project_last.financial_model = ['Private sector financing']
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -521,7 +521,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?financial_model=0"
+        get "/api/v1/projects?financial_model=16"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])
@@ -530,13 +530,13 @@ RSpec.describe "Api::V1::Projects", type: :request do
         category = FactoryBot.create(:category, slug: 'economic')
         filter = FactoryBot.create(:filter, category: category, slug: 'organization_type')
         project_first = Project.first
-        project_first.organization_type = 2
+        project_first.organization_type = 22
         project_first.save!
         project_second = Project.all[1]
-        project_second.organization_type = 0
+        project_second.organization_type = 20
         project_second.save!
         project_last = Project.last
-        project_last.organization_type = 2
+        project_last.organization_type = 22
         project_last.save!
 
         project_category_first = FactoryBot.create(:project_category, project: project_first, category: category, percentage: 0)
@@ -544,7 +544,7 @@ RSpec.describe "Api::V1::Projects", type: :request do
         project_category_last = FactoryBot.create(:project_category, project: project_last, category: category, percentage: 1)
         
         header 'Content-Type', 'application/json'
-        get "/api/v1/projects?organization_type=2"
+        get "/api/v1/projects?organization_type=22"
 
         expect(parsed_body['data'].count).to eq(2)
         expect(parsed_body['data'].map{ |project| project['id'].to_i }).to match_array([project_first.id, project_last.id])

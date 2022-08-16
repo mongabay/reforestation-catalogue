@@ -19,8 +19,8 @@ export const useFormatFieldValue = (field: Field, value: string | number | boole
 
   if (field.type === FilterTypes.String) {
     // This case is needed for fields such as `country` which is not an enum
-    if (typeof value === 'string') {
-      return toTitleCase(value);
+    if (!field?.enum) {
+      return toTitleCase(value as string);
     }
 
     if (isError) {

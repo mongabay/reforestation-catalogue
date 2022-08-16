@@ -90,7 +90,7 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
                 >
                   <span className="sr-only">Go to </span>
                   {STEPS[stepIndex + 1].name}
-                  <span className="ml-5 text-2xl font-semibold">{stepIndex + 1}</span>
+                  <span className="ml-5 text-2xl font-semibold">{stepIndex + 2}</span>
                   <Icon icon={LeftArrowIcon} aria-hidden className="w-3 ml-2 rotate-180" />
                 </Button>
               )}
