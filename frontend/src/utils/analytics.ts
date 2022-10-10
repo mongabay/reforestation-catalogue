@@ -4,7 +4,7 @@ export const logEvent = (name: string, parameters: Record<string, any> = {}) => 
   }
 
   if (process.env.NODE_ENV === 'production') {
-    window['gtag'](name, parameters);
+    window['gtag']('event', name, parameters);
   } else {
     console.info(`[GA] Event: ${name}, ${JSON.stringify(parameters, null, 2)}`);
   }
