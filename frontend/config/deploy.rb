@@ -15,6 +15,7 @@ set :keep_releases, 3
 set :init_system, :systemd
 
 set :passenger_restart_with_sudo, true
+set :passenger_roles, :web
 
 append :linked_files, '.env.local'
 append :linked_dirs, 'node_modules'
