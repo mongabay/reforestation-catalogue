@@ -4,12 +4,14 @@ import { useAppDispatch } from 'hooks/redux';
 
 import Radio from 'components/forms/radio';
 import { filtersActions } from 'modules';
+import { logEvent } from 'utils/analytics';
 
 import { BooleanFilterProps } from './types';
 
 export const BooleanFilter: FC<BooleanFilterProps> = ({
   field,
   filterValue,
+  event,
 }: BooleanFilterProps) => {
   const dispatch = useAppDispatch();
 
@@ -25,6 +27,9 @@ export const BooleanFilter: FC<BooleanFilterProps> = ({
           onChange={() => {
             const filter = { field: field.id, value: true };
             dispatch(filtersActions.addFilter(filter));
+            if (event) {
+              logEvent(...event);
+            }
           }}
         >
           Yes

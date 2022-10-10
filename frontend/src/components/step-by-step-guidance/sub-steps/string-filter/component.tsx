@@ -6,10 +6,15 @@ import { useAppDispatch } from 'hooks/redux';
 import Select from 'components/forms/select';
 import LoadingSpinner from 'components/loading-spinner';
 import { filtersActions } from 'modules';
+import { logEvent } from 'utils/analytics';
 
 import { StringFilterProps } from './types';
 
-export const StringFilter: FC<StringFilterProps> = ({ field, filterValue }: StringFilterProps) => {
+export const StringFilter: FC<StringFilterProps> = ({
+  field,
+  filterValue,
+  event,
+}: StringFilterProps) => {
   const dispatch = useAppDispatch();
 
   const { isLoading, isError, data } = useEnumOptions(field.id);
@@ -32,6 +37,9 @@ export const StringFilter: FC<StringFilterProps> = ({ field, filterValue }: Stri
         onChange={({ value }) => {
           const filter = { field: field.id, value: value };
           dispatch(filtersActions.addFilter(filter));
+          if (event) {
+            logEvent(...event);
+          }
         }}
         className="mt-2 invalid:border-red"
         disabled={isLoading || isError}

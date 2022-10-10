@@ -4,10 +4,11 @@ import { useAppDispatch } from 'hooks/redux';
 
 import Input from 'components/forms/input';
 import { filtersActions } from 'modules';
+import { logEvent } from 'utils/analytics';
 
 import { YearFilterProps } from './types';
 
-export const YearFilter: FC<YearFilterProps> = ({ field, filterValue }: YearFilterProps) => {
+export const YearFilter: FC<YearFilterProps> = ({ field, filterValue, event }: YearFilterProps) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -30,6 +31,9 @@ export const YearFilter: FC<YearFilterProps> = ({ field, filterValue }: YearFilt
 
             if (filter.value !== null) {
               dispatch(filtersActions.addFilter(filter));
+              if (event) {
+                logEvent(...event);
+              }
             }
           }
         }}
