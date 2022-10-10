@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 
 import cx from 'classnames';
 
@@ -8,6 +8,7 @@ import { useAppSelector } from 'hooks/redux';
 import Button from 'components/button';
 import MatchingResultsSentence from 'components/matching-results-sentence';
 import { filtersSelectors, searchSelectors, sortSelectors } from 'modules';
+import { logEvent } from 'utils/analytics';
 
 import { ResultsCountProps } from './types';
 
@@ -29,6 +30,11 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
   const matching = data?.pages?.[0]?.meta.projects_matching_query ?? 0;
   const total = data?.pages?.[0]?.meta.projects_total ?? 0;
   const percentage = total !== 0 ? Math.ceil((matching / total) * 100) : 0;
+
+  const onClickCatalog = useCallback(() => {
+    logEvent('Exit guidance');
+    onNavigateToCatalog();
+  }, [onNavigateToCatalog]);
 
   return (
     <div
@@ -55,7 +61,7 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
       )}
       <Button
         theme="secondary-orange"
-        onClick={onNavigateToCatalog}
+        onClick={onClickCatalog}
         className="items-center justify-center flex-shrink-0 min-w-[185px]"
       >
         {(filters.length === 0 && search.length === 0) || matching === 0

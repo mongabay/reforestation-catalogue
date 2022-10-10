@@ -1,13 +1,24 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+
+import { usePrevious } from 'rooks';
 
 import { COLOR_THEMES, COMMON_CLASSES } from 'components/button/constants';
 import Checkbox from 'components/forms/checkbox';
 import Input from 'components/forms/input';
 import Modal from 'components/modal';
+import { logEvent } from 'utils/analytics';
 
 import { NewsletterSignupProps } from './types';
 
 export const NewsletterSignup: FC<NewsletterSignupProps> = ({ open, onDismiss }) => {
+  const previousOpen = usePrevious(open);
+
+  useEffect(() => {
+    if (!previousOpen && open) {
+      logEvent('Open subscribe modal');
+    }
+  }, [open, previousOpen]);
+
   return (
     <Modal title="Subscribe" open={open} onDismiss={onDismiss}>
       <div className="md:px-20">
@@ -18,6 +29,7 @@ export const NewsletterSignup: FC<NewsletterSignupProps> = ({ open, onDismiss })
           id="mc-embedded-subscribe-form"
           name="mc-embedded-subscribe-form"
           target="_blank"
+          onSubmit={() => logEvent('Submit subscribe form')}
         >
           <div className="mt-6 sm:mt-12">
             <label htmlFor="mce-EMAIL" className="font-semibold">

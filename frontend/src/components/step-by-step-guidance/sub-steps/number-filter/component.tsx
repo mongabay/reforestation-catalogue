@@ -4,10 +4,15 @@ import { useAppDispatch } from 'hooks/redux';
 
 import Input from 'components/forms/input';
 import { filtersActions } from 'modules';
+import { logEvent } from 'utils/analytics';
 
 import { NumberFilterProps } from './types';
 
-export const NumberFilter: FC<NumberFilterProps> = ({ field, filterValue }: NumberFilterProps) => {
+export const NumberFilter: FC<NumberFilterProps> = ({
+  field,
+  filterValue,
+  event,
+}: NumberFilterProps) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -27,6 +32,9 @@ export const NumberFilter: FC<NumberFilterProps> = ({ field, filterValue }: Numb
 
           if (filter.value !== null) {
             dispatch(filtersActions.addFilter(filter));
+            if (event) {
+              logEvent(...event);
+            }
           }
         }}
         step={1}

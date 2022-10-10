@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect } from 'react';
+import { FC, useState, useRef, useEffect, useCallback } from 'react';
 
 import Image from 'next/image';
 
@@ -24,6 +24,7 @@ import { StaticPageLayoutProps } from 'layouts/static-page';
 import wrapper from 'lib/store';
 import { filtersActions, globalActions } from 'modules';
 import { PageComponent } from 'types';
+import { logEvent } from 'utils/analytics';
 
 import LayersIcon from 'svgs/layers.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';
@@ -55,6 +56,11 @@ const WelcomeScreen: FC<{
   onNavigateToCatalog: () => void;
   onNavigateToGuidance: () => void;
 }> = ({ onNavigateToCatalog, onNavigateToGuidance }) => {
+  const onClickGuidance = useCallback(() => {
+    logEvent('Start guidance');
+    onNavigateToGuidance();
+  }, [onNavigateToGuidance]);
+
   return (
     <div className="flex-grow lg:relative">
       <LayoutContainer className="flex justify-center lg:justify-end lg:w-[calc(1024px_-_40%)] xl:w-[calc(1280px_-_40%)] 2xl:w-[calc(1536px_-_40%)] lg:ml-[40%] py-12 md:py-20">
@@ -86,7 +92,7 @@ const WelcomeScreen: FC<{
             Start with an initial step-by-step guidance or go directly to the projects database.
           </p>
           <div className="flex flex-col justify-center gap-4 mt-8 md:flex-row lg:justify-start">
-            <Button onClick={onNavigateToGuidance} className="min-w-[227px] justify-center">
+            <Button onClick={onClickGuidance} className="min-w-[227px] justify-center">
               Start step-by-step guidance
             </Button>
             <Button
@@ -116,6 +122,11 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
   const [showNewsletterSignup, setShowNewsletterSignup] = useState(false);
 
+  const onClickGuidance = useCallback(() => {
+    logEvent('Start guidance');
+    onNavigateToGuidance();
+  }, [onNavigateToGuidance]);
+
   return (
     <>
       <GlossaryModal open={showGlossaryModal} onDismiss={() => setShowGlossaryModal(false)} />
@@ -125,7 +136,7 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
       />
       <aside className="bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 pl-5 md:pl-10">
         <div className="p-1 pr-6 md:pr-11 md:h-full md:overflow-y-auto">
-          <Button className="w-full md:w-auto" onClick={onNavigateToGuidance}>
+          <Button className="w-full md:w-auto" onClick={onClickGuidance}>
             <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
             Step-by-step Guidance
           </Button>

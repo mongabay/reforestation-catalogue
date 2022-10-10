@@ -50,16 +50,32 @@ export const SubSteps: FC<SubStepsProps> = ({ category, steps }) => {
         {fields.map((field) => (
           <div key={field.id}>
             {field.type === FilterTypes.String && (
-              <StringFilter field={field} filterValue={field.filterValue as string} />
+              <StringFilter
+                field={field}
+                filterValue={field.filterValue as string}
+                event={['Apply filter in guidance']}
+              />
             )}
             {field.type === FilterTypes.Boolean && (
-              <BooleanFilter field={field} filterValue={field.filterValue as boolean} />
+              <BooleanFilter
+                field={field}
+                filterValue={field.filterValue as boolean}
+                event={['Apply filter in guidance']}
+              />
             )}
             {field.type === FilterTypes.Year && (
-              <YearFilter field={field} filterValue={field.filterValue as number} />
+              <YearFilter
+                field={field}
+                filterValue={field.filterValue as number}
+                event={['Apply filter in guidance']}
+              />
             )}
             {field.type === FilterTypes.Number && (
-              <NumberFilter field={field} filterValue={field.filterValue as number} />
+              <NumberFilter
+                field={field}
+                filterValue={field.filterValue as number}
+                event={['Apply filter in guidance']}
+              />
             )}
           </div>
         ))}
