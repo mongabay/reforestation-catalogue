@@ -105,8 +105,9 @@ Trestle.resource(:projects) do
       resource_type_of_follow_ups = Project.type_of_follow_ups.keys.map { |type_of_follow_up| [type_of_follow_up.humanize, type_of_follow_up] }
       select :type_of_follow_up, resource_type_of_follow_ups, { label: "Type of follow up" }, multiple: true
 
+      resource_who_is_involved = Project.who_is_involveds.keys.map { |who_is_involved| [who_is_involved.humanize, who_is_involved] }
+      select :who_is_involved, resource_who_is_involved, { label: 'Who is involved'}, multiple: true
 
-      
       check_box :highlighted
       check_box :approved
     end
