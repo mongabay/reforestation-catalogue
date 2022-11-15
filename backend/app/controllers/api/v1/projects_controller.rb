@@ -33,7 +33,7 @@ class Api::V1::ProjectsController < ApplicationController
   def show
     # TODO
     # Fetch object before show
-    @project = Project.find(params['id'])
+    @project = Project.approved.find(params['id'])
     
     render json: ProjectSerializer.new(
       @project
