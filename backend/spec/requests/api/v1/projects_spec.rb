@@ -6,7 +6,31 @@ RSpec.describe "Api::V1::Projects", type: :request do
 
   let!(:projects) { FactoryBot.create_list(:project, 42) }
 
-  describe "GET /index" do
+  describe "GET /api/v1/projects/:id" do
+    context 'when approved project' do
+      let(:approved_project) { FactoryBot.create(:project, approved: true) }
+
+      it 'returns 200 and status ok' do
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects/#{approved_project.id}"
+
+        expect(last_response.status).to eq(200)
+      end
+    end
+
+    context 'when unapproved project' do
+      let(:unapproved_project) { FactoryBot.create(:project, approved: false) }
+
+      it 'returns 404' do
+        header 'Content-Type', 'application/json'
+        get "/api/v1/projects/#{unapproved_project.id}"
+
+        expect(last_response.status).to eq(404)
+      end
+    end
+  end
+
+  describe "GET /api/v1/projects" do
     context 'without params' do
       it 'returns 200 and status ok' do
         header 'Content-Type', 'application/json'
