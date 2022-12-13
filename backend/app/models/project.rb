@@ -217,4 +217,8 @@ class Project < ApplicationRecord
     # because the changes are approved
     previous_version.destroy
   end
+
+  def updated_from_previous_version?
+    previous_version.present?
+  end
 end

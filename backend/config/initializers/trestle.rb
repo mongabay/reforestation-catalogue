@@ -252,4 +252,32 @@ Trestle.configure do |config|
   # config.auth.remember.cookie = ->(user) {
   #   { value: user.remember_token, expires: user.remember_token_expires_at }
   # }
+
+  # Register a form field type to be made available to the Trestle form builder.
+  module WithDiff
+    def diff_tag
+      current_version = builder.object
+      previous_version = current_version.previous_version
+      return nil unless previous_version
+
+      current_value = current_version.send(name)
+      previous_value = previous_version.send(name)
+      diff =
+        if current_value.is_a? Array
+          current_value.sort != previous_value.sort
+        else
+          current_value != previous_value
+        end
+      return nil unless diff
+
+      previous_value = previous_value.map(&:humanize).join(", ") if previous_value.is_a? Array
+      update_info(previous_value)
+    end
+  end
+
+  config.helper "TrestleHelper"
+
+  config.form_field :text_field_with_diff, "TextFieldWithDiff"
+  config.form_field :select_with_diff, "SelectWithDiff"
+  config.form_field :check_box_with_diff, "CheckBoxWithDiff"
 end
