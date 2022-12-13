@@ -39,7 +39,13 @@ Trestle.resource(:projects) do
   # Customize the table columns shown on the index view.
   #
   table do
-    column :project_name
+    column :project_name do |project|
+      if project.updated_from_previous_version?
+        update_badge + project.project_name
+      else
+        project.project_name
+      end
+    end
     column :lead_organization
     column :organization_type
     column :start_year
@@ -54,62 +60,61 @@ Trestle.resource(:projects) do
   #
   form do |project|
     tab :general do
-      text_field :project_name
-      text_field :lead_organization
+      text_field_with_diff :project_name
+      text_field_with_diff :lead_organization
       resource_organization_types = Project.organization_types.keys.map { |organization_type| [organization_type.humanize, organization_type] }
-      select :organization_type, resource_organization_types, { label: "Organization types" }
+      select_with_diff :organization_type, resource_organization_types, { label: "Organization types" }
 
-      text_field :project_org_url
-      text_field :partner_name
-      text_field :start_year
-      text_field :end_year, { label: "End year (Ongoing projects have a value of 0)" }
-      text_field :country
-      text_field :country_code
-      text_field :size_of_project_ha
-      text_field :trees_planted_number
-      text_field :name_org_donor
-      text_field :comment
-
+      text_field_with_diff :project_org_url
+      text_field_with_diff :partner_name
+      text_field_with_diff :start_year
+      text_field_with_diff :end_year, { label: "End year (Ongoing projects have a value of 0)" }
+      text_field_with_diff :country
+      text_field_with_diff :country_code
+      text_field_with_diff :size_of_project_ha
+      text_field_with_diff :trees_planted_number
+      text_field_with_diff :name_org_donor
+      text_field_with_diff :comment
 
       three_state_input = [['Yes', true], ['No', false], ['n/a', nil]]
 
-      select :has_project_partners, three_state_input
-      select :has_explicit_location, three_state_input
-      select :identify_deforestation_driver, three_state_input
-      select :fire_prevention, three_state_input
-      select :has_justification_for_approach, three_state_input
-      select :addresses_known_threats, three_state_input
-      select :discloses_species_used, three_state_input
-      select :use_native_species, three_state_input
-      select :use_exotic_species, three_state_input
-      select :local_seedling_nurseries, three_state_input
-      select :has_public_reports, three_state_input
-      select :follow_up_disclosed, three_state_input
-      select :has_community_involvement, three_state_input
-      select :has_gender_component, three_state_input
-      select :scientific_research_associated_with_project, three_state_input
-      select :news_articles_associated_with_project, three_state_input
+      select_with_diff :has_project_partners, three_state_input
+      select_with_diff :has_explicit_location, three_state_input
+      select_with_diff :identify_deforestation_driver, three_state_input
+      select_with_diff :fire_prevention, three_state_input
+      select_with_diff :has_justification_for_approach, three_state_input
+      select_with_diff :addresses_known_threats, three_state_input
+      select_with_diff :discloses_species_used, three_state_input
+      select_with_diff :use_native_species, three_state_input
+      select_with_diff :use_exotic_species, three_state_input
+      select_with_diff :local_seedling_nurseries, three_state_input
+      select_with_diff :has_public_reports, three_state_input
+      select_with_diff :follow_up_disclosed, three_state_input
+      select_with_diff :has_community_involvement, three_state_input
+      select_with_diff :has_gender_component, three_state_input
+      select_with_diff :scientific_research_associated_with_project, three_state_input
+      select_with_diff :news_articles_associated_with_project, three_state_input
 
       resource_forest_types = Project.forest_types.keys.map { |forest_type| [forest_type.humanize, forest_type] }
-      select :forest_type, resource_forest_types, { label: "Forest types" }, multiple: true
+      select_with_diff :forest_type, resource_forest_types, { label: "Forest types" }, multiple: true
 
       resource_approaches = Project.approaches.keys.map { |approach| [approach.humanize, approach] }
-      select :approach, resource_approaches, { label: "Approaches" }, multiple: true
+      select_with_diff :approach, resource_approaches, { label: "Approaches" }, multiple: true
 
       resource_primary_objective_purposes = Project.primary_objective_purposes.keys.map { |primary_objective_purpose| [primary_objective_purpose.humanize, primary_objective_purpose] }
-      select :primary_objective_purpose, resource_primary_objective_purposes, { label: "Primary objective purposes" }, multiple: true
+      select_with_diff :primary_objective_purpose, resource_primary_objective_purposes, { label: "Primary objective purposes" }, multiple: true
 
       resource_financial_models = Project.financial_models.keys.map { |financial_model| [financial_model.humanize, financial_model] }
-      select :financial_model, resource_financial_models, { label: "Financial models" }, multiple: true
+      select_with_diff :financial_model, resource_financial_models, { label: "Financial models" }, multiple: true
 
       resource_type_of_follow_ups = Project.type_of_follow_ups.keys.map { |type_of_follow_up| [type_of_follow_up.humanize, type_of_follow_up] }
-      select :type_of_follow_up, resource_type_of_follow_ups, { label: "Type of follow up" }, multiple: true
+      select_with_diff :type_of_follow_up, resource_type_of_follow_ups, { label: "Type of follow up" }, multiple: true
 
       resource_who_is_involved = Project.who_is_involveds.keys.map { |who_is_involved| [who_is_involved.humanize, who_is_involved] }
-      select :who_is_involved, resource_who_is_involved, { label: 'Who is involved'}, multiple: true
+      select_with_diff :who_is_involved, resource_who_is_involved, { label: 'Who is involved'}, multiple: true
 
-      check_box :highlighted
-      check_box :approved
+      check_box_with_diff :highlighted
+      check_box_with_diff :approved
     end
 
     tab :project_links do
