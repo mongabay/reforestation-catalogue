@@ -1,8 +1,8 @@
 class Project < ApplicationRecord
   extend ArrayEnum
 
-  has_many :project_contacts
-  has_many :project_links
+  has_many :project_contacts, dependent: :destroy
+  has_many :project_links, dependent: :destroy
   has_many :project_categories, dependent: :destroy
   has_many :categories, :through => :project_categories
   belongs_to :previous_version, optional: true, class_name: 'Project'
