@@ -1,8 +1,8 @@
 class Project < ApplicationRecord
   extend ArrayEnum
 
-  has_many :project_contacts
-  has_many :project_links
+  has_many :project_contacts, dependent: :destroy
+  has_many :project_links, dependent: :destroy
   has_many :project_categories, dependent: :destroy
   has_many :categories, :through => :project_categories
   belongs_to :previous_version, optional: true, class_name: 'Project'
@@ -216,5 +216,9 @@ class Project < ApplicationRecord
     # and now we destroy de previous_version
     # because the changes are approved
     previous_version.destroy
+  end
+
+  def updated_from_previous_version?
+    previous_version.present?
   end
 end
