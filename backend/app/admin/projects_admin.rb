@@ -42,7 +42,7 @@ Trestle.resource(:projects) do
     column :project_name do |project|
       if project.updated_from_previous_version?
         changed_badge + project.project_name
-      elsif project_link.previous_version.nil? && !project.approved?
+      elsif project.previous_version.nil? && !project.approved?
         added_badge + project.project_name
       else
         project.project_name
