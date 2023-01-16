@@ -271,7 +271,7 @@ Trestle.configure do |config|
       return nil unless diff
 
       previous_value = previous_value.map(&:humanize).join(", ") if previous_value.is_a? Array
-      update_info(previous_value)
+      changed_info(previous_value)
     end
   end
 

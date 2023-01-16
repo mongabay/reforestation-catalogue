@@ -7,7 +7,9 @@ RSpec.describe Project, type: :model do
       @project_link = FactoryBot.create(:project_link, project: @approved_project)
       @project_contact = FactoryBot.create(:project_contact, project: @approved_project)
       @pending_project1 = FactoryBot.create(:project, approved: false, previous_version_id: @approved_project.id)
-      @pending_project_link = FactoryBot.create(:project_link, project: @pending_project1)
+      @pending_project_link = @project_link.dup
+      @pending_project_link.assign_attributes(project: @pending_project1, previous_version_id: @project_link.id)
+      @pending_project_link.save
       @pending_project_contact = FactoryBot.create(:project_contact, project: @pending_project1)
       @pending_project2 = FactoryBot.create(:project, approved: false, previous_version_id: @approved_project.id)
     end
@@ -22,22 +24,28 @@ RSpec.describe Project, type: :model do
       expect(@pending_project2.reload.previous_version_id).to eq(@pending_project1.id)
     end
 
+    it 'clears previous_version_id from new links' do
+      copy_of_old_link = ProjectLink.
+        where(project_id: @pending_project1.id, previous_version_id: @project_link.id).
+        first
+      @pending_project1.update(approved: true)
+      expect(copy_of_old_link.reload.previous_version_id).to be_nil
+    end
+
     it 'destroys old version' do
       @pending_project1.update(approved: true)
       expect { @approved_project.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it 'keeps previous links in the new version' do
+    it 'destroys old links' do
       approved_project_links = @approved_project.project_links
       @pending_project1.update(approved: true)
-
-      expect(@pending_project1.project_links.pluck(:id)).to match_array([@project_link.id, @pending_project_link.id])
+      expect(ProjectLink.where(id: approved_project_links.map(&:id))).to be_empty
     end
 
     it 'keeps previous contacts in the new version' do
       approved_project_contacts = @approved_project.project_contacts
       @pending_project1.update(approved: true)
-
       expect(@pending_project1.project_contacts.pluck(:id)).to match_array([@project_contact.id, @pending_project_contact.id])
     end
   end
