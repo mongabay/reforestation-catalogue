@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_22_115109) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_085623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_115109) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "previous_version_id"
+    t.index ["previous_version_id"], name: "index_project_links_on_previous_version_id"
     t.index ["project_id"], name: "index_project_links_on_project_id"
   end
 
@@ -142,5 +144,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_115109) do
   end
 
   add_foreign_key "filters", "categories"
+  add_foreign_key "project_links", "project_links", column: "previous_version_id"
   add_foreign_key "projects", "projects", column: "previous_version_id"
 end

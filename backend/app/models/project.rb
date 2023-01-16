@@ -11,6 +11,7 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :project_links
 
   after_save :update_percentage_for_all_categories
+  after_create :fixup_project_links_previous_version
   after_update :delete_previous_version_if_approved
 
   scope :approved, -> { where(approved: true) }
@@ -204,21 +205,48 @@ class Project < ApplicationRecord
     # updating previous version id without triggering callbacks
     # cause we do not want to fall in an eternal loop, right?
     self.update_columns(previous_version_id: nil)
-    # now I need to update all the projects that were linked to the one
-    # that is going to be destroyed
+    project_links.update_all(previous_version_id: nil)
+    # update all the projects that were linked to the one that is going to be destroyed
     # and link them to the one that now is approved
-    # looks like the perfect recipe for a huge mess
     Project.where(previous_version_id: previous_version.id).update_all(previous_version_id: self.id)
-    # and now we are going to reassing all links and contacts to the current project
-    previous_version.project_links.update_all(project_id: self.id)
+    # reassign all contacts to the current project
     previous_version.project_contacts.update_all(project_id: self.id)
-
-    # and now we destroy de previous_version
-    # because the changes are approved
+    # destroy the previous_version
     previous_version.destroy
   end
 
   def updated_from_previous_version?
     previous_version.present?
+  end
+
+  def fixup_project_links_previous_version
+    return unless previous_version
+
+    previous_version_project_links = Hash[
+      previous_version.project_links.map { |pl| [pl.id, pl] }
+    ]
+
+    project_links.each do |project_link|
+      project_link_url = project_link.url&.downcase&.strip
+      previous_version_project_link = previous_version_project_links.values.find do |pv_project_link|
+        pv_project_link.url&.downcase&.strip == project_link_url
+      end
+      next unless previous_version_project_link
+
+      project_link.update_attribute(:previous_version_id, previous_version_project_link.id)
+      previous_version_project_links.delete(previous_version_project_link.id)
+    end
+  end
+
+  def removed_project_links
+    return [] unless previous_version
+
+    previous_version_project_links = Hash[
+      previous_version.project_links.map { |pl| [pl.id, pl] }
+    ]
+    project_links.each do |project_link|
+      previous_version_project_links.delete(project_link.previous_version_id)
+    end
+    previous_version_project_links.values
   end
 end
