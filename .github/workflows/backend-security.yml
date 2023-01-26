@@ -1,0 +1,34 @@
+name: Backend Security
+
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend*'
+  # schedule:
+  #   - cron: "0 14 * * *"
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  backend_security:
+    name: Security
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          working-directory: backend
+          bundler-cache: true
+          cache-version: 2
+      - name: Run Brakeman
+        run: bundle exec brakeman
+      - name: Run Bundle Audit
+        run: bundle exec bundle-audit check --update
