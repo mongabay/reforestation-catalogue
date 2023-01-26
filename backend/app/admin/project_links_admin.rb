@@ -12,7 +12,15 @@ Trestle.resource(:project_links) do
   #
   table do
     column :project_name
-    column :title
+    column :title do |project_link|
+      if project_link.updated_from_previous_version?
+        changed_badge + project_link.title
+      elsif project_link.previous_version.nil? && !project_link.approved?
+        added_badge + project_link.title
+      else
+        project_link.title
+      end
+    end
     column :description
     column :url
     # column :created_at, align: :center
@@ -27,9 +35,9 @@ Trestle.resource(:project_links) do
     else
       select :project_id, Project.all.map { |p| [p.project_name, p.id] }
     end
-    text_field :title
-    text_field :description
-    text_field :url
+    text_field_with_diff :title
+    text_field_with_diff :description
+    text_field_with_diff :url
 
     if project_link.project
       concat admin_link_to('Back to project', admin: :projects, action: :edit, params: { id: project_link.project }, class: 'btn btn-success')

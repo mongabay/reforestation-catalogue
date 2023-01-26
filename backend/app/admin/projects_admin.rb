@@ -31,9 +31,9 @@ Trestle.resource(:projects) do
 
   scopes do
     scope :all, default: true
-    scope :approved, -> { Project.unscoped.where(approved: true) }
-    scope :pending, -> { Project.unscoped.where(approved: false) }
-    scope :highlighted, -> { Project.unscoped.where(highlighted: true) }
+    scope :approved, -> { Project.unscoped.where(approved: true).order(:project_name) }
+    scope :pending, -> { Project.unscoped.where(approved: false).order(:project_name) }
+    scope :highlighted, -> { Project.unscoped.where(highlighted: true).order(:project_name) }
   end
 
   # Customize the table columns shown on the index view.
@@ -41,7 +41,9 @@ Trestle.resource(:projects) do
   table do
     column :project_name do |project|
       if project.updated_from_previous_version?
-        update_badge + project.project_name
+        changed_badge + project.project_name
+      elsif project.previous_version.nil? && !project.approved?
+        added_badge + project.project_name
       else
         project.project_name
       end
@@ -118,11 +120,32 @@ Trestle.resource(:projects) do
     end
 
     tab :project_links do
+      concat content_tag(:h4, 'Added or changed links', class: 'mt-3 mb-0')
+
       table project.project_links, admin: :project_links do
-        column :title
+        column :title do |project_link|
+          if project_link.updated_from_previous_version?
+            changed_badge + project_link.title
+          elsif project_link.previous_version.nil? && !project_link.approved?
+            added_badge + project_link.title
+          else
+            project_link.title
+          end
+        end
         column :description
         column :url
       end
+
+      concat content_tag(:h4, 'Removed links', class: 'mt-3 mb-0')
+
+      table project.removed_project_links do
+        column :title do |project_link|
+          removed_badge + content_tag(:div, project_link.title)
+        end
+        column :description
+        column :url
+      end
+
 
       concat admin_link_to('New Link', admin: :project_links, action: :new, params: { project_id: project }, class: 'btn btn-success')
     end
