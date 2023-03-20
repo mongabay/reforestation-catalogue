@@ -1,0 +1,240 @@
+# Auto generated files with errors to ignore.
+# Remove from this list as you refactor files.
+---
+ignore:
+- Capfile:
+  - Style/StringLiterals
+  - Lint/DuplicateRequire
+  - Layout/EmptyLines
+- Gemfile:
+  - Layout/SpaceInsidePercentLiteralDelimiters
+  - Layout/EmptyComment
+  - Style/StringLiterals
+  - Style/HashSyntax
+  - Layout/CommentIndentation
+- app/admin/project_contacts_admin.rb:
+  - Style/StringLiterals
+  - Layout/SpaceInsideHashLiteralBraces
+- app/admin/project_links_admin.rb:
+  - Style/StringLiterals
+  - Layout/SpaceInsideHashLiteralBraces
+- app/admin/projects_admin.rb:
+  - Style/StringLiterals
+  - Performance/InefficientHashSearch
+  - Layout/SpaceInsideHashLiteralBraces
+  - Layout/EmptyLines
+- app/controllers/api/v1/categories_controller.rb:
+  - Layout/TrailingWhitespace
+- app/controllers/api/v1/enums_controller.rb:
+  - Layout/TrailingWhitespace
+  - Style/StringLiterals
+- app/controllers/api/v1/health_controller.rb:
+  - Style/StringLiterals
+- app/controllers/api/v1/projects_controller.rb:
+  - Style/StringLiterals
+  - Style/ParenthesesAroundCondition
+  - Style/AndOr
+  - Style/ClassEqualityComparison
+  - Lint/UselessAssignment
+  - Layout/TrailingWhitespace
+  - Style/HashSyntax
+  - Layout/MultilineMethodCallBraceLayout
+  - Layout/SpaceInsideBlockBraces
+- app/controllers/api/v1/static_pages_controller.rb:
+  - Style/StringLiterals
+  - Layout/TrailingWhitespace
+- app/controllers/application_controller.rb:
+  - Layout/TrailingWhitespace
+- app/helpers/trestle_helper.rb:
+  - Style/StringLiterals
+- app/models/categories_importer.rb:
+  - Layout/TrailingWhitespace
+  - Style/MethodCallWithoutArgsParentheses
+  - Style/RedundantSelf
+  - Style/StringLiterals
+  - Layout/DotPosition
+  - Layout/MultilineMethodCallIndentation
+  - Layout/SpaceAfterComma
+- app/models/category.rb:
+  - Style/HashSyntax
+  - Layout/SpaceInsideBlockBraces
+  - Style/StringLiterals
+- app/models/project.rb:
+  - Style/HashSyntax
+  - Style/StringLiterals
+  - Layout/HashAlignment
+  - Layout/SpaceAroundOperators
+  - Layout/TrailingWhitespace
+  - Style/RedundantReturn
+  - Style/AndOr
+  - Layout/ExtraSpacing
+  - Style/IfInsideElse
+  - Style/RedundantSelf
+  - Layout/SpaceAfterComma
+  - Style/NilComparison
+  - Style/HashConversion
+- app/models/project_link.rb:
+  - Style/StringLiterals
+- app/models/projects_importer.rb:
+  - Layout/TrailingWhitespace
+  - Style/MethodCallWithoutArgsParentheses
+  - Style/StringLiterals
+  - Performance/InefficientHashSearch
+  - Style/RedundantSelf
+  - Layout/DotPosition
+  - Layout/MultilineMethodCallIndentation
+  - Layout/SpaceAfterComma
+- app/serializers/category_serializer.rb:
+  - Layout/TrailingWhitespace
+  - Layout/ArgumentAlignment
+- app/serializers/filter_serializer.rb:
+  - Layout/TrailingWhitespace
+  - Layout/ArgumentAlignment
+- app/serializers/project_serializer.rb:
+  - Layout/TrailingWhitespace
+  - Layout/ArgumentAlignment
+  - Layout/SpaceBeforeComma
+- app/serializers/static_page_serializer.rb:
+  - Layout/TrailingWhitespace
+  - Layout/ArgumentAlignment
+- app/services/api/filter.rb:
+  - Layout/TrailingWhitespace
+  - Style/StringLiterals
+  - Style/AndOr
+  - Layout/ExtraSpacing
+  - Style/NilComparison
+  - Style/IfInsideElse
+  - Layout/SpaceInsideStringInterpolation
+  - Style/StringLiteralsInInterpolation
+  - Style/RedundantReturn
+  - Layout/TrailingEmptyLines
+- app/services/api/searcher.rb:
+  - Layout/DotPosition
+  - Layout/MultilineMethodCallIndentation
+  - Layout/TrailingEmptyLines
+- app/services/api/sorter.rb:
+  - Style/RedundantInterpolation
+  - Layout/TrailingWhitespace
+  - Layout/SpaceAroundOperators
+  - Style/StringLiterals
+  - Style/RedundantReturn
+  - Layout/TrailingEmptyLines
+- config/deploy.rb:
+  - Style/StringLiterals
+  - Style/PercentLiteralDelimiters
+- config/deploy/production.rb:
+  - Style/StringLiterals
+  - Style/PercentLiteralDelimiters
+- config/deploy/staging.rb:
+  - Style/StringLiterals
+  - Style/PercentLiteralDelimiters
+- config/environments/production.rb:
+  - Layout/ExtraSpacing
+  - Layout/SpaceInsideArrayLiteralBrackets
+  - Style/GlobalStdStream
+- config/environments/staging.rb:
+  - Layout/ExtraSpacing
+  - Layout/SpaceInsideArrayLiteralBrackets
+  - Style/GlobalStdStream
+- config/environments/test.rb:
+  - Layout/ExtraSpacing
+- config/initializers/cors.rb:
+  - Style/StringLiterals
+  - Style/PercentLiteralDelimiters
+- config/initializers/pagy.rb:
+  - Style/StringLiterals
+  - Layout/EmptyLines
+  - Layout/TrailingEmptyLines
+- config/initializers/trestle.rb:
+  - Lint/ConstantDefinitionInBlock
+- config/puma.rb:
+  - Style/RedundantFetchBlock
+- config/routes.rb:
+  - Style/StringLiterals
+- db/migrate/20220528141111_create_categories.rb:
+  - Layout/TrailingWhitespace
+- db/migrate/20220528141526_create_filters.rb:
+  - Layout/TrailingWhitespace
+- db/migrate/20220621113730_fix_project_columns.rb:
+  - Style/StringLiterals
+- lib/tasks/fixup_enums.rake:
+  - Security/YAMLLoad
+  - Style/HashConversion
+  - Layout/SpaceInsideBlockBraces
+  - Style/StringLiterals
+- lib/tasks/import_categories.rake:
+  - Style/MethodCallWithoutArgsParentheses
+  - Style/StringLiterals
+  - Layout/TrailingEmptyLines
+- lib/tasks/import_projects.rake:
+  - Style/MethodCallWithoutArgsParentheses
+  - Style/StringLiterals
+  - Layout/TrailingEmptyLines
+- lib/tasks/percentage.rake:
+  - Layout/TrailingEmptyLines
+- spec/factories/categories.rb:
+  - Style/StringLiterals
+  - Layout/IndentationStyle
+  - Layout/IndentationWidth
+  - Layout/TrailingEmptyLines
+- spec/factories/filters.rb:
+  - Style/StringLiterals
+  - Layout/IndentationStyle
+  - Layout/IndentationWidth
+  - Layout/IndentationConsistency
+  - Layout/TrailingEmptyLines
+- spec/factories/project_categories.rb:
+  - Style/StringLiterals
+  - Layout/IndentationStyle
+  - Layout/IndentationWidth
+  - Layout/TrailingEmptyLines
+- spec/factories/projects.rb:
+  - Style/StringLiterals
+  - Layout/IndentationStyle
+  - Layout/IndentationWidth
+  - Layout/SpaceInsideBlockBraces
+  - Layout/IndentationConsistency
+  - Layout/TrailingEmptyLines
+- spec/helpers/api/v1/projects_helper_spec.rb:
+  - Style/StringLiterals
+- spec/integration_helper.rb:
+  - Layout/TrailingWhitespace
+  - Style/RedundantReturn
+  - Layout/SpaceInsideHashLiteralBraces
+  - Lint/SymbolConversion
+  - Style/QuotedSymbols
+- spec/models/category_spec.rb:
+  - Style/StringLiterals
+- spec/models/filter_spec.rb:
+  - Style/StringLiterals
+- spec/models/project_contact_spec.rb:
+  - Style/StringLiterals
+- spec/models/project_link_spec.rb:
+  - Style/StringLiterals
+- spec/models/project_spec.rb:
+  - Style/StringLiterals
+  - Layout/DotPosition
+  - Lint/UselessAssignment
+  - Layout/SpaceAfterColon
+  - Layout/LeadingCommentSpace
+  - Layout/TrailingWhitespace
+- spec/models/static_page_spec.rb:
+  - Style/StringLiterals
+- spec/models/user_spec.rb:
+  - Style/StringLiterals
+- spec/rails_helper.rb:
+  - Style/StringLiterals
+- spec/requests/api/v1/project_update_spec.rb:
+  - Style/StringLiterals
+  - Layout/SpaceInsideHashLiteralBraces
+  - Style/HashSyntax
+- spec/requests/api/v1/projects_spec.rb:
+  - Style/StringLiterals
+  - Lint/UselessAssignment
+  - Layout/TrailingWhitespace
+  - Layout/SpaceBeforeBlockBraces
+- spec/spec_helper.rb:
+  - Style/BlockComments
+- spec/support/factory_bot.rb:
+  - Style/StringLiterals
+  - Layout/TrailingEmptyLines
