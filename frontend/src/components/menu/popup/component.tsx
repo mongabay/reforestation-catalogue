@@ -27,8 +27,13 @@ export const Popup: React.FC<PopupProps> = ({
   const ref = React.useRef(null);
   const overlayRef = React.useRef(null);
 
-  const state = useTreeState({ children, selectionMode: 'none', disabledKeys, expandedKeys });
-  const { menuProps } = useMenu({ autoFocus, children }, state, ref);
+  const state = useTreeState({
+    children,
+    selectionMode: 'none',
+    disabledKeys: disabledKeys as Iterable<string | number>,
+    expandedKeys: expandedKeys as Iterable<string | number>,
+  });
+  const { menuProps } = useMenu({ autoFocus }, state, ref);
   const { overlayProps } = useOverlay(
     {
       onClose,

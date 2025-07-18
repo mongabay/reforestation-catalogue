@@ -19,6 +19,8 @@ export const Menu: React.FC<MenuProps> = ({
   onAction,
   onOpen = noop,
   onClose = noop,
+  align,
+  direction,
   ...rest
 }: MenuProps) => {
   const triggerRef = React.useRef(null);
@@ -43,13 +45,17 @@ export const Menu: React.FC<MenuProps> = ({
 
   return (
     <div className={cx('relative', className)}>
-      {cloneElement(Trigger, { ref: triggerRef, ...buttonProps })}
+      {cloneElement(Trigger as React.ReactElement<any>, { ref: triggerRef, ...buttonProps })}
       {state.isOpen && (
         <Popup
           triggerRef={triggerRef}
-          align={rest.align ?? 'start'}
-          direction={rest.direction ?? 'bottom'}
-          domProps={menuProps}
+          align={align ?? 'start'}
+          direction={direction ?? 'bottom'}
+          domProps={(() => {
+            // Omit autoFocus from menuProps to avoid type error
+            const { autoFocus, ...restMenuProps } = menuProps;
+            return restMenuProps;
+          })()}
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={state.focusStrategy}
           disabledKeys={disabledKeys}

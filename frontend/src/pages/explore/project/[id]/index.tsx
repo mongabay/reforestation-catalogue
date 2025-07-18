@@ -308,14 +308,13 @@ export const ProjectPage: PageComponent<{ project: Project }, StaticPageLayoutPr
                 {!!project.country && <div>{project.country}</div>}
               </div>
               {!!project.project_org_url && (
-                <Link href={project.project_org_url}>
-                  <a
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="block inline-block mt-4 text-blue hover:underline focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-blue"
-                  >
-                    {project.project_org_url.replace(/^https?:\/\//, '').split('/')[0]}
-                  </a>
+                <Link
+                  href={project.project_org_url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="block inline-block mt-4 text-blue hover:underline focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-blue"
+                >
+                  {project.project_org_url.replace(/^https?:\/\//, '').split('/')[0]}
                 </Link>
               )}
             </div>

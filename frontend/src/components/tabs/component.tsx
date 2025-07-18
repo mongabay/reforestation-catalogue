@@ -21,20 +21,19 @@ export const Tabs = ({
   const ref = useRef(null);
 
   const state = useTabListState({
-    defaultSelectedKey,
-    selectedKey,
-    disabledKeys,
+    defaultSelectedKey: defaultSelectedKey as string | number | null,
+    selectedKey: selectedKey as string | number | null,
+    disabledKeys: disabledKeys as Iterable<string | number>,
     onSelectionChange: onChange,
     children,
   });
 
   const { tabListProps } = useTabList(
     {
-      defaultSelectedKey,
-      selectedKey,
-      disabledKeys,
+      defaultSelectedKey: defaultSelectedKey as string | number | null,
+      selectedKey: selectedKey as string | number | null,
+      disabledKeys: disabledKeys as Iterable<string | number>,
       onSelectionChange: onChange,
-      children,
     },
     state,
     ref

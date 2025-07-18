@@ -32,25 +32,22 @@ export const Inner: React.ForwardRefRenderFunction<any, ButtonProps> = (
 
     if (rest.external) {
       return (
-        <Link href={rest.to}>
-          <a
-            ref={ref}
-            rel="noopener noreferrer"
-            target="_blank"
-            className={className}
-            {...elementProps}
-          >
-            {children}
-          </a>
+        <Link
+          href={rest.to}
+          rel="noopener noreferrer"
+          target="_blank"
+          className={className}
+          ref={ref}
+          {...elementProps}
+        >
+          {children}
         </Link>
       );
     }
 
     return (
-      <Link href={rest.to}>
-        <a ref={ref} className={className} {...elementProps}>
-          {children}
-        </a>
+      <Link href={rest.to} className={className} ref={ref} {...elementProps}>
+        {children}
       </Link>
     );
   }

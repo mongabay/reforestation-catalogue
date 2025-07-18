@@ -22,7 +22,7 @@ export const CatalogFilters: React.FC<CatalogFiltersProps> = ({}: CatalogFilters
   const dispatch = useAppDispatch();
 
   const [selectedField, setSelectedField] = useState<
-    Field & { category: typeof CATEGORIES[0]['id'] }
+    Field & { category: (typeof CATEGORIES)[0]['id'] }
   >(null);
 
   const onCreateFilter = useCallback(

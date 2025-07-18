@@ -1,12 +1,10 @@
-import React from 'react';
+import type { Key } from 'react';
 
-import { SingleSelectListState } from '@react-stately/list';
-
-import { TabsProps } from '../types';
+import type { TabListState } from '@react-stately/tabs';
 
 export interface TabPanelProps {
   /** Unique key of the panel */
-  key?: React.Key;
+  key?: Key;
   /** State of the panel */
-  state: SingleSelectListState<object>;
+  state: TabListState<object>;
 }

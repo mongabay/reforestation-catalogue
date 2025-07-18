@@ -21,10 +21,11 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ items, className }: Breadcru
       if (item.url) {
         Container = function BreadcrumbsLink({ children }) {
           return (
-            <Link href={item.url}>
-              <a className="focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-green">
-                {children}
-              </a>
+            <Link
+              href={item.url}
+              className="focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-green"
+            >
+              {children}
             </Link>
           );
         };

@@ -24,7 +24,7 @@ export const Modal: FC<ModalProps> = ({
   scrollable = true,
   onDismiss,
 }: ModalProps) => {
-  const containerRef = useRef();
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const { overlayProps } = useOverlay(
     {
       isKeyboardDismissDisabled: !dismissable,
