@@ -37,7 +37,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
     plugin(function ({ addVariant }) {
       addVariant('progress-bar', ['&::-webkit-progress-bar']);
       addVariant('progress-value', [

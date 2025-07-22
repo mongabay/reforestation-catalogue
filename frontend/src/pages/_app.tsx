@@ -1,3 +1,5 @@
+import 'styles/globals.css';
+
 import React, { useMemo, useState } from 'react';
 
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
@@ -6,11 +8,10 @@ import { AppProps } from 'next/app';
 import Script from 'next/script';
 
 import { OverlayProvider } from '@react-aria/overlays';
-import { SSRProvider } from '@react-aria/ssr';
 
 import StaticPageLayout from 'layouts/static-page';
+import { StaticPageLayoutProps } from 'layouts/static-page/types';
 import wrapper from 'lib/store';
-import 'styles/globals.css';
 import { LayoutStaticProp } from 'types';
 
 type Props = AppProps & {
@@ -28,7 +29,7 @@ const ReforestationCatalogApp: React.FC<AppProps> = ({ Component, pageProps }: P
   // This is useful for the map page where opening a site means navigating to another page
   const Layout = useMemo(() => Component.layout?.Component ?? StaticPageLayout, [Component]);
 
-  const layoutProps = useMemo(() => {
+  const layoutProps: StaticPageLayoutProps = useMemo(() => {
     let res = {};
     if (Component.layout?.props) {
       if (typeof Component.layout.props === 'function') {
@@ -46,13 +47,12 @@ const ReforestationCatalogApp: React.FC<AppProps> = ({ Component, pageProps }: P
       <Hydrate state={pageProps.dehydratedState}>
         {/* Google Analytics G4 (back-up in case Tag Manager doesn't work) */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
-        <SSRProvider>
-          <OverlayProvider>
-            <Layout {...layoutProps}>
-              <Component {...pageProps} />
-            </Layout>
-          </OverlayProvider>
-        </SSRProvider>
+
+        <OverlayProvider>
+          <Layout {...layoutProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </OverlayProvider>
       </Hydrate>
     </QueryClientProvider>
   );

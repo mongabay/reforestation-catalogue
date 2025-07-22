@@ -1,9 +1,5 @@
-import React from 'react';
-
-import { SingleSelectListState } from '@react-stately/list';
-import { Node } from '@react-types/shared';
-
-import { TabsProps } from '../types';
+import type { TabListState } from '@react-stately/tabs';
+import type { Node } from '@react-types/shared';
 
 export type TabProps = React.PropsWithChildren<{
   /** Item representing the tab */
@@ -11,5 +7,5 @@ export type TabProps = React.PropsWithChildren<{
   /** Whether it's the last item. Used for styling purposes. Default: `false` */
   isLastItem?: boolean;
   /** State of the tab */
-  state: SingleSelectListState<object>;
+  state: TabListState<object>;
 }>;

@@ -22,7 +22,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({ project }: ProjectFormProps)
   const step = PROJECT_FORM_STEPS[stepIndex];
   const [values, setValues] = useState<Partial<ProjectFormData>>(project ?? {});
 
-  const formRef = useRef<HTMLFormElement>();
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const {
     mutate: createProject,

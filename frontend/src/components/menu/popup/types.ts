@@ -9,9 +9,9 @@ export interface PopupProps {
   /** Reference to the popup's trigger element */
   triggerRef: React.MutableRefObject<any>;
   /** Horizontal alignment of the popup relative to the trigger */
-  align: Alignment;
+  align: 'start' | 'end';
   /** Vertical alignment of the popup relative to the trigger */
-  direction: MenuTriggerProps['direction'];
+  direction: 'top' | 'bottom';
   /** Props for the popup's container */
   domProps: HTMLAttributes<HTMLElement>;
   /** Focus strategy applied to the popup's items */

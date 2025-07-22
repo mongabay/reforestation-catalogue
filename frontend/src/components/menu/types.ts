@@ -21,4 +21,8 @@ export type MenuProps = MenuTriggerProps & {
   onOpen?: () => void;
   /** Callback executed when the menu closes */
   onClose?: () => void;
+  /** Alignment of the popup relative to the trigger */
+  align?: 'start' | 'end';
+  /** Direction of the popup relative to the trigger */
+  direction?: 'top' | 'bottom';
 };

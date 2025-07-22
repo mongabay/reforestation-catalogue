@@ -1,4 +1,4 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSelector, createSlice, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { RootState } from 'lib/store';
@@ -22,17 +22,20 @@ export default (globalActions) =>
         return action.payload;
       },
     },
-    extraReducers: {
-      [HYDRATE]: (state, action) => {
+    extraReducers: (builder) => {
+      builder.addCase(HYDRATE, (state, action: AnyAction) => {
         if (action.payload[SLICE_NAME] !== INITIAL_STATE) {
           return action.payload[SLICE_NAME];
         }
 
         return state;
-      },
-      [globalActions.restoreState.fulfilled]: (state, action: PayloadAction<unknown>) => {
-        const stateToRestore: typeof INITIAL_STATE = action.payload[SLICE_NAME] ?? INITIAL_STATE;
-        return stateToRestore;
-      },
+      });
+      builder.addCase(
+        globalActions.restoreState.fulfilled,
+        (state, action: PayloadAction<unknown>) => {
+          const stateToRestore: typeof INITIAL_STATE = action.payload[SLICE_NAME] ?? INITIAL_STATE;
+          return stateToRestore;
+        }
+      );
     },
   });

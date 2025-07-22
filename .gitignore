@@ -58,3 +58,4 @@ yarn-error.log*
 /backend/config/master.key
 
 /frontend/log/*
+frontend/tsconfig.tsbuildinfo
