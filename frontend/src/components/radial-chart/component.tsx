@@ -23,7 +23,7 @@ const RadialChart: React.FC<RadialChartProps> = ({
   const getCircleClassName = (category: Categories) =>
     classnames({
       'fill-transparent': true,
-      'stroke-orange': !!highlightedCategory && highlightedCategory === category,
+      'stroke-accent': !!highlightedCategory && highlightedCategory === category,
       'stroke-grey-medium':
         (!!highlightedCategory && highlightedCategory !== category && finalized) ||
         (!highlightedCategory && finalized),

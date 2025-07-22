@@ -11,18 +11,18 @@ import LinkedInIcon from 'svgs/linked-in.svg';
 import { FooterProps } from './types';
 
 const Footer: React.FC<FooterProps> = (props: FooterProps) => (
-  <footer {...props} className="flex flex-col justify-end text-white bg-green">
+  <footer {...props} className="flex flex-col justify-end text-green-dark bg-primary">
     <LayoutContainer className="flex flex-col items-stretch justify-between gap-8 md:items-start md:gap-24 md:flex-row py-14">
       <Link
         href="/"
         className="flex-shrink-0 focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-white"
       >
         <Image
-          src="/images/mongabay-horizontal-white.png"
+          src="/images/mongabay-horizontal-black.png"
           width="205"
           height="30"
           alt="Mongabay"
-          className="font-semibold text-white"
+          className="font-semibold text-green-dark"
         />
       </Link>
       <div className="flex justify-between flex-grow">
@@ -62,15 +62,13 @@ const Footer: React.FC<FooterProps> = (props: FooterProps) => (
               target="_blank"
               className="focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-white"
             >
-              <Icon icon={LinkedInIcon} className="w-6 h-6" />
+              <Icon icon={LinkedInIcon} className="w-6 h-6 svg:fill-green-dark" />
             </Link>
           </div>
+          <LayoutContainer>© Mongabay {new Date().getFullYear()}</LayoutContainer>
         </div>
       </div>
     </LayoutContainer>
-    <div className="py-2 text-sm bg-green-dark">
-      <LayoutContainer>© Mongabay {new Date().getFullYear()}</LayoutContainer>
-    </div>
   </footer>
 );
 

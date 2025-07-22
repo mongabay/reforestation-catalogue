@@ -51,7 +51,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ onClickSubscribe }) => {
       <MenuItem key="/explore">Explore</MenuItem>
       <MenuItem key="/explore/project/new">Submit Project</MenuItem>
       <MenuItem key="subscribe">
-        <span className="font-bold text-orange">Subscribe</span>
+        <span className="font-bold text-accent">Subscribe</span>
       </MenuItem>
     </Menu>
   );

@@ -2,9 +2,11 @@ import React, { Fragment } from 'react';
 
 import Image from 'next/image';
 
+import { StaticPageLayoutProps } from 'layouts/static-page';
 import { useMediaMatch } from 'rooks';
 import { EffectCoverflow, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Categories, PageComponent } from 'types';
 
 import { useProjects } from 'hooks/projects';
 
@@ -12,8 +14,6 @@ import Button from 'components/button';
 import Head from 'components/head';
 import LayoutContainer from 'components/layout-container';
 import ProjectCard from 'components/project-card';
-import { StaticPageLayoutProps } from 'layouts/static-page';
-import { Categories, PageComponent } from 'types';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -34,37 +34,16 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
   return (
     <>
       <Head />
-      <div className="relative bg-[#04261F]/70 bg-blend-normal">
-        <div className="absolute inset-0 object-cover -z-10">
-          <Image alt="" src="/images/home-bg.png" layout="fill" objectFit="cover" />
-        </div>
-        <LayoutContainer className="py-12 text-center text-white md:py-40">
-          <h1 className="max-w-4xl mx-auto font-serif text-3xl md:text-[40px] font-bold md:leading-[50px]">
-            Mongabay’s global directory of reforestation and tree-planting projects is a starting
-            point for people wanting to support reforestation
+      <div className="relative text-white">
+        <LayoutContainer className="text-center md:py-40 space-y-[26px]">
+          <h1 className="max-w-4xl mx-auto font-serif text-5xl font-bold md:leading-[50px] max-w-[810px]">
+            Mongabay&apos;s Global Reforestation Directory
           </h1>
-          <p className="max-w-2xl mx-auto mt-10 leading-6 md:mt-24">
-            To help identify projects that align with a diversity of motivations and interests,
-            Mongabay gathered information on 36 criteria that experts say are key to success and
-            organized them into categories: contextual, ecological, economic, social, and
-            institutional.
+          <p className="max-w-2xl mx-auto mt-10 leading-[26px] md:mt-24">
+            To help identify organizations that align with a diversity of motivations and interests,
+            researchers from UC Santa Cruz gathered information on 36 criteria that experts say are
+            key to success and organized them into categories.
           </p>
-          <div className="flex flex-col gap-4 mt-10 md:inline-flex md:mt-24 md:flex-row">
-            <Button
-              theme="secondary-white"
-              to="/about"
-              className="justify-center md:px-12 min-w-[230px]"
-            >
-              Learn More
-            </Button>
-            <Button
-              theme="primary-white"
-              to="/explore"
-              className="justify-center md:px-12 min-w-[230px]"
-            >
-              Explore the Catalog
-            </Button>
-          </div>
         </LayoutContainer>
       </div>
       <LayoutContainer className="py-12 md:py-40">
@@ -94,45 +73,39 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
           </div>
         </div>
       </LayoutContainer>
-      <div className="py-12 md:py-40 bg-grey-light">
+      <div className="py-12 md:py-40 bg-primary">
         <LayoutContainer>
-          <h2 className="font-serif text-3xl md:text-[40px] text-green md:leading-[56px] max-w-xl font-bold mx-auto text-center">
+          <h2 className="font-serif text-3xl md:text-[40px] text-green-dark md:leading-[56px] max-w-xl font-bold mx-auto text-center">
             Why use the Mongabay Reforestation.app?
           </h2>
           <div className="flex flex-col mt-10 md:flex-row gap-7 md:mt-28">
             <div>
-              <div className="flex items-center justify-center w-40 h-40 mx-auto rounded-full bg-green">
-                <Image src="/icons/standards.svg" width={59} height={72} alt="" />
-              </div>
-              <h3 className="mt-5 md:mt-12 text-xl text-center md:leading-[56px] font-bold text-green font-serif">
+              <div className="text-serif text-4xl">01</div>
+              <h3 className="mt-5 md:mt-12 text-xl md:leading-[56px] font-bold font-serif">
                 High standards
               </h3>
-              <p className="mt-2 text-center">
+              <p className="mt-2">
                 Our list of criteria was primarily drawn from the Forest Landscape Restoration (FLR)
                 approach, widely heralded as the gold standard across the restoration sector.
               </p>
             </div>
             <div>
-              <div className="flex items-center justify-center w-40 h-40 mx-auto rounded-full bg-green">
-                <Image src="/icons/transparency.svg" width={62} height={62} alt="" />
-              </div>
-              <h3 className="mt-5 md:mt-12 text-xl text-center md:leading-[56px] font-bold text-green font-serif">
+              <div className="text-serif text-4xl">02</div>
+              <h3 className="mt-5 md:mt-12 text-xl md:leading-[56px] font-bold font-serif">
                 Transparency
               </h3>
-              <p className="mt-2 text-center">
+              <p className="mt-2">
                 Rather than make an assessment (and perceived endorsement) of the quality of the
                 projects, Reforestation.app reveals how much information is publicly disclosed by an
                 organization.
               </p>
             </div>
             <div>
-              <div className="flex items-center justify-center w-40 h-40 mx-auto rounded-full bg-green">
-                <Image src="/icons/database.svg" width={56} height={63} alt="" />
-              </div>
-              <h3 className="mt-5 md:mt-12 text-xl text-center md:leading-[56px] font-bold text-green font-serif">
+              <div className="text-serif text-4xl">03</div>
+              <h3 className="mt-5 md:mt-12 text-xl md:leading-[56px] font-bold font-serif">
                 A growing catalog
               </h3>
-              <p className="mt-2 text-center">
+              <p className="mt-2">
                 The community is encouraged to share new projects and update information about
                 existing projects to make this catalog the best available resource.
               </p>
@@ -141,13 +114,13 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
         </LayoutContainer>
       </div>
       <LayoutContainer className="py-12 md:py-40">
-        <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-28 md:items-center">
-          <div className="max-w-3xl">
-            <h2 className="font-serif text-3xl md:text-[40px] text-green font-bold md:leading-[56px] max-w-lg">
-              How it works
-            </h2>
+        <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-28 text-white">
+          <h2 className="font-serif text-3xl md:text-[40px] font-bold md:leading-[56px] max-w-lg">
+            Learn How to Navigate and Use the Platform
+          </h2>
+          <div>
             <div className="mt-3">
-              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
+              <h3 className="font-serif text-xl font-bold md:leading-[56px]">
                 Find projects that match your interests
               </h3>
               <p>
@@ -156,7 +129,7 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
               </p>
             </div>
             <div className="mt-7 md:mt-8">
-              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
+              <h3 className="font-serif text-xl font-bold md:leading-[56px]">
                 Dig into the details of the project chart
               </h3>
               <p>
@@ -165,7 +138,7 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
               </p>
             </div>
             <div className="mt-7 md:mt-8">
-              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
+              <h3 className="font-serif text-xl font-bold md:leading-[56px]">
                 Update project information
               </h3>
               <p>
@@ -175,29 +148,13 @@ export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
               </p>
             </div>
             <div className="mt-7 md:mt-8">
-              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
-                Share new projects
-              </h3>
+              <h3 className="font-serif text-xl font-bold md:leading-[56px]">Share new projects</h3>
               <p>
                 To share a new project with Mongabay’s editors, please fill in the form accessible
                 via the <span className="font-semibold">Submit Project</span> button at the top of
                 every page. We’ll review them once a month.
               </p>
             </div>
-          </div>
-          <div className="flex flex-col gap-3 shrink-0">
-            <Image
-              src="/images/home-how-it-works-1.png"
-              width={525}
-              height={367}
-              alt="Explore page"
-            />
-            <Image
-              src="/images/home-how-it-works-2.png"
-              width={525}
-              height={367}
-              alt="Project page"
-            />
           </div>
         </div>
       </LayoutContainer>

@@ -5,19 +5,28 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Open\\ Sans', 'sans-serif'],
-      serif: ['Cardo', 'serif'],
+      serif: ['Rowan', 'serif'],
+    },
+    textSizes: {
+      '5xl': ['4.5rem', '4rem'],
     },
     colors: {
+      primary: '#BFECB1',
       green: {
         DEFAULT: '#03755E',
-        dark: '#014739',
+        dark: '#0A332D',
+        emerald: "#006A54",
+        bright: "#96F55F",
         light: '#CDE3DF',
       },
       blue: {
         DEFAULT: '#0066CC',
       },
+      accent: {
+        DEFAULT: '#F1BA30',
+      },
       orange: {
-        DEFAULT: '#E26E3E',
+        DEFAULT: '#FF9500',
       },
       red: {
         DEFAULT: '#E80202',

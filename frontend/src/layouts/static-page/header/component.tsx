@@ -13,6 +13,12 @@ import NewsletterSignup from 'components/newsletter-signup';
 import MobileMenu from './mobile-menu';
 import { HeaderProps } from './types';
 
+const LINK_CLASSNAMES = {
+  active: 'text-primary !border-t-primary',
+  default:
+    'flex items-center px-2 text-sm font-semibold transition border-offset-4 border-t-[12px] pt-[35px] transform -translate-y-6 outline-none sm:px-5 border-t-transparent',
+};
+
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
   const [showNewsletterSignup, setShowNewsletterSignup] = useState(false);
 
@@ -22,8 +28,8 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
         open={showNewsletterSignup}
         onDismiss={() => setShowNewsletterSignup(false)}
       />
-      <header {...props} className={cx('bg-green text-white/60', props.className)}>
-        <LayoutContainer className="flex items-center justify-between py-2 sm:py-0">
+      <header {...props} className={cx('text-white', props.className)}>
+        <LayoutContainer className="flex items-center justify-between py-2 sm:py-[21px]">
           <Link
             href="/"
             className="flex flex-shrink-0 focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-white"
@@ -51,29 +57,29 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
           <nav className="hidden sm:flex sm:items-stretch">
             <ActiveLink
               href="/"
-              activeClassName="text-white !border-b-white"
-              className="flex items-center px-2 text-sm font-semibold transition border-b-4 outline-none sm:px-5 border-b-transparent focus:border-b-white/40"
+              activeClassName={LINK_CLASSNAMES.active}
+              className={LINK_CLASSNAMES.default}
             >
               Home
             </ActiveLink>
             <ActiveLink
               href="/about"
-              activeClassName="text-white !border-b-white"
-              className="flex items-center px-2 text-sm font-semibold transition border-b-4 outline-none sm:px-5 border-b-transparent focus:border-b-white/40"
+              activeClassName={LINK_CLASSNAMES.active}
+              className={LINK_CLASSNAMES.default}
             >
               About
             </ActiveLink>
             <ActiveLink
               href="/explore"
-              activeClassName="text-white !border-b-white"
-              className="flex items-center px-2 text-sm font-semibold transition border-b-4 outline-none sm:px-5 border-b-transparent focus:border-b-white/40"
+              activeClassName={LINK_CLASSNAMES.active}
+              className={LINK_CLASSNAMES.default}
             >
               Explore
             </ActiveLink>
-            <div className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5">
+            <div className="flex items-center flex-shrink-0 py-2 sm:py-4">
               <Button
                 to="/explore/project/new"
-                theme="secondary-white"
+                theme="naked"
                 className="justify-center min-w-[142px]"
               >
                 <span className="inline">Submit Project</span>
@@ -81,7 +87,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
             </div>
             <div className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5 2xl:ml-10">
               <Button
-                theme="primary-orange"
+                theme="primary-accent"
                 className="justify-center min-w-[142px]"
                 onClick={() => setShowNewsletterSignup(true)}
               >

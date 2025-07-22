@@ -2,9 +2,10 @@ import React from 'react';
 
 import cx from 'classnames';
 
+import Header from 'layouts/static-page/header';
 import { omit } from 'lodash-es';
 
-import Header from 'layouts/static-page/header';
+import BackroundGlow from 'components/background-glow';
 
 import { ExplorePageLayoutProps } from './types';
 
@@ -14,7 +15,8 @@ export const ExplorePageLayout: React.FC<ExplorePageLayoutProps> = ({
   mainProps,
   ...rest
 }: ExplorePageLayoutProps) => (
-  <div {...rest} className="md:flex md:flex-col md:h-screen">
+  <div {...rest} className="md:flex md:flex-col md:h-screen bg-green-dark">
+    <BackroundGlow />
     <Header {...headerProps} className="relative z-10 flex-shrink-0" />
     <main
       {...omit(mainProps, 'className')}

@@ -218,7 +218,7 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
             <div className="px-5 pb-8 md:pr-12 md:px-0">
               <ProjectCatalog hightlightSortingCategory />
             </div>
-            <div className="py-12 text-white md:pl-6 bg-orange">
+            <div className="py-12 text-white md:pl-6 bg-accent">
               <LayoutContainer>
                 <p className="max-w-3xl font-serif text-3xl font-bold md:leading-tight">
                   Subscribe to our newsletter to find out about reforestation projects, original
@@ -229,7 +229,7 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
                   onClick={() => setShowNewsletterSignup(true)}
                   className="justify-center mt-10 md:inline-flex md:px-12"
                 >
-                  <span className="text-orange">Subscribe</span>
+                  <span className="text-accent">Subscribe</span>
                 </Button>
               </LayoutContainer>
             </div>
