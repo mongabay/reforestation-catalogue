@@ -2,7 +2,13 @@ import { FC, useState, useRef, useEffect, useCallback } from 'react';
 
 import Image from 'next/image';
 
+import ExplorePageLayout from 'layouts/explore-page';
+import { StaticPageLayoutProps } from 'layouts/static-page';
+import wrapper from 'lib/store';
+import { filtersActions, globalActions } from 'modules';
 import { GetServerSideProps } from 'next';
+import { PageComponent } from 'types';
+import { logEvent } from 'utils/analytics';
 
 import { useAppDispatch } from 'hooks/redux';
 
@@ -19,12 +25,6 @@ import ProjectSearch from 'components/project-search';
 import StepByStepGuidance from 'components/step-by-step-guidance';
 import Tooltip from 'components/tooltip';
 import UrlSync from 'components/url-sync';
-import ExplorePageLayout from 'layouts/explore-page';
-import { StaticPageLayoutProps } from 'layouts/static-page';
-import wrapper from 'lib/store';
-import { filtersActions, globalActions } from 'modules';
-import { PageComponent } from 'types';
-import { logEvent } from 'utils/analytics';
 
 import LayersIcon from 'svgs/layers.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';

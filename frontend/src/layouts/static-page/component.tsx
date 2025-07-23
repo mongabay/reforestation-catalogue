@@ -5,8 +5,6 @@ import cx from 'classnames';
 import { omit } from 'lodash-es';
 
 import BackroundGlow from 'components/background-glow';
-import Button from 'components/button';
-import LayoutContainer from 'components/layout-container';
 import NewsletterSignup from 'components/newsletter-signup';
 
 import Footer from './footer';
@@ -25,11 +23,7 @@ export const StaticPageLayout: React.FC<StaticPageLayoutProps> = ({
   return (
     <div className="bg-green-dark" {...rest}>
       <BackroundGlow />
-      <Header {...headerProps} />
-      <NewsletterSignup
-        open={showNewsletterSignup}
-        onDismiss={() => setShowNewsletterSignup(false)}
-      />
+      <Header {...headerProps} onOpenNewsletterSignup={() => setShowNewsletterSignup(true)} />
       <main
         {...omit(mainProps, 'className')}
         className={cx({
@@ -38,7 +32,11 @@ export const StaticPageLayout: React.FC<StaticPageLayoutProps> = ({
       >
         {children}
       </main>
-      <Footer props={footerProps} />
+      <Footer {...footerProps} onOpenNewsletterSignup={() => setShowNewsletterSignup(true)} />
+      <NewsletterSignup
+        open={showNewsletterSignup}
+        onDismiss={() => setShowNewsletterSignup(false)}
+      />
     </div>
   );
 };

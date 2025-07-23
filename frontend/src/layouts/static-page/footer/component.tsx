@@ -3,12 +3,13 @@ import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import ActiveLink from 'components/active-link';
+import Button from 'components/button';
 import Icon from 'components/icon';
 import LayoutContainer from 'components/layout-container';
 
 import LinkedInIcon from 'svgs/linked-in.svg';
-import Button from 'components/button';
-import ActiveLink from 'components/active-link';
+
 import { FooterProps } from './types';
 
 const LINK_CLASSNAMES = {
@@ -17,10 +18,14 @@ const LINK_CLASSNAMES = {
     'flex items-center px-2 font-semibold transition border-offset-4 border-t-[12px] pt-[35px] transform -translate-y-6 outline-none sm:px-5 border-t-transparent focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-green-dark',
 };
 
-const Footer: FC<FooterProps> = (props: FooterProps) => {
-  const [, setShowNewsletterSignup] = useState(false);
+interface FooterWithNewsletterProps extends FooterProps {
+  onOpenNewsletterSignup?: () => void;
+}
+
+const Footer: FC<FooterWithNewsletterProps> = (props) => {
+  const { onOpenNewsletterSignup, ...rest } = props;
   return (
-    <footer {...props} className="flex flex-col justify-end text-green-dark bg-primary">
+    <footer {...rest} className="flex flex-col justify-end text-green-dark bg-primary">
       <LayoutContainer className="flex flex-col items-stretch justify-between gap-8 md:items-start md:gap-24 md:flex-row py-14">
         <Link
           href="/"
@@ -34,39 +39,45 @@ const Footer: FC<FooterProps> = (props: FooterProps) => {
             className="font-semibold text-green-dark"
           />
         </Link>
-        <nav className="sm:flex sm:items-stretch">
-          <ActiveLink
-            href="/about"
-            activeClassName={LINK_CLASSNAMES.active}
-            className={LINK_CLASSNAMES.default}
-          >
-            About
-          </ActiveLink>
-          <ActiveLink
-            href="/explore"
-            activeClassName={LINK_CLASSNAMES.active}
-            className={LINK_CLASSNAMES.default}
-          >
-            Explore
-          </ActiveLink>
-          <div className="flex items-center flex-shrink-0 py-2 sm:py-4">
-            <Button
-              to="/explore/project/new"
-              theme="naked"
-              className="justify-center min-w-[142px]"
-            >
-              <span className="inline">Submit Project</span>
-            </Button>
-          </div>
-          <div className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5 2xl:ml-10">
-            <Button
-              theme="primary-green"
-              className="justify-center min-w-[142px]"
-              onClick={() => setShowNewsletterSignup(true)}
-            >
-              <span className="inline">Subscribe</span>
-            </Button>
-          </div>
+        <nav className="sm:flex sm:items-stretch" aria-label="Footer navigation">
+          <ul className="flex items-stretch m-0 p-0 list-none">
+            <li>
+              <ActiveLink
+                href="/about"
+                activeClassName={LINK_CLASSNAMES.active}
+                className={LINK_CLASSNAMES.default}
+              >
+                About
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink
+                href="/explore"
+                activeClassName={LINK_CLASSNAMES.active}
+                className={LINK_CLASSNAMES.default}
+              >
+                Explore
+              </ActiveLink>
+            </li>
+            <li className="flex items-center flex-shrink-0 py-2 sm:py-4">
+              <Button
+                to="/explore/project/new"
+                theme="naked"
+                className="justify-center min-w-[142px]"
+              >
+                <span className="inline">Submit Project</span>
+              </Button>
+            </li>
+            <li className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5 2xl:ml-10">
+              <Button
+                theme="primary-green"
+                className="justify-center min-w-[142px]"
+                onClick={onOpenNewsletterSignup}
+              >
+                <span className="inline">Subscribe</span>
+              </Button>
+            </li>
+          </ul>
         </nav>
         <div className="flex flex-col items-start gap-[10px]">
           <div className="flex items-end justify-center gap-4">
