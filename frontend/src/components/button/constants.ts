@@ -5,17 +5,17 @@ export const COMMON_CLASSES =
 
 export const COLOR_THEMES: Record<NonNullable<ButtonCommonProps['theme']>, string> = {
   'primary-green':
-    'bg-green border border-green text-white hover:bg-green-dark hover:border-green-dark focus-visible:outline-green',
+    'bg-green-dark border border-green-dark text-primary hover:bg-green-dark hover:bg-green-dark/90 focus-visible:outline-green',
   'primary-white':
     'bg-white border border-white text-green hover:bg-grey hover:border-grey focus-visible:outline-white',
-  'primary-orange':
-    'bg-orange border border-orange text-white hover:bg-orange/90 hover:border-orange/90 focus-visible:outline-orange',
+  'primary-accent':
+    'bg-accent border border-accent text-black hover:bg-accent/90 hover:border-accent/90 focus-visible:outline-accent',
   'secondary-green':
-    'border border-green text-green hover:border-green-dark hover:text-green-dark focus-visible:outline-green',
+    'border border-primary bg-primary text-green-dark hover:border-green-dark hover:text-green-dark focus-visible:outline-green',
   'secondary-white':
     'border border-white text-white hover:border-grey hover:text-grey focus-visible:outline-white',
-  'secondary-orange':
-    'border border-orange text-orange hover:bg-orange/10 focus-visible:outline-orange',
+  'secondary-accent':
+    'border border-accent text-accent hover:bg-accent/10 focus-visible:outline-accent',
   'light-green':
     'bg-green/20 border border-transparent text-green hover:bg-green/40 focus-visible:outline-green',
   link: 'pl-2 pr-2 pt-1 pb-1 bg-transparent border border-transparent text-blue underline focus-visible:outline-blue',
