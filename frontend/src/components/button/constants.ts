@@ -5,13 +5,13 @@ export const COMMON_CLASSES =
 
 export const COLOR_THEMES: Record<NonNullable<ButtonCommonProps['theme']>, string> = {
   'primary-green':
-    'bg-green border border-green text-white hover:bg-green-dark hover:border-green-dark focus-visible:outline-green',
+    'bg-green-dark border border-green-dark text-primary hover:bg-green-dark hover:bg-green-dark/90 focus-visible:outline-green',
   'primary-white':
     'bg-white border border-white text-green hover:bg-grey hover:border-grey focus-visible:outline-white',
   'primary-accent':
     'bg-accent border border-accent text-black hover:bg-accent/90 hover:border-accent/90 focus-visible:outline-accent',
   'secondary-green':
-    'border border-green text-green hover:border-green-dark hover:text-green-dark focus-visible:outline-green',
+    'border border-primary bg-primary text-green-dark hover:border-green-dark hover:text-green-dark focus-visible:outline-green',
   'secondary-white':
     'border border-white text-white hover:border-grey hover:text-grey focus-visible:outline-white',
   'secondary-accent':

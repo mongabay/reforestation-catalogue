@@ -225,7 +225,7 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
                   stories, activism awareness and more.
                 </p>
                 <Button
-                  theme="primary-white"
+                  theme="secondary-green"
                   onClick={() => setShowNewsletterSignup(true)}
                   className="justify-center mt-10 md:inline-flex md:px-12"
                 >

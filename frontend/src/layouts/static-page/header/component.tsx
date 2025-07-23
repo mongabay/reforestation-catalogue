@@ -16,7 +16,7 @@ import { HeaderProps } from './types';
 const LINK_CLASSNAMES = {
   active: 'text-primary !border-t-primary',
   default:
-    'flex items-center px-2 text-sm font-semibold transition border-offset-4 border-t-[12px] pt-[35px] transform -translate-y-6 outline-none sm:px-5 border-t-transparent',
+    'flex items-center px-2 font-semibold transition border-offset-4 border-t-[12px] pt-[35px] transform -translate-y-6 outline-none sm:px-5 border-t-transparent',
 };
 
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
@@ -54,46 +54,54 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
             </span>
           </Link>
           <MobileMenu onClickSubscribe={() => setShowNewsletterSignup(true)} />
-          <nav className="hidden sm:flex sm:items-stretch">
-            <ActiveLink
-              href="/"
-              activeClassName={LINK_CLASSNAMES.active}
-              className={LINK_CLASSNAMES.default}
-            >
-              Home
-            </ActiveLink>
-            <ActiveLink
-              href="/about"
-              activeClassName={LINK_CLASSNAMES.active}
-              className={LINK_CLASSNAMES.default}
-            >
-              About
-            </ActiveLink>
-            <ActiveLink
-              href="/explore"
-              activeClassName={LINK_CLASSNAMES.active}
-              className={LINK_CLASSNAMES.default}
-            >
-              Explore
-            </ActiveLink>
-            <div className="flex items-center flex-shrink-0 py-2 sm:py-4">
-              <Button
-                to="/explore/project/new"
-                theme="naked"
-                className="justify-center min-w-[142px]"
-              >
-                <span className="inline">Submit Project</span>
-              </Button>
-            </div>
-            <div className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5 2xl:ml-10">
-              <Button
-                theme="primary-accent"
-                className="justify-center min-w-[142px]"
-                onClick={() => setShowNewsletterSignup(true)}
-              >
-                <span className="inline">Subscribe</span>
-              </Button>
-            </div>
+          <nav className="hidden sm:flex sm:items-stretch" aria-label="Main navigation">
+            <ul className="flex items-stretch m-0 p-0 list-none">
+              <li>
+                <ActiveLink
+                  href="/"
+                  activeClassName={LINK_CLASSNAMES.active}
+                  className={LINK_CLASSNAMES.default}
+                >
+                  Home
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink
+                  href="/about"
+                  activeClassName={LINK_CLASSNAMES.active}
+                  className={LINK_CLASSNAMES.default}
+                >
+                  About
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink
+                  href="/explore"
+                  activeClassName={LINK_CLASSNAMES.active}
+                  className={LINK_CLASSNAMES.default}
+                >
+                  Explore
+                </ActiveLink>
+              </li>
+              <li className="flex items-center flex-shrink-0 py-2 sm:py-4">
+                <Button
+                  to="/explore/project/new"
+                  theme="naked"
+                  className="justify-center min-w-[142px]"
+                >
+                  <span className="inline">Submit Project</span>
+                </Button>
+              </li>
+              <li className="flex items-center flex-shrink-0 py-2 ml-2 sm:py-4 sm:ml-5 2xl:ml-10">
+                <Button
+                  theme="primary-accent"
+                  className="justify-center min-w-[142px]"
+                  onClick={() => setShowNewsletterSignup(true)}
+                >
+                  <span className="inline">Subscribe</span>
+                </Button>
+              </li>
+            </ul>
           </nav>
         </LayoutContainer>
       </header>
