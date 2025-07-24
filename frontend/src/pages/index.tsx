@@ -12,10 +12,8 @@ import { useProjects } from 'hooks/projects';
 import Button from 'components/button';
 import Head from 'components/head';
 import LayoutContainer from 'components/layout-container';
-import NewsletterSignup from 'components/newsletter-signup';
 import ProjectCard from 'components/project-card';
-
-import Arrow from 'svgs/arrow.svg';
+import StayUpdatedSection from 'components/stay-updated-section';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -168,27 +166,10 @@ const HomePage: React.FC = () => {
           </LayoutContainer>
         </div>
       )}
-      <div className="py-12 text-white md:py-14 bg-green-emerald/40 text-center max-w-[1120px] mx-auto rounded-2xl">
-        <LayoutContainer className="space-y-4">
-          <h3 className="text-6xl font-serif">Stay updated</h3>
-          <p className="font-serif md:leading-tight max-w-[455px] mx-auto">
-            Subscribe to our newsletter to find out about reforestation projects, original stories,
-            activism awareness and more.
-          </p>
-          <Button
-            theme="secondary-green"
-            onClick={() => setShowNewsletterSignup(true)}
-            className="justify-center !mt-8 inline-flex text-lg"
-          >
-            Subscribe to newsletter
-            <Arrow className="w-4 h-4 ml-2 fill-green-dark" />
-          </Button>
-          <NewsletterSignup
-            open={showNewsletterSignup}
-            onDismiss={() => setShowNewsletterSignup(false)}
-          />
-        </LayoutContainer>
-      </div>
+      <StayUpdatedSection
+        showNewsletterSignup={showNewsletterSignup}
+        setShowNewsletterSignup={setShowNewsletterSignup}
+      />
       <LayoutContainer className="py-10 md:py-20">
         <h2 className="text-sm text-white md:leading-[56px] text-center uppercase">Partners</h2>
         <div className="flex flex-col items-center justify-center gap-8 mt-5 md:mt-6 md:flex-row md:gap-10">

@@ -7,6 +7,7 @@ import Icon from 'components/icon';
 import LayoutContainer from 'components/layout-container';
 import NewsletterSignup from 'components/newsletter-signup';
 import PillPagination from 'components/pill-pagination';
+import StayUpdatedSection from 'components/stay-updated-section';
 
 import LeftArrowIcon from 'svgs/left-arrow.svg';
 
@@ -97,25 +98,10 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
             </div>
           </div>
         </LayoutContainer>
-
-        <div className="py-12 text-white bg-green-emerald">
-          <LayoutContainer className="lg:w-[calc(1024px_-_25%)] xl:w-[calc(1280px_-_25%)] 2xl:w-[calc(1536px_-_25%)] lg:mr-[25%]">
-            <div className="lg:pr-24">
-              <p className="max-w-3xl font-serif text-3xl font-bold md:leading-tight">
-                Subscribe to our newsletter to find out about reforestation projects, original
-                stories, activism awareness and more.
-              </p>
-              <Button
-                theme="primary-white"
-                onClick={() => setShowNewsletterSignup(true)}
-                className="justify-center mt-10 md:inline-flex md:px-12"
-              >
-                <span className="text-accent">Subscribe</span>
-              </Button>
-            </div>
-          </LayoutContainer>
-        </div>
-
+        <StayUpdatedSection
+          showNewsletterSignup={showNewsletterSignup}
+          setShowNewsletterSignup={setShowNewsletterSignup}
+        />
         <div className="relative hidden w-full lg:block lg:fixed lg:inset-y-0 lg:right-0 lg:w-1/4 lg:h-full">
           <div className="absolute inset-0 object-cover w-full h-full">
             <Image layout="fill" objectFit="cover" src={step.image} alt="" />

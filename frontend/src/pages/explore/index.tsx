@@ -22,6 +22,7 @@ import MatchingResultsSentence from 'components/matching-results-sentence';
 import NewsletterSignup from 'components/newsletter-signup';
 import ProjectCatalog from 'components/project-catalog';
 import ProjectSearch from 'components/project-search';
+import StayUpdatedSection from 'components/stay-updated-section';
 import StepByStepGuidance from 'components/step-by-step-guidance';
 import Tooltip from 'components/tooltip';
 import UrlSync from 'components/url-sync';
@@ -218,21 +219,10 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
             <div className="px-5 pb-8 md:pr-12 md:px-0">
               <ProjectCatalog hightlightSortingCategory />
             </div>
-            <div className="py-12 text-white md:pl-6 bg-accent">
-              <LayoutContainer>
-                <p className="max-w-3xl font-serif text-3xl font-bold md:leading-tight">
-                  Subscribe to our newsletter to find out about reforestation projects, original
-                  stories, activism awareness and more.
-                </p>
-                <Button
-                  theme="secondary-green"
-                  onClick={() => setShowNewsletterSignup(true)}
-                  className="justify-center mt-10 md:inline-flex md:px-12"
-                >
-                  <span className="text-accent">Subscribe</span>
-                </Button>
-              </LayoutContainer>
-            </div>
+            <StayUpdatedSection
+              showNewsletterSignup={showNewsletterSignup}
+              setShowNewsletterSignup={setShowNewsletterSignup}
+            />
           </div>
         </div>
       </div>
