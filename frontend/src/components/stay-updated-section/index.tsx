@@ -1,3 +1,5 @@
+import cx from 'classnames';
+
 import Button from 'components/button';
 import LayoutContainer from 'components/layout-container';
 import NewsletterSignup from 'components/newsletter-signup';
@@ -5,14 +7,21 @@ import NewsletterSignup from 'components/newsletter-signup';
 import Arrow from 'svgs/arrow.svg';
 
 export default function StayUpdatedSection({
+  className,
   showNewsletterSignup,
   setShowNewsletterSignup,
 }: {
+  className?: string;
   showNewsletterSignup: boolean;
   setShowNewsletterSignup: (value: boolean) => void;
 }) {
   return (
-    <div className="py-12 text-white md:py-14 bg-green-emerald/40 text-center max-w-[1120px] mx-auto rounded-2xl">
+    <div
+      className={cx(
+        'py-12 text-white md:py-14 bg-green-emerald/40 text-center max-w-[1120px] mx-auto rounded-2xl',
+        className
+      )}
+    >
       <LayoutContainer className="space-y-4">
         <h3 className="text-6xl font-serif">Stay updated</h3>
         <p className="font-serif md:leading-tight max-w-[455px] mx-auto">

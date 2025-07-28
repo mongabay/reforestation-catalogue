@@ -1,7 +1,6 @@
 import { createSelector, createSlice, PayloadAction, AnyAction } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
-
 import { RootState } from 'lib/store';
+import { HYDRATE } from 'next-redux-wrapper';
 
 export const SLICE_NAME = 'search';
 const INITIAL_STATE: string = '';

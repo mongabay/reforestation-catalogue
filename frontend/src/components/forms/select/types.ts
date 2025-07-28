@@ -14,12 +14,16 @@ export interface SelectProps {
   'aria-label'?: string;
   /** List of options */
   options: SelectOption[];
+  /** Custom label function to render the option label */
+  customLabel?: (option: SelectOption) => string;
   /** Placeholder to display in the input. Default to `'Select an option'`. */
   placeholder?: string;
   /** Value of the default option. Default to selecting the placeholder. */
   defaultValue?: string;
   /** Value of the selected option */
   value?: string;
+  /** Variant of the select input. Default to `'default'`. */
+  variant?: 'default' | 'primary';
   /** Callback executed when the option changes */
   onChange?: (option: SelectOption) => void;
   /** Whether the input is disabled. Default to `false`. */

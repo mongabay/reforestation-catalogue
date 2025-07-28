@@ -5,7 +5,7 @@ import Image from 'next/image';
 import ExplorePageLayout from 'layouts/explore-page';
 import { StaticPageLayoutProps } from 'layouts/static-page';
 import wrapper from 'lib/store';
-import { filtersActions, globalActions } from 'modules';
+import { globalActions } from 'modules';
 import { GetServerSideProps } from 'next';
 import { PageComponent } from 'types';
 import { logEvent } from 'utils/analytics';
@@ -13,7 +13,6 @@ import { logEvent } from 'utils/analytics';
 import { useAppDispatch } from 'hooks/redux';
 
 import Button from 'components/button';
-import CatalogFilters from 'components/catalog-filters';
 import GlossaryModal from 'components/glossary-modal';
 import Head from 'components/head';
 import Icon from 'components/icon';
@@ -29,6 +28,7 @@ import UrlSync from 'components/url-sync';
 
 import LayersIcon from 'svgs/layers.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';
+import PlusIcon from 'svgs/plus.svg';
 
 const FIRST_VISIT_COOKIE_NAME = 'first_visit';
 
@@ -117,7 +117,6 @@ const WelcomeScreen: FC<{
 
 const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToGuidance }) => {
   const dispatch = useAppDispatch();
-
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
@@ -135,24 +134,7 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
         open={showNewsletterSignup}
         onDismiss={() => setShowNewsletterSignup(false)}
       />
-      <aside className="bg-grey-light w-full md:w-[420px] flex-shrink-0 pt-6 pl-5 md:pl-10">
-        <div className="p-1 pr-6 md:pr-11 md:h-full md:overflow-y-auto">
-          <Button className="w-full md:w-auto" onClick={onClickGuidance}>
-            <Icon icon={LeftArrowIcon} aria-hidden className="h-3 mr-2" />
-            Step-by-step Guidance
-          </Button>
-          <div className="flex items-center justify-between mt-8 md:mt-12">
-            <h1 className="font-serif text-3xl font-bold text-green">Filters</h1>
-            <Button theme="link" onClick={() => dispatch(filtersActions.clearFilters())}>
-              Clear all Filters
-            </Button>
-          </div>
-          <div className="mt-6">
-            <CatalogFilters />
-          </div>
-        </div>
-      </aside>
-      <div className="relative flex w-full">
+      <div className="container mx-auto relative flex flex-col w-full text-white">
         <div className="fixed right-0 origin-bottom-right -rotate-90 md:absolute top-32 md:top-0">
           <Button
             className="rounded-b-none rounded-t-md"
@@ -175,18 +157,6 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
                   The completeness of the line indicates how much information is publicly disclosed
                   about the project.
                 </p>
-                <h1 className="mb-5 font-semibold mt-9">Color of the line</h1>
-                <div className="grid grid-cols-3 gap-5 text-center">
-                  <Image src="/images/grey-circle.svg" alt="" width={32} height={32} />
-                  <Image src="/images/black-circle.svg" alt="" width={32} height={32} />
-                  <Image src="/images/orange-circle.svg" alt="" width={32} height={32} />
-                  <p>Gray lines denote projects that are no longer active</p>
-                  <p>Black lines means that projects are ongoing</p>
-                  <p>
-                    The orange line highlights the category selected to sort the projects from
-                    greatest to least transparency
-                  </p>
-                </div>
               </div>
             }
           >
@@ -204,14 +174,24 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
           </Button>
         </div>
         <div className="flex flex-col w-full">
-          <div className="px-5 md:ml-6 md:pr-12 md:px-0">
-            <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
-              <MatchingResultsSentence />
-            </p>
-            <div className="flex-shrink-0 mt-2">
+          <div className="px-5 md:ml-6 md:pr-12 md:px-0 flex gap-2 items-end">
+            <div className="flex-1 flex-grow">
               <ProjectSearch />
             </div>
+            <Button
+              theme="secondary-green"
+              onClick={onClickGuidance}
+              className="mt-2 pr-[10px] h-11"
+            >
+              Filters Guide
+              <span className="ml-[10px] bg-green-dark rounded-full p-1">
+                <Icon icon={PlusIcon} aria-hidden className="w-4 h-4 text-primary" />
+              </span>
+            </Button>
           </div>
+          <p className="flex-shrink-0 mt-8 font-semibold text-center font-sm text-grey-medium">
+            <MatchingResultsSentence />
+          </p>
           <div
             ref={catalogRef}
             className="pt-8 mt-2 md:overflow-y-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
@@ -219,12 +199,15 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
             <div className="px-5 pb-8 md:pr-12 md:px-0">
               <ProjectCatalog hightlightSortingCategory />
             </div>
-            <StayUpdatedSection
-              showNewsletterSignup={showNewsletterSignup}
-              setShowNewsletterSignup={setShowNewsletterSignup}
-            />
           </div>
         </div>
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+        <StayUpdatedSection
+          className="max-w-none"
+          showNewsletterSignup={showNewsletterSignup}
+          setShowNewsletterSignup={setShowNewsletterSignup}
+        />
       </div>
     </>
   );
