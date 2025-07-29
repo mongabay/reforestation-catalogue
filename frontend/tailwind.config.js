@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Open\\ Sans', 'sans-serif'],
-      serif: ['Rowan', 'serif'],
+      serif: ['var(--font-rowan)', 'serif'],
     },
     textSizes: {
       '5xl': ['4.5rem', '4rem'],

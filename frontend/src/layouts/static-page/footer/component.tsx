@@ -25,7 +25,7 @@ interface FooterWithNewsletterProps extends FooterProps {
 const Footer: FC<FooterWithNewsletterProps> = (props) => {
   const { onOpenNewsletterSignup, ...rest } = props;
   return (
-    <footer {...rest} className="flex flex-col justify-end text-green-dark bg-primary">
+    <footer {...rest} className="flex flex-col justify-end text-green-dark bg-primary font-sans">
       <LayoutContainer className="flex flex-col items-stretch justify-between gap-8 md:items-start md:gap-24 md:flex-row py-14">
         <Link
           href="/"
@@ -94,7 +94,7 @@ const Footer: FC<FooterWithNewsletterProps> = (props) => {
               </Link>
             </div>
           </div>
-          <LayoutContainer className="text-sm font-semibold">
+          <LayoutContainer className="text-sm font-semibold font-sans">
             © Mongabay {new Date().getFullYear()}
           </LayoutContainer>
         </div>
