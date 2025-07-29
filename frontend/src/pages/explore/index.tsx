@@ -30,102 +30,18 @@ import LayersIcon from 'svgs/layers.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';
 import PlusIcon from 'svgs/plus.svg';
 
-const FIRST_VISIT_COOKIE_NAME = 'first_visit';
-
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  (store) => async (context) => {
-    const isFirstVisit = !(FIRST_VISIT_COOKIE_NAME in context.req.cookies);
-    const emptyQuery = Object.keys(context.query).length === 0;
-
-    let showWelcomeScreen = false;
-    if (isFirstVisit && emptyQuery) {
-      showWelcomeScreen = true;
-      context.res.setHeader('Set-Cookie', `${FIRST_VISIT_COOKIE_NAME}=false`);
-    }
-
-    await store.dispatch(globalActions.restoreState(context.query));
-
-    return {
-      props: {
-        showWelcomeScreen,
-      },
-    };
-  }
-);
-
-const WelcomeScreen: FC<{
-  onNavigateToCatalog: () => void;
-  onNavigateToGuidance: () => void;
-}> = ({ onNavigateToCatalog, onNavigateToGuidance }) => {
-  const onClickGuidance = useCallback(() => {
-    logEvent('Start guidance');
-    onNavigateToGuidance();
-  }, [onNavigateToGuidance]);
-
-  return (
-    <div className="flex-grow lg:relative">
-      <LayoutContainer className="flex justify-center lg:justify-end lg:w-[calc(1024px_-_40%)] xl:w-[calc(1280px_-_40%)] 2xl:w-[calc(1536px_-_40%)] lg:ml-[40%] py-12 md:py-20">
-        <div className="lg:flex-grow lg:pl-24">
-          <div className="relative lg:-ml-32 before:block before:absolute before:h-full before:aspect-square before:bg-white before:rounded-full before:-translate-x-1/2 before:z-10">
-            <div className="relative z-10 flex flex-col-reverse items-center gap-4 md:flex-row lg:-ml-12">
-              <h1 className="font-serif text-4xl font-bold text-center text-grey-dark lg:text-left">
-                A Transparency Index
-              </h1>
-              <Image
-                src="/images/about-chart.png"
-                width={183}
-                height={203}
-                alt=""
-                className="shrink-0"
-              />
-            </div>
-          </div>
-          <p className="max-w-lg text-center mt-11 lg:text-left">
-            Transparency is a signal that a tree-planting organization is aware of the complexities
-            involved in a successful restoration project and has both the staff and capacity to
-            organize, monitor, and report back on its results. If an organization does not disclose
-            important information about its projects, it may be prudent to ask why.
-          </p>
-          <h2 className="font-serif text-3xl font-bold text-center mt-11 text-grey-dark lg:text-left">
-            Discover projects of interest
-          </h2>
-          <p className="mt-1.5 max-w-lg text-center lg:text-left">
-            Start with an initial step-by-step guidance or go directly to the projects database.
-          </p>
-          <div className="flex flex-col justify-center gap-4 mt-8 md:flex-row lg:justify-start">
-            <Button onClick={onClickGuidance} className="min-w-[227px] justify-center">
-              Start step-by-step guidance
-            </Button>
-            <Button
-              theme="secondary-green"
-              onClick={onNavigateToCatalog}
-              className="min-w-[227px] justify-center"
-            >
-              Go to Project Catalog
-            </Button>
-          </div>
-        </div>
-      </LayoutContainer>
-      <div className="hidden lg:block relative w-full lg:absolute lg:inset-y-0 lg:left-0 lg:w-2/5 lg:h-full bg-[#013329]/20 bg-blend-normal">
-        <div className="absolute inset-0 object-cover w-full h-full -z-10">
-          <Image layout="fill" objectFit="cover" src="/images/explore-welcome.jpg" alt="" />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToGuidance }) => {
-  const dispatch = useAppDispatch();
+const CatalogScreen: FC<{ setIsFiltersOpen: (isOpen: boolean) => void }> = ({
+  setIsFiltersOpen,
+}) => {
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const [showGlossaryModal, setShowGlossaryModal] = useState(false);
   const [showNewsletterSignup, setShowNewsletterSignup] = useState(false);
 
-  const onClickGuidance = useCallback(() => {
+  const onOpenFilters = useCallback(() => {
     logEvent('Start guidance');
-    onNavigateToGuidance();
-  }, [onNavigateToGuidance]);
+    setIsFiltersOpen(true);
+  }, [setIsFiltersOpen]);
 
   return (
     <>
@@ -135,8 +51,9 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
         onDismiss={() => setShowNewsletterSignup(false)}
       />
       <div className="container mx-auto relative flex flex-col w-full text-white">
-        <div className="fixed right-0 origin-bottom-right -rotate-90 md:absolute top-32 md:top-0">
+        <div className="fixed right-0 origin-bottom-right -rotate-90 md:absolute top-32 md:top-4">
           <Button
+            theme="primary-green"
             className="rounded-b-none rounded-t-md"
             onClick={() => setShowGlossaryModal(true)}
           >
@@ -174,15 +91,11 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
           </Button>
         </div>
         <div className="flex flex-col w-full">
-          <div className="px-5 md:ml-6 md:pr-12 md:px-0 flex gap-2 items-end">
+          <div className="px-5 md:ml-6 md:pr-8 md:px-0 flex gap-2 items-end">
             <div className="flex-1 flex-grow">
               <ProjectSearch />
             </div>
-            <Button
-              theme="secondary-green"
-              onClick={onClickGuidance}
-              className="mt-2 pr-[10px] h-11"
-            >
+            <Button theme="secondary-green" onClick={onOpenFilters} className="mt-2 pr-[10px] h-11">
               Filters Guide
               <span className="ml-[10px] bg-green-dark rounded-full p-1">
                 <Icon icon={PlusIcon} aria-hidden className="w-4 h-4 text-primary" />
@@ -213,32 +126,18 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
   );
 };
 
-export const ExplorePage: PageComponent<{ showWelcomeScreen: boolean }, StaticPageLayoutProps> = ({
-  showWelcomeScreen,
-}) => {
-  const [screen, setScreen] = useState<'welcome' | 'catalog' | 'guidance'>(
-    showWelcomeScreen ? 'welcome' : 'catalog'
-  );
-
-  // When the screen changes, we make sure to scroll at the top
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [screen]);
-
+export const ExplorePage: PageComponent<StaticPageLayoutProps> = () => {
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   return (
     <>
       <Head title="Explore" />
       <UrlSync />
-      {screen === 'welcome' && (
-        <WelcomeScreen
-          onNavigateToCatalog={() => setScreen('catalog')}
-          onNavigateToGuidance={() => setScreen('guidance')}
-        />
-      )}
-      {screen === 'catalog' && <CatalogScreen onNavigateToGuidance={() => setScreen('guidance')} />}
-      {screen === 'guidance' && (
-        <StepByStepGuidance onNavigateToCatalog={() => setScreen('catalog')} />
-      )}
+      <CatalogScreen setIsFiltersOpen={setIsFiltersOpen} />
+      <StepByStepGuidance
+        open={isFiltersOpen}
+        onDismiss={() => setIsFiltersOpen(false)}
+        setIsFiltersOpen={setIsFiltersOpen}
+      />
     </>
   );
 };
