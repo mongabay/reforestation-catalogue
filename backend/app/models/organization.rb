@@ -4,6 +4,16 @@ class Organization < ApplicationRecord
                   :geographylist, :funding, :forms_of_intermediary_support, :applied_standards, 
                   :dashboards_and_apps].freeze
 
+  # Organization type enum (matching the Project model)
+  enum org_type: {
+    'Nongovernmental organization (NGO)' => 20,
+    'Community-based organization (CBO)' => 21,
+    'Private Sector' => 22,
+    'Intergovernmental organization (IGO)' => 23,
+    'Government' => 6,
+    'University / Academic institution' => 18
+  }
+
   # Validation
   validates :name, presence: true
   validates :org_type, presence: true
