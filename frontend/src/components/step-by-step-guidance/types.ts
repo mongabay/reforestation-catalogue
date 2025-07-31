@@ -14,6 +14,10 @@ export interface StepByStepGuidanceStep {
 }
 
 export interface StepByStepGuidanceProps {
-  /** Callback executed when the user goes to the catalog */
-  onNavigateToCatalog: () => void;
+  /** Whether the modal is open */
+  open: boolean;
+  /** Callback to close the modal */
+  onDismiss: () => void;
+  /** Callback to set the filters open state */
+  setIsFiltersOpen: (isOpen: boolean) => void;
 }

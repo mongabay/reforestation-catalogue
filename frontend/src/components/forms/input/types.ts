@@ -1,4 +1,4 @@
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import { FC, SVGProps, HTMLAttributes, PropsWithChildren } from 'react';
 
 export type InputProps = PropsWithChildren<
   {
@@ -14,6 +14,10 @@ export type InputProps = PropsWithChildren<
     defaultValue?: number | string;
     /** Value of the input */
     value?: number | string;
+    /** Variant of the input. Default to `'default'`. */
+    variant?: 'default' | 'primary';
+    /** Icon to display before the input */
+    icon?: FC<SVGProps<SVGSVGElement>>;
     /** Placeholder of the input */
     placeholder?: string;
     /** Resolution of the step (number input only) */

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import cx from 'classnames';
 
@@ -27,7 +27,7 @@ const Header: React.FC<HeaderWithNewsletterProps> = (props) => {
 
   return (
     <header {...rest} className={cx('text-white', props.className)}>
-      <LayoutContainer className="flex items-center justify-between py-2 sm:py-[21px]">
+      <LayoutContainer className="flex items-center justify-between py-2 sm:py-[21px] font-sans">
         <Link
           href="/"
           className="flex flex-shrink-0 focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline-white"

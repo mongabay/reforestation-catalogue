@@ -2,13 +2,26 @@ import 'styles/globals.css';
 
 import React, { useMemo, useState } from 'react';
 
+const rowan = localFont({
+  src: [
+    { path: '../../public/fonts/Rowan-Regular.otf', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/Rowan-Bold.otf', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/Rowan-Semibold.otf', weight: '600', style: 'normal' },
+    { path: '../../public/fonts/Rowan-Light.otf', weight: '300', style: 'normal' },
+    { path: '../../public/fonts/Rowan-Medium.otf', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/Rowan-Italic.otf', weight: '400', style: 'italic' },
+  ],
+  variable: '--font-rowan',
+  display: 'swap',
+});
+
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { AppProps } from 'next/app';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 
 import { OverlayProvider } from '@react-aria/overlays';
-
 import StaticPageLayout from 'layouts/static-page';
 import { StaticPageLayoutProps } from 'layouts/static-page/types';
 import wrapper from 'lib/store';
@@ -49,9 +62,11 @@ const ReforestationCatalogApp: React.FC<AppProps> = ({ Component, pageProps }: P
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-T9GHWQF8VW" />
 
         <OverlayProvider>
-          <Layout {...layoutProps}>
-            <Component {...pageProps} />
-          </Layout>
+          <div className={`${rowan.className} font-sans`}>
+            <Layout {...layoutProps}>
+              <Component {...pageProps} />
+            </Layout>
+          </div>
         </OverlayProvider>
       </Hydrate>
     </QueryClientProvider>

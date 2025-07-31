@@ -1,15 +1,17 @@
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { debounce } from 'lodash-es';
+import { searchActions, searchSelectors, sortActions, sortSelectors } from 'modules';
+import { Categories } from 'types';
 
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 
 import Input from 'components/forms/input';
 import Select from 'components/forms/select';
-import { searchActions, searchSelectors, sortActions, sortSelectors } from 'modules';
-import { Categories } from 'types';
 
 import { SORT_OPTIONS } from 'services/catalog';
+
+import MagnifyingGlassIcon from 'svgs/magnifying-glass.svg';
 
 import { ProjectSearchProps } from './types';
 
@@ -41,27 +43,22 @@ export const ProjectSearch: FC<ProjectSearchProps> = () => {
   }, [storedSearch]);
 
   return (
-    <>
-      <Input
-        id="search"
-        aria-label="Search"
-        aria-describedby="search-description"
-        type="search"
-        placeholder="Search"
-        className="placeholder:font-semibold placeholder-grey-darker pl-14 bg-[url('/images/magnifying-glass.svg')] bg-no-repeat bg-[left_22px_center]"
-        value={search}
-        onChange={onSearch}
-      />
-      <p id="search-description" className="mt-2 text-xs text-grey-medium">
-        Search by <span className="font-semibold">Project name</span>,{' '}
-        <span className="font-semibold">Lead organization</span>,{' '}
-        <span className="font-semibold">Partner name</span>,{' '}
-        <span className="font-semibold">Country</span>,{' '}
-        <span className="font-semibold">Purpose</span>,{' '}
-        <span className="font-semibold">Donor name</span>.
-      </p>
+    <div className="flex flex-col md:flex-row items-end gap-4 w-full">
+      <div className="flex-grow">
+        <Input
+          id="search"
+          aria-label="Search"
+          type="search"
+          placeholder="Search by name, country, purpose, ..."
+          variant="primary"
+          icon={MagnifyingGlassIcon}
+          className="placeholder:font-semibold placeholder-green-light h-11"
+          value={search}
+          onChange={onSearch}
+        />
+      </div>
       <div className="flex items-center mt-4 md:justify-end">
-        <label htmlFor="sort" className="text-sm font-semibold underline">
+        <label htmlFor="sort" className="sr-only">
           Sort by:
         </label>
         <div className="ml-2">
@@ -69,12 +66,14 @@ export const ProjectSearch: FC<ProjectSearchProps> = () => {
             id="sort"
             options={SORT_OPTIONS}
             value={storedSort}
+            customLabel={(option) => `Sorted by ${option.label}`}
             onChange={({ value }) => dispatch(sortActions.updateSort(value as Categories))}
-            className="px-0 font-semibold underline !border-transparent"
+            variant="primary"
+            className="px-0 h-11"
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

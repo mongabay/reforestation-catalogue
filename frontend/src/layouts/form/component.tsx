@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 
 import cx from 'classnames';
 
+import Footer from 'layouts/static-page/footer';
 import { omit } from 'lodash-es';
 
-import Button from 'components/button';
-import LayoutContainer from 'components/layout-container';
 import NewsletterSignup from 'components/newsletter-signup';
-import Footer from 'layouts/static-page/footer';
+import StayUpdatedSection from 'components/stay-updated-section';
 
 import Header from '../static-page/header';
 
@@ -37,21 +36,10 @@ export const FormLayout: React.FC<FormLayoutProps> = ({
       >
         {children}
       </main>
-      <div className="py-12 text-white md:py-32 bg-green-emerald">
-        <LayoutContainer>
-          <p className="font-serif text-3xl md:text-[40px] md:leading-tight max-w-3xl font-bold">
-            Subscribe to our newsletter to find out about reforestation projects, original stories,
-            activism awareness and more.
-          </p>
-          <Button
-            theme="primary-white"
-            onClick={() => setShowNewsletterSignup(true)}
-            className="justify-center mt-10 md:inline-flex md:mt-20 md:px-12"
-          >
-            <span className="text-accent">Subscribe</span>
-          </Button>
-        </LayoutContainer>
-      </div>
+      <StayUpdatedSection
+        showNewsletterSignup={showNewsletterSignup}
+        setShowNewsletterSignup={setShowNewsletterSignup}
+      />
       <Footer props={footerProps} />
     </div>
   );
