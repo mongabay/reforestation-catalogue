@@ -12,8 +12,23 @@ Rails.application.routes.draw do
       post 'projects' => 'projects#create'
       patch 'projects/:id' => 'projects#update'
       put 'projects/:id' => 'projects#update'
+      get 'organizations' => 'organizations#index'
+      get 'organizations/:id' => 'organizations#show'
+      post 'organizations' => 'organizations#create'
+      patch 'organizations/:id' => 'organizations#update'
+      put 'organizations/:id' => 'organizations#update'
       get 'static_pages/:slug' => 'static_pages#show'
       get 'enums' => 'enums#index'
+    end
+  end
+
+  # Admin routes
+  namespace :admin do
+    resources :organizations do
+      collection do
+        get :import_csv
+        post :import_csv
+      end
     end
   end
 end
