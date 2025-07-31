@@ -12,32 +12,32 @@ module Api
         if @sort_by.present?
           case @sort_by.downcase
           when "permanence"
-            return sort_by_field("permanence")
+            sort_by_field("permanence")
           when "ecological"
-            return sort_by_field("ecological")
+            sort_by_field("ecological")
           when "social"
-            return sort_by_field("social")
+            sort_by_field("social")
           when "financial"
-            return sort_by_field("financial")
+            sort_by_field("financial")
           when "name"
-            return sort_by_field("name")
+            sort_by_field("name")
           when "year_founded"
-            return sort_by_field("year_founded")
+            sort_by_field("year_founded")
           when "estimated_impact_trees"
-            return sort_by_field("estimated_impact_trees")
+            sort_by_field("estimated_impact_trees")
           when "estimated_impact_hectares"
-            return sort_by_field("estimated_impact_hectares")
+            sort_by_field("estimated_impact_hectares")
           when "country_hq"
-            return sort_by_field("country_hq")
+            sort_by_field("country_hq")
           when "org_type"
-            return sort_by_field("org_type")
+            sort_by_field("org_type")
           else
             # Default to sorting by name if unknown sort field
-            return sort_by_field("name")
+            sort_by_field("name")
           end
         else
           # Default sorting by name ascending
-          return Organization.order(:name)
+          Organization.order(:name)
         end
       end
 

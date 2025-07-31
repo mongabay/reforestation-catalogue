@@ -16,15 +16,15 @@ RSpec.describe OrganizationsCsvImporter do
   end
 
   after do
-    temp_file.unlink if temp_file
+    temp_file&.unlink
   end
 
   describe "#import" do
     it "imports organizations from CSV" do
       importer = OrganizationsCsvImporter.new(temp_file.path)
-      
+
       expect { importer.import }.to change(Organization, :count).by(1)
-      
+
       expect(importer.imported_count).to eq(1)
       expect(importer.skipped_count).to eq(0)
       expect(importer.errors).to be_empty
@@ -33,7 +33,7 @@ RSpec.describe OrganizationsCsvImporter do
     it "creates organization with correct attributes" do
       importer = OrganizationsCsvImporter.new(temp_file.path)
       importer.import
-      
+
       organization = Organization.last
       expect(organization.name).to eq("8 Billion Trees")
       expect(organization.org_type).to eq("Private Sector")
@@ -61,14 +61,14 @@ RSpec.describe OrganizationsCsvImporter do
       temp_invalid_file = Tempfile.new(["invalid", ".csv"])
       temp_invalid_file.write(invalid_csv)
       temp_invalid_file.close
-      
+
       importer = OrganizationsCsvImporter.new(temp_invalid_file.path)
       importer.import
-      
+
       expect(importer.imported_count).to eq(0)
       expect(importer.skipped_count).to eq(1)
       expect(importer.errors).not_to be_empty
-      
+
       temp_invalid_file.unlink
     end
   end

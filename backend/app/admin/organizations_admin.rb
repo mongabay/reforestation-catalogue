@@ -9,32 +9,32 @@ Trestle.resource(:organizations) do
       if request.post?
         if params[:csv_file].present?
           file = params[:csv_file]
-          
+
           # Create a temporary file
-          temp_file = Tempfile.new(['organizations_import', '.csv'])
+          temp_file = Tempfile.new(["organizations_import", ".csv"])
           temp_file.write(file.read)
           temp_file.close
-          
+
           # Import the CSV
           importer = OrganizationsCsvImporter.new(temp_file.path)
           success = importer.import
-          
+
           # Clean up temp file
           temp_file.unlink
-          
+
           if success
             flash[:message] = "Successfully imported #{importer.imported_count} organizations. #{importer.skipped_count} rows were skipped."
             flash[:error] = importer.errors.join("<br>").html_safe if importer.errors.any?
           else
-            flash[:error] = "Import failed: #{importer.errors.join(', ')}"
+            flash[:error] = "Import failed: #{importer.errors.join(", ")}"
           end
         else
           flash[:error] = "Please select a CSV file to upload."
         end
-        
+
         redirect_to admin_organizations_path
       else
-        render 'admin/organizations/import_csv'
+        render "admin/organizations/import_csv"
       end
     end
   end
@@ -66,7 +66,7 @@ Trestle.resource(:organizations) do
         link_to "Import CSV", import_csv_admin_organizations_path, class: "btn btn-primary"
       end
     end
-    
+
     table
   end
 
@@ -75,14 +75,14 @@ Trestle.resource(:organizations) do
     tab :general do
       text_field :name
       select :org_type, options_for_select([
-        ['Nongovernmental organization (NGO)', 'Nongovernmental organization (NGO)'],
-        ['Community-based organization (CBO)', 'Community-based organization (CBO)'],
-        ['Private Sector', 'Private Sector'],
-        ['Intergovernmental organization (IGO)', 'Intergovernmental organization (IGO)'],
-        ['Government', 'Government'],
-        ['University / Academic institution', 'University / Academic institution']
-      ], organization.org_type), { prompt: 'Select organization type' }
-      
+        ["Nongovernmental organization (NGO)", "Nongovernmental organization (NGO)"],
+        ["Community-based organization (CBO)", "Community-based organization (CBO)"],
+        ["Private Sector", "Private Sector"],
+        ["Intergovernmental organization (IGO)", "Intergovernmental organization (IGO)"],
+        ["Government", "Government"],
+        ["University / Academic institution", "University / Academic institution"]
+      ], organization.org_type), {prompt: "Select organization type"}
+
       number_field :year_founded
       text_field :country_hq
       text_field :geography
@@ -99,44 +99,44 @@ Trestle.resource(:organizations) do
         col { number_field :social, step: 0.1, label: "Social Score" }
         col { number_field :financial, step: 0.1, label: "Financial Score" }
       end
-      
+
       row do
         col { number_field :estimated_impact_trees, label: "Estimated Impact (Trees)" }
         col { number_field :estimated_impact_hectares, step: 0.1, label: "Estimated Impact (Hectares)" }
       end
-      
+
       number_field :support_for_landholders, step: 0.1, label: "Support for Landholders"
       number_field :funding_duration_for_maintenance_and_stewardship, step: 0.1, label: "Funding Duration for Maintenance & Stewardship"
     end
 
     tab :programs_and_methods do
-      text_area :program_names, placeholder: "Program names (one per line)", rows: 4, 
-                help: "Enter each program name on a separate line"
+      text_area :program_names, placeholder: "Program names (one per line)", rows: 4,
+        help: "Enter each program name on a separate line"
       text_area :ribbons, placeholder: "Ribbons/Awards (one per line)", rows: 3,
-                help: "Enter each ribbon or award on a separate line"
+        help: "Enter each ribbon or award on a separate line"
       text_area :goals_class, placeholder: "Goals classification (one per line)", rows: 4,
-                help: "Enter each goal classification on a separate line"
+        help: "Enter each goal classification on a separate line"
       text_area :targets, placeholder: "Targets (one per line)", rows: 4,
-                help: "Enter each target on a separate line"
+        help: "Enter each target on a separate line"
       text_area :tree_growing_methods, placeholder: "Tree growing methods (one per line)", rows: 4,
-                help: "Enter each method on a separate line"
+        help: "Enter each method on a separate line"
       text_area :geographylist, placeholder: "Geography list (one per line)", rows: 4,
-                help: "Enter each geographic area on a separate line"
+        help: "Enter each geographic area on a separate line"
     end
 
     tab :funding_and_support do
       text_area :funding, placeholder: "Funding sources (one per line)", rows: 4,
-                help: "Enter each funding source on a separate line"
+        help: "Enter each funding source on a separate line"
       text_area :forms_of_intermediary_support, placeholder: "Forms of intermediary support (one per line)", rows: 4,
-                help: "Enter each form of support on a separate line"
-      
+        help: "Enter each form of support on a separate line"
+
       check_box :carbon_credits, label: "Offers Carbon Credits"
       text_area :applied_standards, placeholder: "Applied standards (one per line)", rows: 3,
-                help: "Enter each standard on a separate line"
-      
+        help: "Enter each standard on a separate line"
+
       check_box :public_facing_spatial_results, label: "Has Public Facing Spatial Results"
       text_area :dashboards_and_apps, placeholder: "Dashboards and apps (one per line)", rows: 3,
-                help: "Enter each dashboard or app on a separate line"
+        help: "Enter each dashboard or app on a separate line"
     end
 
     tab :project_standards do
@@ -178,10 +178,10 @@ Trestle.resource(:organizations) do
 
   # Handle array fields that come from text areas
   update_instance do |instance, attrs|
-    array_fields = [:ribbons, :program_names, :goals_class, :targets, :tree_growing_methods, 
-                   :geographylist, :funding, :forms_of_intermediary_support, :applied_standards, 
-                   :dashboards_and_apps]
-    
+    array_fields = [:ribbons, :program_names, :goals_class, :targets, :tree_growing_methods,
+      :geographylist, :funding, :forms_of_intermediary_support, :applied_standards,
+      :dashboards_and_apps]
+
     array_fields.each do |field|
       if attrs[field].present?
         attrs[field] = attrs[field].split("\n").map(&:strip).reject(&:blank?)
@@ -192,10 +192,10 @@ Trestle.resource(:organizations) do
   end
 
   build_instance do |attrs|
-    array_fields = [:ribbons, :program_names, :goals_class, :targets, :tree_growing_methods, 
-                   :geographylist, :funding, :forms_of_intermediary_support, :applied_standards, 
-                   :dashboards_and_apps]
-    
+    array_fields = [:ribbons, :program_names, :goals_class, :targets, :tree_growing_methods,
+      :geographylist, :funding, :forms_of_intermediary_support, :applied_standards,
+      :dashboards_and_apps]
+
     array_fields.each do |field|
       if attrs[field].present?
         attrs[field] = attrs[field].split("\n").map(&:strip).reject(&:blank?)
@@ -225,4 +225,4 @@ Trestle.resource(:organizations) do
       :funding, :forms_of_intermediary_support, :applied_standards, :dashboards_and_apps
     )
   end
-end 
+end

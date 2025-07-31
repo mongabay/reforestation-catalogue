@@ -25,10 +25,10 @@ module Api
         if @filters_to_apply["org_type"].present?
           # Handle both string and numeric org_type values
           org_type_value = @filters_to_apply["org_type"]
-          if org_type_value.is_a?(String) && org_type_value.match?(/^\d+$/)
-            @organizations = @organizations.where(org_type: org_type_value.to_i)
+          @organizations = if org_type_value.is_a?(String) && org_type_value.match?(/^\d+$/)
+            @organizations.where(org_type: org_type_value.to_i)
           else
-            @organizations = @organizations.where(org_type: org_type_value)
+            @organizations.where(org_type: org_type_value)
           end
         end
 
@@ -88,8 +88,8 @@ module Api
           @organizations = @organizations.where("applied_standards && ?", "{#{@filters_to_apply["applied_standards"]}}")
         end
 
-        return @organizations
+        @organizations
       end
     end
   end
-end 
+end

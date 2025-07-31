@@ -4,8 +4,7 @@ class Api::V1::OrganizationsController < ApplicationController
     organizations_total = @organizations.count
     @organizations = Api::Organizations::Filter.new(@organizations, filters_to_apply).call if filters_to_apply.any?
     search = params["search"]
-    @organizations = Api::Organizations::Searcher.new(@organizations, search).call if (search.present? and search.class == String)
-    organizations_matching_query = @organizations
+    @organizations = Api::Organizations::Searcher.new(@organizations, search).call if search.present? && search.instance_of?(String)
     @pagy, @organizations = pagy(@organizations, page: current_page, items: per_page)
 
     options = {}
@@ -93,11 +92,11 @@ class Api::V1::OrganizationsController < ApplicationController
 
   def filters_to_apply
     filters_to_apply = {}
-    
+
     # Basic filters
-    %w[name country_hq org_type year_founded geography carbon_credits 
-       public_facing_spatial_results estimated_impact_trees estimated_impact_hectares
-       permanence ecological social financial].each do |filter_key|
+    %w[name country_hq org_type year_founded geography carbon_credits
+      public_facing_spatial_results estimated_impact_trees estimated_impact_hectares
+      permanence ecological social financial].each do |filter_key|
       if params.include?(filter_key)
         filters_to_apply[filter_key] = params[filter_key]
       end
@@ -112,4 +111,4 @@ class Api::V1::OrganizationsController < ApplicationController
 
     filters_to_apply
   end
-end 
+end
