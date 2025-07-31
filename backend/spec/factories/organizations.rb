@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :organization do
     name { Faker::Company.name }
-    org_type { ['ngo', 'for_profit', 'government', 'academic', 'international_org', 'community_org'].sample }
+    org_type { ["ngo", "for_profit", "government", "academic", "international_org", "community_org"].sample }
     year_founded { rand(1950..2020) }
     country_hq { Faker::Address.country }
     geography { Faker::Address.city }
     primary_organization_url { Faker::Internet.url }
     data_sources { Faker::Lorem.sentence }
-    
+
     # Impact metrics
     permanence { rand(0.0..5.0).round(1) }
     ecological { rand(0.0..5.0).round(1) }
@@ -17,23 +17,23 @@ FactoryBot.define do
     estimated_impact_hectares { rand(10.0..1000.0).round(1) }
     support_for_landholders { rand(0.0..5.0).round(1) }
     funding_duration_for_maintenance_and_stewardship { rand(1.0..10.0).round(1) }
-    
+
     # Array fields
     ribbons { [Faker::Lorem.word, Faker::Lorem.word] }
     program_names { [Faker::Company.buzzword, Faker::Company.buzzword] }
     goals_class { [Faker::Lorem.word, Faker::Lorem.word] }
     targets { [Faker::Lorem.sentence, Faker::Lorem.sentence] }
-    tree_growing_methods { ['Direct seeding', 'Nursery planting'] }
+    tree_growing_methods { ["Direct seeding", "Nursery planting"] }
     geographylist { [Faker::Address.country, Faker::Address.country] }
-    funding { ['Government grants', 'Private donations'] }
-    forms_of_intermediary_support { ['Technical assistance', 'Financial support'] }
-    applied_standards { ['FSC', 'PEFC'] }
-    dashboards_and_apps { ['Web dashboard', 'Mobile app'] }
-    
+    funding { ["Government grants", "Private donations"] }
+    forms_of_intermediary_support { ["Technical assistance", "Financial support"] }
+    applied_standards { ["FSC", "PEFC"] }
+    dashboards_and_apps { ["Web dashboard", "Mobile app"] }
+
     # Boolean fields
     carbon_credits { [true, false].sample }
     public_facing_spatial_results { [true, false].sample }
-    
+
     # Integer scoring fields (typically 0-5 scale)
     project_selection_standards { rand(0..5) }
     addressing_drivers_of_deforestation { rand(0..5) }
@@ -70,11 +70,11 @@ FactoryBot.define do
     end
 
     trait :ngo do
-      org_type { 'ngo' }
+      org_type { "ngo" }
     end
 
     trait :with_carbon_credits do
       carbon_credits { true }
     end
   end
-end 
+end
