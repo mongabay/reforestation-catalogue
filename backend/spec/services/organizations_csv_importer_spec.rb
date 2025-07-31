@@ -9,7 +9,7 @@ RSpec.describe OrganizationsCsvImporter do
   end
 
   let(:temp_file) do
-          file = Tempfile.new(["test_import", ".csv"])
+    file = Tempfile.new(["test_import", ".csv"])
     file.write(csv_content)
     file.close
     file
@@ -19,8 +19,8 @@ RSpec.describe OrganizationsCsvImporter do
     temp_file.unlink if temp_file
   end
 
-  describe '#import' do
-    it 'imports organizations from CSV' do
+  describe "#import" do
+    it "imports organizations from CSV" do
       importer = OrganizationsCsvImporter.new(temp_file.path)
       
       expect { importer.import }.to change(Organization, :count).by(1)
@@ -30,15 +30,15 @@ RSpec.describe OrganizationsCsvImporter do
       expect(importer.errors).to be_empty
     end
 
-    it 'creates organization with correct attributes' do
+    it "creates organization with correct attributes" do
       importer = OrganizationsCsvImporter.new(temp_file.path)
       importer.import
       
       organization = Organization.last
-      expect(organization.name).to eq('8 Billion Trees')
-      expect(organization.org_type).to eq('Private Sector')
+      expect(organization.name).to eq("8 Billion Trees")
+      expect(organization.org_type).to eq("Private Sector")
       expect(organization.year_founded).to eq(2018.0)
-      expect(organization.country_hq).to eq('USA')
+      expect(organization.country_hq).to eq("USA")
       expect(organization.permanence).to eq(0.4125)
       expect(organization.ecological).to eq(0.75)
       expect(organization.social).to eq(0.333333333)
@@ -46,17 +46,17 @@ RSpec.describe OrganizationsCsvImporter do
       expect(organization.estimated_impact_trees).to eq(14385101.0)
       expect(organization.carbon_credits).to be true
       expect(organization.public_facing_spatial_results).to be false
-      expect(organization.goals_class).to eq(['biodiversity/conservation', 'climate/carbon', 'people/livelihoods'])
-      expect(organization.tree_growing_methods).to eq(['seedling planting'])
-      expect(organization.geographylist).to eq(['Australia', 'Nepal', 'and Madagascar'])
+      expect(organization.goals_class).to eq(["biodiversity/conservation", "climate/carbon", "people/livelihoods"])
+      expect(organization.tree_growing_methods).to eq(["seedling planting"])
+      expect(organization.geographylist).to eq(["Australia", "Nepal", "and Madagascar"])
     end
 
-    it 'handles missing file gracefully' do
+    it "handles missing file gracefully" do
       importer = OrganizationsCsvImporter.new("nonexistent_file.csv")
       expect(importer.import).to be false
     end
 
-    it 'handles invalid CSV data' do
+    it "handles invalid CSV data" do
       invalid_csv = "invalid,headers\ninvalid,data"
       temp_invalid_file = Tempfile.new(["invalid", ".csv"])
       temp_invalid_file.write(invalid_csv)
@@ -73,46 +73,46 @@ RSpec.describe OrganizationsCsvImporter do
     end
   end
 
-  describe '#parse_array_field' do
+  describe "#parse_array_field" do
     let(:importer) { OrganizationsCsvImporter.new(temp_file.path) }
 
-    it 'handles comma-separated values' do
+    it "handles comma-separated values" do
       result = importer.send(:parse_array_field, "value1,value2,value3")
       expect(result).to eq(["value1", "value2", "value3"])
     end
 
-    it 'handles newline-separated values' do
+    it "handles newline-separated values" do
       result = importer.send(:parse_array_field, "value1\nvalue2\nvalue3")
       expect(result).to eq(["value1", "value2", "value3"])
     end
 
-    it 'handles empty values' do
+    it "handles empty values" do
       result = importer.send(:parse_array_field, "")
       expect(result).to eq([])
     end
 
-    it 'handles nil values' do
+    it "handles nil values" do
       result = importer.send(:parse_array_field, nil)
       expect(result).to eq([])
     end
   end
 
-  describe '#map_org_type' do
+  describe "#map_org_type" do
     let(:importer) { OrganizationsCsvImporter.new(temp_file.path) }
 
-    it 'maps social enterprise to Private Sector' do
+    it "maps social enterprise to Private Sector" do
       result = importer.send(:map_org_type, "social enterprise")
       expect(result).to eq("Private Sector")
     end
 
-    it 'maps NGO to Nongovernmental organization (NGO)' do
+    it "maps NGO to Nongovernmental organization (NGO)" do
       result = importer.send(:map_org_type, "NGO")
       expect(result).to eq("Nongovernmental organization (NGO)")
     end
 
-    it 'handles unknown types' do
+    it "handles unknown types" do
       result = importer.send(:map_org_type, "unknown type")
       expect(result).to eq("Private Sector")
     end
   end
-end 
+end
