@@ -1,9 +1,9 @@
 class Api::V1::OrganizationsController < ApplicationController
   def index
-    @organizations = Api::Organizations::Sorter.new(params['sort_by'], params['order']).call
+    @organizations = Api::Organizations::Sorter.new(params["sort_by"], params["order"]).call
     organizations_total = @organizations.count
     @organizations = Api::Organizations::Filter.new(@organizations, filters_to_apply).call if filters_to_apply.any?
-    search = params['search']
+    search = params["search"]
     @organizations = Api::Organizations::Searcher.new(@organizations, search).call if (search.present? and search.class == String)
     organizations_matching_query = @organizations
     @pagy, @organizations = pagy(@organizations, page: current_page, items: per_page)
@@ -25,7 +25,7 @@ class Api::V1::OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find(params['id'])
+    @organization = Organization.find(params["id"])
 
     render json: OrganizationSerializer.new(
       @organization
@@ -45,7 +45,7 @@ class Api::V1::OrganizationsController < ApplicationController
   end
 
   def update
-    @organization = Organization.find(params['id'])
+    @organization = Organization.find(params["id"])
 
     if @organization.update(organization_params)
       render json: OrganizationSerializer.new(

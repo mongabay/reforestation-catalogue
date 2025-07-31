@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 class OrganizationsCsvImporter
   attr_reader :errors, :imported_count, :skipped_count
@@ -13,7 +13,7 @@ class OrganizationsCsvImporter
   def import
     return false unless File.exist?(@file_path)
 
-    CSV.foreach(@file_path, headers: true, encoding: 'UTF-8') do |row|
+    CSV.foreach(@file_path, headers: true, encoding: "UTF-8") do |row|
       begin
         organization_data = map_csv_row_to_organization(row)
         organization = Organization.new(organization_data)
@@ -113,29 +113,29 @@ class OrganizationsCsvImporter
 
   def parse_boolean(value)
     return nil if value.blank?
-    value.downcase == 'true' || value == '1'
+    value.downcase == "true" || value == "1"
   end
 
   def map_org_type(value)
     return nil if value.blank?
     
     case value.downcase
-    when 'social enterprise'
-      'Private Sector'
-    when 'ngo', 'nongovernmental organization'
-      'Nongovernmental organization (NGO)'
-    when 'government'
-      'Government'
-    when 'academic', 'university'
-      'University / Academic institution'
-    when 'international organization', 'intergovernmental organization'
-      'Intergovernmental organization (IGO)'
-    when 'community organization', 'community-based organization'
-      'Community-based organization (CBO)'
-    when 'private sector', 'for-profit', 'for profit'
-      'Private Sector'
+    when "social enterprise"
+      "Private Sector"
+    when "ngo", "nongovernmental organization"
+      "Nongovernmental organization (NGO)"
+    when "government"
+      "Government"
+    when "academic", "university"
+      "University / Academic institution"
+    when "international organization", "intergovernmental organization"
+      "Intergovernmental organization (IGO)"
+    when "community organization", "community-based organization"
+      "Community-based organization (CBO)"
+    when "private sector", "for-profit", "for profit"
+      "Private Sector"
     else
-      'Private Sector' # default fallback
+      "Private Sector" # default fallback
     end
   end
-end 
+end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe OrganizationsCsvImporter do
   let(:csv_content) do
@@ -9,7 +9,7 @@ RSpec.describe OrganizationsCsvImporter do
   end
 
   let(:temp_file) do
-    file = Tempfile.new(['test_import', '.csv'])
+          file = Tempfile.new(["test_import", ".csv"])
     file.write(csv_content)
     file.close
     file
@@ -52,13 +52,13 @@ RSpec.describe OrganizationsCsvImporter do
     end
 
     it 'handles missing file gracefully' do
-      importer = OrganizationsCsvImporter.new('nonexistent_file.csv')
+      importer = OrganizationsCsvImporter.new("nonexistent_file.csv")
       expect(importer.import).to be false
     end
 
     it 'handles invalid CSV data' do
       invalid_csv = "invalid,headers\ninvalid,data"
-      temp_invalid_file = Tempfile.new(['invalid', '.csv'])
+      temp_invalid_file = Tempfile.new(["invalid", ".csv"])
       temp_invalid_file.write(invalid_csv)
       temp_invalid_file.close
       
@@ -77,17 +77,17 @@ RSpec.describe OrganizationsCsvImporter do
     let(:importer) { OrganizationsCsvImporter.new(temp_file.path) }
 
     it 'handles comma-separated values' do
-      result = importer.send(:parse_array_field, 'value1,value2,value3')
-      expect(result).to eq(['value1', 'value2', 'value3'])
+      result = importer.send(:parse_array_field, "value1,value2,value3")
+      expect(result).to eq(["value1", "value2", "value3"])
     end
 
     it 'handles newline-separated values' do
       result = importer.send(:parse_array_field, "value1\nvalue2\nvalue3")
-      expect(result).to eq(['value1', 'value2', 'value3'])
+      expect(result).to eq(["value1", "value2", "value3"])
     end
 
     it 'handles empty values' do
-      result = importer.send(:parse_array_field, '')
+      result = importer.send(:parse_array_field, "")
       expect(result).to eq([])
     end
 
@@ -101,18 +101,18 @@ RSpec.describe OrganizationsCsvImporter do
     let(:importer) { OrganizationsCsvImporter.new(temp_file.path) }
 
     it 'maps social enterprise to Private Sector' do
-      result = importer.send(:map_org_type, 'social enterprise')
-      expect(result).to eq('Private Sector')
+      result = importer.send(:map_org_type, "social enterprise")
+      expect(result).to eq("Private Sector")
     end
 
     it 'maps NGO to Nongovernmental organization (NGO)' do
-      result = importer.send(:map_org_type, 'NGO')
-      expect(result).to eq('Nongovernmental organization (NGO)')
+      result = importer.send(:map_org_type, "NGO")
+      expect(result).to eq("Nongovernmental organization (NGO)")
     end
 
     it 'handles unknown types' do
-      result = importer.send(:map_org_type, 'unknown type')
-      expect(result).to eq('Private Sector')
+      result = importer.send(:map_org_type, "unknown type")
+      expect(result).to eq("Private Sector")
     end
   end
 end 
