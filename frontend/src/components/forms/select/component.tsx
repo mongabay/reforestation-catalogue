@@ -4,20 +4,12 @@ import cx from 'classnames';
 
 import { SelectProps } from './types';
 
-const variantClasses = {
-  default: 'bg-transparent',
-  primary:
-    'bg-green-emerald/40 text-primary focus:border-green-dark/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green',
-};
-
 export const Select: FC<SelectProps> = ({
   id,
   'aria-label': ariaLabel,
   options,
   placeholder = 'Select an option',
   defaultValue = '',
-  customLabel,
-  variant = 'default',
   value,
   onChange,
   disabled = false,
@@ -42,8 +34,7 @@ export const Select: FC<SelectProps> = ({
       disabled={disabled}
       required={required}
       className={cx(
-        'block w-full text-sm focus:outline-none focus:ring-transparent focus:border-grey-dark/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green disabled:opacity-60 disabled:pointer-events-none border border-grey-dark/20 rounded-full py-2 pl-4 pr-8',
-        variantClasses[variant],
+        'block w-full text-sm focus:outline-none focus:ring-transparent focus:border-grey-dark/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green disabled:opacity-60 disabled:pointer-events-none border border-grey-dark/20 rounded-full py-2 pl-4 pr-8 bg-transparent',
         className
       )}
     >
@@ -54,7 +45,7 @@ export const Select: FC<SelectProps> = ({
       )}
       {options.map((option) => (
         <option key={option.value} value={option.value} disabled={option.disabled}>
-          {customLabel ? customLabel(option) : option.label}
+          {option.label}
         </option>
       ))}
     </select>
