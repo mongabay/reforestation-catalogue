@@ -23,7 +23,7 @@ class Api::V1::ProjectsController < ApplicationController
       pages: @pagy.pages,
       current_page: current_page
     }
-
+    
     render json: ProjectSerializer.new(
       @projects,
       options
@@ -34,7 +34,7 @@ class Api::V1::ProjectsController < ApplicationController
     # TODO
     # Fetch object before show
     @project = Project.approved.find(params['id'])
-
+    
     render json: ProjectSerializer.new(
       @project
       # links
@@ -44,7 +44,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(parsed_project_params)
-
+    
     if @project.save
       render json: ProjectSerializer.new(
         @project
