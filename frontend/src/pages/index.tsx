@@ -1,33 +1,30 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 
 import Image from 'next/image';
 
 import { useMediaMatch } from 'rooks';
 import { EffectCoverflow, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Categories } from 'types';
 
 import { useProjects } from 'hooks/projects';
 
 import Button from 'components/button';
 import Head from 'components/head';
 import LayoutContainer from 'components/layout-container';
-import NewsletterSignup from 'components/newsletter-signup';
 import ProjectCard from 'components/project-card';
-
-import Arrow from 'svgs/arrow.svg';
+import { StaticPageLayoutProps } from 'layouts/static-page';
+import { Categories, PageComponent } from 'types';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const HomePage: React.FC = () => {
+export const HomePage: PageComponent<{}, StaticPageLayoutProps> = () => {
   const { isLoading, isError, data } = useProjects([], '', Categories.Context, {
     highlighted: true,
     perPage: 12,
   });
-  const [showNewsletterSignup, setShowNewsletterSignup] = useState(false);
 
   // 768px corresponds to the Tailwind's sm breakpoint
   const isMdViewport = useMediaMatch('(min-width: 768px)');
@@ -37,56 +34,105 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Head />
-      <div className="relative text-white">
-        <LayoutContainer className="text-center py-40 space-y-[26px]">
-          <h1 className="max-w-4xl mx-auto font-serif text-5xl font-bold md:leading-[50px] max-w-[810px]">
-            Mongabay&apos;s Global Reforestation Directory
+      <div className="relative bg-[#04261F]/70 bg-blend-normal">
+        <div className="absolute inset-0 object-cover -z-10">
+          <Image alt="" src="/images/home-bg.png" layout="fill" objectFit="cover" />
+        </div>
+        <LayoutContainer className="py-12 text-center text-white md:py-40">
+          <h1 className="max-w-4xl mx-auto font-serif text-3xl md:text-[40px] font-bold md:leading-[50px]">
+            Mongabay’s global directory of reforestation and tree-planting projects is a starting
+            point for people wanting to support reforestation
           </h1>
-          <p className="max-w-2xl mx-auto mt-10 leading-[26px] md:mt-24">
-            To help identify organizations that align with a diversity of motivations and interests,
-            researchers from UC Santa Cruz gathered information on 36 criteria that experts say are
-            key to success and organized them into categories.
+          <p className="max-w-2xl mx-auto mt-10 leading-6 md:mt-24">
+            To help identify projects that align with a diversity of motivations and interests,
+            Mongabay gathered information on 36 criteria that experts say are key to success and
+            organized them into categories: contextual, ecological, economic, social, and
+            institutional.
           </p>
-        </LayoutContainer>
-      </div>
-      <div className="py-12 md:py-20 bg-primary max-w-[1120px] mx-auto rounded-2xl">
-        <LayoutContainer className="lg:px-20">
-          <div className="flex flex-wrap justify-between gap-10 md:gap-20">
-            <h2 className="font-serif text-3xl md:text-[40px] text-green-dark md:leading-[56px] max-w-xl font-bold">
-              Why use the Mongabay Reforestation.app?
-            </h2>
-            <Button to="/explore" className="md:max-h-11 min-w-fit">
+          <div className="flex flex-col gap-4 mt-10 md:inline-flex md:mt-24 md:flex-row">
+            <Button
+              theme="secondary-white"
+              to="/about"
+              className="justify-center md:px-12 min-w-[230px]"
+            >
+              Learn More
+            </Button>
+            <Button
+              theme="primary-white"
+              to="/explore"
+              className="justify-center md:px-12 min-w-[230px]"
+            >
               Explore the Catalog
             </Button>
           </div>
-          <div className="flex flex-col mt-10 md:flex-row gap-7 md:mt-14">
+        </LayoutContainer>
+      </div>
+      <LayoutContainer className="py-12 md:py-40">
+        <div className="flex flex-col gap-10 lg:flex-row lg:gap-28 md:items-center">
+          <div className="shrink-0">
+            <Image
+              src="/images/home-approach.png"
+              width={433}
+              height={361}
+              alt="People planting a small tree"
+            />
+          </div>
+          <div>
+            <h2 className="font-serif text-3xl md:text-[40px] text-grey-dark md:leading-[56px] max-w-lg">
+              Our approach is focused on transparency
+            </h2>
+            <p className="max-w-3xl mt-6">
+              An important caveat is that our project database is based entirely on an
+              organization’s self-reporting. We ask: how many of these criteria are publicly
+              disclosed by an organization? Currently, no formal third-party certification or
+              verification process exists for forest restoration projects. But projects can use this
+              tool as a guide for improving their transparency.
+            </p>
+            <Button to="/explore" className="justify-center mt-10 md:inline-flex md:mt-32 md:px-12">
+              Explore the Catalog
+            </Button>
+          </div>
+        </div>
+      </LayoutContainer>
+      <div className="py-12 md:py-40 bg-grey-light">
+        <LayoutContainer>
+          <h2 className="font-serif text-3xl md:text-[40px] text-green md:leading-[56px] max-w-xl font-bold mx-auto text-center">
+            Why use the Mongabay Reforestation.app?
+          </h2>
+          <div className="flex flex-col mt-10 md:flex-row gap-7 md:mt-28">
             <div>
-              <div className="text-serif text-4xl">01</div>
-              <h3 className="mt-5 md:mt-10 text-2xl md:leading-[56px] font-bold font-serif">
+              <div className="flex items-center justify-center w-40 h-40 mx-auto rounded-full bg-green">
+                <Image src="/icons/standards.svg" width={59} height={72} alt="" />
+              </div>
+              <h3 className="mt-5 md:mt-12 text-xl text-center md:leading-[56px] font-bold text-green font-serif">
                 High standards
               </h3>
-              <p className="mt-2">
+              <p className="mt-2 text-center">
                 Our list of criteria was primarily drawn from the Forest Landscape Restoration (FLR)
                 approach, widely heralded as the gold standard across the restoration sector.
               </p>
             </div>
             <div>
-              <div className="text-serif text-4xl">02</div>
-              <h3 className="mt-5 md:mt-10 text-2xl md:leading-[56px] font-bold font-serif">
+              <div className="flex items-center justify-center w-40 h-40 mx-auto rounded-full bg-green">
+                <Image src="/icons/transparency.svg" width={62} height={62} alt="" />
+              </div>
+              <h3 className="mt-5 md:mt-12 text-xl text-center md:leading-[56px] font-bold text-green font-serif">
                 Transparency
               </h3>
-              <p className="mt-2">
+              <p className="mt-2 text-center">
                 Rather than make an assessment (and perceived endorsement) of the quality of the
                 projects, Reforestation.app reveals how much information is publicly disclosed by an
                 organization.
               </p>
             </div>
             <div>
-              <div className="text-serif text-4xl">03</div>
-              <h3 className="mt-5 md:mt-10 text-2xl md:leading-[56px] font-bold font-serif">
+              <div className="flex items-center justify-center w-40 h-40 mx-auto rounded-full bg-green">
+                <Image src="/icons/database.svg" width={56} height={63} alt="" />
+              </div>
+              <h3 className="mt-5 md:mt-12 text-xl text-center md:leading-[56px] font-bold text-green font-serif">
                 A growing catalog
               </h3>
-              <p className="mt-2">
+              <p className="mt-2 text-center">
                 The community is encouraged to share new projects and update information about
                 existing projects to make this catalog the best available resource.
               </p>
@@ -94,40 +140,64 @@ const HomePage: React.FC = () => {
           </div>
         </LayoutContainer>
       </div>
-      <LayoutContainer className="py-12 md:py-20 xl:!px-0 max-w-[1120px]">
-        <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-28 text-white">
-          <h2 className="font-serif text-3xl md:text-[40px] font-bold md:leading-[56px] max-w-lg">
-            Learn How to Navigate and Use the Platform
-          </h2>
-          <div className="max-w-[480px]">
-            <div>
-              <h3 className="font-serif text-[20px] font-bold md:leading-[46px]">
+      <LayoutContainer className="py-12 md:py-40">
+        <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-28 md:items-center">
+          <div className="max-w-3xl">
+            <h2 className="font-serif text-3xl md:text-[40px] text-green font-bold md:leading-[56px] max-w-lg">
+              How it works
+            </h2>
+            <div className="mt-3">
+              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
                 Find projects that match your interests
               </h3>
-              <p className="text-sm leading-6">
+              <p>
                 Filter the reforestation catalog using 36 indicators grouped into five categories:
                 Context, Ecological, Economic, Institutional and Social.
               </p>
             </div>
             <div className="mt-7 md:mt-8">
-              <h3 className="font-serif text-[20px] font-bold md:leading-[46px]">
+              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
                 Dig into the details of the project chart
               </h3>
-              <p className="text-sm leading-6">
+              <p>
                 The circular diagram represents the completeness of transparency for each project.
                 Clicking through provides more details about the project.
               </p>
             </div>
             <div className="mt-7 md:mt-8">
-              <h3 className="font-serif text-[20px] font-bold md:leading-[46px]">
+              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
                 Update project information
               </h3>
-              <p className="text-sm leading-6">
+              <p>
                 Anyone can suggest an update to existing projects by filling in the form linked to
                 the <span className="font-semibold">Suggest Page Edits</span> button available on
                 every project page. All edits get reviewed and verified before being published.
               </p>
             </div>
+            <div className="mt-7 md:mt-8">
+              <h3 className="font-serif text-xl font-bold text-green md:leading-[56px]">
+                Share new projects
+              </h3>
+              <p>
+                To share a new project with Mongabay’s editors, please fill in the form accessible
+                via the <span className="font-semibold">Submit Project</span> button at the top of
+                every page. We’ll review them once a month.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-3 shrink-0">
+            <Image
+              src="/images/home-how-it-works-1.png"
+              width={525}
+              height={367}
+              alt="Explore page"
+            />
+            <Image
+              src="/images/home-how-it-works-2.png"
+              width={525}
+              height={367}
+              alt="Project page"
+            />
           </div>
         </div>
       </LayoutContainer>
@@ -168,40 +238,16 @@ const HomePage: React.FC = () => {
           </LayoutContainer>
         </div>
       )}
-      <div className="py-12 text-white md:py-14 bg-green-emerald/40 text-center max-w-[1120px] mx-auto rounded-2xl">
-        <LayoutContainer className="space-y-4">
-          <h3 className="text-6xl font-serif">Stay updated</h3>
-          <p className="font-serif md:leading-tight max-w-[455px] mx-auto">
-            Subscribe to our newsletter to find out about reforestation projects, original stories,
-            activism awareness and more.
-          </p>
-          <Button
-            theme="secondary-green"
-            onClick={() => setShowNewsletterSignup(true)}
-            className="justify-center !mt-8 inline-flex text-lg"
-          >
-            Subscribe to newsletter
-            <Arrow className="w-4 h-4 ml-2 fill-green-dark" />
-          </Button>
-          <NewsletterSignup
-            open={showNewsletterSignup}
-            onDismiss={() => setShowNewsletterSignup(false)}
-          />
-        </LayoutContainer>
-      </div>
-      <LayoutContainer className="py-10 md:py-20">
-        <h2 className="text-sm text-white md:leading-[56px] text-center uppercase">Partners</h2>
-        <div className="flex flex-col items-center justify-center gap-8 mt-5 md:mt-6 md:flex-row md:gap-10">
+      <LayoutContainer className="py-12 md:py-40">
+        <h2 className="font-serif text-3xl md:text-[40px] text-green md:leading-[56px] font-bold">
+          Partners:
+        </h2>
+        <div className="flex flex-col items-center gap-8 mt-5 md:mt-14 md:flex-row md:gap-10">
           <div className="flex-shrink-0">
-            <Image
-              src="/images/mongabay-horizontal-white.png"
-              alt="Mongabay"
-              width={176}
-              height={25}
-            />
+            <Image src="/images/mongabay-horizontal.png" alt="Mongabay" width={333} height={50} />
           </div>
           <div className="flex-shrink-0">
-            <Image src="/images/vizzuality.svg" alt="Vizzuality logo" width={117} height={24} />
+            <Image src="/images/vizzuality.png" alt="Vizzuality" width={245} height={63} />
           </div>
         </div>
       </LayoutContainer>

@@ -34,7 +34,6 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
             rel="stylesheet"
           ></link>
-          <link href="https://fonts.cdnfonts.com/css/rowan" rel="stylesheet"></link>
         </Head>
         <body id="root" className="font-sans text-grey-darker">
           {/* Google Tag Manager (noscript)  */}

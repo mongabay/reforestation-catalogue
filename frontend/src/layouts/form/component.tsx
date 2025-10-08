@@ -37,7 +37,7 @@ export const FormLayout: React.FC<FormLayoutProps> = ({
       >
         {children}
       </main>
-      <div className="py-12 text-white md:py-32 bg-green-emerald">
+      <div className="py-12 text-white md:py-32 bg-orange">
         <LayoutContainer>
           <p className="font-serif text-3xl md:text-[40px] md:leading-tight max-w-3xl font-bold">
             Subscribe to our newsletter to find out about reforestation projects, original stories,
@@ -48,7 +48,7 @@ export const FormLayout: React.FC<FormLayoutProps> = ({
             onClick={() => setShowNewsletterSignup(true)}
             className="justify-center mt-10 md:inline-flex md:mt-20 md:px-12"
           >
-            <span className="text-accent">Subscribe</span>
+            <span className="text-orange">Subscribe</span>
           </Button>
         </LayoutContainer>
       </div>

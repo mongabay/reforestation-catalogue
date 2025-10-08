@@ -8,13 +8,13 @@ export interface MainProps {
   props?: React.ComponentProps<'main'>;
 }
 
-export type StaticPageLayoutProps = React.ComponentProps<'div'> & {
-  /** Props for the header */
-  headerProps?: HeaderProps;
-  /** Props for the `<main />` element of the page */
-  mainProps?: MainProps['props'];
-  /** Props for the footer */
-  footerProps?: FooterProps['props'];
-  /** Children is a ReactNode */
-  children?: React.ReactNode;
-};
+export type StaticPageLayoutProps = React.PropsWithChildren<
+  React.ComponentProps<'div'> & {
+    /** Props for the header */
+    headerProps?: HeaderProps;
+    /** Props for the `<main />` element of the page */
+    mainProps?: MainProps['props'];
+    /** Props for the footer */
+    footerProps?: FooterProps['props'];
+  }
+>;

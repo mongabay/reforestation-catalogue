@@ -98,7 +98,7 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
           </div>
         </LayoutContainer>
 
-        <div className="py-12 text-white bg-green-emerald">
+        <div className="py-12 text-white bg-orange">
           <LayoutContainer className="lg:w-[calc(1024px_-_25%)] xl:w-[calc(1280px_-_25%)] 2xl:w-[calc(1536px_-_25%)] lg:mr-[25%]">
             <div className="lg:pr-24">
               <p className="max-w-3xl font-serif text-3xl font-bold md:leading-tight">
@@ -110,7 +110,7 @@ export const StepByStepGuidance: FC<StepByStepGuidanceProps> = ({ onNavigateToCa
                 onClick={() => setShowNewsletterSignup(true)}
                 className="justify-center mt-10 md:inline-flex md:px-12"
               >
-                <span className="text-accent">Subscribe</span>
+                <span className="text-orange">Subscribe</span>
               </Button>
             </div>
           </LayoutContainer>

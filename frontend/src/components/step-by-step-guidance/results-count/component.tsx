@@ -46,12 +46,12 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
       {(isLoading || isError) && <div />}
       {!isLoading && !isError && (
         <div className="flex flex-col items-stretch flex-grow">
-          <label htmlFor="results-progress" className="text-accent">
+          <label htmlFor="results-progress" className="text-orange">
             <MatchingResultsSentence />
           </label>
           <progress
             id="results-progress"
-            className="h-1 mt-3 rounded-full bg-accent/20 progress-bar:bg-accent/20 progress-value:bg-accent progress-value:rounded-full"
+            className="h-1 mt-3 rounded-full bg-orange/20 progress-bar:bg-orange/20 progress-value:bg-orange progress-value:rounded-full"
             max={total}
             value={matching}
           >
@@ -60,7 +60,7 @@ export const ResultsCount: FC<ResultsCountProps> = ({ onNavigateToCatalog, class
         </div>
       )}
       <Button
-        theme="secondary-accent"
+        theme="secondary-orange"
         onClick={onClickCatalog}
         className="items-center justify-center flex-shrink-0 min-w-[185px]"
       >

@@ -22,7 +22,7 @@ export const NewsletterSignup: FC<NewsletterSignupProps> = ({ open, onDismiss })
   return (
     <Modal title="Subscribe" open={open} onDismiss={onDismiss}>
       <div className="md:px-20">
-        <h1 className="flex-shrink-0 font-serif text-3xl font-bold text-accent">Subscribe</h1>
+        <h1 className="flex-shrink-0 font-serif text-3xl font-bold text-orange">Subscribe</h1>
         <form
           action="https://Mongabay.us14.list-manage.com/subscribe/post?u=80161fe385606408293ae0e51&amp;id=940652e1f4"
           method="post"
@@ -161,7 +161,7 @@ export const NewsletterSignup: FC<NewsletterSignupProps> = ({ open, onDismiss })
               value="Subscribe"
               name="subscribe"
               id="mc-embedded-subscribe"
-              className={`${COMMON_CLASSES} ${COLOR_THEMES['primary-accent']}`}
+              className={`${COMMON_CLASSES} ${COLOR_THEMES['primary-orange']}`}
             />
           </div>
         </form>

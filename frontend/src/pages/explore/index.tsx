@@ -2,13 +2,7 @@ import { FC, useState, useRef, useEffect, useCallback } from 'react';
 
 import Image from 'next/image';
 
-import ExplorePageLayout from 'layouts/explore-page';
-import { StaticPageLayoutProps } from 'layouts/static-page';
-import wrapper from 'lib/store';
-import { filtersActions, globalActions } from 'modules';
 import { GetServerSideProps } from 'next';
-import { PageComponent } from 'types';
-import { logEvent } from 'utils/analytics';
 
 import { useAppDispatch } from 'hooks/redux';
 
@@ -25,6 +19,12 @@ import ProjectSearch from 'components/project-search';
 import StepByStepGuidance from 'components/step-by-step-guidance';
 import Tooltip from 'components/tooltip';
 import UrlSync from 'components/url-sync';
+import ExplorePageLayout from 'layouts/explore-page';
+import { StaticPageLayoutProps } from 'layouts/static-page';
+import wrapper from 'lib/store';
+import { filtersActions, globalActions } from 'modules';
+import { PageComponent } from 'types';
+import { logEvent } from 'utils/analytics';
 
 import LayersIcon from 'svgs/layers.svg';
 import LeftArrowIcon from 'svgs/left-arrow.svg';
@@ -218,18 +218,18 @@ const CatalogScreen: FC<{ onNavigateToGuidance: () => void }> = ({ onNavigateToG
             <div className="px-5 pb-8 md:pr-12 md:px-0">
               <ProjectCatalog hightlightSortingCategory />
             </div>
-            <div className="py-12 text-white md:pl-6 bg-accent">
+            <div className="py-12 text-white md:pl-6 bg-orange">
               <LayoutContainer>
                 <p className="max-w-3xl font-serif text-3xl font-bold md:leading-tight">
                   Subscribe to our newsletter to find out about reforestation projects, original
                   stories, activism awareness and more.
                 </p>
                 <Button
-                  theme="secondary-green"
+                  theme="primary-white"
                   onClick={() => setShowNewsletterSignup(true)}
                   className="justify-center mt-10 md:inline-flex md:px-12"
                 >
-                  <span className="text-accent">Subscribe</span>
+                  <span className="text-orange">Subscribe</span>
                 </Button>
               </LayoutContainer>
             </div>
