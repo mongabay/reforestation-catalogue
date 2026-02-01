@@ -111,6 +111,7 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.2.2)
+    connection_pool (2.3.0)
     crass (1.0.6)
     date (3.3.3)
     debug (1.5.0)
@@ -229,7 +230,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
-    redis (4.6.0)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.14.0)
+      connection_pool
     regexp_parser (2.6.2)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -362,7 +366,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.4)
-  redis (~> 4.0)
+  redis (~> 5.0)
   rspec-rails
   rubocop
   sassc-rails
